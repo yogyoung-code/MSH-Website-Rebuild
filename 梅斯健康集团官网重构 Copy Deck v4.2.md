@@ -21,6 +21,7 @@
 | **品牌名** | 全局 | MEDSCI（全大写）→ **MedSci Healthcare**（混合大小写,Brand Guidelines v1.1 §1.1） |
 | **新章** | §7 Case Studies 详情 ×3 | B2 / W2; §7.0 模板 + §7.1-§7.3 三案例 + 9 metric 全填代表性数字（IR-signed 终版前 ⚠️ 占位） |
 | **新章** | §8 Insights 列表 + 详情模板 | B3 / W3; §8.0 列表 + §8.1 详情骨架 + §8.2 占位文章 ×3 引子 + §8.3 通用约束 |
+| **新章** | §9 About（EN+CN 双语） | B4 / W4; §9.0–§9.4 EN（公司简介 / 领导层 / 3.33M+ 网络 / 合规治理）+ §9.5 CN 精简版; **港股披露相关,法务 + IR 强制双签 + 5 天 buffer** |
 
 ### 0.2 视觉约定（沿用 v4.1）
 
@@ -948,5 +949,402 @@ metric: {
 | 3 篇文章 H2-2 / H2-3 正文 | ⚠️ 未撰写 | V2 CMS 阶段补齐，不阻断 W3 验收 |
 | `/insights/[slug]` Sanity Portable Text 字段对接 | ⚠️ 未对接 | V2 CMS 阶段；原型阶段用 mock JSON |
 | Subscribe 表单后端对接 | ⚠️ 未对接 | V2 阶段对接 Sanity webhook → MailerLite/Klaviyo |
+
+---
+
+## §9 About — `/about`（B4 / W4 范围）
+
+> **来源**: IA v2.0 §4.10 + 反向尽调路径终点; W4 撰写
+> **作用**: 港股投资人 / 美国 BD / 反向尽调访客的"公司是谁"落地页; About 是 IA 唯一要求 EN+CN+ZH-HK 三语的页面（IA §6 hreflang 表）
+> **审批路径**: 内容编辑 → 法务（合规审阅,强制）→ IR 总监（§9.1 / §9.3 数字披露,强制双签）→ Sponsor 终审
+> **Buffer 约束**: §9.5 CN 双语版本提交后预留 5 天 buffer（法务 + IR 双签）才能并入 production
+> **强制约束**:
+> - §9.1 / §9.3 任一数字 / 披露表述 ⚑ 占位时不得发布
+> - 不得在 About 页内嵌入 Pilot 价格 / Case Study 数字（这些有专门的页面承载）
+> - 不得使用"industry-leading / world-class / best-in-class"等禁词（v4.2 §0 + check-page Gate 16）
+
+### §9.0 元数据
+
+| 字段 | 值 |
+|---|---|
+| URL | `/about` |
+| `<title>` | `About MedSci Healthcare — AI + Physician-in-the-Loop` |
+| `<meta name="description">` | `MedSci Healthcare (2415.HK) builds physician-verified evidence, engagement, and communication packages for global biopharma and medtech — AI-assisted, PITL-reviewed.` |
+| Schema.org | `Organization` + `AboutPage`（`Organization` 含 sameAs → HKEX 公告 + LinkedIn） |
+| hreflang | `en` / `zh-CN` / `zh-HK`（三语必填,IA §11） |
+| robots | `index, follow` |
+
+### §9.1 Company Snapshot — `/about#company`
+
+#### §9.1.1 Hero（页面顶部）
+
+**Eyebrow**: `ABOUT MEDSCI HEALTHCARE`
+
+**H1**:
+
+> A medical evidence and physician engagement company, built for the AI era — and audited like an HKEX-listed one.
+
+**Lede（≤ 90 字英文）**:
+
+> MedSci Healthcare (HKEX: 2415) is the listed parent of a medical-affairs platform serving global biopharma and medtech. We build evidence, engagement, and communication deliverables in AI-assisted workflows that every physician on our team is willing to sign — and that legal, IR, and an FDA reviewer can audit.
+
+#### §9.1.2 At-a-Glance Stat Strip（4 项,与 Hero 紧贴）
+
+4 列横排，深底色（沿用 Homepage Hero `WHAT WE DELIVER` 卡的 stat strip 视觉，复用 `<StatStrip>` 组件）。
+
+| # | 数值 | 标签 | 来源 / 备注 |
+|---|---|---|---|
+| 1 | **2415.HK** | HKEX listed | HKEX 公告 · 2024 · approvedBy: ⚑ IR |
+| 2 | **3.33M+** | Physician network | Internal · 2025 · approvedBy: ⚑ IR |
+| 3 | **AI + PITL** | Physician-in-the-loop, on every deliverable | Internal Methodology · 2026 · approvedBy: ⚑ Legal |
+| 4 | **EN + CN tracks** | Bilingual physician review | Internal Delivery Standard · 2026 · approvedBy: ⚑ Legal |
+
+> *实现说明*：4 个 `approvedBy` 字段在 Go-Live 前替换为已签字的 `IR-2026-Q2-About` / `Legal-2026-Q2-About` 等回执 ID。原型阶段保留 ⚠️ 占位（不出现在 HTML，仅跟踪表）。
+
+#### §9.1.3 Body — What we do（≤ 180 字英文）
+
+> We work along two paths and four service lines.
+>
+> The two paths are **Entering China** (helping global sponsors stand up evidence, HCP, and content programs for the China market) and **Going Global** (helping China-headquartered sponsors meet the FDA, U.S. payers, and U.S.-facing journals on their terms).
+>
+> The four service lines are **Medical Evidence**, **Physician Engagement**, **Medical Communications**, and our **AI-Enabled Platform** that runs through all three.
+>
+> Every deliverable carries a named author, a named physician reviewer, and a year-stamped source trail.
+
+#### §9.1.4 Body — What this page is for（≤ 80 字英文，反尽调小段）
+
+**Eyebrow**: `FOR INVESTORS AND PARTNERS`
+
+> If you are doing reverse due diligence on us — for an investment, an audit, a partnership, or an acquisition — this page is the entry point. It links out to our governance, compliance, IR, and physician methodology pages so you can verify what we say below.
+
+外链锚点（小字，紧贴段落）：
+- → [Investor Relations](https://medscihealthcare.com/ir) *(rel="external noopener")*
+- → [HKEX 2415.HK 公告](https://www.hkexnews.hk/) *(rel="external noopener")*
+- → [Legal & Compliance](/legal)
+- → [AI + PITL Methodology](/ai-platform)
+
+---
+
+### §9.2 Leadership — `/about#leadership`
+
+#### §9.2.1 Section header
+
+**Eyebrow**: `LEADERSHIP`
+
+**H2**:
+
+> Named people, signed work.
+
+**Lede（≤ 50 字英文）**:
+
+> The same names that appear on our HKEX disclosures appear on the deliverables our clients sign off. Below are our principal officers and their public roles.
+
+#### §9.2.2 Leadership card schema（每位领导一张卡）
+
+| 字段 | 必填 | 备注 |
+|---|---|---|
+| `photo` | 可选 | 占位灰底 + 首字母 monogram 兜底 |
+| `name` | ✅ | 姓名（按 HKEX 披露文件） |
+| `title` | ✅ | 公开职位（CEO / CMO / CFO / Chief Compliance Officer / Head of IR 等） |
+| `bio` | ✅ | ≤ 50 字英文; 一句资历 + 一句在 MedSci 的角色 |
+| `disclosures` | 可选 | 链接到 HKEX 公告（如有相关人事公告） |
+| `linkedin` | 可选 | external noopener |
+
+#### §9.2.3 占位领导层（⚠️ 由 People Ops 替换为公开姓名）
+
+**4 张卡占位（不发布前必填,IR 双签）**：
+
+| # | role placeholder | bio placeholder（≤ 50 字英文） | 状态 |
+|---|---|---|---|
+| 1 | Chief Executive Officer | ⚑ ⚠️ Replace with HKEX-disclosed CEO bio at sign-off; should reference founding year and core MedSci thesis | ⚑ pending IR + People Ops |
+| 2 | Chief Medical Officer | ⚑ ⚠️ Replace with HKEX-disclosed CMO bio at sign-off; should name therapeutic specialty + PITL governance role | ⚑ pending IR + People Ops |
+| 3 | Chief Financial Officer | ⚑ ⚠️ Replace with HKEX-disclosed CFO bio at sign-off; reference IR cadence ownership | ⚑ pending IR + People Ops |
+| 4 | Chief Compliance Officer / Head of Legal | ⚑ ⚠️ Replace with HKEX-disclosed Compliance lead bio at sign-off; reference legal review chain | ⚑ pending IR + Legal |
+
+> *实现说明*：原型 HTML 渲染为 4 张卡，name 字段显示"⚑ pending"占位字（红色描边卡，区别于已签字卡）；check-page Gate 17 在 production deploy 前阻断带 ⚑ 的卡。Go-Live 前 IR + People Ops 替换。
+
+#### §9.2.4 Section footer link
+
+> Full board composition and committee assignments are disclosed in our HKEX [Annual Report](https://www.hkexnews.hk/) and [Corporate Governance Report](https://www.hkexnews.hk/).
+
+---
+
+### §9.3 The 3.33M+ Network — `/about#network`
+
+> **专注页**: 反尽调访客最常追问的"网络如何构成 / 如何认证 / 如何使用"
+> **强制约束**: §9.3 任一数字 ⚑ 不得发布；定义页与 IR 披露口径**字字一致**
+
+#### §9.3.1 Hero block
+
+**Eyebrow**: `THE 3.33M+ PHYSICIAN NETWORK`
+
+**H2**:
+
+> 3.33 million+ registered physicians — and what that actually means.
+
+**Lede（≤ 90 字英文）**:
+
+> A number is only as useful as its definition. Below is exactly what the 3.33M+ figure includes, how we count it, when it was last refreshed, and how clients use it in evidence and engagement work.
+
+#### §9.3.2 Definition — Two-column block
+
+**Left column header**: `What "3.33M+" includes`
+
+> Registered physicians on the MedSci Healthcare network as of the last refresh, across China-licensed practitioners and a smaller international cohort. "Registered" means the physician has completed our identity-verification flow and accepted our terms of engagement. The figure is the count of unique active records at refresh time.
+
+**Right column header**: `What it does not include`
+
+> Patients, students, allied health professionals, retired physicians, and unverified contacts. We do not double-count physicians who hold registrations across more than one MedSci product. We do not include physicians who have opted out, even if they remain in our archive.
+
+#### §9.3.3 Methodology note（小段,紧贴定义之下）
+
+**Eyebrow**: `HOW WE COUNT`
+
+> Identity is verified against publicly issued license registries where possible and against employer attestation otherwise. Active status is reset on a 12-month rolling window — physicians who have not engaged with any MedSci product in 12 months drop from the active count. The figure is refreshed quarterly and reported with the refresh date.
+
+#### §9.3.4 The number itself（StatStrip · 单卡聚焦版,大字）
+
+| 数值 | 标签 | source · year · approvedBy |
+|---|---|---|
+| **3.33M+** | Registered active physicians | Internal · 2025 · ⚑ IR (release-blocking) |
+| **Quarterly** | Refresh cadence | Internal Methodology · 2026 · approvedBy: ⚑ Legal |
+| **EN + CN** | Two physician-review tracks | Internal Delivery Standard · 2026 · approvedBy: ⚑ Legal |
+
+#### §9.3.5 How clients use it（≤ 100 字英文）
+
+**Eyebrow**: `HOW CLIENTS USE THE NETWORK`
+
+> The network is the substrate for three deliverables: HCP segmentation maps for market planning, advisory and KOL recruitment for clinical and commercial work, and CME and engagement programs that meet local regulatory standards. We do not sell access to the list. We work outcomes, with named physicians, against scoped deliverables.
+
+#### §9.3.6 IR cadence note
+
+> The network figure is reconciled to our quarterly results disclosure. Any restatement is published through the same HKEX channel.
+
+外链：→ [HKEX 2415.HK Quarterly Disclosures](https://www.hkexnews.hk/) *(rel="external noopener")*
+
+---
+
+### §9.4 Compliance, Governance, and How We Review Our Own Work — `/about#compliance`
+
+#### §9.4.1 Section header
+
+**Eyebrow**: `COMPLIANCE & GOVERNANCE`
+
+**H2**:
+
+> The same audit trail we put in client work, we put in our own.
+
+**Lede（≤ 70 字英文）**:
+
+> AI does not get to make medical claims at MedSci. Physicians do. Below is how we govern that, and what an external reviewer or regulator can verify.
+
+#### §9.4.2 Four-pillar block（2×2 grid; 复用 ContentBlocks `<TwoColumn>` 嵌套）
+
+每块: pillar 标题 + ≤ 60 字英文说明 + 1 个外链。
+
+**Pillar 01 · PITL on every deliverable**
+
+> Every AI-generated draft passes through a named physician reviewer before any client artifact is signed. Drafts, reviews, and final approvals are time-stamped and retained.
+
+→ [Read the AI + PITL methodology](/ai-platform)
+
+**Pillar 02 · Bilingual physician review**
+
+> Cross-border deliverables go through two physician tracks — EN and CN — with a parallel terminology layer. Both signatures are required for any artifact that travels across regulatory frames.
+
+→ [See bilingual content sprint](/solutions/cross-border-medical-content-sprint)
+
+**Pillar 03 · Source-trail and disclosure governance**
+
+> Every claim in a deliverable links to a named source with a year stamp. Off-label, fair-balance, and disclosure scans are run against every draft. Sample audit packs are available on request.
+
+→ [Legal & Compliance](/legal)
+
+**Pillar 04 · IR-grade reporting cadence**
+
+> Material numbers — including the physician network figure — are aligned to HKEX quarterly disclosure. Restatements follow the same channel. We do not maintain a "marketing" version of headline numbers separate from the IR version.
+
+→ [Investor Relations](https://medscihealthcare.com/ir) *(rel="external noopener")*
+
+#### §9.4.3 Data handling and cross-border note（≤ 100 字英文）
+
+**Eyebrow**: `DATA HANDLING`
+
+> Personal data collected in China stays in China unless contractually scoped, with a documented cross-border path that meets PIPL and our clients' data-residency commitments. U.S.-collected personal data follows HIPAA and contractual BAA chains where applicable. We do not aggregate personal data across clients without explicit per-engagement consent and signed terms.
+
+外链：→ [Privacy Policy](/legal/privacy) · → [Disclosures](/legal/disclosures)
+
+#### §9.4.4 Section footer
+
+> If you are running a vendor security assessment, an audit, or due diligence and need a specific document, contact our Compliance team and we will route the request through Legal.
+
+CTA: `Request a Compliance Pack` → `/contact?topic=compliance`
+
+---
+
+### §9 通用约束 / 禁忌
+
+| 约束 | 适用 | 备注 |
+|---|---|---|
+| §9.1 / §9.3 任一数字 ⚑ 不得发布 | §9.1.2 / §9.3.4 | check-page Gate 17 |
+| 不得在 About 嵌入 Pilot 价格 / Case 数字 | 全 §9 | 这些归 `/pilots/*` 和 `/case-studies/*` |
+| 领导层 bio ≤ 50 字英文 | §9.2.3 | 反尽调访客需要快速扫读;详见 HKEX |
+| 链接到 IR / HKEX 必须 `rel="external noopener"` | §9.1 / §9.4 | IA §3 / §5 要求 |
+| 禁词扫描通过 | 全 §9 | check-page Gate 16 |
+| §9.5 CN 版上线前 IR + 法务双签（5 天 buffer） | §9.5（Step 2 待写） | Go-Live 前回执必须存档 |
+
+### §9 ⚠️ 跟踪事项（Step 2-4 解锁前持续跟踪）
+
+| 项 | 状态 | 解锁条件 |
+|---|---|---|
+| §9.1.2 stat strip 4 项 approvedBy（IR + Legal） | ⚑ pending | IR + Legal 双签回执 ID 替换占位 |
+| §9.2.3 4 张领导层卡 name + bio | ⚑ pending | People Ops 提供 HKEX 披露版本 + IR 双签 |
+| §9.3.4 stat strip 3 项 approvedBy | ⚑ pending IR | IR 终签回执 ID |
+| §9.5 CN parallel 草稿 | ⏳ Step 2 | 由本 Task 4.1 Step 2 撰写 |
+| 法务 + IR 双签邮件（5 天 buffer） | ⏳ Step 3 | Step 1 + Step 2 完稿后发起 |
+| §9 整段 commit | ⏳ Step 4 | 双签回执存档后 commit + push |
+
+---
+
+### §9.5 中文精简版 — `/about?lang=zh-CN`（W4 Step 2）
+
+> **作用**: 港股投资者 / 反向尽调中文受众 / 内地客户的 About 入口
+> **范围约束**: 精简版,仅覆盖 §9.1 / §9.3 / §9.4 三个反尽调最高频的板块（§9.2 领导层全部走 HKEX 公告链接,中文页不再列卡）
+> **强制约束**:
+> - **数字与英文 §9.1 / §9.3 字字一致**（HKEX 披露口径,任何偏差视为合规事故）
+> - 法务 + IR 双签前不得上线; **5 天 buffer** 起算自完整中文稿提交
+> - zh-HK 繁体版本由译审在 zh-CN 双签后从中转换,不在本次 Step 2 范围
+> - 不得自由扩写超出英文版的事实声明范围
+
+#### §9.5.0 元数据
+
+| 字段 | 值 |
+|---|---|
+| URL | `/about?lang=zh-CN`（CMS 阶段切到 `/zh-CN/about` 子路径） |
+| `<title>` | `关于梅斯健康 — AI 时代的医学事实平台` |
+| `<meta name="description">` | `梅斯健康（2415.HK）面向全球生物医药与医疗器械客户,提供医学证据、医生互动与医学传播的医师签字交付物——AI 协同,PITL 审阅,可被监管与审计核验。` |
+| hreflang 对应字段 | `zh-CN`,与 EN `/about` 通过 `rel="alternate"` 互链 |
+
+#### §9.5.1 公司简介（对应 §9.1）
+
+**Eyebrow**: `关于梅斯健康`
+
+**H1**:
+
+> 一家面向 AI 时代的医学证据与医生互动公司——以港股上市公司的标准被审计。
+
+**Lede（≤ 110 字中文）**:
+
+> 梅斯健康（港股代码：2415）是一家于香港联合交易所主板上市的医学事务平台母公司,服务于全球生物医药及医疗器械客户。我们以 AI 协同 + 医师签字（Physician-in-the-Loop, PITL）的工作方式交付医学证据、医生互动与医学传播成果——每一份交付物都由具名医师审阅,可被法务、IR 和 FDA 评审者审计。
+
+#### §9.5.2 核心数字（对应 §9.1.2 stat strip,字字一致）
+
+> 4 项数据沿用英文版 §9.1.2 表格,标签翻译,数字不变（IR 已签字版本前 ⚑ 占位）。
+
+| # | 数值 | 中文标签 | 来源 / 备注 |
+|---|---|---|---|
+| 1 | **2415.HK** | 港股主板上市 | HKEX 公告 · 2024 · approvedBy: ⚑ IR |
+| 2 | **3.33M+** | 注册医师网络 | 内部 · 2025 · approvedBy: ⚑ IR |
+| 3 | **AI + PITL** | 每一份交付物的医师签字闭环 | 内部方法论 · 2026 · approvedBy: ⚑ Legal |
+| 4 | **EN + CN 双轨** | 双语医师审阅 | 内部交付标准 · 2026 · approvedBy: ⚑ Legal |
+
+#### §9.5.3 业务范围（对应 §9.1.3,精简）
+
+> 梅斯健康沿两条路径、四条业务线服务客户:
+>
+> 两条路径——**进入中国（Entering China）** 与 **走向全球·美国（Going Global, US）**;
+>
+> 四条业务线——**医学证据（Medical Evidence）**、**医生互动（Physician Engagement）**、**医学传播（Medical Communications）**、以及贯通三者的 **AI 平台（AI-Enabled Platform）**。
+>
+> 每一份交付物均带有具名作者、具名医师审稿人,以及带年份标识的来源链。
+
+#### §9.5.4 这页给谁看（对应 §9.1.4）
+
+**Eyebrow**: `投资人与合作方导览`
+
+> 如果您正对我们进行反向尽调——出于投资、审计、合作或并购目的——本页是入口。下方链接可直达治理、合规、IR 与医师工作方法的核验路径。
+
+链接组（小字）：
+- → [投资者关系](https://medscihealthcare.com/ir) *(rel="external noopener")*
+- → [HKEX 2415.HK 公告](https://www.hkexnews.hk/) *(rel="external noopener")*
+- → [法务与合规](/legal)
+- → [AI + PITL 工作方法](/ai-platform)
+
+#### §9.5.5 领导层（对应 §9.2,中文页不重复列卡）
+
+**Eyebrow**: `领导层`
+
+**H2**:
+
+> 公开披露的姓名,签字交付的工作。
+
+**精简段落（≤ 80 字中文）**:
+
+> 我们在 HKEX 披露文件中所列的核心高管,与客户交付物上签字的医师团队是同一批人。完整的董事会构成、委员会任命与高管简历以 [HKEX 年报](https://www.hkexnews.hk/) 与 [企业管治报告](https://www.hkexnews.hk/) 为准。
+
+> *实现说明*：中文页不再渲染 4 张领导层卡。EN 版（`/about` 英文）保留 §9.2 卡片视觉。zh-HK 繁体版与本节同结构。
+
+#### §9.5.6 3.33M+ 网络（对应 §9.3,精简）
+
+**Eyebrow**: `3.33M+ 医师网络`
+
+**H2**:
+
+> 3.33 百万以上注册医师——以及这个数字的精确含义。
+
+**精简段落组（共 ≤ 220 字中文）**:
+
+> **包含**: 在最近一次刷新口径下,完成身份核验并接受我们服务条款的注册医师,涵盖中国持牌医师与较小规模的国际队列。
+>
+> **不包含**: 患者、医学生、辅助医疗专业人员、退休医师与未核验联系人。同一医师跨多个梅斯产品线注册不重复计数;主动退出者即使存留档案亦不计入活跃数。
+>
+> **如何计数**: 身份核验优先比对公开执照登记库,无法比对者走雇主背书。活跃状态以 12 个月滚动窗口重置——12 个月内未参与任何梅斯产品交互的医师,自动从活跃数中剔除。数字按季度刷新,刷新日期随同披露。
+>
+> **客户使用方式**: 以网络为底盘的三类交付物——市场规划用的 HCP 分群图、临床与商业层面的顾问与 KOL 招募、符合本地监管标准的 CME 与互动项目。**我们不出售名单访问权限**,只交付带具名医师与有界范围的成果。
+>
+> **披露口径**: 网络数据与季度业绩披露口径一致;任何调整通过同一 HKEX 渠道发布。
+
+#### §9.5.7 合规与治理（对应 §9.4,精简）
+
+**Eyebrow**: `合规与治理`
+
+**H2**:
+
+> 给客户工作的审计标准,我们对自己也用同一套。
+
+**精简四点（每点 ≤ 60 字中文）**:
+
+1. **PITL 闭环**: 每一份 AI 起草内容,在签字前必经具名医师审阅。起草、审阅、定稿均带时间戳留档。 → [AI + PITL 工作方法](/ai-platform)
+2. **双语医师审阅**: 跨境交付物经 EN 与 CN 双轨医师审阅,辅以平行术语层。跨监管框架的成果须双签。 → [跨境医学内容冲刺](/solutions/cross-border-medical-content-sprint)
+3. **来源链与披露治理**: 每一项主张挂带年份标识的具名来源;每份草稿过 off-label / 公平平衡 / 披露扫描。审计样本可按请求提供。 → [法务与合规](/legal)
+4. **IR 级披露节奏**: 重要数字（含医师网络数据）与 HKEX 季度披露对齐;重述走同一渠道。我们不保留独立于 IR 版本的"市场版"头条数字。 → [投资者关系](https://medscihealthcare.com/ir) *(rel="external noopener")*
+
+#### §9.5.8 数据处理与跨境（对应 §9.4.3）
+
+**Eyebrow**: `数据处理与跨境`
+
+> 中国境内采集的个人信息原则上不出境,合同明确授权的场景另有书面跨境路径,符合 PIPL 与客户数据驻留承诺。美国境内采集的个人信息按 HIPAA 及合同 BAA 链路处理。**未经按项目签署明示同意,我们不跨客户聚合个人数据。**
+
+链接：→ [隐私政策](/legal/privacy) · → [披露说明](/legal/disclosures)
+
+#### §9.5.9 结尾段（对应 §9.4.4）
+
+> 若您正在执行供应商安全评估、审计或尽调,需要特定文件,请联系我们的合规团队,我们将通过法务路径回复。
+
+CTA: `申请合规材料包` → `/contact?topic=compliance`
+
+---
+
+### §9.5 通用约束 / 禁忌（中文版专用）
+
+| 约束 | 适用 | 备注 |
+|---|---|---|
+| 数字与英文版 §9.1 / §9.3 字字一致 | §9.5.2 / §9.5.6 | 任何偏差等同合规事故 |
+| 不得自由扩写超出英文版事实声明范围 | 全 §9.5 | 中文为译/精简,非创作 |
+| `industry-leading / 行业领先 / 业界领先 / 顶尖` 等空话禁用 | 全 §9.5 | 中文禁词清单（v4.2 §0 + check-page 中文扫描) |
+| 港股表述统一: `2415.HK` / `港股代码: 2415` / `于香港联合交易所主板上市` | 全 §9.5 | 不得用"港交所上市公司"等口语表述 |
+| 链接到 IR / HKEX 必须 `rel="external noopener"` | §9.5.4 / §9.5.7 | IA §3 / §5 要求 |
+| 中英文 hreflang 互链 | §9.5.0 | EN `/about` ↔ CN `/about?lang=zh-CN` 双向 alternate |
+| zh-HK 繁体由 zh-CN 译审产出 | 范围外 | 本 Step 2 不交付,W6 之前由翻译流程补 |
 
 ---
