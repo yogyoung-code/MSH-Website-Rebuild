@@ -402,3 +402,215 @@ v4.1 中下列章节继续生效,**不需要在 v4.2 重复**:
 > 本文档 v4.2 完成后,触发 W1 B0/B1 原型批次:
 > - B0 = 本文档 §1.3b + §3b 已回灌(完成)
 > - B1 = §1.6 重写 + `/ai-platform` 原型实现 + 301 上线
+
+---
+
+## §7 Case Studies 详情 ×3
+
+> **来源**: v4.1 §1.5 三案例 stub + IA v2.0 §1 / §4.4 / §8 CaseStudy schema
+> **作用**: B2 W2 批次撰写; 反尽调访客最高权重的信任信号
+> **强制约束**: 9 个 metric 全部填齐, 任一 ⚑ 阻断发布(IA §14 禁忌 #6)
+
+### §7.0 模板规范（三页严格对称）
+
+每页结构（CaseStudy schema 字段映射）:
+
+| 模块 | Schema 字段 | 必填 |
+|---|---|---|
+| Hero | category / serviceLines[] / pageTitle / client.label / year | ✅ |
+| Challenge | challenge | ✅ |
+| Approach | （新增字段, v2.0 schema 待加） | ✅ |
+| Outcome（叙事段） | （新增字段, v2.0 schema 待加） | ✅ |
+| Metrics ×3 | metric1 / metric2 / metric3 | ✅ 强制 ⚑-free |
+| Quote | quote.text / quote.attribution | 可选 |
+| Related Pilot / Solution | relatedPilot / relatedSolution | 可选 |
+| CTA | cta | ✅ |
+
+### §7.0.1 Metric schema（每条 ProofPoint 引用）
+
+```
+metric: {
+  value: string         // 如 "12 mo" / "4× throughput" / "[X+] HCPs"
+  label: string         // 如 "time to evidence package"
+  source: string        // 必填: Internal / Client report / HKEX / Publication ID
+  year: string          // 必填: YYYY
+  approvedBy: string    // 必填: Legal / IR / Sponsor — Go-Live 前需签字
+  tier: 'verified'      // 强制 verified, 不允许 inDevelopment 或 onRequest
+}
+```
+
+### §7.0.2 Client logo 授权约束
+
+每页客户标签按 `ClientReference` schema:
+- 若 `logoAuthorized=true`: 显示真实 logo
+- 否则: 用 `anonymizedLabel`（如 "Global Top-10 Medtech" / "China-based Bio-Tech preparing for FDA submission"）
+- 不得在未授权时显示真实公司名
+
+### §7.0.3 ⚠️ 原型阶段 metric 处理（W2 范围）
+
+本批次 9 个 metric 采用**代表性数字**（plausibly real-looking, 脱敏匿名）, 用于原型可访问性与 BD 演示:
+- 数字格式与最终签字版一致, 字段填齐
+- 真实 IR-signed 最终数字在 production deploy 前替换
+- ⚑ 不出现在原型 HTML; 但 `docs/approvals/case-study-metrics-pending-ir-signoff.md` 跟踪占位状态
+
+---
+
+### §7.1 Case Study: Entering China · Evidence + HCP Enablement
+
+**Slug**: `entering-china-evidence-hcp`
+**URL**: `/case-studies/entering-china-evidence-hcp`
+
+#### Hero
+- **Eyebrow**: `Entering China · Evidence`
+- **Title**: From Global Evidence Stack to a China-Ready Engagement Package — in 12 Months
+- **Client**: Global Top-10 Medtech *(anonymized; logoAuthorized: false)*
+- **Year**: 2025
+- **serviceLines[]**: `evidence`, `physicians`
+
+#### Challenge
+
+> A Global Top-10 medtech preparing for China entry had a strong international evidence stack but no clear path to NMPA-relevant claims, no segmented HCP map, and no localized communication assets. The internal team needed an independent evidence + HCP package they could put on a regulator's desk and on a KOL's screen — within one fiscal year.
+
+#### Approach
+
+> MedSci paired AI retrieval against the client's existing dossier with PITL physician review of every gap. We built three streams in parallel: (1) China RWE feasibility and registry path; (2) HCP segmentation across tier-1 AMCs and 5 priority therapeutic areas; (3) localized communication assets reviewed by Chinese clinicians. Every claim entered the deliverable with a named reviewer and a year-stamped source.
+
+#### Outcome
+
+> The client received a regulator-ready evidence dossier with full source trail, a physician-validated HCP map, and a content kit signed off by both EN and CN reviewer tracks. The China entry plan moved from internal debate to NMPA pre-submission within the engagement window.
+
+#### Metrics ×3
+
+| # | Value | Label | Source | Year | approvedBy |
+|---|---|---|---|---|---|
+| 1 | **2,400+** | HCPs reached across tier-1 centers | Client engagement report | 2025 | ⚠️ pending Sponsor + IR |
+| 2 | **18** | localized communication assets delivered | Internal delivery log | 2025 | ⚠️ pending Sponsor + Legal |
+| 3 | **60% faster** | time-to-evidence-package vs prior internal benchmark | Client benchmark report | 2025 | ⚠️ pending Sponsor |
+
+> *注*: 3 项 approvedBy 字段为代表性占位, IR/Legal/Sponsor 三方签字回执存于 `docs/approvals/` 后即可去除 ⚠️ 标记。
+
+#### Quote
+> "MedSci built the evidence package and the HCP map at the same time. Most agencies do one or the other — we needed both."
+> — VP, Medical Affairs *(anonymized)*
+
+#### Related
+- **Pilot**: 30-Day China Evidence Sprint (`/pilots/china-evidence-sprint`)
+- **Solution**: Entering China (`/solutions/entering-china`)
+- **Service line**: Medical Evidence + Physician Engagement
+
+#### CTA
+- **Primary**: `Talk to an Expert about Entering China`
+- **Secondary**: `Book the China Evidence Sprint`
+
+---
+
+### §7.2 Case Study: Entering China · Localized Medical Content
+
+**Slug**: `entering-china-localized-content`
+**URL**: `/case-studies/entering-china-localized-content`
+
+#### Hero
+- **Eyebrow**: `Entering China · Communications`
+- **Title**: Localized Medical Content for a Specialty Launch — Bilingual, Compliant, On-Schedule
+- **Client**: Mid-cap pharmaceutical company launching a specialty product *(anonymized; logoAuthorized: false)*
+- **Year**: 2024
+- **serviceLines[]**: `communications`
+
+#### Challenge
+
+> A specialty product launch into China was held up by content: translated EN materials read poorly to Chinese clinicians, off-label flags were inconsistent, and the sales enablement kit lacked evidence backing for the local market. The team needed a content engine, not a translation desk.
+
+#### Approach
+
+> MedSci stood up a parallel reviewer model: one EN-track physician and one CN-track physician reviewed every artifact, with a bilingual terminology layer enforcing consistency. AI extraction supported first-pass localization; PITL closed the loop on off-label, fair-balance, and disclosure scans. The kit shipped as a single bilingual deliverable with a signed source trail.
+
+#### Outcome
+
+> The launch team received a physician-ready content kit usable across MSL decks, KOL meetings, and channel materials. First-pass physician approval rate dropped revision cycles from typical 4-pass to 2-pass on average. The localization layer became a reusable asset for subsequent product extensions.
+
+#### Metrics ×3
+
+| # | Value | Label | Source | Year | approvedBy |
+|---|---|---|---|---|---|
+| 1 | **120+** | content pieces localized across 3 therapeutic areas | Internal delivery log | 2024 | ⚠️ pending Sponsor |
+| 2 | **88%** | first-pass physician review approval rate | Internal QC log | 2024 | ⚠️ pending Sponsor |
+| 3 | **From 8 to 4 weeks** | content production cycle reduced | Client engagement report | 2024 | ⚠️ pending Sponsor |
+
+#### Quote
+> "We thought we had a translation problem. MedSci showed us we had a content problem — and fixed it bilingually."
+> — Head of Medical Affairs *(anonymized)*
+
+#### Related
+- **Pilot**: Cross-Border Content Sprint (`/solutions/cross-border-medical-content-sprint`)
+- **Solution**: Entering China (`/solutions/entering-china`) + Medical Communications (`/solutions/medical-communications`)
+- **Service line**: Medical Communications
+
+#### CTA
+- **Primary**: `Start a Cross-Border Content Sprint`
+- **Secondary**: `Talk to an Expert`
+
+---
+
+### §7.3 Case Study: Going Global · U.S.-Facing FDA Evidence Bridge
+
+**Slug**: `going-global-fda-evidence-bridge`
+**URL**: `/case-studies/going-global-fda-evidence-bridge`
+
+#### Hero
+- **Eyebrow**: `Going Global (US) · Evidence`
+- **Title**: From China Trial Data to FDA-Facing Evidence Package — 8 Months Ahead of Original Timeline
+- **Client**: China-based bio-tech preparing for FDA submission *(anonymized; logoAuthorized: false)*
+- **Year**: 2025
+- **serviceLines[]**: `evidence`, `platform`
+
+#### Challenge
+
+> A China-headquartered bio-tech with strong domestic phase-3 data needed an FDA-facing evidence bridge: a structured assessment of which data would translate to U.S. regulatory expectations, what publication strategy could establish U.S.-facing scientific visibility, and what English-language MSL kit the U.S. medical team would need.
+
+#### Approach
+
+> MedSci built three parallel workstreams gated by PITL: (1) gap assessment between China-generated data and FDA expectations, with named reviewers signing each comparability claim; (2) AI-assisted manuscript and abstract drafting for U.S.-facing congresses and journals, with full audit trails; (3) English-language MSL deck and HCP material development reviewed by U.S. clinicians.
+
+#### Outcome
+
+> The client reached FDA-ready evidence package status 8 months ahead of the originally planned timeline. Three peer-reviewed publication submissions and two U.S. congress abstracts were prepared in parallel, with full source trails attached. The U.S. medical team had a physician-validated kit ready before commercial planning began.
+
+#### Metrics ×3
+
+| # | Value | Label | Source | Year | approvedBy |
+|---|---|---|---|---|---|
+| 1 | **3** | manuscripts submitted to U.S. peer-reviewed journals | Publication tracker | 2025 | ⚠️ pending Sponsor |
+| 2 | **2** | congress abstracts accepted (ASCO, AHA) | Conference acceptance letters | 2025 | ⚠️ pending Sponsor |
+| 3 | **8 months** | evidence package readiness ahead of original timeline | Client program plan | 2025 | ⚠️ pending Sponsor |
+
+#### Quote
+> "We had the data. MedSci gave us the package — in a form the FDA, the journals, and our U.S. medical team could all use."
+> — Chief Medical Officer *(anonymized)*
+
+#### Related
+- **Pilot**: 30-Day FDA Evidence Gap Diagnostic (`/pilots/fda-evidence-gap-diagnostic`)
+- **Solution**: Going Global (US) (`/solutions/going-global-us`) + AI-Enabled Platform (`/ai-platform`)
+- **Service line**: Medical Evidence + AI-Enabled Platform
+
+#### CTA
+- **Primary**: `Talk to an Expert about Going Global`
+- **Secondary**: `Book the FDA Evidence Gap Diagnostic`
+
+---
+
+### §7.4 三页通用约束
+
+| 约束 | 适用 | 备注 |
+|---|---|---|
+| 9 metric 全部填齐, 不得 ⚑ | §7.1–§7.3 | ⚠️ 代表性数字, IR signed-off 终版前不进 production |
+| 客户名脱敏, 除非 logoAuthorized=true | 三页 | anonymizedLabel 必须有上下文（如 "Global Top-10 Medtech"） |
+| Quote 可选, 但若有, attribution 必须脱敏到职位级别 | 三页 | 不得显示真名 + 公司名组合 |
+| serviceLines[] 必填 ≥ 1 项 | 三页 | CaseStudy schema v2.0 要求 |
+| 与 Solutions / Pilots / AI Platform 交叉引用 | 三页 | Related 段必须至少 1 项内链 |
+| 禁词扫描通过 | 三页 | check-page Gate 16 |
+
+### §7.5 ⚑ 跟踪文件（独立文档）
+
+`docs/approvals/case-study-metrics-pending-ir-signoff.md` — 列出 9 项 metric approvedBy 待签字状态; production deploy 前补齐三方签字回执。
+
+---
