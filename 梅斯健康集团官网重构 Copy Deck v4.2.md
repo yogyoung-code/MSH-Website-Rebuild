@@ -19,6 +19,8 @@
 | **回灌** | §3b 业务块落地页 ×3（Medical Evidence / Physician Engagement / Medical Communications） | IA v2.0 §15 标记"待补"; 文案已在 PageXxx.jsx 上线 |
 | **重写** | §1.6 AI-Enabled Delivery | URL 改 `/ai-enabled-delivery` → `/ai-platform`; 扩 4 步 PITL 流程; 加合规边界 |
 | **品牌名** | 全局 | MEDSCI（全大写）→ **MedSci Healthcare**（混合大小写,Brand Guidelines v1.1 §1.1） |
+| **新章** | §7 Case Studies 详情 ×3 | B2 / W2; §7.0 模板 + §7.1-§7.3 三案例 + 9 metric 全填代表性数字（IR-signed 终版前 ⚠️ 占位） |
+| **新章** | §8 Insights 列表 + 详情模板 | B3 / W3; §8.0 列表 + §8.1 详情骨架 + §8.2 占位文章 ×3 引子 + §8.3 通用约束 |
 
 ### 0.2 视觉约定（沿用 v4.1）
 
@@ -612,5 +614,339 @@ metric: {
 ### §7.5 ⚑ 跟踪文件（独立文档）
 
 `docs/approvals/case-study-metrics-pending-ir-signoff.md` — 列出 9 项 metric approvedBy 待签字状态; production deploy 前补齐三方签字回执。
+
+---
+
+## §8 Insights 列表 + 详情模板（B3 / W3 范围）
+
+> **来源**: v4.1 §1.8 Insights stub + IA v2.0 §4.9 Insights schema
+> **作用**: B3 W3 批次撰写; Insights 在 V2 CMS 阶段会接 Sanity，原型阶段只投入"列表骨架 + 详情模板 + 3 篇占位文章"
+> **审批路径**: 内容编辑 → 法务**轻审**（不强制 IR；Insight 不属港股披露页范畴）→ Sponsor 阅知
+> **Schema 映射**: `Insight { slug, title, topic, serviceLines[], author, pitlReviewer, publishedAt, body (Portable Text), relatedSolution, relatedPilot }`
+
+### §8.0 列表页文案 — `/insights/`
+
+#### §8.0.1 元数据
+
+| 字段 | 值 |
+|---|---|
+| URL | `/insights/` |
+| `<title>` | `Insights — Evidence, Engagement, and Communication Briefings · MedSci Healthcare` |
+| `<meta name="description">` | `Field briefings on China RWE, FDA evidence bridges, and bilingual medical communication — written by physicians, reviewed under our PITL workflow.` |
+| Schema.org | `WebPage` + `ItemList`（每条 Insight 用 `Article`） |
+| hreflang | EN only（IA §11 表列；未来可选双语） |
+
+#### §8.0.2 Hero（列表页头部）
+
+**Eyebrow**: `INSIGHTS`
+
+**H1**:
+
+> Field notes from where evidence, regulators, and physicians meet.
+
+**Lede（≤ 60 字英文）**:
+
+> Short briefings written by our physicians and reviewed under the PITL workflow we use for client work. No vendor takes; just what we're seeing in China RWE, U.S. submissions, and bilingual medical content.
+
+#### §8.0.3 主题筛选 chips（3 主题，固定顺序）
+
+筛选行紧贴 Hero 之下，左对齐，pill 形态，可多选；选中态 brand-accent-500 描边 + 浅底。
+
+| Chip 文案 | `topic` 值 | 含义 |
+|---|---|---|
+| `China RWE` | `rwe` | 中国真实世界证据（数据来源、注册路径、可外推性） |
+| `FDA Evidence Bridge` | `evidence_bridge` | 中国数据 → FDA 申报的差距与衔接 |
+| `Medical Communication` | `med_comm` | 双语医学传播、出版、KOL 与一致性术语层 |
+
+> *实现说明*：`<FilterBar topics={...} multi />` 复用 `case-studies/index.html` 的 `FilterBar.jsx`；空选时显示全部，多选时取并集。
+
+#### §8.0.4 列表卡片字段（InsightCard schema）
+
+每张卡显示：
+
+- `topic` 标签（小号 uppercase，对应 chip 颜色）
+- `title`（H3，最多 2 行截断）
+- `lede`（最多 2 行截断；与详情页 §8.1.4 共用同一字段）
+- 元数据行：`{author.name} · {pitlReviewer.name} · {publishedAt | dateFmt}`
+- `Reading time`（自动估算，≈ 250 字/分钟）
+- 卡片整体可点击 → `/insights/{slug}`
+
+底部分页占位（原型阶段只展示 3 卡，无翻页 UI）。
+
+#### §8.0.5 订阅模块（`#subscribe`，列表页页脚上方）
+
+**Eyebrow**: `STAY IN THE LOOP`
+
+**H2**:
+
+> One short briefing a month — when it's worth your inbox.
+
+**Body（≤ 70 字英文）**:
+
+> No marketing newsletter. We send a single Insight per month, written by a physician, reviewed under PITL. Cancel anytime.
+
+**Form 字段**:
+
+| 字段 | 类型 | 必填 | 备注 |
+|---|---|---|---|
+| `email` | input[type=email] | ✅ | 提交即同意 Privacy Policy |
+| `topics[]` | checkbox × 3 | 可选 | 默认全选，与 §8.0.3 chips 同集合 |
+
+**Submit 按钮**: `Subscribe`
+
+**Thank-you state（inline 替换表单）**:
+
+> Thanks — you're on the list. The next briefing goes out at the start of next month.
+
+**合规提示（subscribe 表单下方 small text）**:
+
+> By subscribing you agree to our [Privacy Policy](/legal/privacy). We do not share your email with third parties.
+
+> *实现说明*：原型阶段提交动作写假 200ms setTimeout 模拟，CMS 阶段对接 Sanity webhook → MailerLite / Klaviyo（延后到 V2，不在 W3 范围）。
+
+#### §8.0.6 列表页禁忌
+
+- ❌ 不得出现"thought leadership / industry-leading insights"等空话（v4.2 §0.3 + 禁词清单）
+- ❌ 不得显示作者头像无 `pitlReviewer` 元数据；PITL 名字必须与 author 同行渲染
+- ❌ 列表卡 `lede` 不得直接拼接文章首段；应单独撰写 ≤ 2 行摘要
+- ❌ 不得出现"AI doctor / zero-hallucination / 100% accurate"等(check-page Gate 16)
+
+---
+
+### §8.1 详情页模板骨架 — `/insights/[slug]`
+
+> **作用**: 一套模板套 §8.2 三篇文章；CMS 阶段对接 Sanity Portable Text，原型阶段用 mock JSON
+> **强制约束**: 每篇 Insight 必须配对 `pitlReviewer`；无 PITL 审稿人不得发布
+
+#### §8.1.1 元数据（动态字段，CMS 阶段读自 Sanity）
+
+| 字段 | 来源 |
+|---|---|
+| `<title>` | `{title} · MedSci Insights` |
+| `<meta name="description">` | `lede`（同 §8.1.4 字段）|
+| `<meta property="og:type">` | `article` |
+| `<meta property="article:published_time">` | `publishedAt` |
+| `<meta property="article:author">` | `author.name` |
+| `<link rel="canonical">` | `https://medscihealthcare.com/insights/{slug}` |
+| Schema.org | `Article` + `Person`（author / pitlReviewer 各一） |
+
+#### §8.1.2 Breadcrumb
+
+`Home / Insights / {title}`（IA §11 hreflang 表要求 breadcrumb 命中 detail page）
+
+#### §8.1.3 Hero
+
+- **Eyebrow**: `INSIGHT · {topic.label}`（topic.label 见 §8.0.3 表）
+- **H1**: `{title}`
+- **Author meta**（`<AuthorMeta>` 组件，单行）:
+
+  > `{author.name}, {author.title}` · `Reviewed by {pitlReviewer.name}, {pitlReviewer.title}` · `{publishedAt | dateFmt: 'Mon DD, YYYY'}` · `{readingTime} min read`
+
+- **PITL 信任行（小号灰字，紧贴 author meta 下方）**:
+
+  > Every MedSci Insight is drafted by a named author and reviewed by a named physician under our [PITL workflow](/ai-platform).
+
+#### §8.1.4 Lede（H1 下方，独立段，加蓝左边框）
+
+`lede` 字段：1 段 ≤ 80 词英文，列表卡与详情页共用。撰写规则同 §1.6.1 Hero lede——主语具体（"What we see ... ")，避免"AI is transforming healthcare"式空话。
+
+#### §8.1.5 Body（Portable Text mock，原型阶段 3 个 H2 段）
+
+每篇文章正文骨架固定 3 段 H2，每段 1–2 段 paragraph + 0–1 个 `EvidenceList`（复用 `ContentBlocks.jsx` ProseBlock + EvidenceList 原子块）：
+
+| 段 | 段标题模式 | 内容功能 |
+|---|---|---|
+| H2-1 | 现象 / 起点 | 描述客户/监管/出版方实际正在面对的问题 |
+| H2-2 | 我们看到的差距 | MedSci 团队在客户工作中观察到的 1–3 个具体差距 |
+| H2-3 | 我们的取舍 / 边界 | 写 MedSci 怎么做+不做什么，避免越界为咨询/法律意见 |
+
+> *实现说明*：CMS 阶段 `body` 字段为 Portable Text，原型阶段每文章用 `articleBody: { sections: [{heading, paragraphs[]}, ...] }` 的 mock JSON。`ArticleBody.jsx` 渲染时按段落顺序输出。
+
+#### §8.1.6 Related 区块（Body 之后）
+
+复用 `case-studies/[slug]` Related 段视觉。每篇 Insight 至少 1 项 internal cross-link：
+
+- `relatedSolution`（可选，1 项）→ link 到 `/solutions/{slug}`
+- `relatedPilot`（可选，1 项）→ link 到 `/pilots/{slug}`
+- `relatedInsights`（可选，最多 2 项）→ 同 topic 下的下一篇
+
+#### §8.1.7 结尾 CTA（`<InsightCTA>` 组件）
+
+每篇文章统一结尾：
+
+**Eyebrow**: `WORK WITH US`
+
+**H3**:
+
+> Bring this question to a physician on our team.
+
+**Body（≤ 50 字英文）**:
+
+> If this briefing maps onto a decision you're working through, the same author or reviewer can join a 30-minute call.
+
+**Buttons**:
+- Primary: `Talk to an Expert` → `/contact?topic={insight.topic}`（Smart Form §10 路由用 topic 预填 service line）
+- Secondary（条件渲染，仅当 `relatedPilot` 存在）: `Book the {relatedPilot.shortName}` → `/pilots/{relatedPilot.slug}`
+
+#### §8.1.8 详情页禁忌
+
+- ❌ 无 `pitlReviewer` 字段不得发布（CMS 层强制校验）
+- ❌ Body 不得出现产品宣传语 / Pilot 价格 / case study 数字（这些应通过 §8.1.6 Related 区块跳转，不在文章正文）
+- ❌ 引用第三方研究必须带 `{author, year, journal}`，不得只写"a recent study"
+- ❌ 不得在文章正文里嵌入 IR / 财报数字（保留给 `/about` §9.3 和 IR 站点）
+
+---
+
+### §8.2 占位文章 ×3（W3 原型阶段 mock 数据）
+
+> **撰写策略**: 每篇仅交付"引子"（Hero + Lede + 3 段 H2 段标题 + H2-1 第一段 paragraph），原型阶段足以演示模板与筛选逻辑。完整正文留待 V2 CMS 阶段补齐，不在 W3 范围。
+> **共同 author / reviewer mock**: 占位作者从内部医学顾问池脱敏使用；CMS 上线前由 People Ops 替换为真实人选。
+
+#### §8.2.1 China RWE — `china-rwe-what-travels`
+
+**Slug**: `china-rwe-what-travels`
+**URL**: `/insights/china-rwe-what-travels`
+
+**Schema 字段**:
+
+| 字段 | 值 |
+|---|---|
+| `topic` | `rwe` |
+| `serviceLines[]` | `evidence` |
+| `author.name` | `Dr. L. Chen` *(占位; CMS 阶段替换)* |
+| `author.title` | `Medical Director, Evidence` |
+| `pitlReviewer.name` | `Dr. M. Park` *(占位)* |
+| `pitlReviewer.title` | `Senior Reviewer, PITL` |
+| `publishedAt` | `2026-04-15`（mock） |
+| `readingTime` | `6 min` |
+| `relatedSolution` | `medical-evidence` |
+| `relatedPilot` | `china-evidence-sprint` |
+
+**Hero / Title**:
+
+> China Real-World Evidence: What Travels Across Borders, and What Doesn't
+
+**Lede（列表卡 + 详情页共用）**:
+
+> Real-world evidence generated in China is increasingly cited in global submissions — but not all of it travels. We separate what regulators outside China tend to accept, what they question, and what teams should plan to re-derive locally before quoting it in an FDA or EMA package.
+
+**Body 三段 H2 标题**:
+
+1. `Where China RWE has earned shelf space`
+2. `Three gaps that still trip submissions`
+3. `What we ask before quoting a China RWE source overseas`
+
+**H2-1 段首 paragraph（≤ 80 词英文）**:
+
+> Over the last three years, registry-grade RWE from Chinese tertiary centers has shown up in oncology, cardiology, and rare disease submissions outside China. The reason is structural: tier-1 AMCs in China generate volume that smaller markets cannot match, and a handful of registries now publish methodology that maps cleanly onto OMOP and CDISC. The question for global teams is no longer whether to read Chinese RWE — it is which sources hold up under cross-jurisdictional scrutiny.
+
+> *余下两段 H2 内容留 Portable Text 占位 mock，V2 阶段补齐。*
+
+---
+
+#### §8.2.2 FDA Evidence Bridge — `china-data-fda-bridge`
+
+**Slug**: `china-data-fda-bridge`
+**URL**: `/insights/china-data-fda-bridge`
+
+**Schema 字段**:
+
+| 字段 | 值 |
+|---|---|
+| `topic` | `evidence_bridge` |
+| `serviceLines[]` | `evidence`, `platform` |
+| `author.name` | `Dr. R. Iyer` *(占位)* |
+| `author.title` | `Medical Director, U.S. Programs` |
+| `pitlReviewer.name` | `Dr. K. Liu` *(占位)* |
+| `pitlReviewer.title` | `Senior Reviewer, PITL` |
+| `publishedAt` | `2026-04-08`（mock） |
+| `readingTime` | `7 min` |
+| `relatedSolution` | `going-global-us` |
+| `relatedPilot` | `fda-evidence-gap-diagnostic` |
+
+**Hero / Title**:
+
+> Bridging China-Generated Data to an FDA Submission: A Field Checklist
+
+**Lede**:
+
+> Most China-headquartered sponsors arrive at the FDA conversation with strong domestic data and an unclear sense of which parts will translate. We share the gating questions our reviewers run before a single page of a U.S.-facing dossier gets drafted — and the three places that bridges most often fail.
+
+**Body 三段 H2 标题**:
+
+1. `What the FDA tends to accept from China-only data`
+2. `Three failure modes we keep seeing on bridge packages`
+3. `When to re-derive vs. when to argue comparability`
+
+**H2-1 段首 paragraph（≤ 80 词英文）**:
+
+> The default assumption inside many China-based programs is that high-quality phase-3 data from China should travel to a U.S. submission with a translation layer. In our recent work, that has been true for pharmacokinetics and dose-finding more often than for primary efficacy in oncology and cardiovascular indications. The pattern is not about data quality; it is about whether the comparator arm, endpoint definition, and population demographics map onto what U.S. reviewers expect to see in the same therapeutic context.
+
+> *余下两段 H2 留 mock。*
+
+---
+
+#### §8.2.3 Medical Communication — `bilingual-content-both-tracks-sign`
+
+**Slug**: `bilingual-content-both-tracks-sign`
+**URL**: `/insights/bilingual-content-both-tracks-sign`
+
+**Schema 字段**:
+
+| 字段 | 值 |
+|---|---|
+| `topic` | `med_comm` |
+| `serviceLines[]` | `communications` |
+| `author.name` | `Dr. S. Tan` *(占位)* |
+| `author.title` | `Medical Director, Communications` |
+| `pitlReviewer.name` | `Dr. J. Wang` *(占位)* |
+| `pitlReviewer.title` | `Senior Reviewer, PITL` |
+| `publishedAt` | `2026-03-30`（mock） |
+| `readingTime` | `5 min` |
+| `relatedSolution` | `medical-communications` |
+| `relatedPilot` | `cross-border-medical-content-sprint` |
+
+**Hero / Title**:
+
+> Bilingual Medical Content That Both Tracks Will Sign
+
+**Lede**:
+
+> Translating EN clinical content into CN — or the reverse — is rarely the actual problem. The actual problem is that two physician tracks need to sign off the same artifact, against two different regulatory and stylistic frames. We share the parallel-reviewer model we use, and where it shortens revision cycles by half.
+
+**Body 三段 H2 标题**:
+
+1. `Why "translation" is the wrong frame for bilingual medical content`
+2. `The parallel-reviewer model: one EN track, one CN track, one terminology layer`
+3. `Where the model breaks (and the two pre-checks that catch it)`
+
+**H2-1 段首 paragraph（≤ 80 词英文）**:
+
+> When a launch team asks for "Chinese versions" of an MSL deck, the implicit assumption is that the source material is correct and only the language needs to change. In practice, source material that read well to U.S. reviewers often carried embedded fair-balance phrasing, off-label flags, or comparator wording that does not map onto Chinese clinical convention. The result is a deliverable that two physician tracks cannot both sign — even though the underlying claims are unchanged.
+
+> *余下两段 H2 留 mock。*
+
+---
+
+### §8.3 三篇文章通用约束
+
+| 约束 | 适用 | 备注 |
+|---|---|---|
+| 每篇必须有 `author` + `pitlReviewer` 两个 named person | §8.2.1–§8.2.3 | 占位姓名 CMS 上线前由 People Ops 替换 |
+| `topic` 字段必须是 `rwe` / `evidence_bridge` / `med_comm` 三选一 | 三篇 | 与 §8.0.3 chips 一一对应 |
+| `serviceLines[]` 至少 1 项 | 三篇 | `evidence` / `physicians` / `communications` / `platform` 四选 N |
+| `relatedSolution` 与 `relatedPilot` 至少填 1 项 | 三篇 | 保证文章 → 业务漏斗的入站链 |
+| 引用第三方研究必须带 author + year + journal | 三篇 | 不得使用"a recent study"无来源式表述 |
+| 禁词扫描通过 | 三篇 | check-page Gate 16；尤其禁 `AI doctor` / `zero-hallucination` |
+| 不得在文章正文嵌入 IR / 财报数字 | 三篇 | IR 数字归 `/about` §9.3 / `/ir` |
+
+### §8.4 ⚠️ 跟踪事项（轻量，不需独立文档）
+
+| 项 | 状态 | 解锁条件 |
+|---|---|---|
+| 3 篇文章作者占位姓名 | ⚠️ mock | CMS 上线前由 People Ops 提供真实作者 + PITL 审稿人 |
+| 3 篇文章 H2-2 / H2-3 正文 | ⚠️ 未撰写 | V2 CMS 阶段补齐，不阻断 W3 验收 |
+| `/insights/[slug]` Sanity Portable Text 字段对接 | ⚠️ 未对接 | V2 CMS 阶段；原型阶段用 mock JSON |
+| Subscribe 表单后端对接 | ⚠️ 未对接 | V2 阶段对接 Sanity webhook → MailerLite/Klaviyo |
 
 ---
