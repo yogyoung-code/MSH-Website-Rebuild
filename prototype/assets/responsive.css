@@ -1,0 +1,31 @@
+/* responsive.css — Three-tier breakpoint tokens (IA §13) */
+
+/* Mobile: ≤ 640px */
+@media (max-width: 640px) {
+  .two-col-grid { grid-template-columns: 1fr !important; }
+  .stat-strip-grid { grid-template-columns: 1fr 1fr !important; }
+  .nav-desktop { display: none !important; }
+  .nav-mobile { display: block !important; }
+  .hero-right-services { margin-top: 32px; }
+}
+
+/* Tablet: 641 - 1024px */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .two-col-grid { grid-template-columns: 1fr !important; }
+  .stat-strip-grid { grid-template-columns: repeat(3, 1fr); }
+  .nav-desktop .nav-item-tertiary { display: none; }
+  .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* Desktop: ≥ 1025px — defaults */
+@media (min-width: 1025px) {
+  /* Full layout assumed by component defaults */
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
