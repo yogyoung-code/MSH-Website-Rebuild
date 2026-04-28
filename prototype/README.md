@@ -18,3 +18,26 @@
 
 跑：`node scripts/check-page.js prototype/<page>.html`
 通过 24 项 gate（spec §5）后才入批次 commit。
+
+## 部署 (Deployment)
+
+### Cloudflare Pages
+
+1. 在 Cloudflare 控制台创建新 Pages 项目
+2. 关联 Git 仓库（或直接上传 prototype/ 目录）
+3. 域名绑定：`prototype.medscihealthcare.com`
+4. `_redirects` 文件已配置在 prototype/ 根，部署后自动生效
+5. 验证：部署后访问 `/china` 应 301 到 `/solutions/entering-china`
+6. 控制台访问凭据 / 项目 ID 记录到团队密码管理器
+
+### 验证 _redirects 生效
+
+```bash
+curl -I https://prototype.medscihealthcare.com/china
+# 期望：HTTP/2 301
+# Location: /solutions/entering-china
+```
+
+### Robots / 索引
+
+部署后所有页面应带 `<meta name="robots" content="noindex">` 防外网索引。

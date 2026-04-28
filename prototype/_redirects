@@ -1,0 +1,14 @@
+# /ai-enabled-delivery → /ai-platform (B1 deliverable)
+# 当 B1 (W1) 上线后取消注释下行
+# /ai-enabled-delivery /ai-platform 301
+
+# IA §6 历史保留 URL（旧外链 SEO 继承）
+# 仅在目标 URL 已上线后启用，否则会 301 到 404
+
+# W0 即可启用（目标在既有 6 solutions 页中）：
+/china                /solutions/entering-china     301
+/usa                  /solutions/going-global-us    301
+/us                   /solutions/going-global-us    301
+
+# W5 (B5) 上线 /pilots/china-evidence-sprint 后取消注释下行：
+# /pilot                /pilots/china-evidence-sprint 301
