@@ -4,8 +4,8 @@ const MED_COMMS_META = {
   title: 'Bilingual medical communications, signed off on both sides of the Pacific.',
   sub: 'Publications, congress materials and localized content — produced in EN and CN, reviewed by clinicians in both markets, compliant by construction.',
   breadcrumb: [
-    { label: 'Home', href: '../Homepage.html' },
-    { label: 'Solutions', href: '../Homepage.html#services' },
+    { label: 'Home', href: '/' },
+    { label: 'Solutions', href: '/' },
     { label: 'Medical Communications', href: '#' },
   ],
   theme: 'navy',

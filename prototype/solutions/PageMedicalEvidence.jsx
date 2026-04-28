@@ -4,8 +4,8 @@ const MED_EVIDENCE_META = {
   title: 'Medical evidence with a source on every claim, signed by a clinician.',
   sub: 'Real-world evidence, registry analysis, systematic literature review and HEOR — assembled by AI retrieval, gated by physician sign-off, shipped with a structured source trail.',
   breadcrumb: [
-    { label: 'Home', href: '../Homepage.html' },
-    { label: 'Solutions', href: '../Homepage.html#services' },
+    { label: 'Home', href: '/' },
+    { label: 'Solutions', href: '/' },
     { label: 'Medical Evidence', href: '#' },
   ],
   theme: 'navy',

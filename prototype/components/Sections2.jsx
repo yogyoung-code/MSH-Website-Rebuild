@@ -9,7 +9,7 @@ function Services() {
       desc: 'Structured real-world evidence, registry analysis, literature synthesis and HEOR — every claim carries a year, a source and a signature.',
       deliverables: ['Real-world evidence (RWE)', 'Registry design & analysis', 'Systematic literature review', 'HEOR modeling'],
       icon: 'file-search',
-      href: 'solutions/medical-evidence.html',
+      href: '/solutions/medical-evidence.html',
       badge: 'verified',
     },
     {
@@ -18,7 +18,7 @@ function Services() {
       desc: 'A 3.33M+ physician network — for advisory boards, KOL mapping, CME, and consented reviewer panels that put a named clinician on record.',
       deliverables: ['Advisory boards · single & standing', 'KOL mapping & engagement', 'CME-accredited programs', 'Consented reviewer panels'],
       icon: 'stethoscope',
-      href: 'solutions/physician-engagement.html',
+      href: '/solutions/physician-engagement.html',
       badge: 'verified',
     },
     {
@@ -27,7 +27,7 @@ function Services() {
       desc: 'Publications, congress materials, localized content and compliance-aware review — bilingual artifacts signed off by physicians in both markets.',
       deliverables: ['Peer-reviewed publications', 'Congress posters & symposia', 'Bilingual localization', 'Compliance-aware QC'],
       icon: 'book-open-text',
-      href: 'solutions/medical-communications.html',
+      href: '/solutions/medical-communications.html',
       badge: 'verified',
     },
     {

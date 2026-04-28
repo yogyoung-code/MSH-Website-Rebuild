@@ -4,8 +4,8 @@ const SPRINT_META = {
   title: 'Cross-Border Content Sprint — one bilingual artifact, signed by clinicians, in 14 days.',
   sub: 'The lowest-commitment way to work with us. A flat fee, a fixed scope, a single medically reviewed bilingual artifact. Designed to evaluate us before any larger engagement.',
   breadcrumb: [
-    { label: 'Home', href: '../Homepage.html' },
-    { label: 'Solutions', href: '../Homepage.html#services' },
+    { label: 'Home', href: '/' },
+    { label: 'Solutions', href: '/' },
     { label: 'Cross-Border Content Sprint', href: '#' },
   ],
   theme: 'cyan',

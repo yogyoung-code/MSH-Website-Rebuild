@@ -4,8 +4,8 @@ const PHYSICIAN_META = {
   title: 'A 3.33M+ physician network — for advisory, KOL, CME, and consented review.',
   sub: 'When you need a named clinician on the record — for a dossier, a publication, an advisory board, or a reviewer panel — we have the network and the consent infrastructure to do it cleanly.',
   breadcrumb: [
-    { label: 'Home', href: '../Homepage.html' },
-    { label: 'Solutions', href: '../Homepage.html#services' },
+    { label: 'Home', href: '/' },
+    { label: 'Solutions', href: '/' },
     { label: 'Physician Engagement', href: '#' },
   ],
   theme: 'navy',

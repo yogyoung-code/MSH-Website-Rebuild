@@ -5,8 +5,8 @@ const ENTERING_CHINA_META = {
   title: 'Land NMPA-grade evidence and physician traction inside mainland China.',
   sub: 'For non-Chinese innovators preparing or accelerating an NMPA submission, reimbursement bid, or HCP launch — a single thread from literature to dossier to advisory panel.',
   breadcrumb: [
-    { label: 'Home', href: '../Homepage.html' },
-    { label: 'Solutions', href: '../Homepage.html#services' },
+    { label: 'Home', href: '/' },
+    { label: 'Solutions', href: '/' },
     { label: 'Entering China', href: '#' },
   ],
   theme: 'navy',

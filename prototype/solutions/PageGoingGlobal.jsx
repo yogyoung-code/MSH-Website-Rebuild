@@ -5,8 +5,8 @@ const GOING_GLOBAL_META = {
   title: 'Get FDA-track evidence and US KOL traction — for China innovators heading west.',
   sub: 'For China-grown medtech, pharma and diagnostics innovators preparing a US / global launch — an evidence path built for regulators and reviewers who do not read Chinese.',
   breadcrumb: [
-    { label: 'Home', href: '../Homepage.html' },
-    { label: 'Solutions', href: '../Homepage.html#services' },
+    { label: 'Home', href: '/' },
+    { label: 'Solutions', href: '/' },
     { label: 'Going Global (US)', href: '#' },
   ],
   theme: 'cyan',
