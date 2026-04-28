@@ -6,10 +6,10 @@ function Header() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const navItems = [
     { label: 'Solutions', hasMega: true },
-    { label: 'Case Studies', href: '#cases' },
-    { label: 'AI Platform', href: '#ai' },
-    { label: 'Insights', href: '#insights' },
-    { label: 'About', href: '#about' },
+    { label: 'Case Studies', href: '/case-studies/' },
+    { label: 'AI Platform', href: '/ai-platform.html' },
+    { label: 'Insights', href: '/insights/' },
+    { label: 'About', href: '/about.html' },
   ];
   return (
     <header style={{
@@ -32,7 +32,7 @@ function Header() {
             }}></span>
             HKEX listed · 2415.HK
           </span>
-          <a href="#ir" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+          <a href="https://medscihealthcare.com/ir" rel="external noopener" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
             Investor Relations <span style={{ fontSize: 10 }}>↗</span>
           </a>
         </div>
@@ -141,22 +141,22 @@ function MegaMenu() {
     {
       label: 'By Path · Strategy',
       items: [
-        { title: 'Entering China', desc: 'Evidence, regulatory and HCP traction inside China.', href: 'solutions/entering-china.html', tag: 'Navy' },
-        { title: 'Going Global (US)', desc: 'US/global launch readiness for China innovators.', href: 'solutions/going-global-us.html', tag: 'Cyan' },
+        { title: 'Entering China', desc: 'Evidence, regulatory and HCP traction inside China.', href: '/solutions/entering-china.html', tag: 'Navy' },
+        { title: 'Going Global (US)', desc: 'US/global launch readiness for China innovators.', href: '/solutions/going-global-us.html', tag: 'Cyan' },
       ],
     },
     {
       label: 'By Deliverable · Business Blocks',
       items: [
-        { title: 'Medical Evidence', desc: 'RWE · Registry · Literature · HEOR.', href: 'solutions/medical-evidence.html' },
-        { title: 'Physician Engagement', desc: '3.33M+ network · Advisory · KOL · CME.', href: 'solutions/physician-engagement.html' },
-        { title: 'Medical Communications', desc: 'Publications · Congress · Localization.', href: 'solutions/medical-communications.html' },
+        { title: 'Medical Evidence', desc: 'RWE · Registry · Literature · HEOR.', href: '/solutions/medical-evidence.html' },
+        { title: 'Physician Engagement', desc: '3.33M+ network · Advisory · KOL · CME.', href: '/solutions/physician-engagement.html' },
+        { title: 'Medical Communications', desc: 'Publications · Congress · Localization.', href: '/solutions/medical-communications.html' },
       ],
     },
     {
       label: 'Quick Start',
       items: [
-        { title: 'Cross-Border Content Sprint', desc: 'Low-commitment entry. A single artifact in 2 weeks.', href: 'solutions/cross-border-medical-content-sprint.html' },
+        { title: 'Cross-Border Content Sprint', desc: 'Low-commitment entry. A single artifact in 2 weeks.', href: '/solutions/cross-border-medical-content-sprint.html' },
       ],
     },
   ];

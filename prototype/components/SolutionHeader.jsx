@@ -5,10 +5,10 @@ function SolutionHeader() {
   const [lang, setLang] = React.useState('EN');
   const navItems = [
     { label: 'Solutions', hasMega: true },
-    { label: 'Case Studies', href: '../Homepage.html#cases' },
-    { label: 'AI Platform', href: '../Homepage.html#ai' },
-    { label: 'Insights', href: '../Homepage.html#insights' },
-    { label: 'About', href: '../Homepage.html#about' },
+    { label: 'Case Studies', href: '/case-studies/' },
+    { label: 'AI Platform', href: '/ai-platform.html' },
+    { label: 'Insights', href: '/insights/' },
+    { label: 'About', href: '/about.html' },
   ];
   return (
     <header style={{
@@ -27,7 +27,7 @@ function SolutionHeader() {
             <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: 'var(--brand-accent-500)' }}></span>
             HKEX listed · 2415.HK
           </span>
-          <a href="#ir" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>
+          <a href="https://medscihealthcare.com/ir" rel="external noopener" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>
             Investor Relations ↗
           </a>
         </div>
@@ -36,8 +36,8 @@ function SolutionHeader() {
         maxWidth: 1280, margin: '0 auto',
         display: 'flex', alignItems: 'center', gap: 40, padding: '14px 40px',
       }}>
-        <a href="../Homepage.html" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-          <img src="../assets/logo/medsci-healthcare-logo.svg" alt="MedSci Healthcare" style={{ height: 36 }} />
+        <a href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+          <img src="/assets/logo/medsci-healthcare-logo.svg" alt="MedSci Healthcare" style={{ height: 36 }} />
         </a>
         <nav style={{ display: 'flex', gap: 4, marginLeft: 16, position: 'relative' }} onMouseLeave={() => setMegaOpen(false)}>
           {navItems.map((it, i) => (
@@ -80,22 +80,22 @@ function SolutionMegaMenu() {
     {
       label: 'By Path · Strategy',
       items: [
-        { title: 'Entering China', desc: 'Evidence, regulatory and HCP traction inside China.', href: 'entering-china.html', tag: 'Navy' },
-        { title: 'Going Global (US)', desc: 'US/global launch readiness for China innovators.', href: 'going-global-us.html', tag: 'Cyan' },
+        { title: 'Entering China', desc: 'Evidence, regulatory and HCP traction inside China.', href: '/solutions/entering-china.html', tag: 'Navy' },
+        { title: 'Going Global (US)', desc: 'US/global launch readiness for China innovators.', href: '/solutions/going-global-us.html', tag: 'Cyan' },
       ],
     },
     {
       label: 'By Deliverable · Business Blocks',
       items: [
-        { title: 'Medical Evidence', desc: 'RWE · Registry · Literature · HEOR.', href: 'medical-evidence.html' },
-        { title: 'Physician Engagement', desc: '3.33M+ network · Advisory · KOL · CME.', href: 'physician-engagement.html' },
-        { title: 'Medical Communications', desc: 'Publications · Congress · Localization.', href: 'medical-communications.html' },
+        { title: 'Medical Evidence', desc: 'RWE · Registry · Literature · HEOR.', href: '/solutions/medical-evidence.html' },
+        { title: 'Physician Engagement', desc: '3.33M+ network · Advisory · KOL · CME.', href: '/solutions/physician-engagement.html' },
+        { title: 'Medical Communications', desc: 'Publications · Congress · Localization.', href: '/solutions/medical-communications.html' },
       ],
     },
     {
       label: 'Quick Start',
       items: [
-        { title: 'Cross-Border Content Sprint', desc: 'Low-commitment entry. A single artifact in 2 weeks.', href: 'cross-border-medical-content-sprint.html' },
+        { title: 'Cross-Border Content Sprint', desc: 'Low-commitment entry. A single artifact in 2 weeks.', href: '/solutions/cross-border-medical-content-sprint.html' },
       ],
     },
   ];

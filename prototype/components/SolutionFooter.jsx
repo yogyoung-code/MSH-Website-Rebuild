@@ -14,9 +14,9 @@ function SolutionFooter() {
       { label: 'Cross-Border Sprint', href: 'cross-border-medical-content-sprint.html' },
     ]},
     { title: 'Resources', items: [
-      { label: 'Case Studies', href: '../Homepage.html#cases' },
-      { label: 'AI Platform', href: '../Homepage.html#ai' },
-      { label: 'Insights', href: '../Homepage.html#insights' },
+      { label: 'Case Studies', href: '/case-studies/' },
+      { label: 'AI Platform', href: '/ai-platform.html' },
+      { label: 'Insights', href: '/insights/' },
       { label: 'About MedSci', href: '#' },
       { label: 'Contact', href: '#' },
     ]},

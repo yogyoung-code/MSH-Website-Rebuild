@@ -445,7 +445,7 @@ function RelatedSolutions({ current }) {
               color: 'var(--brand-primary-700)', margin: 0, letterSpacing: '-0.008em',
             }}>Continue exploring our solutions library.</h3>
           </div>
-          <a href="../Homepage.html" style={{
+          <a href="/" style={{
             color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 13.5,
             display: 'inline-flex', alignItems: 'center', gap: 6,
           }}>
