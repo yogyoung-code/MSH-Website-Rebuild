@@ -23,6 +23,7 @@
 | **新章** | §8 Insights 列表 + 详情模板 | B3 / W3; §8.0 列表 + §8.1 详情骨架 + §8.2 占位文章 ×3 引子 + §8.3 通用约束 |
 | **新章** | §9 About（EN+CN 双语） | B4 / W4; §9.0–§9.4 EN（公司简介 / 领导层 / 3.33M+ 网络 / 合规治理）+ §9.5 CN 精简版; **港股披露相关,法务 + IR 强制双签 + 5 天 buffer** |
 | **新章** | §10 Contact (Smart Form) | B4 / W4; §10.1 字段定义 + §10.2 8 个 thank-you 分支 + §10.3 路由规则（含 sprint-not-for-fit → /services/other-engagements）+ §10.4 PII 约束; **法务一审（不强制 IR）** |
+| **新章** | §11 Pilots ×2（China Sprint + FDA Diagnostic） | B5 / W5; §11.1–§11.2 抽自 v4.1 §2.6/§3.6 + 扩 6 条 FAQ; **⚑ PRICING 占位（"Pricing on request"）;** 法务一审 |
 
 ### 0.2 视觉约定（沿用 v4.1）
 
@@ -1581,5 +1582,228 @@ CTA: `申请合规材料包` → `/contact?topic=compliance`
 | §10.2.8 内部 helpdesk URL | ⚑ pending IT | 上线前由 IT 提供;原型阶段占位 `#` |
 | `bd_*` queue 实际 routing endpoint | ⏳ V2 | CMS 阶段对接 HubSpot / Salesforce |
 | 法务一审（PII 同意条款） | ⏳ Step 1 一审 | Task 4.2 Step 1 提交后法务 1 个 business day 内完成 |
+
+---
+
+## §11 Pilots ×2（B5 / W5 范围）
+
+> **来源**: v4.1 §2.6（30-Day China Evidence Sprint）+ §3.6（30-Day FDA Evidence Gap Diagnostic）抽出 + 扩 6 条 FAQ 每页
+> **品牌名重命名**: v4.1 "MEDSCI" → v4.2 "MedSci Healthcare"（Brand Guidelines v1.1 §1.1）
+> **审批路径**: 内容编辑 → 法务（一审,聚焦 SLA / 边界 / FAQ 法律措辞）→ Sponsor 阅知 → BD + Finance（仅签 ⚑ PRICING）
+> **强制约束**:
+> - **⚑ PRICING 占位上线时显示 "Pricing on request"**（不得显示空字符串或 ⚑ 字符在 HTML; Pilot 卡组件检测占位状态后自动转为 CTA）
+> - SLA 承诺（Day-3 kick-off / Day-15 checkpoint / 30 calendar days）不得调整,法务签字版基线
+> - FAQ 不得做出"100%"或"guarantee"类承诺（v4.2 §0 + check-page Gate 16）
+> - "Available on Request / Under NDA" 项目示例不得在 Pilot 公开页直接列出客户名
+
+### §11.0 元数据 + URL 约定
+
+| Pilot | URL | `<title>`（≤ 60） | `<meta description>`（≤ 155） |
+|---|---|---|---|
+| China Evidence Sprint | `/pilots/china-evidence-sprint` | `30-Day China Evidence Sprint — MedSci Healthcare` | `Fixed-scope 30-day pilot to clarify what global teams need before broader China evidence and HCP work — physician-validated, audit-traceable.` |
+| FDA Evidence Gap Diagnostic | `/pilots/fda-evidence-gap-diagnostic` | `30-Day FDA Evidence Gap Diagnostic — MedSci Healthcare` | `Fixed-scope 30-day pilot for China-based teams preparing for FDA-facing evidence work — gap mapping, applicability review, named physician sign-off.` |
+
+Schema.org: `Service` + `Offer`（每页一个 Offer 实体,price 字段在 ⚑ pending 期使用 `priceCurrency: "USD"` + `price: "0"` 占位 + `availability: PreOrder`,组件渲染时翻译为 "Pricing on request"）.
+
+hreflang: EN only(IA §11; Pilot 不要求 CN).
+
+---
+
+### §11.1 30-Day China Evidence Sprint — `/pilots/china-evidence-sprint`
+
+> **来源**: v4.1 §2.6 + 扩 FAQ
+> **关联 Case Study**: `/case-studies/entering-china-evidence-hcp`(§7.1)
+
+#### §11.1.1 Hero
+
+**Eyebrow**: `PILOT · ENTERING CHINA · EVIDENCE`
+
+**H1**:
+
+> 30-Day China Evidence Sprint
+
+**Lede（≤ 80 字英文）**:
+
+> A fixed-scope pilot for global biopharma and medtech teams that need clarity on what's required before investing in broader China evidence and engagement work. Physician-validated, audit-traceable, and shipped in 30 calendar days.
+
+#### §11.1.2 What's included（4 项）
+
+> 4 deliverables, scoped before kick-off and signed off by a named physician at the end:
+>
+> - **China evidence gap assessment** — what travels from your existing global stack, what doesn't, and what to plan to re-derive locally.
+> - **Target HCP / stakeholder hypothesis** — segmented map of who matters for your therapeutic area and where they engage in China.
+> - **Recommended evidence and engagement path** — a single-page direction with named workstreams and dependencies.
+> - **Next-step plan and budget range** — what the larger engagement would look like, including indicative scope and budget bands.
+
+#### §11.1.3 Best for（2 项）
+
+- Teams that need clarity before committing to a larger China program.
+- Teams evaluating whether their current evidence and communication assets are China-ready.
+
+#### §11.1.4 Engagement details
+
+| Field | Value |
+|---|---|
+| Scope | Fixed-scope; no scope creep without written change order |
+| Duration | 30 calendar days |
+| Kick-off | Within 3 business days of signature |
+| Mid-engagement checkpoint | Day 15 |
+| Output format | One signed PDF + one editable working document + one 60-min readout |
+| Named physician reviewer | Assigned at kick-off; same person signs the output |
+| Pricing | **⚑ PRICING placeholder** — renders as "Pricing on request" until BD + Finance finalize |
+
+#### §11.1.5 FAQ（6 项,本批次扩展）
+
+**Q1. What if we don't yet have a China evidence dataset?**
+
+> The Sprint is designed for that. The first deliverable is a gap assessment — we work with what you have, including global trial data, post-marketing surveillance, and any China-relevant publications. If the gap is large, the recommended path will reflect that honestly.
+
+**Q2. Who is on our team during the 30 days?**
+
+> A named physician reviewer (your day-to-day point person), a project lead, and the relevant therapeutic-area subject experts pulled in for specific phases. The physician reviewer is the same person who signs the final deliverable.
+
+**Q3. Confidentiality and NDA — how do you handle proprietary data?**
+
+> Mutual NDA is signed before kick-off. Data shared during the Sprint stays inside the engagement and is not used to train any model or aggregated into other client work. We can sign your NDA template or use ours.
+
+**Q4. Can we extend the Sprint into a larger engagement?**
+
+> Yes — the Sprint's final deliverable includes a recommended next-step plan and budget range exactly so this conversation can happen with shared context. If you decide to extend, the Sprint fee is creditable against the first month of the broader engagement.
+
+**Q5. What happens at the Day-15 checkpoint?**
+
+> A 60-minute call between your team and ours, with a written summary attached. Either side can flag scope drift, missing inputs, or directional concerns. If we cannot deliver on the original scope, you hear it on Day 15, not Day 30.
+
+**Q6. What's the cancellation policy?**
+
+> Cancel within 3 business days of signature for a full refund. After kick-off, we honor a pro-rated refund minus committed physician hours through the cancellation date. We do not run a Sprint where we don't have alignment by Day 5.
+
+#### §11.1.6 CTA + Related
+
+- **Primary CTA**: `Book the China Evidence Sprint` → `/contact?topic=entering_china`
+- **Secondary CTA**: `Talk to an expert first` → `/contact?topic=entering_china`
+- **Related Solution**: `/solutions/entering-china`
+- **Related Case Study**: `/case-studies/entering-china-evidence-hcp`
+
+#### §11.1.7 Boundaries（诚实边界,与 v4.1 §2.9 一致）
+
+| What we do | What we are not |
+|---|---|
+| Evidence strategy and gap assessment | Replacement for your local Chinese legal entity |
+| Physician engagement support and HCP mapping | A China distributor or commercial sales force |
+| Localized medical content scaffolding | A full regulatory filing firm |
+| AI-assisted drafting under PITL review | A clinical trial CRO |
+
+> Where needed, we can work alongside specialist regulatory or commercialization partners.
+
+---
+
+### §11.2 30-Day FDA Evidence Gap Diagnostic — `/pilots/fda-evidence-gap-diagnostic`
+
+> **来源**: v4.1 §3.6 + 扩 FAQ
+> **关联 Case Study**: `/case-studies/going-global-fda-evidence-bridge`(§7.3)
+
+#### §11.2.1 Hero
+
+**Eyebrow**: `PILOT · GOING GLOBAL (US) · EVIDENCE`
+
+**H1**:
+
+> 30-Day FDA Evidence Gap Diagnostic
+
+**Lede（≤ 80 字英文）**:
+
+> A fixed-scope pilot for China-headquartered biotech and medtech teams preparing for FDA-facing evidence work. We map where current data, evidence framing, and U.S.-facing communication may need strengthening — physician-signed, in 30 days.
+
+#### §11.2.2 What's included（4 项）
+
+> 4 deliverables, scoped before kick-off and signed off by a named physician at the end:
+>
+> - **Evidence gap assessment vs. intended U.S.-facing use** — what holds, what slips, what to plan around.
+> - **Applicability / bridging review** — comparator alignment, endpoint mapping, population read-across notes.
+> - **Recommended publication / evidence / next-step path** — single-page direction with named workstreams.
+> - **Next-step plan and indicative scope** — what an extended engagement would cover, with named workstreams and rough budget bands.
+
+#### §11.2.3 Best for（3 项）
+
+- Teams preparing for broader FDA-facing strategy discussions.
+- Teams that need more structured U.S.-facing evidence and communication planning.
+- Teams that want a decision-ready view before investing further.
+
+#### §11.2.4 Engagement details
+
+| Field | Value |
+|---|---|
+| Scope | Fixed-scope; no scope creep without written change order |
+| Duration | 30 calendar days |
+| Kick-off | Within 3 business days of signature |
+| Mid-engagement checkpoint | Day 15 |
+| Output format | One signed PDF + one editable working document + one 60-min readout |
+| Named physician reviewer | Assigned at kick-off; same person signs the output |
+| Pricing | **⚑ PRICING placeholder** — renders as "Pricing on request" until BD + Finance finalize |
+
+#### §11.2.5 FAQ（6 项,本批次扩展）
+
+**Q1. We have phase-3 data from China — does this Sprint tell us if it'll fly with the FDA?**
+
+> The Diagnostic gives you a structured view, not a regulatory opinion. We map where your data aligns to U.S. reviewer expectations (typically: comparator arm, endpoint definition, population) and flag where additional bridging work, U.S. site data, or sub-group analyses may be needed. Final regulatory judgment is FDA's.
+
+**Q2. Do you write the actual submission?**
+
+> No. The Diagnostic is a planning artifact. Submission writing happens in extended engagements (or with specialist regulatory partners we can recommend). We do produce content scaffolds — manuscript outlines, abstract drafts, MSL kit drafts — that map to the Diagnostic's findings.
+
+**Q3. Who reviews our data — and is anyone in the U.S. on the team?**
+
+> Yes. Our physician reviewer for U.S.-facing work is U.S.-licensed, and a separate China-licensed physician is on the team for the China-data side. Both signatures appear on the Diagnostic. Subject-area specialists are pulled in by therapeutic context.
+
+**Q4. NDA, data residency, and IP — what's the boundary?**
+
+> Mutual NDA is signed before kick-off. Data shared in the Diagnostic stays inside the engagement, is not used to train any model, and is not aggregated with other client work. We can sign your NDA template or use ours.
+
+**Q5. We're not yet sure whether to file IND, IDE, or 510(k) — does the Diagnostic help with that?**
+
+> The Diagnostic does not replace a regulatory filing path decision. It does help you walk into that decision with a clearer picture of what your evidence package looks like under each path's expectations.
+
+**Q6. Cancellation, refund, extension policy?**
+
+> Cancel within 3 business days of signature for a full refund. Pro-rated refund after kick-off minus committed physician hours. Extension into a broader engagement credits the Diagnostic fee against the first month.
+
+#### §11.2.6 CTA + Related
+
+- **Primary CTA**: `Book the FDA Evidence Gap Diagnostic` → `/contact?topic=fda_bridge`
+- **Secondary CTA**: `Talk to an expert first` → `/contact?topic=going_global`
+- **Related Solution**: `/solutions/going-global-us`
+- **Related Case Study**: `/case-studies/going-global-fda-evidence-bridge`
+
+#### §11.2.7 Boundaries（诚实边界,与 v4.1 §3.9 一致）
+
+| What we do | What we are not |
+|---|---|
+| Evidence bridge support and applicability review | Full-service FDA filing partner |
+| Publication and scientific communication strategy | A U.S. site network provider |
+| English-language medical affairs content | A payer strategy firm |
+| Advisory startup support | A clinical trial CRO |
+
+> Where needed, we work alongside specialist regulatory and clinical partners.
+
+---
+
+### §11.3 ⚑ PRICING 占位渲染规则（实现侧约束）
+
+> 双方 Pilot 均处于 ⚑ PRICING 待签字状态。Production deploy 前需补 BD + Finance 签字回执;原型阶段实现侧约束如下:
+
+| 约束 | 说明 |
+|---|---|
+| HTML 静态文件不得包含 ⚑ 字符 | check-page Gate 17 |
+| `PilotCard.jsx` 检测占位 state(`pricing.status === 'pending'`)→ 渲染为 "Pricing on request" + CTA `Talk to BD about pricing` | Task 5.3 实现侧 |
+| Pricing 字段签字 receipt 文档 | `docs/approvals/pilot-pricing-pending-bd-finance-signoff.md` 跟踪 |
+
+### §11.4 ⚠️ 跟踪事项
+
+| 项 | 状态 | 解锁条件 |
+|---|---|---|
+| China Sprint pricing | ⚑ pending BD + Finance | BD + Finance 签字回执 |
+| FDA Diagnostic pricing | ⚑ pending BD + Finance | BD + Finance 签字回执 |
+| 法务一审(SLA / 边界 / FAQ Q4 Q5 法律措辞) | ⏳ Step 4 | Step 1+2 完稿后法务 2 business day buffer |
 
 ---
