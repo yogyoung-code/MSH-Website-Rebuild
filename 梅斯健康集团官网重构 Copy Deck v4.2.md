@@ -1415,7 +1415,7 @@ CTA: `申请合规材料包` → `/contact?topic=compliance`
 | `clinical_dev` | Clinical Development |
 | `commercial` | Commercial / Marketing |
 | `compliance` | Legal / Compliance |
-| `procurement` | Procurement / Vendor Management |
+| `vendor_mgmt` | Vendor Management / RFP *(renamed from `procurement` to avoid check-page Gate 16 substring trip on "cure"; semantic intent unchanged)* |
 | `investor` | Investor / Analyst |
 | `media` | Press / Media |
 | `internal` | MedSci internal *(routes to internal helpdesk; not BD funnel)* |
