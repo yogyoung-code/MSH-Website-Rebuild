@@ -24,6 +24,7 @@
 | **新章** | §9 About（EN+CN 双语） | B4 / W4; §9.0–§9.4 EN（公司简介 / 领导层 / 3.33M+ 网络 / 合规治理）+ §9.5 CN 精简版; **港股披露相关,法务 + IR 强制双签 + 5 天 buffer** |
 | **新章** | §10 Contact (Smart Form) | B4 / W4; §10.1 字段定义 + §10.2 8 个 thank-you 分支 + §10.3 路由规则（含 sprint-not-for-fit → /services/other-engagements）+ §10.4 PII 约束; **法务一审（不强制 IR）** |
 | **新章** | §11 Pilots ×2（China Sprint + FDA Diagnostic） | B5 / W5; §11.1–§11.2 抽自 v4.1 §2.6/§3.6 + 扩 6 条 FAQ; **⚑ PRICING 占位（"Pricing on request"）;** 法务一审 |
+| **新章** | §12 Legal ×3（Terms / Privacy / Disclosures, EN+CN） | B5 / W5; §12.1 Terms + §12.2 Privacy（GDPR/CCPA）+ §12.3 Disclosures（港股披露,2415.HK）; **§12.3 法务+IR 双签;** §12.x.zh CN 版同样双签 |
 
 ### 0.2 视觉约定（沿用 v4.1）
 
@@ -1805,5 +1806,324 @@ hreflang: EN only(IA §11; Pilot 不要求 CN).
 | China Sprint pricing | ⚑ pending BD + Finance | BD + Finance 签字回执 |
 | FDA Diagnostic pricing | ⚑ pending BD + Finance | BD + Finance 签字回执 |
 | 法务一审(SLA / 边界 / FAQ Q4 Q5 法律措辞) | ⏳ Step 4 | Step 1+2 完稿后法务 2 business day buffer |
+
+---
+
+## §12 Legal ×3（B5 / W5 范围,法务模板起手）
+
+> **作用**: 三页 Legal 是反尽调 / 合规审查 / 投资人审计的核验入口;§12.3 Disclosures 是港股 2415.HK 强制披露落地页
+> **审批路径**:
+> - §12.1 Terms / §12.2 Privacy: 内容编辑 → 法务（终签,模板由外部律所最终定稿替换）→ Sponsor 阅知
+> - §12.3 Disclosures: 内容编辑 → 法务 → **IR 总监（强制双签,港股披露相关）** → Sponsor 终审
+> - 三页 CN 版（§12.x.zh）走同样的双签链路;zh-HK 繁体由 zh-CN 译审产出
+> **强制约束**:
+> - **本批次为法务模板骨架**;最终法律措辞由外部律所定稿替换。每一段的最终律所版本必须与本骨架同结构,任何结构改动需走 change request
+> - 所有"我们 / MedSci"指代统一为 `MedSci Healthcare`(`2415.HK`)
+> - "last updated" 字段必填,渲染为最近一次 substantive content change 日期(不是 typo / 排版改动)
+> - hreflang en / zh-CN 双向链接（IA §11）
+> - 三页禁词扫描通过;尤其禁 `guarantee` / `100% accurate` / `industry-leading`
+
+### §12.0 通用元数据约定
+
+| 字段 | 三页约定 |
+|---|---|
+| URL | `/legal/terms` / `/legal/privacy` / `/legal/disclosures` |
+| `<title>` | `{Page Name} — MedSci Healthcare` |
+| `<meta description>` | 见各页 §12.x.0 |
+| Schema.org | `WebPage` + `Organization`（Disclosures 页另加 `tickerSymbol: "2415.HK"`） |
+| robots | `index, follow` |
+| hreflang | `en` + `zh-CN`（双向 alternate）|
+| `last_updated` | 渲染于页面顶部,格式 `Mon DD, YYYY` |
+
+> *实现说明*：W5 prototype 阶段三页用 `LegalProse.jsx` 组件统一渲染;CMS 阶段 `last_updated` 字段对接 Sanity webhook,自动更新发布日期。
+
+---
+
+### §12.1 Terms of Use — `/legal/terms`
+
+> **作用**: 网站使用条款（不是客户合同 MSA;客户合同走另一份 paper）
+> **法务约束**: 本骨架仅为内部模板;production deploy 前必须由外部律所终签替换
+> **last_updated**: ⚠️ counsel to set on final sign-off
+
+#### §12.1.0 元数据
+
+| 字段 | 值 |
+|---|---|
+| `<title>` | `Terms of Use — MedSci Healthcare` |
+| `<meta description>` | `Terms governing use of medscihealthcare.com — acceptance, content, intellectual property, disclaimers, limitation of liability, governing law.` |
+
+#### §12.1.1 Sections（草稿骨架,英文模板）
+
+> ⚠️ Each section is a placeholder. External counsel will replace bracketed paragraphs with final language before deploy.
+
+**1. Acceptance of these Terms**
+
+> By accessing or using medscihealthcare.com (the "Site"), you agree to these Terms of Use. If you do not agree, do not use the Site. ⚠️ Counsel to confirm jurisdiction-specific acceptance language.
+
+**2. Permitted use of the Site**
+
+> The Site provides information about MedSci Healthcare's services for global biopharma and medtech clients. You may view and download Site content for non-commercial reference. You may not scrape, mirror, redistribute, or republish content without prior written permission. ⚠️ Counsel to add automated-access carve-outs (legitimate research crawlers, etc.).
+
+**3. Intellectual property**
+
+> All content on the Site — including text, graphics, logos, methodology diagrams, and the MedSci Healthcare wordmark — is owned by or licensed to MedSci Healthcare and protected by applicable intellectual property law. The MedSci Healthcare brand and logo are trademarks; please contact us before reproducing them.
+
+**4. Third-party content and links**
+
+> The Site may link to third-party resources (including HKEX disclosures and external research). MedSci Healthcare does not control and is not responsible for third-party content. Outbound links carry `rel="external noopener"` per our linking policy (IA §3 / §5).
+
+**5. No professional advice; no warranty**
+
+> Site content is provided for general informational purposes. It is not medical, regulatory, legal, tax, or investment advice. Site content is provided on an "as is" basis without representations or warranties of any kind. ⚠️ Counsel to align disclaimer with U.S. + China + HK jurisdictional norms.
+
+**6. Limitation of liability**
+
+> To the maximum extent permitted by applicable law, MedSci Healthcare and its affiliates will not be liable for any indirect, incidental, consequential, or punitive damages arising from your use of the Site. ⚠️ Counsel to set jurisdictional caps.
+
+**7. Indemnity**
+
+> You agree to indemnify MedSci Healthcare and its affiliates against claims arising from your misuse of the Site. ⚠️ Counsel-drafted indemnity clause to replace.
+
+**8. Changes to these Terms**
+
+> We may update these Terms from time to time. Material changes will be reflected in the `Last updated` date at the top of this page. Continued use after changes constitutes acceptance.
+
+**9. Governing law and venue**
+
+> These Terms are governed by ⚠️ [Counsel-set jurisdiction], without regard to conflict-of-laws rules. You agree to ⚠️ [Counsel-set venue / arbitration clause].
+
+**10. Contact**
+
+> Questions about these Terms: `legal@medscihealthcare.com` (or use [Contact](/contact) and select "Legal / Compliance" in the role field).
+
+#### §12.1.2 ⚠️ Counsel review markers
+
+| Section | Marker | Resolution path |
+|---|---|---|
+| §12.1.1.1 | Jurisdictional acceptance | External counsel to align to HK + U.S. + EU norms |
+| §12.1.1.2 | Automated-access carve-outs | Counsel to specify if research crawlers are exempt |
+| §12.1.1.5 | Disclaimer scope | Tri-jurisdictional alignment |
+| §12.1.1.6 | Liability caps | Counsel-set, jurisdiction-specific |
+| §12.1.1.7 | Indemnity | Counsel-drafted replacement |
+| §12.1.1.9 | Governing law / venue | Counsel decision (HK preferred) |
+
+#### §12.1.zh 中文版 — `/legal/terms?lang=zh-CN`
+
+> **范围**: 与英文版逐节对应,中文为译审产出（非自由创作）。最终中文措辞与英文版法律含义必须一致;任何偏差视同合规事故。
+> **审批**: 法务（中英对照审）+ Sponsor 阅知。
+
+> ⚠️ 中文版骨架本批次留 placeholder,由译审在英文最终律所版本拿到后产出（不在 W5 critical path）。本节仅记录映射约束:
+>
+> - "These Terms" → "本《使用条款》"（不译为"本规则"）
+> - "MedSci Healthcare" → 中文页保留英文品牌名(不译为"梅斯健康"以避免港股股票简称与品牌名混淆;股票简称单独在 §12.3 中文版使用)
+> - "as is" → "现状"（不译为"按现状"）
+> - 章节编号与英文 §12.1.1 一一对应
+
+---
+
+### §12.2 Privacy Policy — `/legal/privacy`
+
+> **作用**: 全站隐私政策（覆盖 cookies / Smart Form 提交 / IP 日志 / 第三方 cookies / GDPR / CCPA）
+> **法务约束**: GDPR Article 13/14 + CCPA Section 1798.100 series + PIPL（中国境内访问场景）多重合规要求,本骨架仅模板,律所终签前不得发布
+> **last_updated**: ⚠️ counsel to set on final sign-off
+
+#### §12.2.0 元数据
+
+| 字段 | 值 |
+|---|---|
+| `<title>` | `Privacy Policy — MedSci Healthcare` |
+| `<meta description>` | `How MedSci Healthcare collects, uses, transfers, and protects personal information — GDPR, CCPA, PIPL alignment. Contact our DPO for requests.` |
+
+#### §12.2.1 Sections（草稿骨架,英文模板）
+
+**1. Who we are**
+
+> MedSci Healthcare (HKEX: 2415) is the controller of personal information collected through medscihealthcare.com. Contact: `privacy@medscihealthcare.com` or use [Contact](/contact) and select "Legal / Compliance".
+
+**2. Personal information we collect**
+
+| Source | Information | Why we collect it |
+|---|---|---|
+| Smart Form submissions | Name, work email, company, role, topic, message, optional outlet/fund/program-stage/use-case/timeline | Routing your inquiry to the right team |
+| Server logs | IP address, user-agent, request URL, timestamp | Security, abuse prevention, performance debugging |
+| Cookies (functional only) | Session, preference (language, consent state) | Remembering your language and consent choice during the session |
+| Cookies (analytics, opt-in) | Aggregated, anonymized usage | Site improvement |
+
+> We do not collect or store sensitive personal information (health, political, religious, or biometric) through this Site. ⚠️ Counsel to confirm "sensitive PI" definitions per CCPA + GDPR + PIPL alignment.
+
+**3. Lawful basis (GDPR Article 6)**
+
+> - Contract / pre-contract steps: Smart Form submissions where you initiate contact
+> - Legitimate interest: server logs, abuse prevention, analytics aggregation
+> - Consent: opt-in analytics cookies; all marketing email subscriptions
+
+⚠️ Counsel to validate Article 6(1)(f) balancing test for legitimate-interest categories.
+
+**4. CCPA notice (California residents)**
+
+> Under the CCPA / CPRA, you may have the right to know, delete, correct, and opt out of "sale" or "sharing" of personal information. **MedSci Healthcare does not sell personal information**, as that term is defined under CCPA. To exercise rights, email `privacy@medscihealthcare.com`. ⚠️ Counsel to confirm "share" definition under CPRA 2023 amendments.
+
+**5. PIPL note (China residents)**
+
+> Personal information collected from individuals located in mainland China is handled under PIPL. Cross-border transfer of such data follows the contractual mechanism described in our [Data Handling section on About](/about#compliance) and signed engagement letters where applicable. ⚠️ Counsel to confirm Standard Contractual Clauses status.
+
+**6. How we share**
+
+> We do not sell personal information. We share with: (a) service providers under written contract (e.g., email delivery); (b) legal and regulatory authorities when required; (c) successors in a corporate transaction, subject to the same protections. ⚠️ Counsel to add SCC reference for cross-border transfers to processors.
+
+**7. Retention**
+
+> Smart Form submissions: retained for ⚠️ [Counsel-set period, typically 12-36 months] from last interaction. Server logs: 90 days, then aggregated. Anonymized analytics: indefinite.
+
+**8. Your rights**
+
+> Depending on your jurisdiction, you may have rights to access, correct, delete, restrict, or port your personal information; object to processing; withdraw consent; and lodge a complaint with a supervisory authority. To exercise rights, email `privacy@medscihealthcare.com`.
+
+**9. Security**
+
+> We use commercially reasonable administrative, technical, and physical safeguards. No system is fully impenetrable; please notify us at `security@medscihealthcare.com` if you believe a vulnerability or breach has occurred.
+
+**10. Children**
+
+> The Site is not directed at children under ⚠️ [13 / 16, counsel-set per jurisdiction]. We do not knowingly collect personal information from children.
+
+**11. Changes**
+
+> Material changes will be reflected in the `Last updated` date at the top of this page.
+
+**12. Contact**
+
+> Privacy questions or rights requests: `privacy@medscihealthcare.com`. Data Protection Officer (DPO): ⚠️ counsel to confirm whether GDPR Article 37 mandatory DPO designation applies.
+
+#### §12.2.2 ⚠️ Counsel review markers
+
+| Section | Marker | Resolution path |
+|---|---|---|
+| §12.2.1.2 | Sensitive PI definitions tri-jurisdictional | Counsel alignment |
+| §12.2.1.3 | Article 6(1)(f) balancing test | Counsel-validated |
+| §12.2.1.4 | CCPA / CPRA "share" definition | Counsel-confirmed |
+| §12.2.1.5 | PIPL SCC mechanism | Counsel-confirmed |
+| §12.2.1.7 | Retention periods | Counsel-set per data class |
+| §12.2.1.10 | Children threshold age | Counsel per jurisdiction |
+| §12.2.1.12 | DPO mandatory? | Counsel-confirmed |
+
+#### §12.2.zh 中文版 — `/legal/privacy?lang=zh-CN`
+
+> ⚠️ 中文版骨架由译审在英文律所终签后产出。映射约束:
+>
+> - "personal information" → "个人信息"（PIPL 标准用语,不译为"个人资料"）
+> - "Sensitive PI" → "敏感个人信息"
+> - "controller" → "信息处理者"（PIPL 用语,不译为"控制者"）
+> - GDPR / CCPA 节单独翻译,不合并到 PIPL 节
+> - DPO 用 "数据保护负责人"（不译为"数据保护官"）
+
+---
+
+### §12.3 Disclosures — `/legal/disclosures`（**港股披露相关,IR + 法务双签**）
+
+> **作用**: 港股 2415.HK 投资者披露落地页;Forward-looking statements 法律保护伞;Site 上引用的所有数据 claim 的索引来源
+> **强制约束**:
+> - 本页所有数字 / 数据 claim 必须**与最新 HKEX 披露口径字字一致**
+> - 任何文字调整需 IR + 法务双签;不得自由编辑
+> - hreflang en / zh-CN 双向链接（IA §11）
+
+#### §12.3.0 元数据
+
+| 字段 | 值 |
+|---|---|
+| `<title>` | `Disclosures — MedSci Healthcare (2415.HK)` |
+| `<meta description>` | `Forward-looking statements, source attribution, and HKEX 2415.HK disclosures index for medscihealthcare.com.` |
+| Schema.org | `WebPage` + `Organization`（含 `tickerSymbol: "2415.HK"` + `sameAs` 链接 HKEX） |
+
+#### §12.3.1 Sections（草稿骨架,英文模板）
+
+**1. Forward-looking statements**
+
+> medscihealthcare.com may contain statements that are not historical facts — including statements about strategy, services, expected outcomes, market conditions, and AI methodology. These are forward-looking statements within the meaning of applicable securities law. Forward-looking statements involve risks and uncertainties; actual results may differ. We do not undertake to update forward-looking statements except as required by HKEX rules. ⚠️ Counsel to align Safe-Harbor language to HKEX Listing Rules + U.S. PSLRA equivalent if SEC-listed instruments come into scope.
+
+**2. Source of headline numbers**
+
+| Number cited on the Site | Authoritative source | Last refreshed |
+|---|---|---|
+| 3.33M+ registered physicians | Internal network records (reconciled to HKEX quarterly results) | ⚠️ pending refresh date |
+| 2415.HK ticker symbol | HKEX listing | 2024 listing |
+| AI + PITL methodology claims | Internal Methodology document v1, signed by CMO | 2026-Q1 |
+| Bilingual physician review (EN + CN tracks) | Internal Delivery Standard v1 | 2026-Q1 |
+| Case Study metrics × 9 | Per-engagement client report (named source per CaseStudy schema, IR + Sponsor + Legal sign-off receipts in `docs/approvals/`) | Per Case Study page |
+
+> Where any number on the Site differs from the most recent HKEX disclosure, the HKEX disclosure governs and we will reconcile the Site within ⚠️ [counsel-set window, typically 30 days].
+
+**3. Restatement policy**
+
+> If a previously published number on the Site requires correction, we publish the correction through the same HKEX disclosure channel that originated the number. The Site is then updated to match. We do not silently edit historical numbers.
+
+**4. No investment advice**
+
+> Nothing on medscihealthcare.com constitutes an offer, solicitation, or recommendation to buy or sell securities of MedSci Healthcare or any other entity. Investors should consult qualified advisers and refer to the latest HKEX disclosures.
+
+**5. HKEX disclosure index**
+
+> Latest HKEX 2415.HK announcements: → [HKEX news](https://www.hkexnews.hk/) *(rel="external noopener")*
+>
+> Latest annual report: → ⚠️ [Counsel + IR to provide direct deep link or cite year]
+>
+> Latest quarterly results: → ⚠️ [Counsel + IR to provide direct deep link or cite quarter]
+>
+> Corporate governance report: → ⚠️ [Counsel + IR to provide direct deep link]
+
+**6. AI + PITL methodology — public-facing claims**
+
+> Public claims about our AI-Enabled Platform (medscihealthcare.com/ai-platform) reflect our Internal Methodology document, which is signed by the Chief Medical Officer and reviewed quarterly. Claims include physician-in-the-loop review on every deliverable, named-author and named-reviewer authorship, and time-stamped audit trails. ⚠️ Counsel + IR to confirm public-facing methodology summary aligns to HKEX disclosure language and U.S. FTC advertising rules.
+
+**7. Contact**
+
+> Investor relations: `ir@medscihealthcare.com` (or [IR site](https://medscihealthcare.com/ir) *(rel="external noopener")*).
+> Legal / compliance: `legal@medscihealthcare.com`.
+
+#### §12.3.2 ⚠️ Dual-sign markers (Legal + IR)
+
+| Section | Marker | Resolution path |
+|---|---|---|
+| §12.3.1.1 | Safe-Harbor language alignment | External counsel + IR Director |
+| §12.3.1.2 | "Last refreshed" dates × 5 | IR Director per data class; receipts in `docs/approvals/` |
+| §12.3.1.2 | Case Study metric reconciliation window | Counsel-set window |
+| §12.3.1.5 | HKEX direct deep links × 3 | IR Director |
+| §12.3.1.6 | AI + PITL methodology language | Counsel + IR + CMO three-way alignment |
+
+#### §12.3.zh 中文版 — `/legal/disclosures?lang=zh-CN`
+
+> ⚠️ 中文版同样走法务 + IR 双签。映射约束:
+>
+> - "Forward-looking statements" → "前瞻性陈述"
+> - "Restatement" → "重述"（不译为"重新表述"）
+> - "ticker symbol" → "股票代码"
+> - "HKEX" → "联交所" 或保留英文 "HKEX"（IR 选定;统一全文）
+> - "PSLRA" → 不译,保留英文
+> - 数字与英文版字字一致
+
+---
+
+### §12 通用约束 / 禁忌
+
+| 约束 | 适用 | 备注 |
+|---|---|---|
+| 本批次为法务模板骨架,production deploy 前由外部律所定稿替换 | 全 §12 | 律所终签后另起 commit 替换 |
+| 中英文对照含义必须一致,任何偏差视同合规事故 | §12.x.zh | 译审产出 |
+| `last_updated` 字段必填,渲染于页面顶部 | 三页 | LegalProse 组件渲染 |
+| §12.3 数字与最新 HKEX 披露口径字字一致 | §12.3.1.2 | IR Director 把关 |
+| 禁词扫描通过(`guarantee` / `100% accurate` / `industry-leading` 等) | 全 §12 | check-page Gate 16 |
+| hreflang en / zh-CN 双向链接 | 三页 | IA §11 |
+| 所有外部链接(HKEX / 律所 / 监管局)必须 `rel="external noopener"` | 全 §12 | IA §3 / §5 |
+
+### §12 ⚠️ 跟踪事项
+
+| 项 | 状态 | 解锁条件 |
+|---|---|---|
+| §12.1 Terms 律所终签版本 | ⏳ pending external counsel | 律所终签后替换骨架 |
+| §12.2 Privacy 律所终签版本 | ⏳ pending external counsel | 同上 |
+| §12.3 Disclosures 法务+IR 双签 | ⏳ pending Legal + IR | IR Director + Head of Legal 双签;5 day buffer |
+| §12.x.zh 中文版译审 | ⏳ pending translation review | 英文律所终签后启动 |
+| 外部律所工作启动 | ⏳ Step 4 | Yog 与 Head of Legal 邮件 kickoff |
+| `docs/approvals/legal-pages-pending-counsel-signoff.md` | ⏳ 待补 | 本批次后另起 tracker 文档 |
 
 ---
