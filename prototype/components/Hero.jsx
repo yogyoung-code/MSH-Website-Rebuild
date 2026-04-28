@@ -7,7 +7,7 @@ function Hero() {
       padding: '72px 40px 88px',
     }}>
       <DotSpiralBg />
-      <div style={{
+      <div className="two-col-grid" style={{
         maxWidth: 1280, margin: '0 auto', position: 'relative',
         display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 72, alignItems: 'start',
       }}>
@@ -51,7 +51,7 @@ function Hero() {
         </div>
 
         {/* RIGHT — WHAT WE DELIVER card */}
-        <div style={{ marginTop: 60 }}>
+        <div className="hero-right-services" style={{ marginTop: 60 }}>
           <WhatWeDeliverCard />
         </div>
       </div>
