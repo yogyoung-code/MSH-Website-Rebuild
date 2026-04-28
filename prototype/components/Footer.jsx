@@ -11,7 +11,7 @@ function Footer() {
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr 1fr 1fr', gap: 40, paddingBottom: 48, borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
           <div>
-            <img src="assets/logo/medsci-healthcare-logo.svg" alt="MedSci Healthcare — Improving Healthcare Quality"
+            <img src="/assets/logo/medsci-healthcare-logo.svg" alt="MedSci Healthcare — Improving Healthcare Quality"
                  style={{ height: 38, filter: 'brightness(0) invert(1)', opacity: 0.95 }} />
             <p style={{ fontFamily: 'var(--font-slogan)', fontStyle: 'italic', fontSize: 14, color: 'rgba(255,255,255,0.5)', marginTop: 16, marginBottom: 20 }}>
               Improving Healthcare Quality
