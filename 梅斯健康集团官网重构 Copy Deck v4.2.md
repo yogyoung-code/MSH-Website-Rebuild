@@ -22,6 +22,7 @@
 | **新章** | §7 Case Studies 详情 ×3 | B2 / W2; §7.0 模板 + §7.1-§7.3 三案例 + 9 metric 全填代表性数字（IR-signed 终版前 ⚠️ 占位） |
 | **新章** | §8 Insights 列表 + 详情模板 | B3 / W3; §8.0 列表 + §8.1 详情骨架 + §8.2 占位文章 ×3 引子 + §8.3 通用约束 |
 | **新章** | §9 About（EN+CN 双语） | B4 / W4; §9.0–§9.4 EN（公司简介 / 领导层 / 3.33M+ 网络 / 合规治理）+ §9.5 CN 精简版; **港股披露相关,法务 + IR 强制双签 + 5 天 buffer** |
+| **新章** | §10 Contact (Smart Form) | B4 / W4; §10.1 字段定义 + §10.2 8 个 thank-you 分支 + §10.3 路由规则（含 sprint-not-for-fit → /services/other-engagements）+ §10.4 PII 约束; **法务一审（不强制 IR）** |
 
 ### 0.2 视觉约定（沿用 v4.1）
 
@@ -1346,5 +1347,239 @@ CTA: `申请合规材料包` → `/contact?topic=compliance`
 | 链接到 IR / HKEX 必须 `rel="external noopener"` | §9.5.4 / §9.5.7 | IA §3 / §5 要求 |
 | 中英文 hreflang 互链 | §9.5.0 | EN `/about` ↔ CN `/about?lang=zh-CN` 双向 alternate |
 | zh-HK 繁体由 zh-CN 译审产出 | 范围外 | 本 Step 2 不交付,W6 之前由翻译流程补 |
+
+---
+
+## §10 Contact (Smart Form) — `/contact`（B4 / W4 范围）
+
+> **来源**: IA v2.0 §4.11 Contact + 反向尽调 / BD 漏斗终点
+> **作用**: 把 Top Nav `Talk to an Expert` CTA 与全站 ~10 个内嵌 CTA 收口到一处,按 `topic` / `role` 分流到对应 BD / IR / Legal / Press 队列
+> **审批路径**: 内容编辑 → 法务（一审,聚焦 PII 处理 + 同意条款） → Sponsor 阅知（不强制 IR）
+> **强制约束**:
+> - PII 处理必须挂明示同意 + Privacy Policy 链接
+> - 不得收集敏感个人信息（健康状况 / 政治 / 宗教等,IA §11 数据治理)
+> - "Sprint not-for-fit" 分支必须导向 `/services/other-engagements`,不得回退到 `/contact?retry=1`（避免漏斗死循环）
+> - Investor / Compliance 分支文案不得承诺响应时限的具体数字（用"业务日"语言）
+
+### §10.0 元数据
+
+| 字段 | 值 |
+|---|---|
+| URL | `/contact`（GET 参数 `topic` / `pilot` 来自全站预填）|
+| `<title>` | `Contact MedSci Healthcare — Talk to an Expert` |
+| `<meta name="description">` | `Reach a physician on our team for a 30-minute scoping call. We route by topic to evidence, engagement, communications, AI Platform, IR, or compliance.` |
+| Schema.org | `ContactPage` + `Organization` |
+| robots | `index, follow` |
+| hreflang | EN only（IA §11; CN 受众走 `/about` + IR 站点） |
+
+### §10.1 Smart Form 字段定义
+
+> **设计原则**: 字段越少越好；前 5 个字段服务 80% 的合格分流;条件展开字段服务剩余 20%;不让用户填空气。
+> **schema 字段名沿用 CMS 阶段对接 Sanity / HubSpot 时的统一命名,prototype 阶段渲染同名 React state**
+
+#### §10.1.1 主字段（必填,5 项 + 1 可选）
+
+| # | 字段名 | 类型 | UI 标签 | 必填 | 备注 |
+|---|---|---|---|---|---|
+| 1 | `fullName` | text | `Full name` | ✅ | ≥ 2 chars,trimmed |
+| 2 | `workEmail` | email | `Work email` | ✅ | 校验 `@` + domain;不接受常见 free-mail (gmail/yahoo/outlook) → 触发 §10.2.7 警示 |
+| 3 | `company` | text | `Company / Organization` | ✅ | trimmed |
+| 4 | `role` | select | `Your role` | ✅ | 见 §10.1.4 选项表 |
+| 5 | `topic` | select | `What you'd like to discuss` | ✅ | 见 §10.1.5 选项表; 全站 `?topic=` 预填同一 value |
+| 6 | `message` | textarea | `What you're working on (briefly)` | 可选 | ≤ 600 chars,占位符: `One or two sentences is enough — what's the decision you're trying to make?` |
+
+#### §10.1.2 条件展开字段（按 `role` / `topic` 触发）
+
+| 触发条件 | 字段名 | UI 标签 | 类型 | 必填 |
+|---|---|---|---|---|
+| `role === 'investor' \|\| role === 'media'` | `outletOrFund` | `Outlet / Fund name` | text | ✅ |
+| `topic ∈ {entering_china, going_global, fda_bridge, ai_platform}` | `programStage` | `Where are you in the program?` | select: `Exploring` / `Scoping` / `Active vendor selection` / `In flight, looking for a second pair of eyes` | ✅ |
+| `topic === 'compliance_pack'` | `useCase` | `What this is for` | select: `Vendor security review` / `Regulatory inquiry` / `Audit / due diligence` / `Other` | ✅ |
+| `topic ∈ {entering_china, going_global, fda_bridge, ai_platform}` | `timeline` | `When do you need this?` | select: `< 30 days` / `1–3 months` / `3–6 months` / `> 6 months` / `Not yet defined` | 可选 |
+
+#### §10.1.3 同意 / 法务字段（强制）
+
+| 字段名 | 类型 | 标签 | 必填 |
+|---|---|---|---|
+| `agreesPrivacy` | checkbox | `I agree to the [Privacy Policy](/legal/privacy) and consent to MedSci Healthcare contacting me about this inquiry.` | ✅ |
+| `requestComplianceCopy` | checkbox | `I'd also like to receive the MedSci compliance and audit pack.`（仅在 `topic === 'compliance_pack'` 时默认勾选） | 可选 |
+
+> *实现说明*：`agreesPrivacy` 不勾选 → 提交按钮 disabled。错误态文案: `Please confirm consent before submitting.`
+
+#### §10.1.4 `role` 选项表（固定顺序）
+
+| value | UI label |
+|---|---|
+| `medical_affairs` | Medical Affairs |
+| `regulatory` | Regulatory |
+| `clinical_dev` | Clinical Development |
+| `commercial` | Commercial / Marketing |
+| `compliance` | Legal / Compliance |
+| `procurement` | Procurement / Vendor Management |
+| `investor` | Investor / Analyst |
+| `media` | Press / Media |
+| `internal` | MedSci internal *(routes to internal helpdesk; not BD funnel)* |
+| `other` | Other |
+
+#### §10.1.5 `topic` 选项表（与 IA §1 主路径 + 服务线对齐）
+
+| value | UI label | Routes to (§10.3) |
+|---|---|---|
+| `entering_china` | Entering China — Evidence + HCP + Content | `bd_china` |
+| `going_global` | Going Global (US) — Evidence + Communications | `bd_us` |
+| `fda_bridge` | FDA Evidence Bridge | `bd_us` |
+| `ai_platform` | AI + PITL Platform — Methodology / Pilot | `bd_ai` |
+| `bilingual_content` | Bilingual Medical Content Sprint | `bd_content` |
+| `compliance_pack` | Compliance / audit / vendor security pack | `compliance_legal` |
+| `investor_relations` | Investor Relations (HKEX 2415.HK) | `ir` |
+| `press` | Press / Media inquiry | `pr` |
+| `partnership` | Partnership / Co-marketing | `bd_partnerships` |
+| `other` | Something else | `triage` |
+
+### §10.2 Thank-You 分支文案
+
+> 提交成功后 inline 替换 form。8 个分支按 `topic` / `role` / 邮箱启发式选取。每分支头部显示 `RECEIVED` eyebrow + H2 + 1 段说明 + 1–2 个引导链接。
+
+#### §10.2.1 通用 Eyebrow + Header (所有分支共享)
+
+**Eyebrow**: `RECEIVED`
+
+**视觉**: 浅蓝底（`var(--brand-accent-100)`）+ 边框 `var(--brand-accent-500)`,与 Insights `/insights/` 的订阅成功态视觉一致。
+
+#### §10.2.2 分支 A · BD 主流程 (`topic ∈ {entering_china, going_global, fda_bridge, ai_platform, bilingual_content, partnership}`)
+
+**H2**: We've got it. A physician on our team will reach out within one to two business days.
+
+**Body（≤ 60 字英文）**:
+
+> If your timeline is tighter than that, mention it in your message and we'll route faster. The same person who reaches out is on the deliverable when work begins.
+
+**Links**:
+- → [See related case studies](/case-studies/)
+- → [Read our AI + PITL methodology](/ai-platform)
+
+#### §10.2.3 分支 B · Compliance / Audit Pack (`topic === 'compliance_pack'`)
+
+**H2**: Your request is on its way to our Compliance team.
+
+**Body（≤ 70 字英文）**:
+
+> Compliance routes responses through Legal. Expect a reply within a few business days, with the materials matching what you described in your inquiry. If your audit deadline is sooner, please flag it in the message field and we will prioritize.
+
+**Links**:
+- → [Legal & Compliance overview](/legal)
+- → [About — Compliance pillars](/about#compliance)
+
+#### §10.2.4 分支 C · Investor Relations (`topic === 'investor_relations' || role === 'investor'`)
+
+**H2**: Investor inquiries route through our IR Director.
+
+**Body（≤ 80 字英文）**:
+
+> Material disclosures are made through HKEX (2415.HK) — please reference the latest filings for the most current figures. For non-material follow-ups (clarification, mailing list, modeling questions), our IR team will reach out via the email you provided.
+
+**Links**:
+- → [HKEX 2415.HK announcements](https://www.hkexnews.hk/) *(rel="external noopener")*
+- → [Investor Relations](https://medscihealthcare.com/ir) *(rel="external noopener")*
+
+#### §10.2.5 分支 D · Press (`topic === 'press' || role === 'media'`)
+
+**H2**: Thanks — our communications team will be in touch.
+
+**Body（≤ 60 字英文）**:
+
+> Please include your outlet, deadline, and the angle in your message. For breaking-news inquiries with same-day deadlines, mark "URGENT" in the subject of any follow-up email.
+
+**Links**:
+- → [About MedSci Healthcare](/about)
+- → [HKEX 2415.HK](https://www.hkexnews.hk/) *(rel="external noopener")*
+
+#### §10.2.6 分支 E · Sprint Not-For-Fit (`topic === 'other' || programStage === 'in_flight_second_pair_of_eyes'`)
+
+> **触发**：用户主题选 "Something else" **或** 在 §10.1.2 程序阶段选了 "In flight, looking for a second pair of eyes" — 这两类不适合走标准 30-day pilot,需要导向 `/services/other-engagements`
+
+**H2**: This sounds like one of our other engagements — let's route you there.
+
+**Body（≤ 80 字英文）**:
+
+> Our pilot programs are scoped 30-day deliverables. What you described reads more like an embedded review, audit support, or a custom statement of work — which we handle through Other Engagements. The page below shows the typical formats and how to scope one.
+
+**Primary CTA**: `See Other Engagements` → `/services/other-engagements`
+
+**Secondary CTA（小字）**:
+- → [Or talk to an expert directly](mailto:hello@medscihealthcare.com) *(fallback if user disagrees with routing)*
+
+#### §10.2.7 分支 F · Free-mail Domain Warning（启发式,不阻塞提交）
+
+> **触发**：`workEmail` 域名命中 `gmail.com` / `yahoo.*` / `outlook.com` / `hotmail.*` / `qq.com` / `163.com` / `126.com` 等常见 free-mail
+> **行为**：表单不阻塞,但在 thank-you 顶部加灰色提示条
+
+**Notice（≤ 50 字英文）**:
+
+> Heads up: you used a personal email. We'll respond there, but for any work involving client data, we'll need a work email and a signed engagement letter.
+
+#### §10.2.8 分支 G · Internal Helpdesk (`role === 'internal'`)
+
+> **触发**：MedSci 员工误填外部 form
+
+**H2**: This form is for external inquiries.
+
+**Body（≤ 50 字英文）**:
+
+> For internal requests, please use the MedSci internal helpdesk (link distributed via your @medscihealthcare.com mailbox). Your submission has not been routed to BD.
+
+**Links**:
+- → 内部链接占位（CMS 阶段对接 internal Wiki / Notion） ⚑ pending IT to provide URL
+
+#### §10.2.9 分支 H · Triage Default (`topic === 'other'` 且不匹配 §10.2.6 sprint-not-for-fit 启发式)
+
+**H2**: Thanks — we'll get this to the right team.
+
+**Body（≤ 50 字英文）**:
+
+> One of our team will read your message and route it to the right person. If we need clarification, you'll hear from us within two business days.
+
+**Links**:
+- → [About MedSci](/about)
+- → [Insights](/insights/)
+
+### §10.3 路由规则（提交后内部分流）
+
+> CMS 阶段对接 HubSpot / Salesforce queue,prototype 阶段渲染 console.log mock。
+
+| 触发条件（按优先级从上到下,首条命中即终止） | 内部 queue | SLA target | 备注 |
+|---|---|---|---|
+| `role === 'internal'` | `internal_helpdesk_redirect` | n/a | 不进 BD 漏斗;§10.2.8 分支 G 文案 |
+| `topic === 'compliance_pack'` 且 `useCase === 'audit / due diligence'` | `compliance_legal_priority` | 2 business days | Legal 优先级 |
+| `topic === 'compliance_pack'`（其他 useCase） | `compliance_legal` | 3 business days | 法务路由 |
+| `topic === 'investor_relations'` 或 `role === 'investor'` | `ir` | 3 business days | 由 IR 总监审 |
+| `topic === 'press'` 或 `role === 'media'` | `pr` | 1 business day（urgent 标记: 同日） | PR 队列 |
+| `topic === 'other'` 且 启发式判定 sprint-not-for-fit | `other_engagements_redirect` | 1 business day | 仅做内部跟踪;访客已被前端导向 `/services/other-engagements` |
+| `topic === 'entering_china'` 或 `entering_china` 关键词命中 message | `bd_china` | 1–2 business days | 中国进入主队列 |
+| `topic === 'going_global'` 或 `topic === 'fda_bridge'` | `bd_us` | 1–2 business days | US/FDA 主队列 |
+| `topic === 'ai_platform'` | `bd_ai` | 1–2 business days | AI 平台演示 / 评估 |
+| `topic === 'bilingual_content'` | `bd_content` | 1–2 business days | Cross-border content sprint |
+| `topic === 'partnership'` | `bd_partnerships` | 3 business days | 合作 / 联合营销 |
+| 默认（其他 `topic === 'other'`） | `triage` | 2 business days | 由 BD coordinator 人工分流 |
+
+### §10.4 通用约束 / 禁忌
+
+| 约束 | 适用 | 备注 |
+|---|---|---|
+| `agreesPrivacy` 不勾选 → 提交按钮 disabled | §10.1.3 | 法务硬要求 |
+| 不得收集敏感个人信息（健康 / 政治 / 宗教 / 民族） | 全 §10 | IA §11 数据治理 |
+| Investor / Compliance / Press 分支不得给具体响应时限承诺超出 SLA target | §10.2 / §10.3 | 用"business days"语言,不写"24 小时"等绝对承诺 |
+| Sprint-not-for-fit 必须导向 `/services/other-engagements`（不得回 `/contact?retry`） | §10.2.6 | 漏斗死循环防护 |
+| 全部 thank-you 分支文案禁词扫描通过 | §10.2 | check-page Gate 16 |
+| `workEmail` free-mail 启发式不阻塞提交,只警示 | §10.2.7 | 用户体验优先,数据质量靠后端打分 |
+| Form 提交事件须含 anonymized session ID + topic + role 用于漏斗分析 | §10.3 | 不含 PII;用于 BD funnel KPI |
+
+### §10.5 ⚠️ 跟踪事项
+
+| 项 | 状态 | 解锁条件 |
+|---|---|---|
+| §10.2.8 内部 helpdesk URL | ⚑ pending IT | 上线前由 IT 提供;原型阶段占位 `#` |
+| `bd_*` queue 实际 routing endpoint | ⏳ V2 | CMS 阶段对接 HubSpot / Salesforce |
+| 法务一审（PII 同意条款） | ⏳ Step 1 一审 | Task 4.2 Step 1 提交后法务 1 个 business day 内完成 |
 
 ---
