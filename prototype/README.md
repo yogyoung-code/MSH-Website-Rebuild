@@ -12,7 +12,7 @@
 - `components/*.jsx` — 共享 React 组件
 - `assets/colors_and_type.css` — 颜色与字体 token（W1-04 v1.1）
 - `assets/responsive.css` — 三档断点 token（W6 加入）
-- `assets/vendor/` — React/Babel/Lucide 自托管（W5 加入；不入 git）
+- `assets/vendor/` — React/Babel/Lucide 自托管（W0 Task 0.7 下载，入 git 用于部署）
 
 ## 验收
 
