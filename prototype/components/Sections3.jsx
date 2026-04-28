@@ -20,7 +20,7 @@ function AISection() {
         background: 'radial-gradient(circle, rgba(0,174,219,0.12) 0%, transparent 60%)', transform: 'translateX(-50%)', pointerEvents: 'none',
       }}></div>
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start', marginBottom: 64 }}>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start', marginBottom: 64 }}>
           <div>
             <SectionEyebrow color="var(--brand-accent-500)">AI-Enabled Platform · /ai-platform</SectionEyebrow>
             <h2 style={{
@@ -53,7 +53,7 @@ function AISection() {
               ingestion → gap → PITL → deliverable
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0 }}>
+          <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0 }}>
             {steps.map((s, i) => (
               <div key={s.n} style={{
                 padding: '20px 24px',
@@ -82,7 +82,7 @@ function AISection() {
         </div>
 
         {/* 3 capabilities */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20, marginBottom: 40 }}>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20, marginBottom: 40 }}>
           {caps.map((c, i) => (
             <div key={c.t} style={{
               padding: 28, borderRadius: 12,
@@ -127,7 +127,7 @@ function TrustBar() {
           <SectionEyebrow color="var(--fg-3)">Trust · verified proof points</SectionEyebrow>
           <EvidenceBadge kind="verified" size="sm">Verified · signed source</EvidenceBadge>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, border: '1px solid var(--border-1)', borderRadius: 16, overflow: 'hidden' }}>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, border: '1px solid var(--border-1)', borderRadius: 16, overflow: 'hidden' }}>
           {stats.map((s, i) => (
             <div key={s.l} style={{
               padding: '28px 32px',
@@ -180,7 +180,7 @@ function Insights() {
           </div>
           <a href="/insights" style={{ color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 14 }}>All insights →</a>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {posts.map((p, i) => <InsightCard key={i} p={p} />)}
         </div>
       </div>

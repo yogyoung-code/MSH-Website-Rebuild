@@ -51,7 +51,7 @@ function QuickStart() {
             Three bounded entry points — a China pilot, an FDA diagnostic, or a content sprint. Each one is scoped so your team can evaluate us before a full engagement.
           </p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {offers.map((o, i) => <OfferCard key={o.title} o={o} idx={i} />)}
         </div>
       </div>
@@ -139,7 +139,7 @@ function TwoPaths() {
             One firm. Two directions. No house favorite.
           </h2>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
           {paths.map(p => <PathCard key={p.dir} p={p} />)}
         </div>
       </div>
@@ -188,7 +188,7 @@ function PathCard({ p }) {
         {p.sub}
       </p>
       <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--fg-2)', margin: '0 0 24px' }}>{p.body}</p>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px', marginBottom: 28, paddingTop: 20, borderTop: '1px dashed var(--border-1)' }}>
+      <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px', marginBottom: 28, paddingTop: 20, borderTop: '1px dashed var(--border-1)' }}>
         {p.bullets.map(b => (
           <div key={b} style={{ display: 'flex', alignItems: 'start', gap: 8, fontSize: 13, color: 'var(--fg-1)' }}>
             <span style={{ color: isNavy ? 'var(--brand-primary-500)' : 'var(--brand-accent-700)', flexShrink: 0, marginTop: 2 }}>

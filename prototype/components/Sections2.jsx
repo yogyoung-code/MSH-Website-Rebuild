@@ -58,7 +58,7 @@ function Services() {
             Three delivery lines plus the AI platform they all run on. Mix and match by path — Entering China or Going Global.
           </p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
           {services.map(s => <ServiceCard key={s.num} s={s} />)}
         </div>
       </div>
@@ -121,7 +121,7 @@ function ServiceCard({ s }) {
             {s.deliverables[0]}
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px' }}>
+          <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px' }}>
             {s.deliverables.map(d => (
               <div key={d} style={{ display: 'flex', alignItems: 'start', gap: 8, fontSize: 13, color: 'var(--fg-1)' }}>
                 <span style={{ color: 'var(--brand-accent-700)', flexShrink: 0, marginTop: 2 }}>
@@ -180,7 +180,7 @@ function WhyMedSci() {
             AI-enabled, physician-verified. Four promises, not marketing claims.
           </p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {pillars.map((p, i) => (
             <div key={p.title} style={{
               background: '#fff', border: '1px solid var(--border-1)', borderRadius: 12,
@@ -280,7 +280,7 @@ function Cases() {
             See all case studies <span>→</span>
           </a>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {cases.map((c, i) => <CaseCard key={i} c={c} />)}
         </div>
       </div>
@@ -317,7 +317,7 @@ function CaseCard({ c }) {
         color: 'var(--brand-primary-700)', margin: '0 0 24px', letterSpacing: '-0.005em',
         lineHeight: 1.35, minHeight: 76, textWrap: 'balance',
       }}>{c.title}</h3>
-      <div style={{
+      <div className="stat-strip-grid" style={{
         display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10,
         paddingTop: 20, borderTop: '1px dashed var(--border-1)', marginTop: 'auto',
       }}>
