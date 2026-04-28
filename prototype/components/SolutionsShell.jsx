@@ -31,7 +31,7 @@ function SolutionPageHeader({ pageMeta }) {
           ))}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 64, alignItems: 'end' }}>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 64, alignItems: 'end' }}>
           <div>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 10,
@@ -238,7 +238,7 @@ function PhaseTimeline({ phases, theme = 'navy' }) {
           {phases.map(p => p.weeks).join(' → ')}
         </span>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${phases.length}, 1fr)` }}>
+      <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: `repeat(${phases.length}, 1fr)` }}>
         {phases.map((p, i) => (
           <div key={i} style={{
             padding: 28,
@@ -289,7 +289,7 @@ function PhaseTimeline({ phases, theme = 'navy' }) {
 function DeliverablesGrid({ items, theme = 'navy' }) {
   const isCyan = theme === 'cyan';
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
+    <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
       {items.map((it, i) => (
         <div key={i} style={{
           background: '#fff', border: '1px solid var(--border-1)',
@@ -318,7 +318,7 @@ function DeliverablesGrid({ items, theme = 'navy' }) {
           </div>
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.6, margin: '0 0 16px' }}>{it.body}</p>
           {it.bullets && (
-            <div style={{
+            <div className="two-col-grid" style={{
               paddingTop: 14, borderTop: '1px dashed var(--border-1)',
               display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px',
             }}>
@@ -348,7 +348,7 @@ function DeliverablesGrid({ items, theme = 'navy' }) {
 function SolutionStatStrip({ stats, theme = 'navy' }) {
   const isCyan = theme === 'cyan';
   return (
-    <div style={{
+    <div className="two-col-grid" style={{
       display: 'grid', gridTemplateColumns: `repeat(${stats.length}, 1fr)`,
       border: '1px solid var(--border-1)', borderRadius: 16,
       overflow: 'hidden', background: '#fff',
@@ -390,7 +390,7 @@ function SolutionCTA({ pageMeta }) {
       color: '#fff', position: 'relative', overflow: 'hidden',
     }}>
       <div style={{ maxWidth: 1080, margin: '0 auto', position: 'relative' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48, alignItems: 'center' }}>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48, alignItems: 'center' }}>
           <div>
             <SectionEyebrow color="var(--brand-accent-500)">Next step</SectionEyebrow>
             <h2 style={{
@@ -452,7 +452,7 @@ function RelatedSolutions({ current }) {
             ← Back to homepage
           </a>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12 }}>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12 }}>
           {all.map(s => <RelatedCard key={s.id} s={s} />)}
         </div>
       </div>
