@@ -59,8 +59,6 @@ function App() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 window.addEventListener('load', () => setTimeout(() => window.lucide && lucide.createIcons(), 200));
-const obs = new MutationObserver(() => { if (window.lucide) lucide.createIcons(); });
-obs.observe(document.getElementById('root'), { childList: true, subtree: true });
 </script>
 </body>
 </html>

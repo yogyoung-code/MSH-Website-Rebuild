@@ -41,7 +41,6 @@
 function App() { React.useEffect(() => { const t = setTimeout(() => window.lucide && lucide.createIcons(), 50); return () => clearTimeout(t); }); return (<div><SolutionHeader /><PageContentSprint /></div>); }
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 window.addEventListener('load', () => setTimeout(() => window.lucide && lucide.createIcons(), 200));
-new MutationObserver(() => { if (window.lucide) lucide.createIcons(); }).observe(document.getElementById('root'), { childList: true, subtree: true });
 </script>
 </body>
 </html>
