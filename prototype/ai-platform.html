@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>AI Platform — MedSci Healthcare</title>
+<meta name="description" content="AI-Enabled Delivery with Physician-In-The-Loop (PITL). Faster, structured, medically reviewed evidence and content for global pharma teams.">
+<link rel="canonical" href="https://medscihealthcare.com/ai-platform">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/ai-platform">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="AI Platform — MedSci Healthcare">
+<meta property="og:description" content="Faster, structured, medically reviewed delivery via AI + PITL.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/ai-platform-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/ai-platform">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI-Enabled Delivery (MedSci Healthcare)",
+  "provider": { "@type": "Organization", "name": "MedSci Healthcare", "url": "https://medscihealthcare.com" },
+  "serviceType": "AI-assisted medical evidence and content with Physician-In-The-Loop review"
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- Self-hosted vendor (W0 Task 0.7), relative paths -->
+<script src="assets/vendor/react.development.js"></script>
+<script src="assets/vendor/react-dom.development.js"></script>
+<script src="assets/vendor/babel.min.js"></script>
+<script src="assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel" src="components/Button.jsx"></script>
+<script type="text/babel" src="components/Header.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+<script type="text/babel" src="components/PageShell.jsx"></script>
+<script type="text/babel" src="components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="components/StepDiagram.jsx"></script>
+<script type="text/babel" src="components/ComplianceCallout.jsx"></script>
+
+<script type="text/babel">
+function App() {
+  React.useEffect(() => {
+    const t = setTimeout(() => window.lucide && lucide.createIcons(), 50);
+    return () => clearTimeout(t);
+  });
+
+  const steps = [
+    { num: '01', title: 'Ingestion', ai: 'Parse, structure, tag clinical literature, registries, sponsor data', physician: 'Validate scope and source quality' },
+    { num: '02', title: 'Gap Analysis', ai: 'Identify evidence gaps vs. regulatory targets', physician: 'Validate gap framing' },
+    { num: '03', title: 'PITL Review', ai: 'Track changes, learn patterns', physician: 'Line-by-line review of AI drafts' },
+    { num: '04', title: 'Deliverable', ai: 'Generate sponsor-ready package with audit log', physician: 'Joint sign-off, final QC' }
+  ];
+
+  return (
+    <PageShell
+      eyebrow="AI-Enabled Delivery"
+      title="Faster, more structured, medically reviewed delivery."
+      subtitle={"MedSci pairs AI with Physician-In-The-Loop (PITL) review at every step. We do not replace experts — we let them work on the highest-leverage decisions."}
+      breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'AI Platform' }]}
+    >
+      <ProseBlock heading="How we combine AI + PITL" anchor="how">
+        <p>Every project runs through a four-stage cycle. Each stage has explicit AI-only and physician-only checkpoints, with a shared audit log spanning the whole flow.</p>
+      </ProseBlock>
+
+      <StepDiagram steps={steps} />
+
+      <ProseBlock heading="Three capability tracks" anchor="capabilities">
+        <ul>
+          <li><strong>Faster Evidence Review</strong> — RWE / registry / literature synthesis with AI extraction and PITL validation.</li>
+          <li><strong>AI-Assisted Scientific Drafting</strong> — manuscript, dossier, regulatory submission drafts with audit trails.</li>
+          <li><strong>AI-Enhanced Medical Content Production</strong> — bilingual congress, publication, and localization workflows.</li>
+        </ul>
+      </ProseBlock>
+
+      <ComplianceCallout
+        doNotClaim={[
+          'Claims of no errors or perfect output accuracy',
+          'Positioning the platform as a clinical decision-maker or physician substitute',
+          'Therapeutic outcome claims or efficacy assurances',
+          'Superlative competitive comparisons (first, top, #1, category-defining)',
+          'Blanket performance assurances of any kind'
+        ]}
+        doClaim={[
+          'Faster review cycles, by N% (verified per project)',
+          'Higher consistency in bilingual delivery',
+          'Traceable provenance for every AI output'
+        ]}
+      />
+
+      <StatStrip items={[
+        { value: '3.33M+', label: 'Physician Network', source: 'Internal', year: '2025' },
+        { value: 'AI + PITL', label: 'Delivery Model', source: 'Internal', year: '2026' },
+        { value: '2415.HK', label: 'HKEX Listed', source: 'HKEX', year: '2024' }
+      ]} />
+
+      <ProseBlock heading="Talk to an Expert" anchor="cta">
+        <p><a href="/contact" style={{
+          display: 'inline-block', padding: '14px 28px',
+          background: 'var(--brand-primary-700)', color: '#fff',
+          textDecoration: 'none', fontFamily: 'var(--font-slogan)',
+          letterSpacing: '0.08em'
+        }}>Contact our team &#x2192;</a></p>
+      </ProseBlock>
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
