@@ -125,6 +125,69 @@ function PageMedicalEvidence() {
         <DeliverablesGrid items={capabilities} theme="navy" />
       </SolutionSection>
 
+      {/* UXcritique20260429: deliverable-page signature shape — input → output
+          spec rows give this page a visual identity distinct from path pages.
+          Reads as an engineering spec, not marketing. */}
+      <DeliverableSample
+        eyebrow="What you actually receive"
+        title="Each capability ships as a signed artifact, with a defined input shape."
+        lede="Every deliverable is scoped against an explicit input contract and ships in a format that a regulator, payer, or peer reviewer can read without translation."
+        samples={[
+          {
+            label: 'Real-world evidence (RWE) report',
+            input: {
+              format: 'Therapy area · target dossier · jurisdiction',
+              detail: 'We work from your existing trial protocol and registry questions; no raw PHI required.'
+            },
+            output: {
+              format: 'PRISMA-aligned RWE report · 18–60 pp + appendix',
+              detail: 'Citation-level source trail · year + signed reviewer per claim.'
+            },
+            badge: 'verified',
+            signedBy: 'Lead reviewer + 1 second reviewer'
+          },
+          {
+            label: 'Registry protocol package',
+            input: {
+              format: 'Research question · sites in scope',
+              detail: 'Single-question or multi-arm; either prospective or retrospective.'
+            },
+            output: {
+              format: 'Protocol + IRB packet + SAP · 30–80 pp',
+              detail: 'Statistical analysis plan, ethics packet, ongoing PITL audit cadence.'
+            },
+            badge: 'verified',
+            signedBy: 'Biostatistician + Lead MD'
+          },
+          {
+            label: 'HEOR value dossier',
+            input: {
+              format: 'Therapy area · payer model · jurisdiction',
+              detail: 'NRDL / ICER / commercial-payer scenarios scoped against your asset.'
+            },
+            output: {
+              format: 'Cost-effectiveness model + value dossier · 20–50 pp',
+              detail: 'Sensitivity scenarios, budget-impact analysis, payer-by-payer scan.'
+            },
+            badge: 'verified',
+            signedBy: 'HEOR lead + Lead MD'
+          },
+          {
+            label: 'Cross-jurisdictional bridge memo',
+            input: {
+              format: 'Origin dossier · target market · gap question',
+              detail: 'Used most often to bridge China-generated data into FDA/EMA expectations or vice versa.'
+            },
+            output: {
+              format: 'Bridge memo + comparability table · 10–24 pp',
+              detail: 'Per-claim translation status: travels / partial / re-derive locally.'
+            },
+            badge: 'in-development',
+            signedBy: 'Per-engagement panel'
+          }
+        ]}
+      />
+
       <SolutionSection
         id="process" eyebrow="Source-trail process"
         title="Every claim travels with its source. Every source carries a signature."

@@ -9,6 +9,9 @@ replace patterns flagged as AI-slop / template-feel / brand-spec-drift.
 | `MetricStrip` | scattered `MetricTriad` | Replaces (`MetricTriad` deprecated) | One disciplined metric block — sourced, year-stamped, restricted-use |
 | `EvidenceTrail` | inline data-claim sentences | NEW | Visualizes the audit trail; pairs each claim with a verification badge |
 | `AsymmetricFeatureGrid` | identical 3-up card grids | NEW (layout primitive) | Breaks the 3-column monotony; one featured + two secondary |
+| `CountryCompare` | nothing (was missing) | NEW (added by `/bolder`) | **Path-page** signature shape — US ↔ CN side-by-side strip with a directional arrow |
+| `DeliverableSample` | nothing (was missing) | NEW (added by `/bolder`) | **Deliverable-page** signature shape — input → output spec rows |
+| `Pending` / `DraftNotice` | leaked placeholder strings | NEW (added by `/harden`) | "Coming soon" callout + page-level draft banner |
 
 ## Hard usage rules
 
@@ -57,6 +60,32 @@ replace patterns flagged as AI-slop / template-feel / brand-spec-drift.
 
 - Homepage (too dense; use one signposted claim instead)
 - Insights articles (use inline citations, not a trail)
+
+### `CountryCompare` (path-page differentiator)
+
+✓ Allowed surfaces
+
+- `solutions/entering-china` — once, near the top (after sub-nav)
+- `solutions/going-global-us` — once, near the top (with `direction="cn-to-us"`)
+
+✗ Forbidden surfaces
+
+- Any deliverable page — defeats the visual differentiation between path vs deliverable
+- Homepage — too dense for a hero context
+
+### `DeliverableSample` (deliverable-page differentiator)
+
+✓ Allowed surfaces
+
+- `solutions/medical-evidence` — after Capabilities section
+- `solutions/physician-engagement` — after Capabilities section
+- `solutions/medical-communications` — after Capabilities section
+- `solutions/cross-border-medical-content-sprint` — after Capabilities section
+
+✗ Forbidden surfaces
+
+- Any path page — defeats the differentiation
+- Homepage — too dense
 
 ### `AsymmetricFeatureGrid`
 

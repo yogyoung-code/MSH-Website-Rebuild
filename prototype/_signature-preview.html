@@ -48,6 +48,9 @@
 <script type="text/babel" src="components/MetricStrip.jsx"></script>
 <script type="text/babel" src="components/EvidenceTrail.jsx"></script>
 <script type="text/babel" src="components/AsymmetricFeatureGrid.jsx"></script>
+<!-- Page-type differentiators (added by /bolder) -->
+<script type="text/babel" src="components/CountryCompare.jsx"></script>
+<script type="text/babel" src="components/DeliverableSample.jsx"></script>
 
 <script type="text/babel">
 function SectionLabel({ children }) {
@@ -149,7 +152,67 @@ function App() {
         ]}
       />
 
-      <SectionLabel>4 · AsymmetricFeatureGrid — break the 3-up monotony</SectionLabel>
+      <SectionLabel>4 · CountryCompare — path-page shape</SectionLabel>
+      <CountryCompare
+        eyebrow="The cross-border path"
+        title="What changes when an asset crosses the Pacific."
+        lede="Path pages get this shape; deliverable pages do not."
+        direction="us-to-cn"
+        left={{
+          flag: '🇺🇸',
+          label: 'United States / EU / JP',
+          regulator: 'FDA · CDER / CDRH',
+          timeline: '6–18 mo dossier prep',
+          reviewerLanguage: 'English',
+          constraints: ['IRB-ready protocols', 'CDISC comparator construction', 'Western RWE registries']
+        }}
+        right={{
+          flag: '🇨🇳',
+          label: 'China (Mainland)',
+          regulator: 'NMPA · CDE',
+          timeline: '11 wks median (2025 cohort)',
+          reviewerLanguage: '中文 · Simplified Chinese',
+          constraints: ['Tier-1 AMC physician sign-off', 'PIPL data residency', 'NRDL value dossier']
+        }}
+      />
+
+      <SectionLabel>5 · DeliverableSample — deliverable-page shape</SectionLabel>
+      <DeliverableSample
+        eyebrow="What you actually receive"
+        title="Deliverable pages show artifact-level inputs and outputs."
+        lede="Deliverable pages get this shape; path pages do not."
+        samples={[
+          {
+            label: 'Real-world evidence (RWE) report',
+            input: { format: 'Therapy area · target dossier · jurisdiction',
+                     detail: 'Works from existing trial protocol and registry questions.' },
+            output: { format: 'PRISMA-aligned RWE report · 18–60 pp + appendix',
+                      detail: 'Citation-level source trail; year + signed reviewer per claim.' },
+            badge: 'verified',
+            signedBy: 'Lead reviewer + 1 second reviewer'
+          },
+          {
+            label: 'HEOR value dossier',
+            input: { format: 'Therapy area · payer model · jurisdiction',
+                     detail: 'NRDL / ICER / commercial-payer scenarios.' },
+            output: { format: 'Cost-effectiveness model + value dossier · 20–50 pp',
+                      detail: 'Sensitivity scenarios, budget-impact analysis.' },
+            badge: 'verified',
+            signedBy: 'HEOR lead + Lead MD'
+          },
+          {
+            label: 'Cross-jurisdictional bridge memo',
+            input: { format: 'Origin dossier · target market · gap question',
+                     detail: 'For bridging China data into FDA/EMA expectations.' },
+            output: { format: 'Bridge memo + comparability table · 10–24 pp',
+                      detail: 'Per-claim status: travels / partial / re-derive locally.' },
+            badge: 'in-development',
+            signedBy: 'Per-engagement panel'
+          }
+        ]}
+      />
+
+      <SectionLabel>6 · AsymmetricFeatureGrid — break the 3-up monotony</SectionLabel>
       <AsymmetricFeatureGrid
         eyebrow="LATEST CASE STUDIES"
         title="Selected work, with verified outcomes"

@@ -88,6 +88,39 @@ function PageEnteringChina() {
       <SolutionPageHeader pageMeta={ENTERING_CHINA_META} />
       <SolutionSubNav items={subnav} theme="navy" />
 
+      {/* UXcritique20260429: path-page signature shape — country-comparator strip
+          gives this page a visual identity distinct from deliverable-block pages. */}
+      <CountryCompare
+        eyebrow="The cross-border path"
+        title="What changes when an asset crosses the Pacific."
+        lede="Every China-entry engagement starts with a clear-eyed view of what your existing US/EU/JP stack carries forward, and what we'll need to re-derive locally."
+        direction="us-to-cn"
+        left={{
+          flag: '🇺🇸',
+          label: 'United States / EU / JP',
+          regulator: 'FDA · CDER / CDRH (or equivalent)',
+          timeline: '6–18 mo dossier prep',
+          reviewerLanguage: 'English',
+          constraints: [
+            'IRB-ready protocols',
+            'Comparator construction in CDISC',
+            'Western RWE registries (Sentinel, PCORnet)'
+          ]
+        }}
+        right={{
+          flag: '🇨🇳',
+          label: 'China (Mainland)',
+          regulator: 'NMPA · CDE',
+          timeline: '11 wks median (2025 cohort)',
+          reviewerLanguage: '中文 · Simplified Chinese',
+          constraints: [
+            'Tier-1 AMC physician sign-off',
+            'PIPL data residency for Chinese RWE',
+            'NRDL / DRG value dossier'
+          ]
+        }}
+      />
+
       {/* Overview */}
       <SolutionSection
         id="overview" eyebrow="Overview · why this path"

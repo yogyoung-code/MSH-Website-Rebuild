@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Physician Engagement — MedSci Healthcare</title>
-<meta name="description" content="3.33M+ registered physician network — advisory boards, KOL engagement, CME programs, segmentation maps.">
-<link rel="canonical" href="https://medscihealthcare.com/solutions/physician-engagement">
-<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/solutions/physician-engagement">
+<title>Medical Evidence — MedSci Healthcare</title>
+<meta name="description" content="Real-world evidence, registry studies, literature, and HEOR — physician-validated, audit-traceable evidence packages.">
+<link rel="canonical" href="https://medscihealthcare.com/solutions/medical-evidence">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/solutions/medical-evidence">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="Physician Engagement — MedSci Healthcare">
-<meta property="og:description" content="3.33M+ registered physician network — advisory boards, KOL engagement, CME programs, segmentation maps.">
-<meta property="og:image" content="https://medscihealthcare.com/assets/og/solutions-physician-engagement-1200x630.png">
-<meta property="og:url" content="https://medscihealthcare.com/solutions/physician-engagement">
+<meta property="og:title" content="Medical Evidence — MedSci Healthcare">
+<meta property="og:description" content="Real-world evidence, registry studies, literature, and HEOR — physician-validated, audit-traceable evidence packages.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/solutions-medical-evidence-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/solutions/medical-evidence">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../assets/colors_and_type.css">
 <link rel="stylesheet" href="../assets/responsive.css">
@@ -35,11 +35,9 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script type="text/babel" src="../components/SolutionHeader.jsx"></script>
 <script type="text/babel" src="../components/SolutionsShell.jsx"></script>
 <script type="text/babel" src="../components/SolutionFooter.jsx"></script>
-<!-- UXcritique20260429: deliverable-page differentiator -->
-<script type="text/babel" src="../components/DeliverableSample.jsx"></script>
-<script type="text/babel" src="PagePhysicianEngagement.jsx"></script>
+<script type="text/babel" src="PageMedicalEvidence.jsx"></script>
 <script type="text/babel">
-function App() { React.useEffect(() => { const t = setTimeout(() => window.lucide && lucide.createIcons(), 50); return () => clearTimeout(t); }); return (<div><SolutionHeader /><PagePhysicianEngagement /></div>); }
+function App() { React.useEffect(() => { const t = setTimeout(() => window.lucide && lucide.createIcons(), 50); return () => clearTimeout(t); }); return (<div><SolutionHeader /><PageMedicalEvidence /></div>); }
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 window.addEventListener('load', () => setTimeout(() => window.lucide && lucide.createIcons(), 200));
 </script>
