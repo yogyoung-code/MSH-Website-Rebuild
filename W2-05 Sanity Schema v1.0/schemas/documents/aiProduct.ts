@@ -1,5 +1,6 @@
 import { defineType, defineField } from 'sanity'
 import { kebabSlug } from '../lib/validators'
+import { runAiProductGates } from '../lib/aiProductValidators'
 
 /**
  * AI Product · v3.0
@@ -23,6 +24,11 @@ export default defineType({
   name: 'aiProduct',
   title: 'AI Product',
   type: 'document',
+  // 顶层 publish gates · spec §8.10 / §8.13–16 + §3.9
+  // 实现见 ../lib/aiProductValidators.ts (Task 4) — 5 个 validator 串联,
+  // 任一失败均阻断发布,错误信息合并返回。
+  validation: (Rule: any) =>
+    Rule.custom(async (_value: any, ctx: any) => await runAiProductGates(ctx)),
   groups: [
     { name: 'overview', title: 'Overview', default: true },
     { name: 'showcase', title: 'Live Showcase' },
