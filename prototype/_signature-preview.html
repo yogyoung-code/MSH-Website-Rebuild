@@ -115,6 +115,31 @@ function App() {
         ]}
       />
 
+      <SectionLabel>1b · PitlRibbon variant="compact" — Act 3 三支柱场景 (v3.0)</SectionLabel>
+      <PitlRibbon
+        variant="compact"
+        eyebrow="ACT 3 · PILLAR 2"
+        title="Physician-In-The-Loop (PITL)"
+        steps={[
+          { num: 1, title: 'Ingestion',
+            ai: 'Source extraction, entity & claim tagging across structured + unstructured data.',
+            physician: 'Scope-of-truth check; flag claims that need primary-source review.',
+            output: 'tagged corpus' },
+          { num: 2, title: 'Gap Analysis',
+            ai: 'Map evidence inventory against regulatory/payer criteria; surface gaps.',
+            physician: 'Confirm gap classification; reject AI calls that miss medical context.',
+            output: 'gap report' },
+          { num: 3, title: 'PITL Review',
+            ai: 'Draft synthesis: positions, citations, claim-trail. Self-flag low-confidence outputs.',
+            physician: 'Lead reviewer signs each section; named MD on the work.',
+            output: 'signed draft' },
+          { num: 4, title: 'Deliverable',
+            ai: 'Format to client schema; bilingual variants; audit log packaged.',
+            physician: 'Final QA + sign-off; deliverable ships with named accountability.',
+            output: 'audit-grade pack' }
+        ]}
+      />
+
       <SectionLabel>2 · MetricStrip — strict, single-use</SectionLabel>
       <MetricStrip
         variant="featured"
