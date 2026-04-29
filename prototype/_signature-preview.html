@@ -55,6 +55,12 @@
 <script type="text/babel" src="components/AIAssetBalanceSheet.jsx"></script>
 <script type="text/babel" src="components/AIProductShowcase.jsx"></script>
 <script type="text/babel" src="components/AIProductShowcaseDemo.jsx"></script>
+<script type="text/babel" src="components/AIProductCard.jsx"></script>
+<script type="text/babel" src="components/AIProductCardGrid.jsx"></script>
+<script type="text/babel" src="components/ComingSoonCard.jsx"></script>
+<script type="text/babel" src="components/StickyAnchorNav.jsx"></script>
+<script type="text/babel" src="components/RagAnchorDiagram.jsx"></script>
+<script type="text/babel" src="components/TrustArchitecture.jsx"></script>
 <!-- lucide icons (for data-lucide attrs in v3.0 components) -->
 <script src="assets/vendor/lucide.min.js"></script>
 
@@ -248,6 +254,86 @@ function App() {
               ],
             },
           },
+        ]}
+      />
+
+      <SectionLabel>0c · AIProductCardGrid + AIProductCard + ComingSoonCard (v3.0 · Task 7+8)</SectionLabel>
+      <div style={{ padding: 'clamp(40px, 5vw, 80px) clamp(24px, 6vw, 96px)', background: 'var(--bg-1)' }}>
+        <AIProductCardGrid
+          products={[
+            {
+              slug: 'deepevidence',
+              name: { en: 'DeepEvidence' },
+              status: 'limitedPreview',
+              userRole: { en: 'Clinical AI · Point of Care' },
+              positioningOneLiner: { en: 'Authoritative-source clinical guidance at the bedside. Each answer anchored to guidelines and drug labels.' },
+              capabilitiesShort: [
+                { en: 'Real-time guideline citation' },
+                { en: 'Bedside differential diagnosis' },
+                { en: 'Patient-communication translation' },
+              ],
+            },
+            {
+              slug: 'seekevidence',
+              name: { en: 'SeekEvidence' },
+              status: 'limitedPreview',
+              userRole: { en: 'Research AI · Evidence Synthesis' },
+              positioningOneLiner: { en: 'From literature review to manuscript drafting. Structured evidence extraction across global trials and registries.' },
+              capabilitiesShort: [
+                { en: 'Multi-trial PFS / OS comparison' },
+                { en: 'Forest plot generation' },
+                { en: 'Manuscript-ready data export' },
+              ],
+            },
+          ]}
+          comingSoonSlot={
+            <ComingSoonCard
+              title="Next product"
+              subtitle="Working on it · 2026 H2"
+              description="A focused workflow for a third evidence-driven medical role."
+            />
+          }
+        />
+      </div>
+
+      <SectionLabel>0d · StickyAnchorNav — desktop / tablet / mobile breakpoints (v3.0 · Task 9)</SectionLabel>
+      <StickyAnchorNav />
+      <div style={{ padding: 'clamp(40px, 5vw, 80px) clamp(24px, 6vw, 96px)' }}>
+        <p style={{ color: 'var(--fg-3)', fontSize: 13, fontFamily: 'var(--font-mono, monospace)' }}>
+          ↑ scroll-spy 在真实有 #foundation / #products / #method / #cta section 的页面才能高亮 active。
+          preview 这里只是结构与断点演示。 桌面端 ≥1024 显示 4 link / 平板 640–1023 显示 select / 移动端 ≤639 隐藏。
+        </p>
+      </div>
+
+      <SectionLabel>0e · TrustArchitecture (Act 3 三支柱) — Task 10</SectionLabel>
+      <TrustArchitecture
+        pitlSteps={[
+          { num: 1, title: 'Ingestion',
+            ai: 'Source extraction, entity & claim tagging across structured + unstructured data.',
+            physician: 'Scope-of-truth check; flag claims that need primary-source review.',
+            output: 'tagged corpus' },
+          { num: 2, title: 'Gap Analysis',
+            ai: 'Map evidence inventory against regulatory/payer criteria; surface gaps.',
+            physician: 'Confirm gap classification; reject AI calls that miss medical context.',
+            output: 'gap report' },
+          { num: 3, title: 'PITL Review',
+            ai: 'Draft synthesis: positions, citations, claim-trail. Self-flag low-confidence outputs.',
+            physician: 'Lead reviewer signs each section; named MD on the work.',
+            output: 'signed draft' },
+          { num: 4, title: 'Deliverable',
+            ai: 'Format to client schema; bilingual variants; audit log packaged.',
+            physician: 'Final QA + sign-off; deliverable ships with named accountability.',
+            output: 'audit-grade pack' },
+        ]}
+        evidenceRows={[
+          { claim: 'Every claim is bound to a ProofPoint document with named custodian.',
+            status: 'verified',
+            trace: ['AI: claim tagging', 'MD: source check', 'Audit: quarterly export'],
+            source: 'ProofPoint custodian registry', year: '2026' },
+          { claim: 'Source / reviewer / timestamp / edit history exportable on engagement.',
+            status: 'verified',
+            trace: ['Audit Trail spec §13', 'CMS schema W2-05'],
+            source: 'Internal audit log', year: '2026' },
         ]}
       />
 
