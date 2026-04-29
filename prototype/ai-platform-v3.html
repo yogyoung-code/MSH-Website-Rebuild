@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Platform — MedSci Healthcare</title>
+<meta name="description" content="AI products, audited evidence stack, and reverse-due-diligence transparency for global healthcare partners.">
+<link rel="canonical" href="https://medscihealthcare.com/ai-platform">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/ai-platform">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="AI Platform — MedSci Healthcare">
+<meta property="og:description" content="Built for the AI era of medicine. AI-Enabled. Physician-Verified. Globally Ready.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/ai-platform-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/ai-platform">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI Platform (MedSci Healthcare)",
+  "provider": { "@type": "Organization", "name": "MedSci Healthcare", "url": "https://medscihealthcare.com" },
+  "serviceType": "AI-enabled, physician-verified medical evidence and content workflows"
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<noscript>
+  <div style="padding: 64px 24px; max-width: 1024px; margin: 0 auto; font-family: Georgia, serif;">
+    <h1>AI Platform — MedSci Healthcare</h1>
+    <p style="font-size: 18px; line-height: 1.5;">
+      Built for the AI era of medicine. <em>AI-Enabled. Physician-Verified. Globally Ready.</em>
+    </p>
+    <p>This page contains an interactive product showcase that requires JavaScript.
+      For an accessible static summary, visit
+      <a href="/ai-platform/deepevidence">DeepEvidence</a> or
+      <a href="/ai-platform/seekevidence">SeekEvidence</a> directly,
+      or <a href="/contact?intent=ai_dd">talk to our AI team</a>.</p>
+  </div>
+</noscript>
+
+<!-- Self-hosted vendor -->
+<script src="assets/vendor/react.development.js"></script>
+<script src="assets/vendor/react-dom.development.js"></script>
+<script src="assets/vendor/babel.min.js"></script>
+<script src="assets/vendor/lucide.min.js"></script>
+
+<!-- v0.1 layout -->
+<script type="text/babel" src="components/Button.jsx"></script>
+<script type="text/babel" src="components/Header.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+<script type="text/babel" src="components/PageShell.jsx"></script>
+<script type="text/babel" src="components/ContentBlocks.jsx"></script>
+<!-- v2.0 sigs (kept) -->
+<script type="text/babel" src="components/PitlRibbon.jsx"></script>
+<script type="text/babel" src="components/EvidenceTrail.jsx"></script>
+<script type="text/babel" src="components/ComplianceCallout.jsx"></script>
+<!-- v3.0 /ai-platform components -->
+<script type="text/babel" src="components/AIAssetBalanceSheet.jsx"></script>
+<script type="text/babel" src="components/AIProductShowcase.jsx"></script>
+<script type="text/babel" src="components/AIProductShowcaseDemo.jsx"></script>
+<script type="text/babel" src="components/AIProductCard.jsx"></script>
+<script type="text/babel" src="components/AIProductCardGrid.jsx"></script>
+<script type="text/babel" src="components/ComingSoonCard.jsx"></script>
+<script type="text/babel" src="components/StickyAnchorNav.jsx"></script>
+<script type="text/babel" src="components/RagAnchorDiagram.jsx"></script>
+<script type="text/babel" src="components/TrustArchitecture.jsx"></script>
+
+<script type="text/babel">
+/* =========================================================
+   /ai-platform v3.0 — three-act narrative + product matrix
+   ---------------------------------------------------------
+   Spec: docs/superpowers/specs/2026-04-29-ai-platform-redesign-design.md (v3.2)
+   Plan: docs/superpowers/plans/2026-04-29-ai-platform-v3-implementation.md (v1.2)
+         Task 11 — overview page assembly (mock data; Task 13 wires CMS).
+
+   sections:
+     #foundation   Act 1 · AIAssetBalanceSheet
+     #products     Act 2 · Live Showcase + Card Grid
+     #method       Act 3 · TrustArchitecture + ComplianceCallout
+     #cta          Final Dual CTA
+   ========================================================= */
+
+// ── Mock data (Task 13 will swap to GROQ fetch) ────────────
+const ASSET_GROUPS = [
+  { label: 'DEMAND-SIDE NETWORK',
+    items: [
+      { value: '3.3M+', label: 'Registered physicians',
+        sourceFootnote: 'Internal registry · 2026-Q1' },
+      { value: '25K+',  label: 'Tertiary-hospital KOLs',
+        sourceFootnote: 'Internal registry · 2026-Q1' },
+    ] },
+  { label: 'KNOWLEDGE BASE',
+    items: [
+      { value: '250M+', label: 'Indexed literature',
+        sourceFootnote: 'PubMed + biomedical sources · 2026-Q1' },
+      { value: '100K+', label: 'Structured drug labels (SPL)',
+        sourceFootnote: 'FDA SPL · NMPA · MHRA · 2026-Q1' },
+      { value: '15K+',  label: 'Multi-specialty guidelines',
+        sourceFootnote: 'NCCN · ESMO · CSCO · ADA · KDIGO · 2026-Q1' },
+    ] },
+  { label: 'WORKING CORPUS',
+    items: [
+      { value: '20K+',  label: 'Manuscript drafts',
+        sourceFootnote: 'Internal corpus · 2026-Q1' },
+      { value: '35K+',  label: 'Clinical study protocols',
+        sourceFootnote: 'Internal corpus · 2026-Q1' },
+      { value: '20 yr', label: 'Accumulated medical language',
+        sourceFootnote: 'Founded 2005 · ongoing' },
+    ] },
+];
+
+const ASSET_NARRATIVE =
+  "This is the data substrate every MedSci AI product is built on. We don't generate medical knowledge. We index, structure, and route what physicians and regulators have already validated — and pair every output with a named human reviewer.";
+
+// 注: showcase.demoScenario 中文 placeholder; 真实上线 (Task 13)
+// 须由医学写作团队全文重写为 EN + 临床医师签字 (P4 + §8.15 gate)。
+const PRODUCTS = [
+  {
+    slug: 'deepevidence',
+    name: { en: 'DeepEvidence' },
+    accentColor: 'blue',
+    status: 'limitedPreview',
+    sidebarBrand: 'DeepEvidence',
+    sidebarIcon: 'activity',
+    headerModel: 'MED-LLM-PRO-V2 (Clinical)',
+    userRole: { en: 'Clinical AI · Point of Care' },
+    positioningOneLiner: { en: 'Authoritative-source clinical guidance at the bedside. Each answer anchored to guidelines and drug labels.' },
+    capabilitiesShort: [
+      { en: 'Real-time guideline citation' },
+      { en: 'Bedside differential diagnosis' },
+      { en: 'Patient-communication translation' },
+    ],
+    showcase: {
+      demoLanguage: 'en',
+      demoScenario: [
+        { _type: 'userMessage',
+          body: '患者 65 岁,2 型糖尿病合并慢性肾脏病 (CKD G3a),目前服用二甲双胍。 是否需要调整降糖方案?参考最新指南。' },
+        { _type: 'aiResponse',
+          eyebrow: 'Evidence-Based Analysis',
+          prose: '根据 [2024 ADA 糖尿病诊疗标准] 及 [KDIGO 2024 指南]:',
+          bullets: [
+            { title: '推荐加用 SGLT2i',
+              body: '对于 T2DM 合并 CKD 患者,若 eGFR ≥ 20 ml/min/1.73m²,强烈推荐使用 SGLT2i (如达格列净、恩格列净) 以延缓肾病进展并降低心血管风险 (证据级别 A)。' },
+            { title: '二甲双胍调整',
+              body: '若 eGFR 在 45–60 之间可维持原量;若 eGFR < 45,应减量;若 < 30 则禁忌。 建议监测 eGFR 变化。' },
+          ],
+          citations: [
+            { type: 'Guideline', label: 'ADA 2024 Standards of Care' },
+            { type: 'RCT',       label: 'DAPA-CKD Trial' },
+            { type: 'SPL',       label: 'Metformin Label (NMPA)' },
+          ],
+        },
+        { _type: 'actionChips',
+          items: [
+            { icon: 'file-text', label: '生成处方建议' },
+            { icon: 'share-2',   label: '发送至患者端' },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    slug: 'seekevidence',
+    name: { en: 'SeekEvidence' },
+    accentColor: 'violet',
+    status: 'limitedPreview',
+    sidebarBrand: 'SeekEvidence',
+    sidebarIcon: 'search',
+    headerModel: 'Research-Graph-V4',
+    userRole: { en: 'Research AI · Evidence Synthesis' },
+    positioningOneLiner: { en: 'From literature review to manuscript drafting. Structured evidence extraction across global trials and registries.' },
+    capabilitiesShort: [
+      { en: 'Multi-trial PFS / OS comparison' },
+      { en: 'Forest plot generation' },
+      { en: 'Manuscript-ready data export' },
+    ],
+    showcase: {
+      demoLanguage: 'en',
+      demoScenario: [
+        { _type: 'userMessage',
+          body: '提取近 5 年关于 "免疫检查点抑制剂治疗非小细胞肺癌" 的所有 III 期临床试验,对比 PFS 和 OS 数据。' },
+        { _type: 'dataTable',
+          eyebrow: 'Structured Data Extraction',
+          badge: 'N = 12 Trials Found',
+          columns: ['Trial Name', 'Intervention', 'PFS (mo)', 'HR (95% CI)'],
+          rows: [
+            ['KEYNOTE-189',   'Pembrolizumab + Chemo', { value: '8.8 vs 4.9', highlight: true }, { value: '0.52 (0.43-0.64)', mono: true }],
+            ['IMpower150',    'Atezo + Bevacizumab',   { value: '8.3 vs 6.8', highlight: true }, { value: '0.62 (0.52-0.74)', mono: true }],
+            ['CheckMate 9LA', 'Nivo + Ipi + Chemo',    { value: '6.8 vs 5.0', highlight: true }, { value: '0.70 (0.57-0.86)', mono: true }],
+          ],
+        },
+        { _type: 'actionChips',
+          items: [
+            { icon: 'bar-chart-3', label: '生成森林图 (Forest Plot)' },
+            { icon: 'file-text',   label: '导出 Excel' },
+          ],
+        },
+      ],
+    },
+  },
+];
+
+const PITL_STEPS = [
+  { num: 1, title: 'Ingestion',
+    ai: 'Source extraction, entity & claim tagging across structured + unstructured data.',
+    physician: 'Scope-of-truth check; flag claims that need primary-source review.',
+    output: 'tagged corpus' },
+  { num: 2, title: 'Gap Analysis',
+    ai: 'Map evidence inventory against regulatory/payer criteria; surface gaps.',
+    physician: 'Confirm gap classification; reject AI calls that miss medical context.',
+    output: 'gap report' },
+  { num: 3, title: 'PITL Review',
+    ai: 'Draft synthesis: positions, citations, claim-trail. Self-flag low-confidence outputs.',
+    physician: 'Lead reviewer signs each section; named MD on the work.',
+    output: 'signed draft' },
+  { num: 4, title: 'Deliverable',
+    ai: 'Format to client schema; bilingual variants; audit log packaged.',
+    physician: 'Final QA + sign-off; deliverable ships with named accountability.',
+    output: 'audit-grade pack' },
+];
+
+const EVIDENCE_ROWS = [
+  { claim: 'Every claim is bound to a ProofPoint document with named custodian.',
+    status: 'verified',
+    trace: ['AI: claim tagging', 'MD: source check', 'Audit: quarterly export'],
+    source: 'ProofPoint custodian registry', year: '2026' },
+  { claim: 'Source / reviewer / timestamp / edit history exportable on engagement.',
+    status: 'verified',
+    trace: ['Audit Trail spec §13', 'CMS schema W2-05'],
+    source: 'Internal audit log', year: '2026' },
+  { claim: 'Bilingual deliverables include EN ↔ CN reviewer attribution.',
+    status: 'verified',
+    trace: ['AI: terminology QC', 'MD: bilingual review'],
+    source: 'Content QA spec', year: '2026' },
+];
+
+const SECTIONS = [
+  { hash: '#foundation', label: 'Foundation' },
+  { hash: '#products',   label: 'Products' },
+  { hash: '#method',     label: 'Method' },
+  { hash: '#cta',        label: 'Talk' },
+];
+
+/* ── Custom Hero (spec §2.1) ─────────────────────────────── */
+function V3Hero() {
+  return (
+    <section style={{
+      position: 'relative',
+      background: 'linear-gradient(180deg, #001037 0%, #001A51 60%, #002a6c 100%)',
+      color: 'var(--white)',
+      padding: 'clamp(64px, 9vw, 128px) clamp(24px, 6vw, 96px) clamp(48px, 6vw, 80px)',
+      overflow: 'hidden',
+    }}>
+      {/* Data substrate decorative network */}
+      <span aria-hidden="true" style={{
+        position: 'absolute', inset: 0,
+        background: 'radial-gradient(ellipse at 30% 30%, rgba(0,174,219,0.18), transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(0,90,164,0.20), transparent 50%)',
+        pointerEvents: 'none',
+      }} />
+      <div style={{
+        position: 'relative',
+        maxWidth: 'var(--container-max, 1280px)',
+        margin: '0 auto',
+      }}>
+        <nav aria-label="Breadcrumb" style={{
+          marginBottom: 24, fontSize: 13,
+          color: 'rgba(255,255,255,0.6)',
+        }}>
+          <a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</a>
+          <span style={{ margin: '0 8px' }}>/</span>
+          <span>AI Platform</span>
+        </nav>
+
+        <div style={{
+          fontFamily: 'var(--font-ui)', fontSize: 12,
+          letterSpacing: '0.18em', textTransform: 'uppercase',
+          color: 'var(--brand-accent-500)', marginBottom: 20, fontWeight: 700,
+        }}>AI PLATFORM</div>
+
+        <h1 style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 'clamp(36px, 6vw, 64px)',
+          lineHeight: 1.05,
+          margin: '0 0 16px',
+          letterSpacing: '-0.01em',
+          maxWidth: 880,
+        }}>Built for the AI era of medicine.</h1>
+
+        <p style={{
+          fontFamily: 'var(--font-slogan)',
+          fontSize: 'clamp(18px, 2.4vw, 24px)',
+          fontStyle: 'italic',
+          color: 'var(--brand-accent-500)',
+          margin: '0 0 28px',
+          letterSpacing: '0.02em',
+          maxWidth: 720,
+        }}>AI-Enabled. Physician-Verified. Globally Ready.</p>
+
+        <p style={{
+          fontSize: 'clamp(15px, 1.6vw, 18px)',
+          lineHeight: 1.6,
+          color: 'rgba(255,255,255,0.78)',
+          margin: '0 0 36px',
+          maxWidth: 680,
+        }}>Two products today. More arriving. All built on the same audited evidence stack.</p>
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+          <a href="#products" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            padding: '14px 28px', borderRadius: 10,
+            background: 'var(--white)',
+            color: 'var(--brand-primary-700)',
+            fontFamily: 'var(--font-ui)', fontSize: 14, fontWeight: 700,
+            textDecoration: 'none',
+            transition: 'transform 200ms ease, box-shadow 200ms ease',
+          }}>See the products ↓</a>
+          <a href="/contact?intent=ai_dd" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            padding: '14px 28px', borderRadius: 10,
+            background: 'transparent',
+            color: 'var(--white)',
+            border: '1px solid rgba(255,255,255,0.30)',
+            fontFamily: 'var(--font-ui)', fontSize: 14, fontWeight: 700,
+            textDecoration: 'none',
+            transition: 'background 200ms ease',
+          }}>Talk to our AI team</a>
+        </div>
+
+        {/* Mobile inline anchor pills (spec §3.8 row 3) */}
+        {window.HeroInlineAnchors && (
+          <div style={{ marginTop: 28 }}>
+            <window.HeroInlineAnchors sections={SECTIONS} />
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+/* ── Matrix Intro (spec §3.1) ────────────────────────────── */
+function MatrixIntro() {
+  return (
+    <div style={{
+      padding: 'clamp(48px, 6vw, 96px) clamp(24px, 6vw, 96px) clamp(24px, 3vw, 40px)',
+      maxWidth: 'var(--container-max, 1280px)',
+      margin: '0 auto',
+    }}>
+      <div style={{
+        fontFamily: 'var(--font-ui)', fontSize: 12,
+        letterSpacing: '0.14em', textTransform: 'uppercase',
+        color: 'var(--brand-accent-700)', fontWeight: 700, marginBottom: 12,
+      }}>AI PRODUCTS</div>
+      <h2 style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: 'clamp(28px, 3.4vw, 40px)',
+        fontWeight: 600,
+        color: 'var(--brand-primary-700)',
+        margin: '0 0 16px',
+        lineHeight: 1.2,
+        letterSpacing: '-0.01em',
+        maxWidth: 720,
+      }}>Two engines today. <em style={{ fontStyle: 'normal', color: 'var(--brand-accent-700)' }}>More arriving.</em></h2>
+      <p style={{
+        fontSize: 'clamp(15px, 1.6vw, 18px)',
+        lineHeight: 1.6,
+        color: 'var(--fg-2)',
+        margin: 0,
+        maxWidth: 720,
+      }}>
+        Each product is a focused workflow, not a chatbot. All share the audited
+        evidence stack <a href="#foundation" style={{
+          color: 'var(--brand-primary-500)', textDecoration: 'underline', fontWeight: 500,
+        }}>you saw above</a>.
+      </p>
+    </div>
+  );
+}
+
+/* ── Final · Dual CTA (spec §5) ──────────────────────────── */
+function FinalDualCTA() {
+  return (
+    <section id="cta" style={{
+      padding: 'clamp(64px, 8vw, 128px) clamp(24px, 6vw, 96px)',
+      background: 'var(--bg-2, var(--neutral-50))',
+      borderTop: '1px solid var(--border-1)',
+    }}>
+      <div className="aips-final-cta-grid" style={{
+        maxWidth: 'var(--container-max, 1280px)',
+        margin: '0 auto',
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        gap: 'clamp(24px, 3vw, 40px)',
+      }}>
+        <CTAColumn
+          eyebrow="FOR CLINICIANS & RESEARCHERS"
+          title="Try the products"
+          body="Limited Preview · Apply for access to DeepEvidence, SeekEvidence, or notify me when the next product ships."
+          ctaLabel="Apply for access →"
+          ctaHref="/contact?intent=ai_product_access"
+          accent="primary"
+        />
+        <CTAColumn
+          eyebrow="FOR INVESTORS & PARTNERS"
+          title="Talk to our AI team"
+          body="Reverse-DD readout, technical deep-dive, or partnership exploration."
+          ctaLabel="Schedule a session →"
+          ctaHref="/contact?intent=ai_reverse_dd"
+          accent="dark"
+        />
+      </div>
+      <style>{`
+        @media (min-width: 1024px) {
+          .aips-final-cta-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function CTAColumn({ eyebrow, title, body, ctaLabel, ctaHref, accent }) {
+  const isDark = accent === 'dark';
+  return (
+    <div style={{
+      padding: 'clamp(24px, 3vw, 40px)',
+      borderRadius: 16,
+      background: isDark ? 'var(--brand-primary-900)' : 'var(--bg-1)',
+      border: isDark ? 'none' : '1px solid var(--border-1)',
+      color: isDark ? 'var(--white)' : 'var(--fg-1)',
+      display: 'flex', flexDirection: 'column', gap: 16,
+    }}>
+      <div style={{
+        fontFamily: 'var(--font-ui)', fontSize: 11,
+        letterSpacing: '0.14em', textTransform: 'uppercase',
+        color: isDark ? 'var(--brand-accent-500)' : 'var(--brand-accent-700)',
+        fontWeight: 700,
+      }}>{eyebrow}</div>
+      <h3 style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: 'clamp(24px, 2.8vw, 32px)',
+        fontWeight: 600,
+        margin: 0,
+        lineHeight: 1.2,
+        color: isDark ? 'var(--white)' : 'var(--brand-primary-700)',
+      }}>{title}</h3>
+      <p style={{
+        margin: 0,
+        fontSize: 14, lineHeight: 1.6,
+        color: isDark ? 'rgba(255,255,255,0.78)' : 'var(--fg-2)',
+        maxWidth: 480,
+      }}>{body}</p>
+      <div style={{ marginTop: 'auto', paddingTop: 8 }}>
+        <a href={ctaHref} style={{
+          display: 'inline-flex', alignItems: 'center', gap: 8,
+          padding: '14px 28px', borderRadius: 10,
+          background: isDark ? 'var(--white)' : 'var(--brand-primary-700)',
+          color: isDark ? 'var(--brand-primary-700)' : 'var(--white)',
+          fontFamily: 'var(--font-ui)', fontSize: 14, fontWeight: 700,
+          textDecoration: 'none',
+        }}>{ctaLabel}</a>
+      </div>
+    </div>
+  );
+}
+
+/* ── App ─────────────────────────────────────────────────── */
+function App() {
+  React.useEffect(() => {
+    const t = setTimeout(() => window.lucide && window.lucide.createIcons(), 60);
+    return () => clearTimeout(t);
+  });
+
+  return (
+    <PageShell hero={<V3Hero />}>
+      <StickyAnchorNav sections={SECTIONS} />
+
+      <section id="foundation">
+        <AIAssetBalanceSheet
+          eyebrow="THE NUMBERS BEHIND THE PLATFORM"
+          subtitle="AS OF 2026 Q1 · IR-VERIFIED"
+          groups={ASSET_GROUPS}
+          narrative={ASSET_NARRATIVE}
+        />
+      </section>
+
+      <section id="products">
+        <MatrixIntro />
+        <AIProductShowcase products={PRODUCTS} />
+        <div style={{
+          padding: 'clamp(48px, 6vw, 96px) clamp(24px, 6vw, 96px)',
+          maxWidth: 'var(--container-max, 1280px)',
+          margin: '0 auto',
+        }}>
+          <AIProductCardGrid
+            products={PRODUCTS}
+            comingSoonSlot={
+              <ComingSoonCard
+                title="Next product"
+                subtitle="Working on it · 2026 H2"
+                description="A focused workflow for a third evidence-driven medical role."
+              />
+            }
+          />
+        </div>
+      </section>
+
+      <section id="method">
+        <TrustArchitecture
+          eyebrow="ACT 3 · THE METHOD"
+          title="How we keep medical AI accountable."
+          pitlSteps={PITL_STEPS}
+          evidenceRows={EVIDENCE_ROWS}
+        />
+        <ComplianceCallout
+          doNotClaim={[
+            'Claims of no errors or perfect output accuracy',
+            'Positioning the platform as a clinical decision-maker or physician substitute',
+            'Therapeutic outcome claims or efficacy assurances',
+            'Superlative competitive comparisons (first, top, #1, category-defining)',
+            'Blanket performance assurances of any kind',
+          ]}
+          doClaim={[
+            'Faster review cycles, by N% (verified per project)',
+            'Higher consistency in bilingual delivery',
+            'Traceable provenance for every AI output',
+          ]}
+        />
+      </section>
+
+      <FinalDualCTA />
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
