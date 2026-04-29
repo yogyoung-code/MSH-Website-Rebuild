@@ -59,12 +59,13 @@ function SolutionPageHeader({ pageMeta }) {
             }}>{sub}</p>
           </div>
 
-          {/* Meta panel */}
+          {/* Meta panel — UXcritique20260429: was glassmorphic; replaced with
+              opaque navy panel per brand-spec §6.2. */}
           {meta && (
             <div style={{
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.12)',
-              borderRadius: 12, padding: 6, backdropFilter: 'blur(8px)',
+              background: 'var(--brand-primary-900)',
+              border: '1px solid rgba(255,255,255,0.16)',
+              borderRadius: 12, padding: 6,
             }}>
               <div style={{
                 padding: '14px 18px 10px',
@@ -147,8 +148,10 @@ function SolutionSubNav({ items, theme = 'navy' }) {
   }, []);
   return (
     <div style={{
+      /* UXcritique20260429: removed backdrop-filter; sticky sub-nav uses
+         solid white background per brand-spec §6.2. */
       position: 'sticky', top: 80, zIndex: 30,
-      background: 'rgba(255,255,255,0.96)', backdropFilter: 'blur(8px)',
+      background: 'var(--bg-1)',
       borderBottom: '1px solid var(--border-1)',
     }}>
       <div style={{
@@ -359,8 +362,9 @@ function SolutionStatStrip({ stats, theme = 'navy' }) {
           borderLeft: i === 0 ? 'none' : '1px solid var(--border-1)',
         }}>
           <div style={{
-            fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 38, fontWeight: 600,
-            color: 'var(--brand-primary-700)', letterSpacing: '-0.02em', lineHeight: 1.05,
+            /* Spec §3.4: all numbers in Inter regardless of language context. */
+            fontFamily: 'var(--font-ui)', fontSize: 38, fontWeight: 600,
+            color: 'var(--brand-primary-700)', letterSpacing: '-0.025em', lineHeight: 1.05,
           }}>
             {s.n}{s.u && <span style={{
               fontSize: 15, color: isCyan ? 'var(--brand-accent-700)' : 'var(--brand-primary-500)',

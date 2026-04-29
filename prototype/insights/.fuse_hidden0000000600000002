@@ -37,7 +37,11 @@
 }
 </script>
 <style>
-html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
   *, *::before, *::after { box-sizing: border-box; }
   a { color: inherit; }
 </style>

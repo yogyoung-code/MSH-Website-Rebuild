@@ -3,21 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Medical Communications — MedSci Healthcare</title>
-<meta name="description" content="Bilingual medical communications — publications, congress materials, localization, claims-aware content.">
-<link rel="canonical" href="https://medscihealthcare.com/solutions/medical-communications">
-<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/solutions/medical-communications">
+<title>Physician Engagement — MedSci Healthcare</title>
+<meta name="description" content="3.33M+ registered physician network — advisory boards, KOL engagement, CME programs, segmentation maps.">
+<link rel="canonical" href="https://medscihealthcare.com/solutions/physician-engagement">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/solutions/physician-engagement">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="Medical Communications — MedSci Healthcare">
-<meta property="og:description" content="Bilingual medical communications — publications, congress materials, localization, claims-aware content.">
-<meta property="og:image" content="https://medscihealthcare.com/assets/og/solutions-medical-communications-1200x630.png">
-<meta property="og:url" content="https://medscihealthcare.com/solutions/medical-communications">
+<meta property="og:title" content="Physician Engagement — MedSci Healthcare">
+<meta property="og:description" content="3.33M+ registered physician network — advisory boards, KOL engagement, CME programs, segmentation maps.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/solutions-physician-engagement-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/solutions/physician-engagement">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../assets/colors_and_type.css">
 <link rel="stylesheet" href="../assets/responsive.css">
 <link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
 <style>
-html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  :root { --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif; --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif; }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
   *, *::before, *::after { box-sizing: border-box; }
   a { color: inherit; }
   sup { font-size: 0.7em; vertical-align: super; line-height: 0; }
@@ -35,9 +36,9 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script type="text/babel" src="../components/SolutionHeader.jsx"></script>
 <script type="text/babel" src="../components/SolutionsShell.jsx"></script>
 <script type="text/babel" src="../components/SolutionFooter.jsx"></script>
-<script type="text/babel" src="PageMedicalCommunications.jsx"></script>
+<script type="text/babel" src="PagePhysicianEngagement.jsx"></script>
 <script type="text/babel">
-function App() { React.useEffect(() => { const t = setTimeout(() => window.lucide && lucide.createIcons(), 50); return () => clearTimeout(t); }); return (<div><SolutionHeader /><PageMedicalCommunications /></div>); }
+function App() { React.useEffect(() => { const t = setTimeout(() => window.lucide && lucide.createIcons(), 50); return () => clearTimeout(t); }); return (<div><SolutionHeader /><PagePhysicianEngagement /></div>); }
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 window.addEventListener('load', () => setTimeout(() => window.lucide && lucide.createIcons(), 200));
 </script>

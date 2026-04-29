@@ -69,11 +69,12 @@ function WhatWeDeliverCard() {
   const [hoverIdx, setHoverIdx] = React.useState(null);
   return (
     <div style={{
-      background: 'rgba(255,255,255,0.04)',
-      border: '1px solid rgba(255,255,255,0.14)',
+      /* UXcritique20260429: was glassmorphic (backdrop-filter blur) — replaced
+         with an opaque navy panel per brand-spec §6.2 (no blur, defined edges). */
+      background: 'var(--brand-primary-900)',
+      border: '1px solid rgba(255,255,255,0.16)',
       borderRadius: 16,
       padding: 6,
-      backdropFilter: 'blur(8px)',
     }}>
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -147,8 +148,9 @@ function WhatWeDeliverCard() {
             borderLeft: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.08)',
           }}>
             <div style={{
-              fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 20, fontWeight: 600,
-              color: '#fff', letterSpacing: '-0.01em',
+              /* Spec §3.4: all numbers in Inter regardless of language context. */
+              fontFamily: 'var(--font-ui)', fontSize: 20, fontWeight: 600,
+              color: '#fff', letterSpacing: '-0.015em',
             }}>
               {s.v}
               {s.n && <sup style={{ fontSize: 9, color: 'var(--brand-accent-500)', marginLeft: 3, fontWeight: 500 }}>{s.n}</sup>}

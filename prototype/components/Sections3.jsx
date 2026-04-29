@@ -135,8 +135,9 @@ function TrustBar() {
               background: '#fff',
             }}>
               <div style={{
-                fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 40, fontWeight: 600,
-                color: 'var(--brand-primary-700)', letterSpacing: '-0.02em', lineHeight: 1.05,
+                /* Spec §3.4: all numbers in Inter. */
+                fontFamily: 'var(--font-ui)', fontSize: 40, fontWeight: 600,
+                color: 'var(--brand-primary-700)', letterSpacing: '-0.025em', lineHeight: 1.05,
               }}>
                 {s.n}
                 <sup style={{ fontSize: 11, color: 'var(--brand-primary-500)', marginLeft: 4, fontWeight: 500 }}>{s.s}</sup>

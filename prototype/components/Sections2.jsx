@@ -325,8 +325,9 @@ function CaseCard({ c }) {
         {c.metrics.map((m, i) => (
           <div key={i}>
             <div style={{
-              fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 24, fontWeight: 600,
-              color: 'var(--brand-primary-700)', letterSpacing: '-0.015em', lineHeight: 1.1,
+              /* Spec §3.4: all numbers in Inter. */
+              fontFamily: 'var(--font-ui)', fontSize: 24, fontWeight: 600,
+              color: 'var(--brand-primary-700)', letterSpacing: '-0.02em', lineHeight: 1.1,
               whiteSpace: 'nowrap',
             }}>
               {m.n}{m.u && <span style={{ fontSize: 13, color: 'var(--brand-accent-700)', marginLeft: 3, fontWeight: 500 }}>{m.u}</span>}
