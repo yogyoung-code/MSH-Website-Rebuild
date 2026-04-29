@@ -96,7 +96,7 @@ function PageGoingGlobal() {
         lede="Every Going-Global engagement starts with a clear-eyed view of what your existing China stack carries forward to FDA reviewers, US KOLs and US journals — and what we'll need to re-derive locally."
         direction="cn-to-us"
         left={{
-          flag: '🇨🇳',
+          code: 'CN',
           label: 'China (origin)',
           regulator: 'NMPA · CDE',
           timeline: 'Phase II/III complete in China',
@@ -108,7 +108,7 @@ function PageGoingGlobal() {
           ]
         }}
         right={{
-          flag: '🇺🇸',
+          code: 'US',
           label: 'United States (destination)',
           regulator: 'FDA · CDER / CDRH',
           timeline: '6–18 mo dossier prep',

@@ -55,16 +55,31 @@ function Button({ variant = 'primary', children, icon = true, onClick, disabled,
   );
 }
 
+// Inline Lucide `lock` glyph for on-request status. UXcritique20260429
+// normalize pass replaced 🔒 emoji per Brand Guidelines v1.1 §8 — no emoji
+// in product UI. Self-contained SVG (no lucide.createIcons() dependency).
+function _BtnLockGlyph({ size = 11 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" strokeWidth="2.6"
+         strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+         style={{ display: 'inline-block', flexShrink: 0 }}>
+      <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    </svg>
+  );
+}
+
 function EvidenceBadge({ kind = 'verified', children, size = 'md' }) {
+  const fs = size === 'sm' ? 10 : 11;
   const map = {
-    verified:    { bg: 'var(--success-100)', color: 'var(--success-500)', icon: '✓', label: 'Verified' },
-    development: { bg: 'var(--warning-100)', color: 'var(--warning-700)', icon: '◐', label: 'In Development', italic: true },
-    request:     { bg: 'var(--neutral-100)', color: 'var(--neutral-700)', icon: '🔒', label: 'On Request' },
-    placeholder: { bg: 'var(--warning-100)', color: 'var(--warning-700)', icon: '⚑', label: 'Placeholder' },
+    verified:    { bg: 'var(--success-100)', color: 'var(--success-500)', icon: '✓',                          label: 'Verified' },
+    development: { bg: 'var(--warning-100)', color: 'var(--warning-700)', icon: '◐',                          label: 'In Development', italic: true },
+    request:     { bg: 'var(--neutral-100)', color: 'var(--neutral-700)', icon: <_BtnLockGlyph size={fs+1} />, label: 'On Request' },
+    placeholder: { bg: 'var(--warning-100)', color: 'var(--warning-700)', icon: '⚑',                          label: 'Placeholder' },
   };
   const s = map[kind];
   const padding = size === 'sm' ? '2px 8px' : '4px 10px';
-  const fs = size === 'sm' ? 10 : 11;
   return (
     <span style={{
       display: 'inline-flex', alignItems: 'center', gap: 6,
@@ -77,7 +92,8 @@ function EvidenceBadge({ kind = 'verified', children, size = 'md' }) {
       fontFamily: 'var(--font-ui)',
       lineHeight: 1,
     }}>
-      <span style={{ fontSize: fs + 1 }}>{s.icon}</span>{children || s.label}
+      <span style={{ fontSize: fs + 1, display: 'inline-flex', alignItems: 'center' }}>{s.icon}</span>
+      {children || s.label}
     </span>
   );
 }

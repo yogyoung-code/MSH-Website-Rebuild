@@ -17,14 +17,14 @@
      eyebrow="THE CROSS-BORDER PATH"
      title="What changes when an asset crosses the Pacific."
      left={{
-       flag: '🇺🇸', label: 'United States',
+       code: 'US', label: 'United States',
        regulator: 'FDA · CDER / CDRH',
        timeline: '6–18 mo dossier prep',
        reviewerLanguage: 'English',
        constraints: ['IRB-ready protocols', 'PSLRA disclosure', 'PCORnet / Sentinel registry options']
      }}
      right={{
-       flag: '🇨🇳', label: 'China (Mainland)',
+       code: 'CN', label: 'China (Mainland)',
        regulator: 'NMPA · CDE',
        timeline: '11 wks median (2025 cohort)',
        reviewerLanguage: '中文 (Simplified Chinese)',
@@ -132,7 +132,7 @@ function CountryColumn({ data, role }) {
         opacity: 0.85
       }} />
 
-      <header style={{ display: 'flex', alignItems: 'baseline', gap: 12, paddingTop: 4 }}>
+      <header style={{ display: 'flex', alignItems: 'baseline', gap: 12, paddingTop: 4, flexWrap: 'wrap' }}>
         <span style={{
           fontFamily: 'var(--font-ui)',
           fontSize: 11, letterSpacing: '0.14em',
@@ -141,10 +141,24 @@ function CountryColumn({ data, role }) {
           fontWeight: 700,
           flexShrink: 0
         }}>{isOrigin ? 'From' : 'To'}</span>
-        {data.flag && (
-          <span aria-hidden="true" style={{
-            fontSize: 22, lineHeight: 1
-          }}>{data.flag}</span>
+        {/* UXcritique20260429: country-code mono chip replaces flag emoji
+            (Brand Guidelines v1.1 §8 — no emoji in product UI). */}
+        {(data.code || data.flag) && (
+          <span style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: 11,
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            fontWeight: 600,
+            color: 'var(--fg-2)',
+            background: 'var(--bg-1)',
+            border: '1px solid var(--border-1)',
+            borderRadius: 'var(--radius-sm, 4px)',
+            padding: '3px 8px',
+            lineHeight: 1.3,
+            flexShrink: 0,
+            alignSelf: 'center'
+          }}>{data.code || data.flag}</span>
         )}
         <h3 style={{
           fontFamily: 'var(--font-display)',

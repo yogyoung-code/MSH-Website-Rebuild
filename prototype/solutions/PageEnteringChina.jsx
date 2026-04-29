@@ -96,7 +96,7 @@ function PageEnteringChina() {
         lede="Every China-entry engagement starts with a clear-eyed view of what your existing US/EU/JP stack carries forward, and what we'll need to re-derive locally."
         direction="us-to-cn"
         left={{
-          flag: '🇺🇸',
+          code: 'US / EU / JP',
           label: 'United States / EU / JP',
           regulator: 'FDA · CDER / CDRH (or equivalent)',
           timeline: '6–18 mo dossier prep',
@@ -108,7 +108,7 @@ function PageEnteringChina() {
           ]
         }}
         right={{
-          flag: '🇨🇳',
+          code: 'CN',
           label: 'China (Mainland)',
           regulator: 'NMPA · CDE',
           timeline: '11 wks median (2025 cohort)',

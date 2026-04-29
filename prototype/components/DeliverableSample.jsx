@@ -239,12 +239,26 @@ function ArrowCell() {
   );
 }
 
+// Inline Lucide `lock` glyph — UXcritique20260429 normalize pass replaced 🔒
+// emoji per Brand Guidelines §8 (no emoji in product UI).
+function DSLockGlyph({ size = 10 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" strokeWidth="2.6"
+         strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+         style={{ display: 'inline-block', flexShrink: 0 }}>
+      <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    </svg>
+  );
+}
+
 function DSBadge({ status }) {
   // Reuses the spec'd evidence-badge palette but at smaller scale
   const map = {
-    'verified':       { bg: 'var(--success-100)', fg: 'var(--success-500)', mark: '✓', label: 'Verified' },
-    'in-development': { bg: 'var(--warning-100)', fg: 'var(--warning-700)', mark: '◐', label: 'In Dev' },
-    'on-request':     { bg: 'var(--bg-3)',        fg: 'var(--fg-2)',        mark: '🔒', label: 'On Request' }
+    'verified':       { bg: 'var(--success-100)', fg: 'var(--success-500)', mark: '✓',            label: 'Verified' },
+    'in-development': { bg: 'var(--warning-100)', fg: 'var(--warning-700)', mark: '◐',            label: 'In Dev' },
+    'on-request':     { bg: 'var(--bg-3)',        fg: 'var(--fg-2)',        mark: <DSLockGlyph />, label: 'On Request' }
   };
   const s = map[status] || map['on-request'];
   return (
@@ -259,7 +273,7 @@ function DSBadge({ status }) {
       whiteSpace: 'nowrap',
       alignSelf: 'flex-start'
     }}>
-      <span aria-hidden="true">{s.mark}</span>
+      <span aria-hidden="true" style={{ display: 'inline-flex', alignItems: 'center' }}>{s.mark}</span>
       {s.label}
     </span>
   );

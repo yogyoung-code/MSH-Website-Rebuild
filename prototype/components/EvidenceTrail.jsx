@@ -132,12 +132,28 @@ function EvidenceTrail({ rows, eyebrow, title }) {
   );
 }
 
+// Inline Lucide `lock` icon — used for on-request evidence status.
+// UXcritique20260429 normalize pass: replaced 🔒 emoji per Brand Guidelines §8
+// (no emoji in product UI). Renders inline so we don't depend on
+// lucide.createIcons() lifecycle.
+function LockGlyph({ size = 11 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" strokeWidth="2.4"
+         strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+         style={{ display: 'inline-block', flexShrink: 0 }}>
+      <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    </svg>
+  );
+}
+
 function EvidenceBadge({ status }) {
   const map = {
-    'verified':       { bg: 'var(--success-100)', fg: 'var(--success-500)', mark: '✓', label: 'Verified' },
-    'in-development': { bg: 'var(--warning-100)', fg: 'var(--warning-700)', mark: '◐', label: 'In Development' },
-    'on-request':     { bg: 'var(--bg-3)',        fg: 'var(--fg-2)',        mark: '🔒', label: 'On Request' },
-    'placeholder':    { bg: 'var(--warning-100)', fg: 'var(--warning-700)', mark: '⚑', label: 'Placeholder' }
+    'verified':       { bg: 'var(--success-100)', fg: 'var(--success-500)', mark: '✓',          label: 'Verified' },
+    'in-development': { bg: 'var(--warning-100)', fg: 'var(--warning-700)', mark: '◐',          label: 'In Development' },
+    'on-request':     { bg: 'var(--bg-3)',        fg: 'var(--fg-2)',        mark: <LockGlyph />, label: 'On Request' },
+    'placeholder':    { bg: 'var(--warning-100)', fg: 'var(--warning-700)', mark: '⚑',          label: 'Placeholder' }
   };
   const s = map[status] || map['on-request'];
   return (
@@ -151,7 +167,7 @@ function EvidenceBadge({ status }) {
       borderRadius: 'var(--radius-sm, 4px)',
       whiteSpace: 'nowrap'
     }}>
-      <span aria-hidden="true">{s.mark}</span>
+      <span aria-hidden="true" style={{ display: 'inline-flex', alignItems: 'center' }}>{s.mark}</span>
       {s.label}
     </span>
   );
