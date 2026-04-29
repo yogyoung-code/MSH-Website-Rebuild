@@ -220,7 +220,9 @@ function WhyMedSci() {
   );
 }
 
-// 6. Selected Case Studies (3 cards)
+// 6. Selected Case Studies — migrated to AsymmetricFeatureGrid (UXcritique20260429)
+//    Was: identical 3-up card grid (AI-slop fingerprint).
+//    Now: 1 featured case + 2 secondary, breaking the grid monotony.
 function Cases() {
   const cases = [
     {
@@ -261,28 +263,27 @@ function Cases() {
     },
   ];
   return (
-    <section id="cases" style={{ padding: '96px 40px', background: 'var(--bg-2)' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 48, flexWrap: 'wrap', gap: 24 }}>
-          <div style={{ maxWidth: 680 }}>
-            <SectionEyebrow>Selected case studies</SectionEyebrow>
-            <h2 style={{
-              fontFamily: 'var(--font-display)', fontSize: 44, fontWeight: 600,
-              color: 'var(--brand-primary-700)', margin: 0, letterSpacing: '-0.012em', lineHeight: 1.15,
-            }}>
-              Three signed engagements. Three signed source trails.
-            </h2>
-          </div>
-          <a href="/case-studies" style={{
-            color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 14,
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-          }}>
-            See all case studies <span>→</span>
-          </a>
-        </div>
-        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
-          {cases.map((c, i) => <CaseCard key={i} c={c} />)}
-        </div>
+    <section id="cases" style={{ background: 'var(--bg-2)' }}>
+      <AsymmetricFeatureGrid
+        eyebrow="Selected case studies"
+        title="Three signed engagements. Three signed source trails."
+        featured="left"
+        items={cases.map((c, i) => ({
+          featured: i === 0,
+          render: () => <CaseCard c={c} />
+        }))}
+      />
+      <div style={{
+        maxWidth: 1280, margin: '0 auto',
+        padding: '0 clamp(24px, 6vw, 96px) clamp(56px, 7vw, 96px)'
+      }}>
+        <a href="/case-studies" style={{
+          color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 14,
+          display: 'inline-flex', alignItems: 'center', gap: 6,
+          fontFamily: 'var(--font-ui)'
+        }}>
+          See all case studies <span>→</span>
+        </a>
       </div>
     </section>
   );

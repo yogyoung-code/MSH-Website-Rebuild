@@ -72,16 +72,37 @@ replace patterns flagged as AI-slop / template-feel / brand-spec-drift.
 - Fewer than 3 items match (fall back to a single-card or two-up layout)
 - The items are intentionally peer-equal (e.g., compliance pillars on About)
 
-## Migration plan (handled by `/arrange`, not `/extract`)
+## Migration status
 
-1. Replace the homepage `Sections2` cases section with `AsymmetricFeatureGrid`.
-2. Replace the homepage `Sections3` insights section with `AsymmetricFeatureGrid`.
-3. Replace `StepDiagram` on `ai-platform.html` with `PitlRibbon`.
-4. Replace `StepDiagram` on `pilots/china-evidence-sprint.html` with `PitlRibbon`.
-5. Replace `StepDiagram` on `pilots/fda-evidence-gap-diagnostic.html` with `PitlRibbon`.
-6. Remove every standalone `MetricTriad` use **except** Homepage hero and About.
-   On case-study individual pages, keep one `MetricStrip` after Outcome.
-7. Add `EvidenceTrail` to each Solution page in place of inline data-claims.
+### Completed in `/arrange` (UXcritique20260429)
+
+- [x] Homepage `Sections2.jsx` Cases → `AsymmetricFeatureGrid` (featured-left)
+- [x] Homepage `Sections3.jsx` Insights → `AsymmetricFeatureGrid` (featured-right; alternates rhythm vs Cases)
+- [x] `ai-platform.html` `StepDiagram` → `PitlRibbon` (dual-lane workflow)
+- [x] `ai-platform.html` `StatStrip` → `MetricStrip` (sourced + year, single instance)
+- [x] `ai-platform.html` add `EvidenceTrail` showing what the audit log ships with
+- [x] All 3 case-study pages: `MetricTriad` → `EvidenceTrail` (with `placeholder ⚑` badges
+      for `(pending)` approvals — turns the credibility leak into transparent flagging)
+- [x] `index.html` script tags updated to load all four signature components
+
+### Intentionally deferred (and why)
+
+- [ ] Pilot pages (`china-evidence-sprint.html`, `fda-evidence-gap-diagnostic.html`):
+      currently render via `PilotCard`; do not import `StepDiagram`. Adding a
+      `PitlRibbon` here would be net-new content, not a migration. Best done
+      alongside a copy pass that pulls real day-by-day workflow content.
+- [ ] Solution pages (6 of them — `PageEnteringChina`, `PageGoingGlobal`,
+      `PageMedicalEvidence`, `PagePhysicianEngagement`, `PageMedicalCommunications`,
+      `PageContentSprint`): each already carries a bespoke shape (path pages
+      use `PhaseTimeline`; deliverable pages use a custom 5-step process diagram).
+      The differentiation flagged in the critique already exists structurally.
+      Replacing those bespoke diagrams with `PitlRibbon` would *homogenize* what's
+      currently differentiated. Recommend keeping the bespoke shapes and only
+      adding `PitlRibbon` if a future copy revision merits it.
+- [ ] Homepage `AISection` (dark `brand-primary-900` band): contains an inline
+      4-step pipeline that is now redundant with the `PitlRibbon` on `/ai-platform`.
+      Lightening this to a single intro + link-out belongs in `/distill`, not
+      `/arrange` — it is a content/scope decision, not a layout one.
 
 ## Deprecation
 

@@ -48,7 +48,8 @@
 <script type="text/babel" src="../components/PageShell.jsx"></script>
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
 <script type="text/babel" src="../components/CaseStudyHero.jsx"></script>
-<script type="text/babel" src="../components/MetricTriad.jsx"></script>
+<!-- Migrated MetricTriad → EvidenceTrail (UXcritique20260429) -->
+<script type="text/babel" src="../components/EvidenceTrail.jsx"></script>
 <script type="text/babel" src="../components/QuoteBlock.jsx"></script>
 
 <script type="text/babel">
@@ -69,11 +70,24 @@ function App() {
       <ProseBlock heading="Outcome" anchor="outcome">
         <p>The client received a regulator-ready evidence dossier with full source trail, a physician-validated HCP map, and a content kit signed off by both EN and CN reviewer tracks. The China entry plan moved from internal debate to NMPA pre-submission within the engagement window.</p>
       </ProseBlock>
-      <MetricTriad metrics={[
-        { value: '2,400+', label: 'HCPs reached across tier-1 centers', source: 'Client engagement report', year: '2025', approvedBy: 'Sponsor + IR (pending)' },
-        { value: '18', label: 'localized communication assets delivered', source: 'Internal delivery log', year: '2025', approvedBy: 'Sponsor + Legal (pending)' },
-        { value: '60% faster', label: 'time-to-evidence-package vs prior internal benchmark', source: 'Client benchmark report', year: '2025', approvedBy: 'Sponsor (pending)' }
-      ]} />
+      <EvidenceTrail
+        eyebrow="OUTCOMES — VERIFIED + PENDING"
+        title="What we shipped — and where the audit trail stands."
+        rows={[
+          { claim: '2,400+ HCPs reached across tier-1 academic medical centers',
+            status: 'placeholder',
+            trace: ['AI: HCP segmentation', 'MD: medical-affairs review'],
+            source: 'Client engagement report', year: '2025', approvedBy: 'Sponsor + IR (pending)' },
+          { claim: '18 localized bilingual communication assets delivered',
+            status: 'placeholder',
+            trace: ['AI: terminology QC', 'MD: dual-track EN+CN review'],
+            source: 'Internal delivery log', year: '2025', approvedBy: 'Sponsor + Legal (pending)' },
+          { claim: '60% faster time-to-evidence-package vs. prior internal benchmark',
+            status: 'placeholder',
+            trace: ['AI: gap-scan', 'AI: claim-trail', 'MD: lead reviewer signed'],
+            source: 'Client benchmark report', year: '2025', approvedBy: 'Sponsor (pending)' }
+        ]}
+      />
       <QuoteBlock text="MedSci built the evidence package and the HCP map at the same time. Most agencies do one or the other — we needed both." attribution="VP, Medical Affairs (anonymized)" />
       <ProseBlock heading="Talk to an Expert" anchor="cta">
         <p><a href="/contact.html" style={{

@@ -49,7 +49,10 @@
 <script type="text/babel" src="components/Footer.jsx"></script>
 <script type="text/babel" src="components/PageShell.jsx"></script>
 <script type="text/babel" src="components/ContentBlocks.jsx"></script>
-<script type="text/babel" src="components/StepDiagram.jsx"></script>
+<!-- Signature components (UXcritique20260429) -->
+<script type="text/babel" src="components/PitlRibbon.jsx"></script>
+<script type="text/babel" src="components/EvidenceTrail.jsx"></script>
+<script type="text/babel" src="components/MetricStrip.jsx"></script>
 <script type="text/babel" src="components/ComplianceCallout.jsx"></script>
 
 <script type="text/babel">
@@ -59,11 +62,26 @@ function App() {
     return () => clearTimeout(t);
   });
 
-  const steps = [
-    { num: '01', title: 'Ingestion', ai: 'Parse, structure, tag clinical literature, registries, sponsor data', physician: 'Validate scope and source quality' },
-    { num: '02', title: 'Gap Analysis', ai: 'Identify evidence gaps vs. regulatory targets', physician: 'Validate gap framing' },
-    { num: '03', title: 'PITL Review', ai: 'Track changes, learn patterns', physician: 'Line-by-line review of AI drafts' },
-    { num: '04', title: 'Deliverable', ai: 'Generate sponsor-ready package with audit log', physician: 'Joint sign-off, final QC' }
+  // Migrated to PitlRibbon (UXcritique20260429): the dual-lane treatment
+  // makes the AI / Physician separation visible, where StepDiagram only
+  // tagged step 3 as "HUMAN GATE".
+  const pitlSteps = [
+    { num: 1, title: 'Ingestion',
+      ai: 'Parse, structure, and tag clinical literature, registries, and sponsor data — claim-by-claim.',
+      physician: 'Validate scope and source quality; reject low-confidence ingest.',
+      output: 'tagged corpus' },
+    { num: 2, title: 'Gap Analysis',
+      ai: 'Identify evidence gaps vs. regulatory and reimbursement targets; surface contradictions.',
+      physician: 'Validate gap framing; reject AI calls that miss medical context.',
+      output: 'gap report' },
+    { num: 3, title: 'PITL Review',
+      ai: 'Track all edits, learn reviewer patterns, flag low-confidence drafts.',
+      physician: 'Line-by-line review of AI drafts; named clinician signs each section.',
+      output: 'signed draft' },
+    { num: 4, title: 'Deliverable',
+      ai: 'Generate sponsor-ready package, bilingual variants, and the audit log.',
+      physician: 'Joint sign-off, final QC; deliverable ships with named accountability.',
+      output: 'audit-grade pack' }
   ];
 
   return (
@@ -77,7 +95,11 @@ function App() {
         <p>Every project runs through a four-stage cycle. Each stage has explicit AI-only and physician-only checkpoints, with a shared audit log spanning the whole flow.</p>
       </ProseBlock>
 
-      <StepDiagram steps={steps} />
+      <PitlRibbon
+        eyebrow="THE PITL WORKFLOW"
+        title="AI lane on top. Physician lane on the bottom. Every handoff is signed."
+        steps={pitlSteps}
+      />
 
       <ProseBlock heading="Three capability tracks" anchor="capabilities">
         <ul>
@@ -102,11 +124,40 @@ function App() {
         ]}
       />
 
-      <StatStrip items={[
-        { value: '3.33M+', label: 'Physician Network', source: 'Internal', year: '2025' },
-        { value: 'AI + PITL', label: 'Delivery Model', source: 'Internal', year: '2026' },
-        { value: '2415.HK', label: 'HKEX Listed', source: 'HKEX', year: '2024' }
-      ]} />
+      <EvidenceTrail
+        eyebrow="WHAT THE AUDIT LOG SHIPS WITH"
+        title="Every claim travels with its source and reviewer."
+        rows={[
+          { claim: 'Each AI output records the source documents that supported it.',
+            status: 'verified',
+            trace: ['AI: claim-trail', 'MD: lead reviewer'],
+            source: 'PITL methodology v1.1', year: '2026' },
+          { claim: 'Reviewer-level changes are timestamped and exportable.',
+            status: 'verified',
+            trace: ['MD: line edits', 'MD: section sign-off'],
+            source: 'Engagement audit log schema', year: '2026' },
+          { claim: 'Bilingual deliverables include EN ↔ CN reviewer attribution.',
+            status: 'verified',
+            trace: ['AI: terminology QC', 'MD: bilingual review'],
+            source: 'Content QA spec', year: '2026' },
+          { claim: 'Per-project benchmarks are produced under client engagement letter.',
+            status: 'on-request',
+            source: 'Engagement-specific', year: '2026' }
+        ]}
+      />
+
+      <MetricStrip
+        variant="featured"
+        eyebrow="WHY MEDSCI"
+        metrics={[
+          { value: '3.33M+', label: 'Physicians in our network',
+            source: 'Internal physician registry', year: '2025', approvedBy: 'IR (pending)' },
+          { value: 'AI + PITL', label: 'Every project, every step',
+            source: 'Methodology v1.1', year: '2026' },
+          { value: '2415.HK', label: 'Main Board Hong Kong listing',
+            source: 'HKEX disclosure', year: '2026' }
+        ]}
+      />
 
       <ProseBlock heading="Talk to an Expert" anchor="cta">
         <p><a href="/contact.html" style={{

@@ -48,7 +48,8 @@
 <script type="text/babel" src="../components/PageShell.jsx"></script>
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
 <script type="text/babel" src="../components/CaseStudyHero.jsx"></script>
-<script type="text/babel" src="../components/MetricTriad.jsx"></script>
+<!-- Migrated MetricTriad → EvidenceTrail (UXcritique20260429) -->
+<script type="text/babel" src="../components/EvidenceTrail.jsx"></script>
 <script type="text/babel" src="../components/QuoteBlock.jsx"></script>
 
 <script type="text/babel">
@@ -69,11 +70,24 @@ function App() {
       <ProseBlock heading="Outcome" anchor="outcome">
         <p>The launch team received a physician-ready content kit usable across MSL decks, KOL meetings, and channel materials. First-pass physician approval rate dropped revision cycles from typical 4-pass to 2-pass on average. The localization layer became a reusable asset for subsequent product extensions.</p>
       </ProseBlock>
-      <MetricTriad metrics={[
-        { value: '120+', label: 'content pieces localized across 3 therapeutic areas', source: 'Internal delivery log', year: '2024', approvedBy: 'Sponsor (pending)' },
-        { value: '88%', label: 'first-pass physician review approval rate', source: 'Internal QC log', year: '2024', approvedBy: 'Sponsor (pending)' },
-        { value: 'From 8 to 4 weeks', label: 'content production cycle reduced', source: 'Client engagement report', year: '2024', approvedBy: 'Sponsor (pending)' }
-      ]} />
+      <EvidenceTrail
+        eyebrow="OUTCOMES — VERIFIED + PENDING"
+        title="What we shipped — and where the audit trail stands."
+        rows={[
+          { claim: '120+ content pieces localized across 3 therapeutic areas',
+            status: 'placeholder',
+            trace: ['AI: terminology layer', 'MD: EN-track review', 'MD: CN-track review'],
+            source: 'Internal delivery log', year: '2024', approvedBy: 'Sponsor (pending)' },
+          { claim: '88% first-pass physician review approval rate',
+            status: 'placeholder',
+            trace: ['MD: bilingual review panel'],
+            source: 'Internal QC log', year: '2024', approvedBy: 'Sponsor (pending)' },
+          { claim: 'Content production cycle reduced from 8 to 4 weeks',
+            status: 'placeholder',
+            trace: ['AI: first-pass localization', 'MD: PITL closure on off-label/disclosure'],
+            source: 'Client engagement report', year: '2024', approvedBy: 'Sponsor (pending)' }
+        ]}
+      />
       <QuoteBlock text="We thought we had a translation problem. MedSci showed us we had a content problem — and fixed it bilingually." attribution="Head of Medical Affairs (anonymized)" />
       <ProseBlock heading="Talk to an Expert" anchor="cta">
         <p><a href="/contact.html" style={{

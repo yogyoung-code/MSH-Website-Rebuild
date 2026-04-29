@@ -48,7 +48,8 @@
 <script type="text/babel" src="../components/PageShell.jsx"></script>
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
 <script type="text/babel" src="../components/CaseStudyHero.jsx"></script>
-<script type="text/babel" src="../components/MetricTriad.jsx"></script>
+<!-- Migrated MetricTriad → EvidenceTrail (UXcritique20260429) -->
+<script type="text/babel" src="../components/EvidenceTrail.jsx"></script>
 <script type="text/babel" src="../components/QuoteBlock.jsx"></script>
 
 <script type="text/babel">
@@ -69,11 +70,24 @@ function App() {
       <ProseBlock heading="Outcome" anchor="outcome">
         <p>The client reached FDA-ready evidence package status 8 months ahead of the originally planned timeline. Three peer-reviewed publication submissions and two U.S. congress abstracts were prepared in parallel, with full source trails attached. The U.S. medical team had a physician-validated kit ready before commercial planning began.</p>
       </ProseBlock>
-      <MetricTriad metrics={[
-        { value: '3', label: 'manuscripts submitted to U.S. peer-reviewed journals', source: 'Publication tracker', year: '2025', approvedBy: 'Sponsor (pending)' },
-        { value: '2', label: 'congress abstracts accepted (ASCO, AHA)', source: 'Conference acceptance letters', year: '2025', approvedBy: 'Sponsor (pending)' },
-        { value: '8 months', label: 'evidence package readiness ahead of original timeline', source: 'Client program plan', year: '2025', approvedBy: 'Sponsor (pending)' }
-      ]} />
+      <EvidenceTrail
+        eyebrow="OUTCOMES — VERIFIED + PENDING"
+        title="What we shipped — and where the audit trail stands."
+        rows={[
+          { claim: '3 manuscripts submitted to U.S. peer-reviewed journals',
+            status: 'placeholder',
+            trace: ['AI: literature retrieval', 'AI: draft + citation slots', 'MD: U.S.-clinician review'],
+            source: 'Publication tracker', year: '2025', approvedBy: 'Sponsor (pending)' },
+          { claim: '2 congress abstracts accepted (ASCO, AHA)',
+            status: 'placeholder',
+            trace: ['MD: U.S. medical-affairs review'],
+            source: 'Conference acceptance letters', year: '2025', approvedBy: 'Sponsor (pending)' },
+          { claim: 'FDA-ready evidence package status reached 8 months ahead of original timeline',
+            status: 'placeholder',
+            trace: ['AI: FDA-guidance cross-walk', 'MD: comparability sign-off'],
+            source: 'Client program plan', year: '2025', approvedBy: 'Sponsor (pending)' }
+        ]}
+      />
       <QuoteBlock text="We had the data. MedSci gave us the package — in a form the FDA, the journals, and our U.S. medical team could all use." attribution="Chief Medical Officer (anonymized)" />
       <ProseBlock heading="Talk to an Expert" anchor="cta">
         <p><a href="/contact.html" style={{

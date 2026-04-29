@@ -158,7 +158,10 @@ function TrustBar() {
   );
 }
 
-// 9. Insights
+// 9. Insights — migrated to AsymmetricFeatureGrid (UXcritique20260429)
+//    Was: identical 3-up card grid mirroring Cases above (AI-slop fingerprint).
+//    Now: 1 featured + 2 secondary, with featured-right to alternate rhythm
+//    against the featured-left Cases section.
 function Insights() {
   const posts = [
     { topic: 'China RWE', date: 'Apr 2026', title: 'What NMPA reviewers actually read first: a teardown of 40 oncology dossiers.', reviewer: 'Dr. L. Chen', min: 8 },
@@ -166,23 +169,24 @@ function Insights() {
     { topic: 'Medical Communication', date: 'Mar 2026', title: 'Bilingual congress materials that pass compliance on both sides of the Pacific.', reviewer: 'Dr. M. Zhao', min: 6 },
   ];
   return (
-    <section id="insights" style={{ padding: '96px 40px', background: 'var(--bg-2)' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 48, flexWrap: 'wrap', gap: 24 }}>
-          <div style={{ maxWidth: 680 }}>
-            <SectionEyebrow>Insights · PITL-reviewed</SectionEyebrow>
-            <h2 style={{
-              fontFamily: 'var(--font-display)', fontSize: 40, fontWeight: 600,
-              color: 'var(--brand-primary-700)', margin: 0, letterSpacing: '-0.012em', lineHeight: 1.15,
-            }}>
-              Written by our operators. Reviewed by our physicians.
-            </h2>
-          </div>
-          <a href="/insights/" style={{ color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 14 }}>All insights →</a>
-        </div>
-        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
-          {posts.map((p, i) => <InsightCard key={i} p={p} />)}
-        </div>
+    <section id="insights" style={{ background: 'var(--bg-2)' }}>
+      <AsymmetricFeatureGrid
+        eyebrow="Insights · PITL-reviewed"
+        title="Written by our operators. Reviewed by our physicians."
+        featured="right"
+        items={posts.map((p, i) => ({
+          featured: i === 0,
+          render: () => <InsightCard p={p} />
+        }))}
+      />
+      <div style={{
+        maxWidth: 1280, margin: '0 auto',
+        padding: '0 clamp(24px, 6vw, 96px) clamp(56px, 7vw, 96px)'
+      }}>
+        <a href="/insights/" style={{
+          color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 14,
+          fontFamily: 'var(--font-ui)'
+        }}>All insights →</a>
       </div>
     </section>
   );
