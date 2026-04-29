@@ -18,9 +18,31 @@
  *   - prefers-reduced-motion respected (no transition on state changes).
  */
 
-function SmartForm({ onSubmit, simulateError }) {
-  const [intent, setIntent] = React.useState('');
-  const [block, setBlock] = React.useState('');
+// v3.0 AI Platform routed intents (Plan task 14 / Spec §5).
+// 当 URL ?intent=ai_* 时, contact.html 读取并以 routedIntent prop 传入,
+// SmartForm 隐藏 intent select, 内部 state 设为 routedIntent 值, 跳过用户选择。
+const AI_ROUTED_INTENTS = {
+  ai_notify_me: {
+    title: 'Notify me when the next AI product launches.',
+    subtitle: "We'll send one email when Limited Preview opens. No marketing list.",
+    block: 'platform',
+  },
+  ai_product_access: {
+    title: 'Apply for AI product Limited Preview.',
+    subtitle: 'Open to clinicians and research teams under engagement. We review applications within 5 business days.',
+    block: 'platform',
+  },
+  ai_reverse_dd: {
+    title: 'Talk to our AI team — Reverse-DD session.',
+    subtitle: 'Reverse-due-diligence readout, technical deep-dive, or partnership exploration.',
+    block: 'platform',
+  },
+};
+
+function SmartForm({ onSubmit, simulateError, routedIntent }) {
+  const aiRoute = routedIntent && AI_ROUTED_INTENTS[routedIntent];
+  const [intent, setIntent] = React.useState(aiRoute ? routedIntent : '');
+  const [block, setBlock] = React.useState(aiRoute ? aiRoute.block : '');
   const [form, setForm] = React.useState({ name: '', email: '', company: '', message: '' });
   const [agreesPrivacy, setAgreesPrivacy] = React.useState(false);
   const [emailError, setEmailError] = React.useState('');
@@ -60,7 +82,20 @@ function SmartForm({ onSubmit, simulateError }) {
       await new Promise((resolve, reject) =>
         setTimeout(() => wantError ? reject(new Error('Network error (simulated)')) : resolve(), 600)
       );
-      onSubmit && onSubmit({ intent, block, ...form });
+      const payload = { intent, block, ...form };
+      onSubmit && onSubmit(payload);
+
+      // v3.0 Task 15 GA hook — routed AI intents 触发对应 GA4 事件
+      // (consent-gated 在 ga4-events.js 内部判断)。
+      if (typeof window !== 'undefined' && window.MSHAnalytics) {
+        if (intent === 'ai_notify_me' && window.MSHAnalytics.trackNotifyMeSubmit) {
+          window.MSHAnalytics.trackNotifyMeSubmit('contact_form');
+        } else if (intent === 'ai_product_access' && window.MSHAnalytics.trackAccessRequestSubmit) {
+          // product_slug 此处缺失 (URL 仅给 intent), 用 routedIntent 作 fallback
+          window.MSHAnalytics.trackAccessRequestSubmit('unspecified', form.company || 'unspecified');
+        }
+      }
+
       setPhase('success');
     } catch (err) {
       setErrorDetail((err && err.message) || 'Network error');
@@ -189,30 +224,57 @@ function SmartForm({ onSubmit, simulateError }) {
         </div>
       )}
 
-      <label style={{ display: 'block', marginBottom: 16 }}>
-        <span style={labelTextStyle}>What brings you here?</span>
-        <select value={intent} onChange={e => setIntent(e.target.value)} required style={inputStyle}>
-          <option value="">Select…</option>
-          <option value="pilot">Book a pilot</option>
-          <option value="expert">Talk to an expert</option>
-          <option value="rfp">RFP / formal procurement</option>
-          <option value="other">Other</option>
-        </select>
-      </label>
+      {/* v3.0 routed-intent context badge (when ?intent=ai_*) */}
+      {aiRoute && (
+        <div style={{
+          marginBottom: 24,
+          padding: '14px 18px',
+          background: 'var(--brand-primary-100)',
+          border: '1px solid var(--brand-primary-300)',
+          borderRadius: 'var(--radius-md, 6px)',
+          color: 'var(--brand-primary-700)',
+          fontSize: 13, lineHeight: 1.5,
+        }}>
+          <div style={{
+            fontFamily: 'var(--font-ui)', fontSize: 11,
+            letterSpacing: '0.14em', textTransform: 'uppercase',
+            color: 'var(--brand-accent-700)', fontWeight: 700, marginBottom: 4,
+          }}>{routedIntent.replace(/_/g, ' ').toUpperCase()}</div>
+          <strong style={{ display: 'block', fontSize: 14, marginBottom: 4 }}>{aiRoute.title}</strong>
+          <span>{aiRoute.subtitle}</span>
+          <input type="hidden" name="intent" value={routedIntent} />
+          <input type="hidden" name="block" value={aiRoute.block} />
+        </div>
+      )}
 
-      <label style={{ display: 'block', marginBottom: 16 }}>
-        <span style={labelTextStyle}>Business block of interest</span>
-        <select value={block} onChange={e => setBlock(e.target.value)} required style={inputStyle}>
-          <option value="">Select…</option>
-          <option value="evidence">Medical Evidence</option>
-          <option value="physicians">Physician Engagement</option>
-          <option value="communications">Medical Communications</option>
-          <option value="platform">AI-Enabled Platform</option>
-          <option value="paths">Entering China / Going Global</option>
-          <option value="sprint">Cross-Border Sprint</option>
-          <option value="other">Other</option>
-        </select>
-      </label>
+      {!aiRoute && (
+        <label style={{ display: 'block', marginBottom: 16 }}>
+          <span style={labelTextStyle}>What brings you here?</span>
+          <select value={intent} onChange={e => setIntent(e.target.value)} required style={inputStyle}>
+            <option value="">Select…</option>
+            <option value="pilot">Book a pilot</option>
+            <option value="expert">Talk to an expert</option>
+            <option value="rfp">RFP / formal procurement</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+      )}
+
+      {!aiRoute && (
+        <label style={{ display: 'block', marginBottom: 16 }}>
+          <span style={labelTextStyle}>Business block of interest</span>
+          <select value={block} onChange={e => setBlock(e.target.value)} required style={inputStyle}>
+            <option value="">Select…</option>
+            <option value="evidence">Medical Evidence</option>
+            <option value="physicians">Physician Engagement</option>
+            <option value="communications">Medical Communications</option>
+            <option value="platform">AI-Enabled Platform</option>
+            <option value="paths">Entering China / Going Global</option>
+            <option value="sprint">Cross-Border Sprint</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+      )}
 
       <label style={{ display: 'block', marginBottom: 16 }}>
         <span style={labelTextStyle}>Name</span>

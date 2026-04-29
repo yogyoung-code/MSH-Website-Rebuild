@@ -43,6 +43,16 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <body>
 <div id="root"></div>
 
+<!-- GA4 + consent-mode v2 (Plan task 15) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  // gtag('config', 'G-XXXXXX'); // launch 前替换
+</script>
+<script src="assets/consent/consent-mode-v2.js"></script>
+<script src="assets/analytics/ga4-events.js"></script>
+
 <script src="assets/vendor/react.development.js"></script>
 <script src="assets/vendor/react-dom.development.js"></script>
 <script src="assets/vendor/babel.min.js"></script>
@@ -56,7 +66,39 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script type="text/babel" src="components/SmartForm.jsx"></script>
 
 <script type="text/babel">
+// v3.0 — 解析 URL ?intent= 让 contact 页面识别 AI Platform routed intents
+// (ai_notify_me / ai_product_access / ai_reverse_dd) 并切换 hero copy + 把
+// routedIntent 透传给 SmartForm。
+const AI_INTENT_HEROS = {
+  ai_notify_me: {
+    eyebrow: 'AI PLATFORM · COMING SOON',
+    title: 'Notify me when the next AI product launches.',
+    body: "We'll send one email when Limited Preview opens. No marketing list, no nurture sequence — just the launch alert.",
+  },
+  ai_product_access: {
+    eyebrow: 'AI PLATFORM · LIMITED PREVIEW',
+    title: 'Apply for AI product Limited Preview.',
+    body: 'Limited Preview is open to clinicians and research teams under engagement. We review applications within 5 business days.',
+  },
+  ai_reverse_dd: {
+    eyebrow: 'AI PLATFORM · REVERSE-DD',
+    title: 'Talk to our AI team.',
+    body: 'Reverse-due-diligence readout, technical deep-dive, or partnership exploration. Our AI team will reply within 2 business days.',
+  },
+};
+
+function getRoutedIntent() {
+  if (typeof window === 'undefined') return null;
+  const m = window.location.search.match(/[?&]intent=([^&]+)/);
+  if (!m) return null;
+  const v = decodeURIComponent(m[1]);
+  return AI_INTENT_HEROS[v] ? v : null;
+}
+
 function App() {
+  const routedIntent = getRoutedIntent();
+  const aiHero = routedIntent ? AI_INTENT_HEROS[routedIntent] : null;
+
   return (
     <PageShell hideHero breadcrumbs={[
       { label: 'Home', href: '/' },
@@ -75,7 +117,7 @@ function App() {
           textTransform: 'uppercase',
           color: 'var(--brand-accent-700)',
           marginBottom: 16
-        }}>Contact MedSci Healthcare</div>
+        }}>{aiHero ? aiHero.eyebrow : 'Contact MedSci Healthcare'}</div>
 
         <h1 style={{
           fontFamily: 'var(--font-display)',
@@ -83,7 +125,7 @@ function App() {
           lineHeight: 1.2,
           color: 'var(--brand-primary-700)',
           margin: '0 0 20px'
-        }}>Talk to a physician on our team.</h1>
+        }}>{aiHero ? aiHero.title : 'Talk to a physician on our team.'}</h1>
 
         <p style={{
           fontSize: 17,
@@ -92,13 +134,16 @@ function App() {
           margin: 0,
           maxWidth: 720
         }}>
-          Tell us a bit about what you're working on. We route by business block — Evidence, Physician Engagement, Communications, AI Platform — and the same person who reaches out is on the deliverable when work begins.
+          {aiHero
+            ? aiHero.body
+            : "Tell us a bit about what you're working on. We route by business block — Evidence, Physician Engagement, Communications, AI Platform — and the same person who reaches out is on the deliverable when work begins."
+          }
         </p>
       </section>
 
       {/* Form */}
       <section style={{ padding: '0 0 64px' }}>
-        <SmartForm />
+        <SmartForm routedIntent={routedIntent} />
       </section>
 
       {/* Side info: routing transparency + alt channels */}
