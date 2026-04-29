@@ -1,3 +1,13 @@
+/* MetricTriad.jsx — DEPRECATED (UXcritique20260429)
+   ---------------------------------------------------------
+   This component repeated the same 3-stat trio on 8+ pages,
+   creating an "AI-slop" identical-trio fingerprint. Replaced by
+   MetricStrip (strict-use) and EvidenceTrail (audit-grade rows).
+   See components/SIGNATURE.md for the migration plan.
+
+   Do NOT use in new code. Existing references will be migrated
+   in the /arrange pass.
+   ========================================================= */
 /* MetricTriad.jsx — 3-metric strip for case study (B2) */
 
 function MetricTriad({ metrics }) {
