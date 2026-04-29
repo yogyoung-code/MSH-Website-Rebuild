@@ -131,36 +131,11 @@ function WhatWeDeliverCard() {
           </a>
         ))}
       </div>
-      {/* Stat strip */}
-      <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
-        borderTop: '1px solid rgba(255,255,255,0.14)',
-        background: 'rgba(0,16,55,0.35)',
-        borderRadius: '0 0 12px 12px',
-      }}>
-        {[
-          { v: '3.33M+', l: 'Physician network', n: '1' },
-          { v: 'AI + PITL', l: 'Physician-in-the-loop', n: null },
-          { v: '2415.HK', l: 'HKEX listed', n: null },
-        ].map((s, i) => (
-          <div key={s.v} style={{
-            padding: '16px 18px',
-            borderLeft: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.08)',
-          }}>
-            <div style={{
-              /* Spec §3.4: all numbers in Inter regardless of language context. */
-              fontFamily: 'var(--font-ui)', fontSize: 20, fontWeight: 600,
-              color: '#fff', letterSpacing: '-0.015em',
-            }}>
-              {s.v}
-              {s.n && <sup style={{ fontSize: 9, color: 'var(--brand-accent-500)', marginLeft: 3, fontWeight: 500 }}>{s.n}</sup>}
-            </div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)', marginTop: 3, letterSpacing: '0.02em' }}>
-              {s.l}
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* UXcritique20260429 distill: stat strip removed.
+          Was duplicating the TrustBar / signature MetricStrip surface, creating
+          three stat surfaces on Homepage. The 4 delivery items above already
+          carry the value prop; numbers belong in TrustBar where they have
+          sourced citations + a footnote. */}
     </div>
   );
 }
