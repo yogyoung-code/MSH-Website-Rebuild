@@ -4,10 +4,6 @@
 <meta charset="utf-8">
 <title>G2 overflow harness</title>
 <style>
-  :root {
-    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
-    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
-  }
   html,body{margin:0;padding:0;background:#222;color:#eee;font:14px/1.4 system-ui}
   #bar{padding:8px 12px;background:#111;border-bottom:1px solid #333;font-family:ui-monospace,monospace}
   #stage{padding:8px;background:#222}

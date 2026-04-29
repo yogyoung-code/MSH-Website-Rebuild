@@ -4,10 +4,6 @@
 <meta charset="utf-8">
 <title>G1 baseline pair</title>
 <style>
-  :root {
-    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
-    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
-  }
   html,body{margin:0;padding:0;background:#0d1117;color:#eee;font:12px/1.4 ui-monospace,monospace}
   .lbl{padding:6px 10px;background:#161b22;border-bottom:1px solid #30363d;display:flex;justify-content:space-between;align-items:center}
   .lbl strong{color:#7fb8e3}

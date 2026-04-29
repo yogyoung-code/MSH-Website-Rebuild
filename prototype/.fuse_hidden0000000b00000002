@@ -4,10 +4,6 @@
 <meta charset="utf-8">
 <title>G1 structural diff</title>
 <style>
-  :root {
-    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
-    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
-  }
   html,body{margin:0;padding:0;background:#0d1117;color:#c9d1d9;font:12px/1.5 ui-monospace,monospace}
   #status{padding:8px 12px;background:#161b22;border-bottom:1px solid #30363d;color:#7fb8e3}
   #log{padding:10px 14px;white-space:pre;max-height:65vh;overflow:auto}

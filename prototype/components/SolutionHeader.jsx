@@ -65,8 +65,8 @@ function SolutionHeader() {
                  style={{
                    display: 'inline-flex', alignItems: 'center', gap: 4,
                    padding: '10px 14px',
-                   fontFamily: 'var(--font-ui)',
-                   fontSize: 14.5, fontWeight: 500, letterSpacing: '-0.005em',
+                   fontFamily: '"Footlight MT Light", "Footlight MT", Georgia, serif',
+                   fontSize: 15.5, fontWeight: 400,
                    color: hoverIdx === i || (it.label === 'Solutions') ? 'var(--brand-primary-700)' : 'var(--fg-2)',
                    textDecoration: 'none', transition: 'color 150ms',
                  }}>
@@ -100,8 +100,8 @@ function SolutionHeader() {
               <li key={i} style={{ borderBottom: '1px solid var(--border-1)' }}>
                 <a href={it.href || '#'} onClick={() => setMobileOpen(false)} style={{
                   display: 'block', padding: '14px 4px',
-                  fontFamily: 'var(--font-ui)',
-                  fontSize: 16, fontWeight: 500,
+                  fontFamily: '"Footlight MT Light", Georgia, serif',
+                  fontSize: 17,
                   color: 'var(--fg-1)', textDecoration: 'none'
                 }}>{it.label}</a>
               </li>
