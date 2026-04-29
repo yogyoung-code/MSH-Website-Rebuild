@@ -54,6 +54,7 @@
 <!-- /ai-platform v3.0 components (added W3) -->
 <script type="text/babel" src="components/AIAssetBalanceSheet.jsx"></script>
 <script type="text/babel" src="components/AIProductShowcase.jsx"></script>
+<script type="text/babel" src="components/AIProductShowcaseDemo.jsx"></script>
 <!-- lucide icons (for data-lucide attrs in v3.0 components) -->
 <script src="assets/vendor/lucide.min.js"></script>
 
@@ -160,7 +161,7 @@ function App() {
         narrative="This is the data substrate every MedSci AI product is built on. We don't generate medical knowledge. We index, structure, and route what physicians and regulators have already validated — and pair every output with a named human reviewer."
       />
 
-      <SectionLabel>0b · AIProductShowcase shell — /ai-platform Act 2 (v3.0 · Task 6a)</SectionLabel>
+      <SectionLabel>0b · AIProductShowcase + Demo renderer — /ai-platform Act 2 (v3.0 · Task 6a + 6b)</SectionLabel>
       <AIProductShowcase
         products={[
           {
@@ -171,6 +172,45 @@ function App() {
             sidebarBrand: 'DeepEvidence',
             sidebarIcon: 'activity',
             headerModel: 'MED-LLM-PRO-V2 (Clinical)',
+            showcase: {
+              demoLanguage: 'en',
+              // NOTE: 此 demoScenario 是 prototype 演示用的中文 placeholder。
+              // 真实上线 (Task 13) 必须由医学写作团队全文重写为 EN
+              // + 临床医师签字 (P4 + §8.15 gate)。
+              demoScenario: [
+                {
+                  _type: 'userMessage',
+                  body: '患者 65 岁,2 型糖尿病合并慢性肾脏病 (CKD G3a),目前服用二甲双胍。 是否需要调整降糖方案?参考最新指南。',
+                },
+                {
+                  _type: 'aiResponse',
+                  eyebrow: 'Evidence-Based Analysis',
+                  prose: '根据 [2024 ADA 糖尿病诊疗标准] 及 [KDIGO 2024 指南]:',
+                  bullets: [
+                    {
+                      title: '推荐加用 SGLT2i',
+                      body: '对于 T2DM 合并 CKD 患者,若 eGFR ≥ 20 ml/min/1.73m²,强烈推荐使用 SGLT2i (如达格列净、恩格列净) 以延缓肾病进展并降低心血管风险 (证据级别 A)。',
+                    },
+                    {
+                      title: '二甲双胍调整',
+                      body: '若 eGFR 在 45–60 之间可维持原量;若 eGFR < 45,应减量;若 < 30 则禁忌。 建议监测 eGFR 变化。',
+                    },
+                  ],
+                  citations: [
+                    { type: 'Guideline', label: 'ADA 2024 Standards of Care' },
+                    { type: 'RCT',       label: 'DAPA-CKD Trial' },
+                    { type: 'SPL',       label: 'Metformin Label (NMPA)' },
+                  ],
+                },
+                {
+                  _type: 'actionChips',
+                  items: [
+                    { icon: 'file-text', label: '生成处方建议' },
+                    { icon: 'share-2',   label: '发送至患者端' },
+                  ],
+                },
+              ],
+            },
           },
           {
             slug: 'seekevidence',
@@ -180,6 +220,33 @@ function App() {
             sidebarBrand: 'SeekEvidence',
             sidebarIcon: 'search',
             headerModel: 'Research-Graph-V4',
+            showcase: {
+              demoLanguage: 'en',
+              demoScenario: [
+                {
+                  _type: 'userMessage',
+                  body: '提取近 5 年关于 "免疫检查点抑制剂治疗非小细胞肺癌" 的所有 III 期临床试验,对比 PFS 和 OS 数据。',
+                },
+                {
+                  _type: 'dataTable',
+                  eyebrow: 'Structured Data Extraction',
+                  badge: 'N = 12 Trials Found',
+                  columns: ['Trial Name', 'Intervention', 'PFS (mo)', 'HR (95% CI)'],
+                  rows: [
+                    ['KEYNOTE-189',   'Pembrolizumab + Chemo', { value: '8.8 vs 4.9', highlight: true }, { value: '0.52 (0.43-0.64)', mono: true }],
+                    ['IMpower150',    'Atezo + Bevacizumab',   { value: '8.3 vs 6.8', highlight: true }, { value: '0.62 (0.52-0.74)', mono: true }],
+                    ['CheckMate 9LA', 'Nivo + Ipi + Chemo',    { value: '6.8 vs 5.0', highlight: true }, { value: '0.70 (0.57-0.86)', mono: true }],
+                  ],
+                },
+                {
+                  _type: 'actionChips',
+                  items: [
+                    { icon: 'bar-chart-3', label: '生成森林图 (Forest Plot)' },
+                    { icon: 'file-text',   label: '导出 Excel' },
+                  ],
+                },
+              ],
+            },
           },
         ]}
       />

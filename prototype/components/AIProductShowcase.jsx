@@ -57,6 +57,61 @@ const PRODUCT_ACCENT = {
 };
 function accentOf(slug) { return PRODUCT_ACCENT[slug] || PRODUCT_ACCENT.blue; }
 
+// §3.7 row 3 — iconRef 404 / 缺失时, 用产品名首字母 monogram 作为 fallback
+function monogramOf(name, slug) {
+  const display = (name && (name.en || name)) || slug || '';
+  return String(display).trim().charAt(0).toUpperCase() || '?';
+}
+
+// Render logo: iconRef (image URL) > sidebarIcon (lucide name) > monogram
+function ProductLogo({ active, accent, size = 28 }) {
+  const half = Math.max(12, Math.round(size * 0.55));
+  const iconStyle = {
+    width: size, height: size, borderRadius: 8,
+    background: `${accent.c600}33`, color: accent.c300,
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+    boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3)',
+    transition: 'background 400ms ease, color 400ms ease',
+    fontWeight: 700, fontSize: Math.round(size * 0.5),
+    fontFamily: 'var(--font-display)',
+    overflow: 'hidden',
+  };
+  // Prefer iconRef (Sanity image asset URL once Task 13 wires real CMS)
+  if (active.iconRefUrl) {
+    return (
+      <span style={iconStyle}
+        onError={() => {/* CSS-only fallback path; React no longer triggers re-render */}}>
+        <img
+          src={active.iconRefUrl}
+          alt=""
+          aria-hidden="true"
+          width={size} height={size}
+          style={{ width: size, height: size, objectFit: 'cover' }}
+          onError={(e) => {
+            // 资源 404 → 把图片元素隐藏, 父级 fallback 显字母
+            e.currentTarget.style.display = 'none';
+            const monoEl = e.currentTarget.parentElement.querySelector('.aips-mono-fallback');
+            if (monoEl) monoEl.style.display = 'inline';
+          }}
+        />
+        <span className="aips-mono-fallback" style={{ display: 'none' }}>
+          {monogramOf(active.name, active.slug)}
+        </span>
+      </span>
+    );
+  }
+  // Lucide icon path (prototype demo)
+  if (active.sidebarIcon) {
+    return (
+      <span style={iconStyle}>
+        <i data-lucide={active.sidebarIcon} width={half} height={half} />
+      </span>
+    );
+  }
+  // Monogram fallback
+  return <span style={iconStyle}>{monogramOf(active.name, active.slug)}</span>;
+}
+
 // SSR / no-JS 默认 Tab = 0 (spec §3.7); useEffect 在 client hydrate 后启动轮播。
 function AIProductShowcase({ products, autoRotateMs = 8000, renderBody }) {
   // §3.7 row 1 — 0 条产品时显示 placeholder
@@ -126,22 +181,9 @@ function AIProductShowcase({ products, autoRotateMs = 8000, renderBody }) {
 
         {/* Browser Mockup (glass-card) */}
         <BrowserMockup active={active} accent={accent}>
-          {/* Content body slot — Task 6b 填充。 当前 Task 6a 留空白占位 */}
-          <div
-            className="aips-content-body"
-            data-active-slug={active.slug}
-            style={{
-              flex: 1, padding: 24,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: 'rgba(255,255,255,0.35)',
-              fontFamily: 'var(--font-mono, monospace)',
-              fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase',
-            }}
-          >
-            {typeof renderBody === 'function'
-              ? renderBody(active)
-              : <span>· content body — Task 6b ·</span>}
-          </div>
+          {/* Content body — Task 6b: AIProductShowcaseDemo renderer with §3.7 fallback。
+              Custom renderBody prop 优先, 否则用默认 demo renderer (若 window.AIProductShowcaseDemo 已加载)。 */}
+          <DemoBodySlot active={active} renderBody={renderBody} />
         </BrowserMockup>
 
         {/* SR-only live region for active product changes (a11y polite) */}
@@ -171,6 +213,36 @@ function AIProductShowcase({ products, autoRotateMs = 8000, renderBody }) {
         }
       `}</style>
     </section>
+  );
+}
+
+/* ── Demo body slot ─────────────────────────────────────── */
+// renderBody 优先级:
+//   1. caller 传 renderBody(active) → custom 渲染 (e.g. _signature-preview pass-through)
+//   2. window.AIProductShowcaseDemo 全局存在 (Task 6b 加载 AIProductShowcaseDemo.jsx) → 用默认 renderer 渲染 demoScenario
+//   3. 都没有 → 静态占位 (Task 6a 单跑时见到的状态)
+function DemoBodySlot({ active, renderBody }) {
+  if (typeof renderBody === 'function') {
+    return renderBody(active);
+  }
+  const Demo = (typeof window !== 'undefined') ? window.AIProductShowcaseDemo : null;
+  if (Demo && active.showcase && Array.isArray(active.showcase.demoScenario)) {
+    return <Demo demoScenario={active.showcase.demoScenario} accentColor={active.accentColor} />;
+  }
+  // 占位 (无 demo 内容)
+  return (
+    <div
+      className="aips-content-body-empty"
+      style={{
+        flex: 1, padding: 24,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        color: 'rgba(255,255,255,0.35)',
+        fontFamily: 'var(--font-mono, monospace)',
+        fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase',
+      }}
+    >
+      <span>· no demo scenario provided ·</span>
+    </div>
   );
 }
 
@@ -247,8 +319,28 @@ function TabSwitcher({ products, activeIdx, onSelect }) {
                 display: 'inline-flex', alignItems: 'center', gap: 8,
               }}
             >
-              <span aria-hidden="true" style={{ display: 'inline-flex', width: 16, height: 16 }}>
-                <i data-lucide={p.sidebarIcon || 'activity'} width="16" height="16" />
+              <span aria-hidden="true" style={{ display: 'inline-flex', width: 16, height: 16, alignItems: 'center', justifyContent: 'center' }}>
+                {p.iconRefUrl ? (
+                  <img src={p.iconRefUrl} alt="" width="16" height="16"
+                    style={{ width: 16, height: 16, objectFit: 'cover', borderRadius: 4 }}
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      const fb = e.currentTarget.parentElement.querySelector('.aips-tab-mono-fb');
+                      if (fb) fb.style.display = 'inline-flex';
+                    }}
+                  />
+                ) : null}
+                {p.iconRefUrl ? (
+                  <span className="aips-tab-mono-fb" style={{
+                    display: 'none', width: 16, height: 16,
+                    alignItems: 'center', justifyContent: 'center',
+                    fontWeight: 700, fontSize: 11,
+                  }}>{(((p.name && p.name.en) || p.slug || '').charAt(0) || '?').toUpperCase()}</span>
+                ) : (
+                  p.sidebarIcon
+                    ? <i data-lucide={p.sidebarIcon} width="16" height="16" />
+                    : <span style={{ fontWeight: 700, fontSize: 11 }}>{(((p.name && p.name.en) || p.slug || '').charAt(0) || '?').toUpperCase()}</span>
+                )}
               </span>
               <span>{(p.name && p.name.en) || p.slug}</span>
             </button>
@@ -311,20 +403,12 @@ function SidebarMock({ active, accent }) {
       display: 'flex', flexDirection: 'column',
       padding: 16,
     }}>
-      {/* Logo + name */}
+      {/* Logo + name (with iconRef→lucide→monogram fallback chain) */}
       <div style={{
         display: 'flex', alignItems: 'center', gap: 8,
         marginBottom: 32, padding: '8px 8px 0',
       }}>
-        <div style={{
-          width: 28, height: 28, borderRadius: 8,
-          background: `${accent.c600}33`, color: accent.c300,
-          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3)',
-          transition: 'background 400ms ease, color 400ms ease',
-        }}>
-          <i data-lucide={active.sidebarIcon || 'activity'} width="16" height="16" />
-        </div>
+        <ProductLogo active={active} accent={accent} size={28} />
         <span style={{ fontWeight: 700, fontSize: 13, color: '#e2e8f0', letterSpacing: '0.02em' }}>
           {active.sidebarBrand || (active.name && active.name.en) || active.slug}
         </span>
