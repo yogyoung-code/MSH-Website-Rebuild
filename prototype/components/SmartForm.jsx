@@ -6,18 +6,42 @@
  *   - Copy Deck v4.2 §10.1.3 (privacy consent + disabled submit) — hard
  *     legal requirement, added as surgical extension over plan code.
  *   - Copy Deck v4.2 §10.2 thank-you branches: deferred to V2 CMS;
- *     prototype keeps the plan's mock alert() for branches that are not
- *     the sprint-not-for-fit redirect.
+ *     prototype keeps deterministic branches but renders inline thank-you
+ *     instead of alert() (UXcritique20260429 hardening).
+ *
+ * UXcritique20260429 hardening:
+ *   - Full state machine: idle → submitting → success | error.
+ *   - Inline field-level email validation (HTML pattern + JS check).
+ *   - Submit button disabled during submission AND when consent missing.
+ *   - Network failures surface a retry button; form state preserved.
+ *   - alert() removed; success / error rendered as live regions for SR.
+ *   - prefers-reduced-motion respected (no transition on state changes).
  */
 
-function SmartForm({ onSubmit }) {
+function SmartForm({ onSubmit, simulateError }) {
   const [intent, setIntent] = React.useState('');
   const [block, setBlock] = React.useState('');
   const [form, setForm] = React.useState({ name: '', email: '', company: '', message: '' });
   const [agreesPrivacy, setAgreesPrivacy] = React.useState(false);
+  const [emailError, setEmailError] = React.useState('');
+  const [phase, setPhase] = React.useState('idle'); // idle | submitting | success | error
+  const [errorDetail, setErrorDetail] = React.useState('');
 
-  const handleSubmit = (e) => {
+  const validateEmail = (value) => {
+    if (!value) return 'Please enter your work email.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'That email address looks incomplete.';
+    return '';
+  };
+
+  const onEmailBlur = () => setEmailError(validateEmail(form.email));
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const emailErr = validateEmail(form.email);
+    if (emailErr) { setEmailError(emailErr); return; }
+    setPhase('submitting');
+    setErrorDetail('');
+
     // Sprint-not-for-fit routing (Copy Deck v4.2 §10.2.6 / §10.3 priority rule):
     // block='other' + message hints at individual / patient / hospital intent →
     // redirect to /services/other-engagements (anti-loop guard: never back to /contact).
@@ -25,18 +49,150 @@ function SmartForm({ onSubmit }) {
       window.location.href = '/services/other-engagements';
       return;
     }
-    onSubmit && onSubmit({ intent, block, ...form });
-    alert('Thanks. Mock submission. (Real backend + thank-you branches per Copy Deck §10.2 in V2 CMS.)');
+
+    try {
+      // Prototype: simulate latency + optional failure injection (?simulateError=1)
+      const wantError = simulateError
+        || (typeof window !== 'undefined'
+            && window.location
+            && window.location.search
+            && window.location.search.indexOf('simulateError=1') !== -1);
+      await new Promise((resolve, reject) =>
+        setTimeout(() => wantError ? reject(new Error('Network error (simulated)')) : resolve(), 600)
+      );
+      onSubmit && onSubmit({ intent, block, ...form });
+      setPhase('success');
+    } catch (err) {
+      setErrorDetail((err && err.message) || 'Network error');
+      setPhase('error');
+    }
   };
 
-  const inputStyle = { display: 'block', width: '100%', padding: 10, marginBottom: 16 };
+  const retry = () => {
+    setPhase('idle');
+    setErrorDetail('');
+  };
+
+  const reset = () => {
+    setIntent('');
+    setBlock('');
+    setForm({ name: '', email: '', company: '', message: '' });
+    setAgreesPrivacy(false);
+    setEmailError('');
+    setPhase('idle');
+  };
+
+  // Success state — replaces alert()
+  if (phase === 'success') {
+    return (
+      <div role="status" aria-live="polite" style={{
+        maxWidth: 600, margin: '0 auto', padding: '0 24px'
+      }}>
+        <div style={{
+          border: '1px solid var(--success-500)',
+          background: 'var(--success-100)',
+          borderRadius: 'var(--radius-lg, 12px)',
+          padding: 'clamp(20px, 3vw, 32px)'
+        }}>
+          <div style={{
+            fontFamily: 'var(--font-ui)',
+            fontSize: 11, letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: 'var(--success-500)',
+            fontWeight: 700,
+            marginBottom: 12
+          }}>✓ Received</div>
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(22px, 2.8vw, 28px)',
+            color: 'var(--brand-primary-700)',
+            margin: '0 0 12px',
+            lineHeight: 1.3,
+            fontWeight: 600
+          }}>Thanks{form.name ? `, ${form.name.split(' ')[0]}` : ''} — we have your message.</h2>
+          <p style={{
+            fontSize: 15, color: 'var(--fg-2)',
+            lineHeight: 1.6, margin: '0 0 8px'
+          }}>
+            A physician-trained program lead will reply within <strong>2 business days</strong>.
+            Check {form.email || 'your inbox'} (and your spam folder) for our reply from <code>hello@medscihealthcare.com</code>.
+          </p>
+          <p style={{
+            fontSize: 13, color: 'var(--fg-3)',
+            lineHeight: 1.5, margin: 0,
+            fontFamily: 'var(--font-mono)'
+          }}>
+            Reference · {Math.random().toString(36).slice(2, 8).toUpperCase()} · {new Date().toISOString().slice(0, 10)}
+          </p>
+          <button type="button" onClick={reset} style={{
+            marginTop: 20,
+            padding: '10px 18px',
+            background: 'transparent',
+            color: 'var(--brand-primary-700)',
+            border: '1px solid var(--brand-primary-700)',
+            fontFamily: 'var(--font-ui)',
+            fontSize: 14, fontWeight: 500,
+            cursor: 'pointer'
+          }}>Send another message</button>
+        </div>
+      </div>
+    );
+  }
+
+  const inputStyle = {
+    display: 'block', width: '100%',
+    padding: 12,
+    fontFamily: 'var(--font-ui)',
+    fontSize: 15,
+    border: '1px solid var(--border-2)',
+    borderRadius: 'var(--radius-md, 6px)',
+    background: 'var(--bg-1)',
+    color: 'var(--fg-1)'
+  };
+  const labelTextStyle = {
+    display: 'block',
+    fontSize: 13,
+    color: 'var(--fg-2)',
+    marginBottom: 6,
+    fontWeight: 500
+  };
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 600, margin: '0 auto', padding: '0 24px' }}>
+    <form onSubmit={handleSubmit} noValidate style={{ maxWidth: 600, margin: '0 auto', padding: '0 24px' }}>
+      {phase === 'error' && (
+        <div role="alert" aria-live="assertive" style={{
+          border: '1px solid var(--error-500)',
+          background: '#fef2f2',
+          color: 'var(--error-500)',
+          borderRadius: 'var(--radius-md, 6px)',
+          padding: '14px 18px',
+          marginBottom: 20,
+          display: 'flex', gap: 14, alignItems: 'flex-start'
+        }}>
+          <span aria-hidden="true" style={{ fontWeight: 700, lineHeight: 1.2 }}>!</span>
+          <div style={{ flex: 1, fontSize: 14, lineHeight: 1.5, color: 'var(--fg-1)' }}>
+            <strong style={{ color: 'var(--error-500)' }}>Submission failed.</strong>{' '}
+            We couldn't deliver your message — your input is preserved below. Try again, or
+            email <code style={{ fontFamily: 'var(--font-mono)' }}>hello@medscihealthcare.com</code> directly.
+            <div style={{
+              fontFamily: 'var(--font-mono)', fontSize: 11,
+              color: 'var(--fg-3)', marginTop: 6
+            }}>{errorDetail}</div>
+            <button type="button" onClick={retry} style={{
+              marginTop: 12, padding: '8px 16px',
+              background: 'var(--error-500)', color: 'var(--bg-1)',
+              border: 'none', borderRadius: 'var(--radius-md, 6px)',
+              fontFamily: 'var(--font-ui)', fontSize: 13, fontWeight: 600,
+              cursor: 'pointer'
+            }}>Retry</button>
+          </div>
+        </div>
+      )}
+
       <label style={{ display: 'block', marginBottom: 16 }}>
-        <span style={{ display: 'block', fontSize: 13, color: 'var(--fg-2)', marginBottom: 4 }}>What brings you here?</span>
-        <select value={intent} onChange={e => setIntent(e.target.value)} required style={{ width: '100%', padding: 10 }}>
-          <option value="">Select...</option>
+        <span style={labelTextStyle}>What brings you here?</span>
+        <select value={intent} onChange={e => setIntent(e.target.value)} required style={inputStyle}>
+          <option value="">Select…</option>
           <option value="pilot">Book a pilot</option>
           <option value="expert">Talk to an expert</option>
           <option value="rfp">RFP / formal procurement</option>
@@ -45,9 +201,9 @@ function SmartForm({ onSubmit }) {
       </label>
 
       <label style={{ display: 'block', marginBottom: 16 }}>
-        <span style={{ display: 'block', fontSize: 13, color: 'var(--fg-2)', marginBottom: 4 }}>Business block of interest</span>
-        <select value={block} onChange={e => setBlock(e.target.value)} required style={{ width: '100%', padding: 10 }}>
-          <option value="">Select...</option>
+        <span style={labelTextStyle}>Business block of interest</span>
+        <select value={block} onChange={e => setBlock(e.target.value)} required style={inputStyle}>
+          <option value="">Select…</option>
           <option value="evidence">Medical Evidence</option>
           <option value="physicians">Physician Engagement</option>
           <option value="communications">Medical Communications</option>
@@ -58,16 +214,68 @@ function SmartForm({ onSubmit }) {
         </select>
       </label>
 
-      <input value={form.name}    onChange={e => setForm({ ...form, name: e.target.value })}    placeholder="Name"    required style={inputStyle} />
-      <input value={form.email}   onChange={e => setForm({ ...form, email: e.target.value })}   type="email" placeholder="Work email" required style={inputStyle} />
-      <input value={form.company} onChange={e => setForm({ ...form, company: e.target.value })} placeholder="Company / Organization" style={inputStyle} />
-      <textarea
-        value={form.message}
-        onChange={e => setForm({ ...form, message: e.target.value })}
-        placeholder="What are you looking for? One or two sentences is enough."
-        rows={5}
-        style={inputStyle}
-      />
+      <label style={{ display: 'block', marginBottom: 16 }}>
+        <span style={labelTextStyle}>Name</span>
+        <input
+          value={form.name}
+          onChange={e => setForm({ ...form, name: e.target.value })}
+          required
+          maxLength={120}
+          autoComplete="name"
+          style={inputStyle}
+        />
+      </label>
+
+      <label style={{ display: 'block', marginBottom: 16 }}>
+        <span style={labelTextStyle}>Work email</span>
+        <input
+          type="email"
+          value={form.email}
+          onChange={e => { setForm({ ...form, email: e.target.value }); if (emailError) setEmailError(''); }}
+          onBlur={onEmailBlur}
+          required
+          autoComplete="email"
+          aria-invalid={emailError ? 'true' : 'false'}
+          aria-describedby="email-error"
+          style={{
+            ...inputStyle,
+            borderColor: emailError ? 'var(--error-500)' : 'var(--border-2)'
+          }}
+        />
+        {emailError && (
+          <div id="email-error" role="alert" style={{
+            fontSize: 12, color: 'var(--error-500)', marginTop: 6,
+            fontFamily: 'var(--font-ui)'
+          }}>{emailError}</div>
+        )}
+      </label>
+
+      <label style={{ display: 'block', marginBottom: 16 }}>
+        <span style={labelTextStyle}>Company / Organization</span>
+        <input
+          value={form.company}
+          onChange={e => setForm({ ...form, company: e.target.value })}
+          maxLength={160}
+          autoComplete="organization"
+          style={inputStyle}
+        />
+      </label>
+
+      <label style={{ display: 'block', marginBottom: 16 }}>
+        <span style={labelTextStyle}>What are you looking for?</span>
+        <textarea
+          value={form.message}
+          onChange={e => setForm({ ...form, message: e.target.value })}
+          rows={5}
+          maxLength={2000}
+          placeholder="One or two sentences is enough."
+          style={{ ...inputStyle, resize: 'vertical', minHeight: 100 }}
+        />
+        <div style={{
+          fontSize: 11, color: 'var(--fg-3)', marginTop: 4,
+          fontFamily: 'var(--font-mono)', textAlign: 'right'
+        }}>{form.message.length} / 2000</div>
+      </label>
 
       <label style={{
         display: 'flex',
@@ -95,23 +303,26 @@ function SmartForm({ onSubmit }) {
 
       <button
         type="submit"
-        disabled={!agreesPrivacy}
+        disabled={!agreesPrivacy || phase === 'submitting'}
+        aria-busy={phase === 'submitting'}
         title={!agreesPrivacy ? 'Please confirm consent before submitting.' : undefined}
         style={{
           padding: '14px 28px',
-          background: agreesPrivacy ? 'var(--brand-primary-700)' : 'var(--border-2)',
+          background: (agreesPrivacy && phase !== 'submitting') ? 'var(--brand-primary-700)' : 'var(--border-2)',
           color: 'var(--bg-1)',
           border: 'none',
-          cursor: agreesPrivacy ? 'pointer' : 'not-allowed',
-          fontFamily: 'var(--font-slogan)',
-          fontSize: 14,
-          letterSpacing: '0.08em'
+          borderRadius: 'var(--radius-md, 6px)',
+          cursor: (agreesPrivacy && phase !== 'submitting') ? 'pointer' : 'not-allowed',
+          fontFamily: 'var(--font-ui)',
+          fontSize: 14, fontWeight: 600,
+          letterSpacing: '0.04em',
+          minWidth: 160
         }}
       >
-        Submit
+        {phase === 'submitting' ? 'Sending…' : 'Send message'}
       </button>
     </form>
   );
 }
 
-window.SmartForm = SmartForm;
+if (typeof window !== 'undefined') window.SmartForm = SmartForm;

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Terms of Use — MedSci Healthcare</title>
+<meta name="description" content="Terms governing use of medscihealthcare.com — acceptance, content, intellectual property, disclaimers, limitation of liability, governing law.">
+<link rel="canonical" href="https://medscihealthcare.com/legal/terms">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/legal/terms">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/legal/terms?lang=zh-CN">
+<link rel="alternate" hreflang="x-default" href="https://medscihealthcare.com/legal/terms">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Terms of Use — MedSci Healthcare">
+<meta property="og:description" content="Terms governing use of medscihealthcare.com.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/legal-terms-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/legal/terms">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Terms of Use — MedSci Healthcare",
+  "url": "https://medscihealthcare.com/legal/terms",
+  "publisher": { "@type": "Organization", "name": "MedSci Healthcare", "url": "https://medscihealthcare.com" },
+  "inLanguage": ["en", "zh-CN"]
+}
+</script>
+<style>
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/LangSwitch.jsx"></script>
+<script type="text/babel" src="../components/LegalProse.jsx"></script>
+
+<script type="text/babel">
+// Copy Deck v4.2 §12.1 — skeleton, awaiting external counsel finalization.
+const CONTENT = {
+  en: {
+    eyebrow: 'Legal · Terms of Use',
+    title:   'Terms of Use',
+    lastUpdated: null, // pending counsel sign-off
+    sections: [
+      { id: 'acceptance',    heading: '1. Acceptance of these Terms',
+        paragraphs: ['By accessing or using medscihealthcare.com (the "Site"), you agree to these Terms of Use. If you do not agree, do not use the Site. ⚠️ Counsel to confirm jurisdiction-specific acceptance language.'] },
+      { id: 'permitted-use', heading: '2. Permitted use of the Site',
+        paragraphs: ['The Site provides information about MedSci Healthcare\'s services for global biopharma and medtech clients. You may view and download Site content for non-commercial reference. You may not scrape, mirror, redistribute, or republish content without prior written permission. ⚠️ Counsel to add automated-access carve-outs (legitimate research crawlers, etc.).'] },
+      { id: 'ip',            heading: '3. Intellectual property',
+        paragraphs: ['All content on the Site — including text, graphics, logos, methodology diagrams, and the MedSci Healthcare wordmark — is owned by or licensed to MedSci Healthcare and protected by applicable intellectual property law. The MedSci Healthcare brand and logo are trademarks; please contact us before reproducing them.'] },
+      { id: 'third-party',   heading: '4. Third-party content and links',
+        paragraphs: ['The Site may link to third-party resources (including HKEX disclosures and external research). MedSci Healthcare does not control and is not responsible for third-party content. Outbound links carry rel="external noopener" per our linking policy.'] },
+      { id: 'no-advice',     heading: '5. No professional advice; no warranty',
+        paragraphs: ['Site content is provided for general informational purposes. It is not medical, regulatory, legal, tax, or investment advice. Site content is provided on an "as is" basis without representations or warranties of any kind. ⚠️ Counsel to align disclaimer with U.S. + China + HK jurisdictional norms.'] },
+      { id: 'liability',     heading: '6. Limitation of liability',
+        paragraphs: ['To the maximum extent permitted by applicable law, MedSci Healthcare and its affiliates will not be liable for any indirect, incidental, consequential, or punitive damages arising from your use of the Site. ⚠️ Counsel to set jurisdictional caps.'] },
+      { id: 'indemnity',     heading: '7. Indemnity',
+        paragraphs: ['You agree to indemnify MedSci Healthcare and its affiliates against claims arising from your misuse of the Site. ⚠️ Counsel-drafted indemnity clause to replace.'] },
+      { id: 'changes',       heading: '8. Changes to these Terms',
+        paragraphs: ['We may update these Terms from time to time. Material changes will be reflected in the Last updated date at the top of this page. Continued use after changes constitutes acceptance.'] },
+      { id: 'governing-law', heading: '9. Governing law and venue',
+        paragraphs: ['These Terms are governed by ⚠️ [Counsel-set jurisdiction], without regard to conflict-of-laws rules. You agree to ⚠️ [Counsel-set venue / arbitration clause].'] },
+      { id: 'contact',       heading: '10. Contact',
+        paragraphs: [<span>Questions about these Terms: <code>legal@medscihealthcare.com</code> (or use <a href="/contact.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>Contact</a> and select "Legal / Compliance" in the role field).</span>] }
+    ]
+  },
+
+  zh: {
+    eyebrow: '法律 · 使用条款',
+    title:   '使用条款',
+    lastUpdated: null,
+    pendingNotice: '本中文版本由译审在外部律师终签英文版本后产出（Copy Deck v4.2 §12.1.zh）。本批次仅展示章节结构与术语映射，正文内容暂以英文渲染。',
+    sections: [
+      { id: 'acceptance',    heading: '1. 接受本条款',                     paragraphs: ['By accessing or using medscihealthcare.com (the "Site"), you agree to these Terms of Use. If you do not agree, do not use the Site. ⚠️ Counsel to confirm jurisdiction-specific acceptance language.'] },
+      { id: 'permitted-use', heading: '2. 网站允许使用范围',               paragraphs: ['The Site provides information about MedSci Healthcare\'s services for global biopharma and medtech clients. ⚠️ Counsel to add automated-access carve-outs.'] },
+      { id: 'ip',            heading: '3. 知识产权',                       paragraphs: ['All content on the Site — including text, graphics, logos, methodology diagrams — is owned by or licensed to MedSci Healthcare and protected by applicable intellectual property law.'] },
+      { id: 'third-party',   heading: '4. 第三方内容与链接',               paragraphs: ['The Site may link to third-party resources. MedSci Healthcare does not control and is not responsible for third-party content.'] },
+      { id: 'no-advice',     heading: '5. 不构成专业意见；无保证',          paragraphs: ['Site content is provided for general informational purposes. It is not medical, regulatory, legal, tax, or investment advice. ⚠️ Counsel to align disclaimer with tri-jurisdictional norms.'] },
+      { id: 'liability',     heading: '6. 责任限制',                       paragraphs: ['To the maximum extent permitted by applicable law, MedSci Healthcare and its affiliates will not be liable for indirect or consequential damages. ⚠️ Counsel to set jurisdictional caps.'] },
+      { id: 'indemnity',     heading: '7. 赔偿',                           paragraphs: ['⚠️ Counsel-drafted indemnity clause to replace.'] },
+      { id: 'changes',       heading: '8. 条款变更',                       paragraphs: ['We may update these Terms from time to time. Material changes will be reflected in the Last updated date at the top of this page.'] },
+      { id: 'governing-law', heading: '9. 管辖法律与争议解决地',            paragraphs: ['⚠️ [Counsel-set jurisdiction] / ⚠️ [Counsel-set venue / arbitration clause].'] },
+      { id: 'contact',       heading: '10. 联系我们',                      paragraphs: [<span>条款相关问题: <code>legal@medscihealthcare.com</code> 或使用 <a href="/contact.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>联系页</a>。</span>] }
+    ]
+  }
+};
+
+function App() {
+  const [lang, setLang] = React.useState('en');
+  const t = CONTENT[lang];
+
+  return (
+    <PageShell hideHero breadcrumbs={[
+      { label: lang === 'en' ? 'Home' : '首页', href: '/' },
+      { label: lang === 'en' ? 'Legal' : '法律', href: '/legal/' },
+      { label: lang === 'en' ? 'Terms of Use' : '使用条款' }
+    ]}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '24px clamp(24px, 6vw, 96px) 0', display: 'flex', justifyContent: 'flex-end' }}>
+        <LangSwitch enabled={true} current={lang} onSwitch={setLang} />
+      </div>
+      <LegalProse
+        eyebrow={t.eyebrow}
+        title={t.title}
+        lastUpdated={t.lastUpdated}
+        pendingNotice={t.pendingNotice}
+        sections={t.sections}
+      />
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

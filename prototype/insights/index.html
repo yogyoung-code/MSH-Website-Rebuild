@@ -176,10 +176,20 @@ function App() {
 }
 
 function SubscribeForm({ topics }) {
-  // Prototype: fake 200ms submit; CMS stage wires to Sanity webhook → MailerLite/Klaviyo (V2 scope)
+  // UXcritique20260429: opt-in default (only first topic), error state with retry,
+  // email validation, button disabled during submit.
   const [email, setEmail] = React.useState('');
-  const [selected, setSelected] = React.useState(topics.map(t => t.value));
-  const [state, setState] = React.useState('idle'); // idle | submitting | done
+  const [emailError, setEmailError] = React.useState('');
+  // Default to FIRST topic only — opt-in, not opt-out (P2 finding: was all-on by default).
+  const [selected, setSelected] = React.useState(topics.length > 0 ? [topics[0].value] : []);
+  const [state, setState] = React.useState('idle'); // idle | submitting | done | error
+  const [errorDetail, setErrorDetail] = React.useState('');
+
+  const validate = (v) => {
+    if (!v) return 'Please enter your email.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'That email address looks incomplete.';
+    return '';
+  };
 
   const toggle = (v) => {
     setSelected(prev => prev.indexOf(v) === -1 ? [...prev, v] : prev.filter(x => x !== v));
@@ -187,66 +197,122 @@ function SubscribeForm({ topics }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!email) return;
+    const err = validate(email);
+    if (err) { setEmailError(err); return; }
     setState('submitting');
-    setTimeout(() => setState('done'), 200);
+    setErrorDetail('');
+    // Simulate; ?simulateError=1 forces an error path
+    const params = new URLSearchParams(window.location.search);
+    const wantError = params.get('simulateError') === '1';
+    setTimeout(() => {
+      if (wantError) {
+        setErrorDetail('Network error (simulated)');
+        setState('error');
+      } else {
+        setState('done');
+      }
+    }, 400);
   };
+
+  const retry = () => { setState('idle'); setErrorDetail(''); };
 
   if (state === 'done') {
     return (
-      <div style={{
+      <div role="status" aria-live="polite" style={{
         padding: '20px 24px',
-        background: 'var(--brand-accent-100)',
-        border: '1px solid var(--brand-accent-500)',
+        background: 'var(--success-100)',
+        border: '1px solid var(--success-500)',
+        borderRadius: 'var(--radius-md, 6px)',
         color: 'var(--brand-primary-700)',
         fontSize: 15,
         lineHeight: 1.5
       }}>
+        <div style={{
+          fontFamily: 'var(--font-ui)',
+          fontSize: 11, letterSpacing: '0.12em',
+          textTransform: 'uppercase', fontWeight: 700,
+          color: 'var(--success-500)', marginBottom: 6
+        }}>✓ Subscribed</div>
         Thanks — you're on the list. The next briefing goes out at the start of next month.
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'stretch' }}>
+    <form onSubmit={onSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'stretch' }}>
+      {state === 'error' && (
+        <div role="alert" aria-live="assertive" style={{
+          padding: '12px 16px',
+          background: '#fef2f2',
+          border: '1px solid var(--error-500)',
+          borderRadius: 'var(--radius-md, 6px)',
+          fontSize: 13, color: 'var(--fg-1)', textAlign: 'left'
+        }}>
+          <strong style={{ color: 'var(--error-500)' }}>Couldn't subscribe.</strong>{' '}
+          Your address is preserved — try again, or email <code style={{ fontFamily: 'var(--font-mono)' }}>hello@medscihealthcare.com</code>.
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-3)', marginTop: 4 }}>{errorDetail}</div>
+          <button type="button" onClick={retry} style={{
+            marginTop: 8, padding: '6px 14px',
+            background: 'var(--error-500)', color: 'var(--bg-1)',
+            border: 'none', borderRadius: 'var(--radius-md, 6px)',
+            fontFamily: 'var(--font-ui)', fontSize: 12, fontWeight: 600,
+            cursor: 'pointer'
+          }}>Retry</button>
+        </div>
+      )}
+
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-        <input
-          type="email"
-          required
-          placeholder="you@company.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={{
-            flex: '1 1 240px',
-            padding: '12px 16px',
-            border: '1px solid var(--border-2)',
-            background: 'var(--bg-1)',
-            fontFamily: 'var(--font-ui)',
-            fontSize: 15,
-            color: 'var(--fg-1)'
-          }}
-        />
-        <button type="submit" disabled={state === 'submitting'} style={{
+        <div style={{ flex: '1 1 240px', display: 'flex', flexDirection: 'column' }}>
+          <input
+            type="email"
+            required
+            aria-invalid={emailError ? 'true' : 'false'}
+            aria-describedby="subscribe-email-error"
+            placeholder="you@company.com"
+            value={email}
+            onChange={(e) => { setEmail(e.target.value); if (emailError) setEmailError(''); }}
+            onBlur={() => setEmailError(validate(email))}
+            disabled={state === 'submitting'}
+            style={{
+              padding: '12px 16px',
+              border: '1px solid ' + (emailError ? 'var(--error-500)' : 'var(--border-2)'),
+              background: 'var(--bg-1)',
+              fontFamily: 'var(--font-ui)',
+              fontSize: 15,
+              color: 'var(--fg-1)'
+            }}
+          />
+          {emailError && (
+            <div id="subscribe-email-error" role="alert" style={{
+              fontSize: 12, color: 'var(--error-500)', marginTop: 4,
+              textAlign: 'left'
+            }}>{emailError}</div>
+          )}
+        </div>
+        <button type="submit" disabled={state === 'submitting'} aria-busy={state === 'submitting'} style={{
           padding: '12px 24px',
-          background: 'var(--brand-primary-700)',
+          background: state === 'submitting' ? 'var(--border-2)' : 'var(--brand-primary-700)',
           color: 'var(--bg-1)',
           border: 'none',
           fontFamily: 'var(--font-ui)',
           fontSize: 14,
           fontWeight: 600,
           letterSpacing: '0.04em',
-          cursor: state === 'submitting' ? 'wait' : 'pointer'
+          cursor: state === 'submitting' ? 'wait' : 'pointer',
+          minWidth: 130
         }}>
           {state === 'submitting' ? 'Subscribing…' : 'Subscribe'}
         </button>
       </div>
       <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', fontSize: 13, color: 'var(--fg-2)' }}>
+        <span style={{ fontSize: 11, color: 'var(--fg-3)', letterSpacing: '0.04em', alignSelf: 'center' }}>Topics (opt-in):</span>
         {topics.map(t => (
           <label key={t.value} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, cursor: 'pointer' }}>
             <input
               type="checkbox"
               checked={selected.indexOf(t.value) !== -1}
               onChange={() => toggle(t.value)}
+              disabled={state === 'submitting'}
             />
             {t.label}
           </label>

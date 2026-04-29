@@ -56,6 +56,8 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script type="text/babel" src="../components/PageShell.jsx"></script>
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
 <script type="text/babel" src="../components/AuthorMeta.jsx"></script>
+<!-- UXcritique20260429: hides "Section content in development" stubs behind <Pending> -->
+<script type="text/babel" src="../components/Pending.jsx"></script>
 <script type="text/babel" src="../components/ArticleBody.jsx"></script>
 
 <script type="text/babel">
@@ -84,15 +86,15 @@ const ARTICLE = {
     },
     {
       heading: 'Three gaps that still trip submissions',
-      paragraphs: [
-        "Section content in development. CMS stage will expand this section with three gating concerns we see most often when China-sourced RWE enters a U.S. or EU regulatory package — population alignment, comparator availability, and outcome definition mapping."
-      ]
+      pending: true,
+      pendingLabel: 'Three gating concerns we see most often when China-sourced RWE enters a U.S. or EU regulatory package — population alignment, comparator availability, and outcome definition mapping.',
+      pendingNote: 'Section in physician review · expected publication May 2026'
     },
     {
       heading: 'What we ask before quoting a China RWE source overseas',
-      paragraphs: [
-        "Section content in development. CMS stage will detail the four-question pre-check our reviewers run before a China-sourced citation enters a U.S.-facing dossier draft."
-      ]
+      pending: true,
+      pendingLabel: 'Our reviewers run a four-question pre-check before a China-sourced citation enters a U.S.-facing dossier draft.',
+      pendingNote: 'Section in physician review · expected publication May 2026'
     }
   ],
   related: {

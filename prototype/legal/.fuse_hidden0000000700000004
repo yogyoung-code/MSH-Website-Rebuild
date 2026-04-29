@@ -49,8 +49,6 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
 <script type="text/babel" src="../components/LangSwitch.jsx"></script>
 <script type="text/babel" src="../components/LegalProse.jsx"></script>
-<!-- UXcritique20260429: page-level draft banner replaces inline marker -->
-<script type="text/babel" src="../components/Pending.jsx"></script>
 
 <script type="text/babel">
 // Copy Deck v4.2 §12.2 — skeleton, awaiting external counsel finalization.
@@ -133,11 +131,6 @@ function App() {
  { label: lang === 'en' ? 'Legal' : '法律', href: '/legal/' },
  { label: lang === 'en' ? 'Privacy Policy' : '隐私政策' }
  ]}>
- <DraftNotice
- message={lang === 'en'
- ? 'This page is in draft pending external counsel sign-off. The text below describes intended practice and may change without notice. Submit privacy questions to privacy@medscihealthcare.com.'
- : '本页面为草稿，正待外部律师签字。以下内容描述的是预期实践，可能未经通知即作修改。隐私相关问题请发送至 privacy@medscihealthcare.com。'}
- signoff={lang === 'en' ? 'external counsel + DPO' : '外部律师 + 数据保护官'} />
  <div style={{ maxWidth: 1280, margin: '0 auto', padding: '24px clamp(24px, 6vw, 96px) 0', display: 'flex', justifyContent: 'flex-end' }}>
  <LangSwitch enabled={true} current={lang} onSwitch={setLang} />
  </div>

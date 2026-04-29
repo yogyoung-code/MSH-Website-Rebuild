@@ -15,9 +15,9 @@
 <meta property="og:image" content="https://medscihealthcare.com/assets/og/legal-disclosures-1200x630.png">
 <meta property="og:url" content="https://medscihealthcare.com/legal/disclosures">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="../assets/colors_and_type.css">
-<link rel="stylesheet" href="../assets/responsive.css">
-<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<link rel="stylesheet" href="./assets/colors_and_type.css">
+<link rel="stylesheet" href="./assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="./assets/logo/medsci-healthcare-mark.svg">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -50,20 +50,18 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <body>
 <div id="root"></div>
 
-<script src="../assets/vendor/react.development.js"></script>
-<script src="../assets/vendor/react-dom.development.js"></script>
-<script src="../assets/vendor/babel.min.js"></script>
-<script src="../assets/vendor/lucide.min.js"></script>
+<script src="./assets/vendor/react.development.js"></script>
+<script src="./assets/vendor/react-dom.development.js"></script>
+<script src="./assets/vendor/babel.min.js"></script>
+<script src="./assets/vendor/lucide.min.js"></script>
 
-<script type="text/babel" src="../components/Button.jsx"></script>
-<script type="text/babel" src="../components/Header.jsx"></script>
-<script type="text/babel" src="../components/Footer.jsx"></script>
-<script type="text/babel" src="../components/PageShell.jsx"></script>
-<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
-<script type="text/babel" src="../components/LangSwitch.jsx"></script>
-<script type="text/babel" src="../components/LegalProse.jsx"></script>
-<!-- UXcritique20260429: page-level draft banner replaces inline marker -->
-<script type="text/babel" src="../components/Pending.jsx"></script>
+<script type="text/babel" src="./components/Button.jsx"></script>
+<script type="text/babel" src="./components/Header.jsx"></script>
+<script type="text/babel" src="./components/Footer.jsx"></script>
+<script type="text/babel" src="./components/PageShell.jsx"></script>
+<script type="text/babel" src="./components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="./components/LangSwitch.jsx"></script>
+<script type="text/babel" src="./components/LegalProse.jsx"></script>
 
 <script type="text/babel">
 // Copy Deck v4.2 §12.3 — DUAL-SIGN: IR + Legal. Skeleton awaiting both.
@@ -142,11 +140,6 @@ function App() {
  { label: lang === 'en' ? 'Legal' : '法律', href: '/legal/' },
  { label: lang === 'en' ? 'Disclosures' : '披露' }
  ]}>
- <DraftNotice
- message={lang === 'en'
- ? 'This page is in draft pending dual sign-off. Where any number on this page differs from the most recent HKEX disclosure, the HKEX disclosure governs.'
- : '本页面为草稿，正待双签。如本页任何数字与最新 HKEX 披露不一致，以 HKEX 披露为准。'}
- signoff={lang === 'en' ? 'IR + Counsel' : 'IR + 律师'} />
  <div style={{ maxWidth: 1280, margin: '0 auto', padding: '24px clamp(24px, 6vw, 96px) 0', display: 'flex', justifyContent: 'flex-end' }}>
  <LangSwitch enabled={true} current={lang} onSwitch={setLang} />
  </div>

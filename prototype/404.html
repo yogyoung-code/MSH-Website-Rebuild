@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — MedSci Healthcare</title>
+<meta name="description" content="The page you were looking for could not be found on medscihealthcare.com.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo/medsci-healthcare-mark.svg">
+<style>
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="assets/vendor/react.development.js"></script>
+<script src="assets/vendor/react-dom.development.js"></script>
+<script src="assets/vendor/babel.min.js"></script>
+<script src="assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel" src="components/Button.jsx"></script>
+<script type="text/babel" src="components/Header.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+
+<script type="text/babel">
+function NotFound() {
+  // Capture the URL the user tried so support has context if they reach out.
+  const path = (typeof window !== 'undefined' && window.location)
+    ? window.location.pathname + window.location.search
+    : '/';
+
+  const links = [
+    { label: 'Solutions',     href: '/solutions/entering-china.html' },
+    { label: 'AI Platform',   href: '/ai-platform.html' },
+    { label: 'Case studies',  href: '/case-studies/' },
+    { label: 'Insights',      href: '/insights/' },
+    { label: 'About',         href: '/about.html' },
+    { label: 'Contact',       href: '/contact.html' }
+  ];
+
+  return (
+    <div>
+      <Header />
+
+      <main style={{
+        maxWidth: 'var(--container-max, 1280px)',
+        margin: '0 auto',
+        padding: 'clamp(64px, 8vw, 128px) clamp(24px, 6vw, 96px)'
+      }}>
+        <div style={{ maxWidth: 720 }}>
+          <div style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: 12,
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: 'var(--brand-accent-700)',
+            marginBottom: 24,
+            fontWeight: 600
+          }}>404 · Page not found</div>
+
+          <h1 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(36px, 5vw, 64px)',
+            lineHeight: 1.1,
+            color: 'var(--brand-primary-700)',
+            margin: '0 0 24px',
+            fontWeight: 600,
+            letterSpacing: '-0.012em'
+          }}>That page isn't here.</h1>
+
+          <p style={{
+            fontSize: 18,
+            color: 'var(--fg-2)',
+            lineHeight: 1.6,
+            margin: '0 0 32px'
+          }}>
+            The link may be out of date, or the page may have been moved. Most of what
+            you're probably looking for is one click away below — or send us the
+            broken link and we'll fix it.
+          </p>
+
+          {/* Show the path the user tried, if it's safe to display */}
+          {path && path !== '/' && (
+            <div style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 12,
+              color: 'var(--fg-3)',
+              background: 'var(--bg-2)',
+              border: '1px solid var(--border-1)',
+              borderRadius: 'var(--radius-md, 6px)',
+              padding: '10px 14px',
+              margin: '0 0 32px',
+              wordBreak: 'break-all'
+            }}>
+              You tried: <span style={{ color: 'var(--fg-1)' }}>{path.replace(/[<>]/g, '')}</span>
+            </div>
+          )}
+
+          <div style={{
+            display: 'flex',
+            gap: 12,
+            flexWrap: 'wrap',
+            marginBottom: 48
+          }}>
+            <a href="/" style={{
+              display: 'inline-block',
+              padding: '14px 28px',
+              background: 'var(--brand-primary-700)',
+              color: 'var(--bg-1)',
+              fontFamily: 'var(--font-ui)',
+              fontSize: 14,
+              fontWeight: 600,
+              letterSpacing: '0.04em',
+              textDecoration: 'none',
+              borderRadius: 'var(--radius-md, 6px)'
+            }}>Go to homepage</a>
+            <a href={`/contact.html?topic=other&note=Broken%20link%3A%20${encodeURIComponent(path)}`} style={{
+              display: 'inline-block',
+              padding: '14px 28px',
+              background: 'transparent',
+              color: 'var(--brand-primary-700)',
+              border: '1px solid var(--brand-primary-700)',
+              fontFamily: 'var(--font-ui)',
+              fontSize: 14,
+              fontWeight: 600,
+              letterSpacing: '0.04em',
+              textDecoration: 'none',
+              borderRadius: 'var(--radius-md, 6px)'
+            }}>Report this broken link</a>
+          </div>
+
+          <div style={{
+            borderTop: '1px solid var(--border-1)',
+            paddingTop: 32
+          }}>
+            <div style={{
+              fontFamily: 'var(--font-ui)',
+              fontSize: 12,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              color: 'var(--fg-3)',
+              marginBottom: 16,
+              fontWeight: 600
+            }}>You might be looking for</div>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              margin: 0,
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+              gap: 8
+            }}>
+              {links.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} style={{
+                    display: 'block',
+                    padding: '10px 14px',
+                    fontSize: 14,
+                    fontWeight: 500,
+                    color: 'var(--brand-primary-700)',
+                    background: 'var(--bg-2)',
+                    border: '1px solid var(--border-1)',
+                    borderRadius: 'var(--radius-md, 6px)',
+                    textDecoration: 'none',
+                    transition: 'all var(--dur-ui, 200ms) var(--ease-standard, cubic-bezier(0.4,0,0.2,1))'
+                  }}>{l.label} →</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<NotFound />);
+</script>
+</body>
+</html>
