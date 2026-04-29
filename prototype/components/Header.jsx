@@ -32,7 +32,7 @@ function Header() {
             }}></span>
             HKEX listed · 2415.HK
           </span>
-          <a href="https://medscihealthcare.com/ir" rel="external noopener" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+          <a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
             Investor Relations <span style={{ fontSize: 10 }}>↗</span>
           </a>
         </div>
@@ -100,7 +100,7 @@ function Header() {
             <i data-lucide="globe" width="14" height="14"></i>
             {lang} <span style={{ fontSize: 10, opacity: 0.5 }}>▾</span>
           </div>
-          <Button variant="primary" icon={true}>Talk to an Expert</Button>
+          <Button variant="primary" icon={true} href="/contact.html">Talk to an Expert</Button>
         </div>
       </div>
 
@@ -128,7 +128,7 @@ function Header() {
               border: '1px solid var(--border-1)', cursor: 'pointer',
               fontSize: 13, color: 'var(--fg-2)'
             }}>{lang}</button>
-            <Button variant="primary" icon={true}>Talk to an Expert</Button>
+            <Button variant="primary" icon={true} href="/contact.html">Talk to an Expert</Button>
           </div>
         </div>
       )}

@@ -46,7 +46,7 @@ function Hero() {
           <div style={{ display: 'flex', gap: 12, marginTop: 36, flexWrap: 'wrap' }}>
             <Button variant="primary-light" style={{ background: '#fff', color: 'var(--brand-primary-700)' }}>Enter China</Button>
             <Button variant="outline-light">Go Global</Button>
-            <Button variant="ghost" style={{ color: 'rgba(255,255,255,0.85)' }} icon={true}>Talk to an Expert</Button>
+            <Button variant="ghost" style={{ color: 'rgba(255,255,255,0.85)' }} icon={true} href="/contact.html">Talk to an Expert</Button>
           </div>
         </div>
 

@@ -27,7 +27,7 @@ function SolutionHeader() {
             <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: 'var(--brand-accent-500)' }}></span>
             HKEX listed · 2415.HK
           </span>
-          <a href="https://medscihealthcare.com/ir" rel="external noopener" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>
+          <a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>
             Investor Relations ↗
           </a>
         </div>
@@ -68,7 +68,7 @@ function SolutionHeader() {
             <i data-lucide="globe" width="14" height="14"></i>
             {lang} <span style={{ fontSize: 10, opacity: 0.5 }}>▾</span>
           </div>
-          <Button variant="primary" icon={true}>Talk to an Expert</Button>
+          <Button variant="primary" icon={true} href="/contact.html">Talk to an Expert</Button>
         </div>
       </div>
     </header>

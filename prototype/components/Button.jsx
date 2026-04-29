@@ -1,5 +1,5 @@
 /* Button.jsx */
-function Button({ variant = 'primary', children, icon = true, onClick, disabled, style }) {
+function Button({ variant = 'primary', children, icon = true, onClick, disabled, style, href, target, rel }) {
   const base = {
     display: 'inline-flex', alignItems: 'center', gap: 8,
     fontFamily: 'var(--font-ui)', fontWeight: 600, fontSize: 14,
@@ -26,9 +26,26 @@ function Button({ variant = 'primary', children, icon = true, onClick, disabled,
     'outline-light': { background: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.7)' },
     ghost:           { textDecoration: 'underline' },
   })[variant] : {};
+  const composedStyle = { ...base, ...variants[variant], ...hoverStyle, ...style };
+  // When href is provided, render as <a> for proper navigation; otherwise <button>.
+  if (href) {
+    return (
+      <a
+        href={href}
+        target={target}
+        rel={rel || (target === '_blank' ? 'noopener noreferrer' : undefined)}
+        onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+        onClick={onClick}
+        style={composedStyle}
+      >
+        {children}
+        {icon && <span style={{ marginLeft: 2, transform: hover ? 'translateX(2px)' : 'none', transition: 'transform 200ms' }}>→</span>}
+      </a>
+    );
+  }
   return (
     <button
-      style={{ ...base, ...variants[variant], ...hoverStyle, ...style }}
+      style={composedStyle}
       onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
       disabled={disabled} onClick={onClick}
     >

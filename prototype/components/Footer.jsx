@@ -25,7 +25,7 @@ function Footer() {
       { label: 'Terms of Use',           href: '/legal/terms.html' },
       { label: 'Privacy Policy',         href: '/legal/privacy.html' },
       { label: 'Disclosures',            href: '/legal/disclosures.html' },
-      { label: 'Investor Relations ↗',   href: 'https://medscihealthcare.com/ir', rel: 'external noopener' },
+      { label: 'Investor Relations ↗',   href: 'https://ir.medsci.cn/en/', rel: 'external noopener' },
     ] },
   ];
   return (

@@ -39,7 +39,7 @@ function PilotPricing({ pricing, contactTopic }) {
         <p style={{ fontSize: 14, color: 'var(--fg-2)', margin: '0 0 14px', lineHeight: 1.5 }}>
           BD and Finance are finalizing the engagement structure. Reach out and we'll share scope and budget bands within one business day.
         </p>
-        <a href={`/contact?topic=${contactTopic || 'other'}`} style={{
+        <a href={`/contact.html?topic=${contactTopic || 'other'}`} style={{
           display: 'inline-block',
           padding: '10px 20px',
           background: 'var(--brand-primary-700)',
