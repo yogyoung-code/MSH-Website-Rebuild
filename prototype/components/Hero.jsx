@@ -24,7 +24,8 @@ function Hero() {
             MedSci Healthcare · 2415.HK
           </div>
           <h1 style={{
-            fontFamily: 'var(--font-display)', fontSize: 62, fontWeight: 500,
+            /* UXcritique20260429 polish: weight 500 → 600 per spec §3.2 (display-l). */
+            fontFamily: 'var(--font-display)', fontSize: 62, fontWeight: 600,
             lineHeight: 1.08, letterSpacing: '-0.012em',
             margin: 0, color: '#fff', textWrap: 'balance',
           }}>

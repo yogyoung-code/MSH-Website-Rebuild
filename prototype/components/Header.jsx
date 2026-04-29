@@ -4,6 +4,16 @@ function Header() {
   const [megaOpen, setMegaOpen] = React.useState(false);
   const [lang, setLang] = React.useState('EN');
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  // UXcritique20260429 polish: 150ms hover-intent so cursor flicks past
+  // the Solutions item don't trigger the mega-menu accidentally.
+  const megaTimerRef = React.useRef(null);
+  const openMegaIntent = () => {
+    if (megaTimerRef.current) clearTimeout(megaTimerRef.current);
+    megaTimerRef.current = setTimeout(() => setMegaOpen(true), 150);
+  };
+  const cancelMegaIntent = () => {
+    if (megaTimerRef.current) clearTimeout(megaTimerRef.current);
+  };
   const navItems = [
     { label: 'Solutions', hasMega: true },
     { label: 'Case Studies', href: '/case-studies/' },
@@ -68,10 +78,10 @@ function Header() {
         >{mobileOpen ? '×' : '☰'}</button>
 
         <nav className="nav-desktop" style={{ display: 'flex', gap: 4, marginLeft: 16, position: 'relative' }}
-             onMouseLeave={() => setMegaOpen(false)}>
+             onMouseLeave={() => { cancelMegaIntent(); setMegaOpen(false); }}>
           {navItems.map((it, i) => (
             <div key={it.label} style={{ position: 'relative' }}
-                 onMouseEnter={() => { setHoverIdx(i); if (it.hasMega) setMegaOpen(true); else setMegaOpen(false); }}>
+                 onMouseEnter={() => { setHoverIdx(i); if (it.hasMega) openMegaIntent(); else { cancelMegaIntent(); setMegaOpen(false); } }}>
               <a href={it.href || '#'}
                  style={{
                    display: 'inline-flex', alignItems: 'center', gap: 4,
@@ -137,63 +147,56 @@ function Header() {
   );
 }
 
+// UXcritique20260429 polish: 3-column / 9-item panel collapsed to 2 columns.
+// Left column = strategic entries (paths + sprint together). Right column =
+// deliverable blocks. Cleaner pairing — each column has 3 items, balanced weight.
 function MegaMenu() {
-  const groups = [
-    {
-      label: 'By Path · Strategy',
-      items: [
-        { title: 'Entering China', desc: 'Evidence, regulatory and HCP traction inside China.', href: '/solutions/entering-china.html', tag: 'Navy' },
-        { title: 'Going Global (US)', desc: 'US/global launch readiness for China innovators.', href: '/solutions/going-global-us.html', tag: 'Cyan' },
-      ],
-    },
-    {
-      label: 'By Deliverable · Business Blocks',
-      items: [
-        { title: 'Medical Evidence', desc: 'RWE · Registry · Literature · HEOR.', href: '/solutions/medical-evidence.html' },
-        { title: 'Physician Engagement', desc: '3.33M+ network · Advisory · KOL · CME.', href: '/solutions/physician-engagement.html' },
-        { title: 'Medical Communications', desc: 'Publications · Congress · Localization.', href: '/solutions/medical-communications.html' },
-      ],
-    },
-    {
-      label: 'Quick Start',
-      items: [
-        { title: 'Cross-Border Content Sprint', desc: 'Low-commitment entry. A single artifact in 2 weeks.', href: '/solutions/cross-border-medical-content-sprint.html' },
-      ],
-    },
+  const strategic = [
+    { title: 'Entering China',           desc: 'Evidence, regulatory and HCP traction inside China.',     href: '/solutions/entering-china.html',                       tag: 'Navy' },
+    { title: 'Going Global (US)',        desc: 'US / global launch readiness for China innovators.',      href: '/solutions/going-global-us.html',                      tag: 'Cyan' },
+    { title: 'Cross-Border Content Sprint', desc: 'Low-commitment entry. A single artifact in 2 weeks.',  href: '/solutions/cross-border-medical-content-sprint.html', tag: 'Sprint' },
   ];
+  const deliverables = [
+    { title: 'Medical Evidence',        desc: 'RWE · Registry · Literature · HEOR.',                    href: '/solutions/medical-evidence.html' },
+    { title: 'Physician Engagement',    desc: '3.33M+ network · Advisory · KOL · CME.',                 href: '/solutions/physician-engagement.html' },
+    { title: 'Medical Communications',  desc: 'Publications · Congress · Localization.',                href: '/solutions/medical-communications.html' },
+  ];
+  const tagBg = (tag) => tag === 'Cyan' ? 'var(--brand-accent-100)' : tag === 'Sprint' ? 'var(--bg-3)' : 'var(--brand-primary-100)';
+  const tagFg = (tag) => tag === 'Cyan' ? 'var(--brand-accent-700)' : tag === 'Sprint' ? 'var(--fg-2)'  : 'var(--brand-primary-700)';
+  const Column = ({ label, items }) => (
+    <div>
+      <div style={{
+        fontSize: 11, fontWeight: 600, letterSpacing: '0.12em',
+        color: 'var(--brand-accent-700)', textTransform: 'uppercase',
+        paddingBottom: 10, marginBottom: 10,
+        borderBottom: '1px solid var(--border-1)',
+      }}>{label}</div>
+      {items.map(it => (
+        <a key={it.title} href={it.href}
+           style={{ display: 'block', padding: '10px 0', textDecoration: 'none' }}>
+          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--brand-primary-700)', marginBottom: 4 }}>
+            {it.title}
+            {it.tag && <span style={{
+              marginLeft: 8, fontSize: 10, fontWeight: 500, padding: '1px 6px', borderRadius: 4,
+              background: tagBg(it.tag), color: tagFg(it.tag),
+              letterSpacing: '0.04em', textTransform: 'uppercase',
+            }}>{it.tag}</span>}
+          </div>
+          <div style={{ fontSize: 12.5, color: 'var(--fg-2)', lineHeight: 1.5 }}>{it.desc}</div>
+        </a>
+      ))}
+    </div>
+  );
   return (
     <div style={{
       position: 'absolute', top: '100%', left: -40,
       background: '#fff', border: '1px solid var(--border-1)',
       borderRadius: 12, boxShadow: 'var(--shadow-md)',
-      padding: 28, width: 960, zIndex: 60,
-      display: 'grid', gridTemplateColumns: '1fr 1.3fr 1fr', gap: 32,
+      padding: 28, width: 720, zIndex: 60,
+      display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32,
     }}>
-      {groups.map(g => (
-        <div key={g.label}>
-          <div style={{
-            fontSize: 11, fontWeight: 600, letterSpacing: '0.12em',
-            color: 'var(--brand-accent-700)', textTransform: 'uppercase',
-            paddingBottom: 10, marginBottom: 10,
-            borderBottom: '1px solid var(--border-1)',
-          }}>{g.label}</div>
-          {g.items.map(it => (
-            <a key={it.title} href={it.href}
-               style={{ display: 'block', padding: '10px 0', textDecoration: 'none' }}>
-              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--brand-primary-700)', marginBottom: 4 }}>
-                {it.title}
-                {it.tag && <span style={{
-                  marginLeft: 8, fontSize: 10, fontWeight: 500, padding: '1px 6px', borderRadius: 4,
-                  background: it.tag === 'Cyan' ? 'var(--brand-accent-100)' : 'var(--brand-primary-100)',
-                  color: it.tag === 'Cyan' ? 'var(--brand-accent-700)' : 'var(--brand-primary-700)',
-                  letterSpacing: '0.04em', textTransform: 'uppercase',
-                }}>{it.tag}</span>}
-              </div>
-              <div style={{ fontSize: 12.5, color: 'var(--fg-2)', lineHeight: 1.5 }}>{it.desc}</div>
-            </a>
-          ))}
-        </div>
-      ))}
+      <Column label="By Path · Strategy"          items={strategic} />
+      <Column label="By Deliverable · Block"      items={deliverables} />
     </div>
   );
 }

@@ -148,14 +148,10 @@ function LegalProse({ title, eyebrow, lastUpdated, lede, sections, pendingNotice
   );
 }
 
-// LegalParagraph: kept as a thin pass-through after UXcritique20260429
-// stripped inline ⚠️ markers from all legal copy. The page-level <DraftNotice>
-// banner above LegalProse now communicates draft state. We keep the wrapper
-// so existing call sites (`<LegalParagraph text={p} />`) don't break, but it
-// no longer scans for any glyph — if pre-counsel ⚠️ ever returns, render plain.
-function LegalParagraph({ text }) {
-  return <>{String(text)}</>;
-}
-
+// LegalParagraph: removed in /polish (UXcritique20260429). Marker-stripping
+// no longer needed — DraftNotice banner replaces it. LegalProse now renders
+// string paragraphs directly. The window.LegalParagraph export below is a
+// no-op shim kept ONLY so any external page that still references it doesn't
+// crash; new code should not call it.
 window.LegalProse = LegalProse;
-window.LegalParagraph = LegalParagraph;
+window.LegalParagraph = ({ text }) => text;
