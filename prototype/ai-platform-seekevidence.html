@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SeekEvidence — Research AI · MedSci Healthcare</title>
+<meta name="description" content="SeekEvidence: from literature review to manuscript drafting. Structured evidence extraction across global trials and registries.">
+<link rel="canonical" href="https://medscihealthcare.com/ai-platform/seekevidence">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/ai-platform/seekevidence">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="SeekEvidence — Research AI">
+<meta property="og:description" content="From literature review to manuscript drafting. Multi-trial PFS / OS comparison and forest plot generation.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/seekevidence-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/ai-platform/seekevidence">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SeekEvidence",
+  "applicationCategory": "MedicalApplication",
+  "operatingSystem": "Web",
+  "publisher": { "@type": "Organization", "name": "MedSci Healthcare", "url": "https://medscihealthcare.com" },
+  "url": "https://medscihealthcare.com/ai-platform/seekevidence"
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<noscript>
+  <div style="padding: 64px 24px; max-width: 1024px; margin: 0 auto; font-family: Georgia, serif;">
+    <h1>SeekEvidence — Research AI</h1>
+    <p style="font-size: 18px; line-height: 1.5;">
+      From literature review to manuscript drafting. Structured evidence extraction
+      across global trials and registries.
+    </p>
+    <p>This page contains an interactive product demo that requires JavaScript.
+      <a href="/ai-platform">← Back to AI Platform overview</a> ·
+      <a href="/contact?intent=ai_product_access">Request Limited Preview access</a>.</p>
+  </div>
+</noscript>
+
+<!-- Self-hosted vendor -->
+<script src="assets/vendor/react.development.js"></script>
+<script src="assets/vendor/react-dom.development.js"></script>
+<script src="assets/vendor/babel.min.js"></script>
+<script src="assets/vendor/lucide.min.js"></script>
+
+<!-- v0.1 layout -->
+<script type="text/babel" src="components/Button.jsx"></script>
+<script type="text/babel" src="components/Header.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+<script type="text/babel" src="components/PageShell.jsx"></script>
+<!-- v3.0 /ai-platform components -->
+<script type="text/babel" src="components/AIProductShowcase.jsx"></script>
+<script type="text/babel" src="components/AIProductShowcaseDemo.jsx"></script>
+<script type="text/babel" src="components/AIProductSubpageTemplate.jsx"></script>
+
+<script type="text/babel">
+/* /ai-platform/seekevidence — v3.0 product subpage instance.
+   Mock data; Task 13 wires CMS GROQ fetch. */
+const PRODUCT = {
+  slug: 'seekevidence',
+  name: { en: 'SeekEvidence' },
+  accentColor: 'violet',
+  status: 'limitedPreview',
+  sidebarBrand: 'SeekEvidence',
+  sidebarIcon: 'search',
+  headerModel: 'Research-Graph-V4',
+  userRole: { en: 'Research AI · Evidence Synthesis' },
+  positioningOneLiner: { en: 'From literature review to manuscript drafting. Structured evidence extraction across global trials and registries.' },
+  capabilitiesShort: [
+    { en: 'Multi-trial PFS / OS comparison' },
+    { en: 'Forest plot generation' },
+    { en: 'Manuscript-ready data export' },
+  ],
+  capabilitiesFull: [
+    { en: 'Structured PFS / OS / HR extraction across 250M+ indexed trials and papers.' },
+    { en: 'Auto-generated forest plots with reviewer-editable bounds.' },
+    { en: 'PRISMA-aligned literature review starting from a research question.' },
+    { en: 'Manuscript-section drafting (background, methods, results) with citation trail.' },
+    { en: 'Cross-jurisdictional bridge memos for FDA / EMA / NMPA submissions.' },
+    { en: 'Excel / RIS / EndNote export for downstream review and team sharing.' },
+  ],
+  useCases: [
+    { title: { en: 'Phase III trial landscape mapping' },
+      description: { en: 'Pull and structure all Phase III trials in a therapy area, compare PFS and OS outcomes, and generate a comparison table with HR and 95% CI.' } },
+    { title: { en: 'Systematic review acceleration' },
+      description: { en: 'PRISMA-aligned literature review starting from a research question. Outputs evidence inventory, exclusion log, and forest plot draft.' } },
+    { title: { en: 'Cross-jurisdictional bridge memo' },
+      description: { en: 'Translate origin-market trial data into target-market regulatory expectations (e.g. CN data → FDA gap analysis), with comparability table and re-derive checklist.' } },
+  ],
+  showcase: {
+    demoLanguage: 'en',
+    demoScenario: [
+      { _type: 'userMessage',
+        body: '提取近 5 年关于 "免疫检查点抑制剂治疗非小细胞肺癌" 的所有 III 期临床试验,对比 PFS 和 OS 数据。' },
+      { _type: 'dataTable',
+        eyebrow: 'Structured Data Extraction',
+        badge: 'N = 12 Trials Found',
+        columns: ['Trial Name', 'Intervention', 'PFS (mo)', 'HR (95% CI)'],
+        rows: [
+          ['KEYNOTE-189',   'Pembrolizumab + Chemo', { value: '8.8 vs 4.9', highlight: true }, { value: '0.52 (0.43-0.64)', mono: true }],
+          ['IMpower150',    'Atezo + Bevacizumab',   { value: '8.3 vs 6.8', highlight: true }, { value: '0.62 (0.52-0.74)', mono: true }],
+          ['CheckMate 9LA', 'Nivo + Ipi + Chemo',    { value: '6.8 vs 5.0', highlight: true }, { value: '0.70 (0.57-0.86)', mono: true }],
+        ],
+      },
+      { _type: 'actionChips',
+        items: [
+          { icon: 'bar-chart-3', label: '生成森林图 (Forest Plot)' },
+          { icon: 'file-text',   label: '导出 Excel' },
+        ],
+      },
+    ],
+  },
+  accessUrl: '/access/seekevidence',
+};
+
+function App() {
+  React.useEffect(() => {
+    const t = setTimeout(() => window.lucide && window.lucide.createIcons(), 60);
+    return () => clearTimeout(t);
+  });
+  return <AIProductSubpage product={PRODUCT} />;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

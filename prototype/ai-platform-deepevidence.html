@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepEvidence — Clinical AI · MedSci Healthcare</title>
+<meta name="description" content="DeepEvidence: authoritative-source clinical guidance at the bedside. Each answer anchored to guidelines and drug labels.">
+<link rel="canonical" href="https://medscihealthcare.com/ai-platform/deepevidence">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/ai-platform/deepevidence">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="DeepEvidence — Clinical AI">
+<meta property="og:description" content="Bedside clinical guidance anchored to ADA, KDIGO, and other authoritative guidelines.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/deepevidence-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/ai-platform/deepevidence">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DeepEvidence",
+  "applicationCategory": "MedicalApplication",
+  "operatingSystem": "Web",
+  "publisher": { "@type": "Organization", "name": "MedSci Healthcare", "url": "https://medscihealthcare.com" },
+  "url": "https://medscihealthcare.com/ai-platform/deepevidence"
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<noscript>
+  <div style="padding: 64px 24px; max-width: 1024px; margin: 0 auto; font-family: Georgia, serif;">
+    <h1>DeepEvidence — Clinical AI</h1>
+    <p style="font-size: 18px; line-height: 1.5;">
+      Authoritative-source clinical guidance at the bedside. Each answer anchored to
+      guidelines and drug labels.
+    </p>
+    <p>This page contains an interactive product demo that requires JavaScript.
+      <a href="/ai-platform">← Back to AI Platform overview</a> ·
+      <a href="/contact?intent=ai_product_access">Request Limited Preview access</a>.</p>
+  </div>
+</noscript>
+
+<!-- Self-hosted vendor -->
+<script src="assets/vendor/react.development.js"></script>
+<script src="assets/vendor/react-dom.development.js"></script>
+<script src="assets/vendor/babel.min.js"></script>
+<script src="assets/vendor/lucide.min.js"></script>
+
+<!-- v0.1 layout -->
+<script type="text/babel" src="components/Button.jsx"></script>
+<script type="text/babel" src="components/Header.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+<script type="text/babel" src="components/PageShell.jsx"></script>
+<!-- v3.0 /ai-platform components -->
+<script type="text/babel" src="components/AIProductShowcase.jsx"></script>
+<script type="text/babel" src="components/AIProductShowcaseDemo.jsx"></script>
+<script type="text/babel" src="components/AIProductSubpageTemplate.jsx"></script>
+
+<script type="text/babel">
+/* /ai-platform/deepevidence — v3.0 product subpage instance.
+   Mock data; Task 13 wires CMS GROQ fetch. */
+const PRODUCT = {
+  slug: 'deepevidence',
+  name: { en: 'DeepEvidence' },
+  accentColor: 'blue',
+  status: 'limitedPreview',
+  sidebarBrand: 'DeepEvidence',
+  sidebarIcon: 'activity',
+  headerModel: 'MED-LLM-PRO-V2 (Clinical)',
+  userRole: { en: 'Clinical AI · Point of Care' },
+  positioningOneLiner: { en: 'Authoritative-source clinical guidance at the bedside. Each answer anchored to guidelines and drug labels.' },
+  capabilitiesShort: [
+    { en: 'Real-time guideline citation' },
+    { en: 'Bedside differential diagnosis' },
+    { en: 'Patient-communication translation' },
+  ],
+  capabilitiesFull: [
+    { en: 'Real-time citation against ADA, KDIGO, NCCN, ESMO, and 15K+ guidelines.' },
+    { en: 'Differential-diagnosis support with explicit reasoning trail.' },
+    { en: 'Drug-label aware dosing for renal / hepatic adjustment.' },
+    { en: 'Patient-communication translation across EN / CN / clinical jargon levels.' },
+    { en: 'Named clinician sign-off on every recommendation card.' },
+    { en: 'Exportable evidence trail per encounter.' },
+  ],
+  useCases: [
+    { title: { en: 'Renal dosing in T2DM + CKD' },
+      description: { en: 'Bedside check on whether SGLT2i is recommended given current eGFR and metformin dosage. Cites DAPA-CKD and KDIGO directly.' } },
+    { title: { en: 'Cancer pain management' },
+      description: { en: 'Step-up opioid plan with NCCN cross-referenced safety bounds for hepatic impairment.' } },
+    { title: { en: 'Patient handoff translation' },
+      description: { en: 'Convert specialist plan into patient-language explanation, with bilingual EN ↔ CN parity for cross-border families.' } },
+  ],
+  showcase: {
+    demoLanguage: 'en',
+    demoScenario: [
+      { _type: 'userMessage',
+        body: '患者 65 岁,2 型糖尿病合并慢性肾脏病 (CKD G3a),目前服用二甲双胍。 是否需要调整降糖方案?参考最新指南。' },
+      { _type: 'aiResponse',
+        eyebrow: 'Evidence-Based Analysis',
+        prose: '根据 [2024 ADA 糖尿病诊疗标准] 及 [KDIGO 2024 指南]:',
+        bullets: [
+          { title: '推荐加用 SGLT2i',
+            body: '对于 T2DM 合并 CKD 患者,若 eGFR ≥ 20 ml/min/1.73m²,强烈推荐使用 SGLT2i (如达格列净、恩格列净) 以延缓肾病进展并降低心血管风险 (证据级别 A)。' },
+          { title: '二甲双胍调整',
+            body: '若 eGFR 在 45–60 之间可维持原量;若 eGFR < 45,应减量;若 < 30 则禁忌。 建议监测 eGFR 变化。' },
+        ],
+        citations: [
+          { type: 'Guideline', label: 'ADA 2024 Standards of Care' },
+          { type: 'RCT',       label: 'DAPA-CKD Trial' },
+          { type: 'SPL',       label: 'Metformin Label (NMPA)' },
+        ],
+      },
+      { _type: 'actionChips',
+        items: [
+          { icon: 'file-text', label: '生成处方建议' },
+          { icon: 'share-2',   label: '发送至患者端' },
+        ],
+      },
+    ],
+  },
+  accessUrl: '/access/deepevidence',
+};
+
+function App() {
+  React.useEffect(() => {
+    const t = setTimeout(() => window.lucide && window.lucide.createIcons(), 60);
+    return () => clearTimeout(t);
+  });
+  return <AIProductSubpage product={PRODUCT} />;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
