@@ -53,6 +53,9 @@
 <script type="text/babel" src="components/DeliverableSample.jsx"></script>
 <!-- /ai-platform v3.0 components (added W3) -->
 <script type="text/babel" src="components/AIAssetBalanceSheet.jsx"></script>
+<script type="text/babel" src="components/AIProductShowcase.jsx"></script>
+<!-- lucide icons (for data-lucide attrs in v3.0 components) -->
+<script src="assets/vendor/lucide.min.js"></script>
 
 <script type="text/babel">
 function SectionLabel({ children }) {
@@ -155,6 +158,30 @@ function App() {
           },
         ]}
         narrative="This is the data substrate every MedSci AI product is built on. We don't generate medical knowledge. We index, structure, and route what physicians and regulators have already validated — and pair every output with a named human reviewer."
+      />
+
+      <SectionLabel>0b · AIProductShowcase shell — /ai-platform Act 2 (v3.0 · Task 6a)</SectionLabel>
+      <AIProductShowcase
+        products={[
+          {
+            slug: 'deepevidence',
+            name: { en: 'DeepEvidence' },
+            accentColor: 'blue',
+            status: 'limitedPreview',
+            sidebarBrand: 'DeepEvidence',
+            sidebarIcon: 'activity',
+            headerModel: 'MED-LLM-PRO-V2 (Clinical)',
+          },
+          {
+            slug: 'seekevidence',
+            name: { en: 'SeekEvidence' },
+            accentColor: 'violet',
+            status: 'limitedPreview',
+            sidebarBrand: 'SeekEvidence',
+            sidebarIcon: 'search',
+            headerModel: 'Research-Graph-V4',
+          },
+        ]}
       />
 
       <SectionLabel>1b · PitlRibbon variant="compact" — Act 3 三支柱场景 (v3.0)</SectionLabel>
