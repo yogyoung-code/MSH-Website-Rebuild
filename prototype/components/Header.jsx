@@ -43,7 +43,7 @@ function Header() {
         display: 'flex', alignItems: 'center', gap: 40,
         padding: '14px 40px',
       }}>
-        <a href="#top" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+        <a href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
           <img src="/assets/logo/medsci-healthcare-logo.svg"
                alt="MedSci Healthcare — Improving Healthcare Quality"
                style={{ height: 36 }} />
