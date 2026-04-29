@@ -33,8 +33,31 @@ function PitlRibbon({ steps, eyebrow, title }) {
     && window.matchMedia
     && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // UXcritique20260429 /delight (3a): on-scroll-into-view stagger.
+  // AI lane cells fade in first (0–180ms), Physician lane cells follow
+  // (200–380ms). Single one-shot reveal — no looping. IntersectionObserver
+  // disconnects after first trigger. Honors prefers-reduced-motion.
+  const ribbonRef = React.useRef(null);
+  const [inView, setInView] = React.useState(reduced);
+  React.useEffect(() => {
+    if (reduced) return;
+    if (typeof IntersectionObserver === 'undefined') {
+      // Older browsers — show immediately, skip animation.
+      setInView(true);
+      return;
+    }
+    const obs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setInView(true);
+        obs.disconnect();
+      }
+    }, { threshold: 0.2, rootMargin: '0px 0px -10% 0px' });
+    if (ribbonRef.current) obs.observe(ribbonRef.current);
+    return () => obs.disconnect();
+  }, [reduced]);
+
   return (
-    <section style={{
+    <section ref={ribbonRef} style={{
       padding: 'clamp(48px, 6vw, 96px) clamp(24px, 6vw, 96px)',
       background: 'var(--bg-1)',
       borderTop: '1px solid var(--border-1)',
@@ -103,7 +126,7 @@ function PitlRibbon({ steps, eyebrow, title }) {
           </div>
           <div style={laneCellsStyle(steps.length)}>
             {steps.map((s, i) => (
-              <div key={i} style={laneCellStyle('ai', reduced, i)}>
+              <div key={i} style={laneCellStyle('ai', reduced, i, inView)}>
                 <div style={{ fontSize: 14, color: 'var(--fg-1)', lineHeight: 1.5 }}>
                   {s.ai || <em style={{ color: 'var(--fg-3)' }}>—</em>}
                 </div>
@@ -158,7 +181,7 @@ function PitlRibbon({ steps, eyebrow, title }) {
           </div>
           <div style={laneCellsStyle(steps.length)}>
             {steps.map((s, i) => (
-              <div key={i} style={laneCellStyle('md', reduced, i)}>
+              <div key={i} style={laneCellStyle('md', reduced, i, inView)}>
                 <div style={{ fontSize: 14, color: 'var(--fg-1)', lineHeight: 1.5 }}>
                   {s.physician || <em style={{ color: 'var(--fg-3)' }}>—</em>}
                 </div>
@@ -246,14 +269,24 @@ function laneCellsStyle(n) {
   };
 }
 
-function laneCellStyle(track, reduced, i) {
+function laneCellStyle(track, reduced, i, inView) {
+  // /delight (3a): AI cells lead 0–180ms; Physician cells follow 200–380ms.
+  // Each lane staggers 60ms across cells. Whole reveal completes ~600ms after trigger.
+  const laneDelay = track === 'ai' ? 0 : 200;
+  const cellDelay = laneDelay + i * 60;
+  const visible = reduced || inView;
   return {
     background: 'var(--bg-1)',
     border: '1px solid var(--border-1)',
     borderRadius: 'var(--radius-md, 6px)',
     padding: '12px 14px',
     minHeight: 72,
-    transition: reduced ? 'none' : `all var(--dur-content, 400ms) var(--ease-standard, cubic-bezier(0.4,0,0.2,1)) ${i * 60}ms`
+    opacity: visible ? 1 : 0,
+    transform: visible ? 'translateY(0)' : 'translateY(8px)',
+    transition: reduced
+      ? 'none'
+      : `opacity 400ms cubic-bezier(0.22, 1, 0.36, 1) ${cellDelay}ms, transform 400ms cubic-bezier(0.22, 1, 0.36, 1) ${cellDelay}ms`,
+    willChange: visible ? 'auto' : 'opacity, transform'
   };
 }
 
