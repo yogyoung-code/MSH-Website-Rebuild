@@ -78,7 +78,7 @@ function PagePhysicianEngagement() {
         kicker="Every other workstream — evidence, communications, regulatory — depends on a named clinician at the gate. This is the team that runs that gate."
         bg="#fff" label="01 · Overview"
       >
-        <div style={{
+        <div className="two-col-grid" style={{
           background: 'var(--brand-primary-900)', color: '#fff',
           borderRadius: 16, padding: 40,
           display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 32,
@@ -156,7 +156,7 @@ function PagePhysicianEngagement() {
         kicker="The reason a physician will work with us a second time is the same reason a regulator will accept the deliverable: the consent infrastructure is real."
         bg="var(--bg-2)" label="04 · Consent & ethics"
       >
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16 }}>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16 }}>
           {[
             { n: '01', t: 'Engagement-specific', d: 'Consent is scoped to one named engagement — never reused.' },
             { n: '02', t: 'Time-bound',          d: 'Every consent expires. Renewal is opt-in, not opt-out.' },

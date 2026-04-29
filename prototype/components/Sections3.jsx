@@ -178,7 +178,7 @@ function Insights() {
               Written by our operators. Reviewed by our physicians.
             </h2>
           </div>
-          <a href="/insights" style={{ color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 14 }}>All insights →</a>
+          <a href="/insights/" style={{ color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 14 }}>All insights →</a>
         </div>
         <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {posts.map((p, i) => <InsightCard key={i} p={p} />)}
@@ -191,7 +191,7 @@ function Insights() {
 function InsightCard({ p }) {
   const [hover, setHover] = React.useState(false);
   return (
-    <a href="#"
+    <a href={p.href || '/insights/'}
        onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
        style={{
          background: '#fff', border: `1px solid ${hover ? 'var(--brand-primary-300)' : 'var(--border-1)'}`,

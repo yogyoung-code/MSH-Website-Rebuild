@@ -94,7 +94,7 @@ function PageGoingGlobal() {
         kicker="The hardest part of going global is not translation — it’s rewriting your scientific narrative for reviewers who weren’t in the room when you generated the data."
         bg="#fff" label="01 · Overview"
       >
-        <div style={{
+        <div className="two-col-grid" style={{
           display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 32,
           background: 'var(--bg-2)', border: '1px solid var(--border-1)',
           borderRadius: 16, padding: 40,
@@ -230,7 +230,7 @@ function PageGoingGlobal() {
         kicker="A bounded engagement to identify the three or four FDA gaps that will actually slow your submission — before a full Going-Global program."
         bg="#fff" label="07 · Pilot"
       >
-        <div style={{
+        <div className="two-col-grid" style={{
           background: 'linear-gradient(180deg, #D6F1F9 0%, #FFFFFF 100%)', border: '1px solid var(--brand-accent-500)',
           borderRadius: 16, padding: 40,
           display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 40,

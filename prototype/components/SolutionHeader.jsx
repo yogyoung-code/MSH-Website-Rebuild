@@ -3,6 +3,7 @@ function SolutionHeader() {
   const [hoverIdx, setHoverIdx] = React.useState(null);
   const [megaOpen, setMegaOpen] = React.useState(false);
   const [lang, setLang] = React.useState('EN');
+  const [mobileOpen, setMobileOpen] = React.useState(false);
   const navItems = [
     { label: 'Solutions', hasMega: true },
     { label: 'Case Studies', href: '/case-studies/' },
@@ -39,7 +40,24 @@ function SolutionHeader() {
         <a href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
           <img src="/assets/logo/medsci-healthcare-logo.svg" alt="MedSci Healthcare" style={{ height: 36 }} />
         </a>
-        <nav style={{ display: 'flex', gap: 4, marginLeft: 16, position: 'relative' }} onMouseLeave={() => setMegaOpen(false)}>
+        <button
+          className="nav-mobile"
+          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileOpen}
+          onClick={() => setMobileOpen(!mobileOpen)}
+          style={{
+            display: 'none',
+            marginLeft: 'auto',
+            background: 'transparent',
+            border: '1px solid var(--border-1)',
+            padding: '8px 12px',
+            cursor: 'pointer',
+            fontSize: 20,
+            color: 'var(--brand-primary-700)',
+            lineHeight: 1
+          }}
+        >{mobileOpen ? '×' : '☰'}</button>
+        <nav className="nav-desktop" style={{ display: 'flex', gap: 4, marginLeft: 16, position: 'relative' }} onMouseLeave={() => setMegaOpen(false)}>
           {navItems.map((it, i) => (
             <div key={it.label} style={{ position: 'relative' }}
                  onMouseEnter={() => { setHoverIdx(i); if (it.hasMega) setMegaOpen(true); else setMegaOpen(false); }}>
@@ -59,7 +77,7 @@ function SolutionHeader() {
           ))}
           {megaOpen && <SolutionMegaMenu />}
         </nav>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 14, alignItems: 'center' }}>
+        <div className="nav-desktop" style={{ marginLeft: 'auto', display: 'flex', gap: 14, alignItems: 'center' }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 4,
             fontSize: 13, color: 'var(--fg-2)', cursor: 'pointer',
@@ -71,6 +89,33 @@ function SolutionHeader() {
           <Button variant="primary" icon={true} href="/contact.html">Talk to an Expert</Button>
         </div>
       </div>
+      {mobileOpen && (
+        <div style={{
+          borderTop: '1px solid var(--border-1)',
+          background: 'var(--bg-1)',
+          padding: '16px 24px 24px'
+        }}>
+          <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+            {navItems.map((it, i) => (
+              <li key={i} style={{ borderBottom: '1px solid var(--border-1)' }}>
+                <a href={it.href || '#'} onClick={() => setMobileOpen(false)} style={{
+                  display: 'block', padding: '14px 4px',
+                  fontFamily: '"Footlight MT Light", Georgia, serif',
+                  fontSize: 17, color: 'var(--fg-1)', textDecoration: 'none'
+                }}>{it.label}</a>
+              </li>
+            ))}
+          </ul>
+          <div style={{ marginTop: 16, display: 'flex', gap: 12, alignItems: 'center' }}>
+            <button onClick={() => setLang(lang === 'EN' ? 'CN' : 'EN')} style={{
+              padding: '8px 14px', background: 'transparent',
+              border: '1px solid var(--border-1)', cursor: 'pointer',
+              fontSize: 13, color: 'var(--fg-2)'
+            }}>{lang}</button>
+            <Button variant="primary" icon={true} href="/contact.html">Talk to an Expert</Button>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
