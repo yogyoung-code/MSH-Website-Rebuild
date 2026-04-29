@@ -51,6 +51,8 @@
 <!-- Page-type differentiators (added by /bolder) -->
 <script type="text/babel" src="components/CountryCompare.jsx"></script>
 <script type="text/babel" src="components/DeliverableSample.jsx"></script>
+<!-- /ai-platform v3.0 components (added W3) -->
+<script type="text/babel" src="components/AIAssetBalanceSheet.jsx"></script>
 
 <script type="text/babel">
 function SectionLabel({ children }) {
@@ -113,6 +115,46 @@ function App() {
             physician: 'Final QA + sign-off; deliverable ships with named accountability.',
             output: 'audit-grade pack' }
         ]}
+      />
+
+      <SectionLabel>0 · AIAssetBalanceSheet — /ai-platform Act 1 (v3.0)</SectionLabel>
+      <AIAssetBalanceSheet
+        eyebrow="THE NUMBERS BEHIND THE PLATFORM"
+        subtitle="AS OF 2026 Q1 · IR-VERIFIED"
+        groups={[
+          {
+            label: 'DEMAND-SIDE NETWORK',
+            items: [
+              { value: '3.3M+',  label: 'Registered physicians',
+                sourceFootnote: 'Internal registry · 2026-Q1' },
+              { value: '25K+',   label: 'Tertiary-hospital KOLs',
+                sourceFootnote: 'Internal registry · 2026-Q1' },
+            ],
+          },
+          {
+            label: 'KNOWLEDGE BASE',
+            items: [
+              { value: '250M+',  label: 'Indexed literature',
+                sourceFootnote: 'PubMed + biomedical sources · 2026-Q1' },
+              { value: '100K+',  label: 'Structured drug labels (SPL)',
+                sourceFootnote: 'FDA SPL · NMPA · MHRA · 2026-Q1' },
+              { value: '15K+',   label: 'Multi-specialty guidelines',
+                sourceFootnote: 'NCCN · ESMO · CSCO · ADA · KDIGO · 2026-Q1' },
+            ],
+          },
+          {
+            label: 'WORKING CORPUS',
+            items: [
+              { value: '20K+',   label: 'Manuscript drafts',
+                sourceFootnote: 'Internal corpus · 2026-Q1' },
+              { value: '35K+',   label: 'Clinical study protocols',
+                sourceFootnote: 'Internal corpus · 2026-Q1' },
+              { value: '20 yr',  label: 'Accumulated medical language',
+                sourceFootnote: 'Founded 2005 · ongoing' },
+            ],
+          },
+        ]}
+        narrative="This is the data substrate every MedSci AI product is built on. We don't generate medical knowledge. We index, structure, and route what physicians and regulators have already validated — and pair every output with a named human reviewer."
       />
 
       <SectionLabel>1b · PitlRibbon variant="compact" — Act 3 三支柱场景 (v3.0)</SectionLabel>
