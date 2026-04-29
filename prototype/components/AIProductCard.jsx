@@ -34,10 +34,18 @@ const STATUS_BADGE = {
   },
 };
 
-function AIProductCard({ product }) {
+function AIProductCard({ product, position }) {
   if (!product) return null;
   const status = STATUS_BADGE[product.status] || STATUS_BADGE.comingSoon;
   const slug = product.slug || '';
+
+  // GA hook (Task 15 — `ai_product_card_click` Lead Score A)
+  const fireClick = function () {
+    if (typeof window !== 'undefined' && window.MSHAnalytics
+        && typeof window.MSHAnalytics.trackProductCardClick === 'function') {
+      window.MSHAnalytics.trackProductCardClick(slug, position || 0, product.status);
+    }
+  };
   const nameEn = (product.name && product.name.en) || slug;
   const userRole = (product.userRole && product.userRole.en) || product.userRole || '';
   const positioning =
@@ -155,6 +163,7 @@ function AIProductCard({ product }) {
         flexWrap: 'wrap',
       }}>
         <a href={`/ai-platform/${slug}`}
+          onClick={fireClick}
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 6,
             padding: '10px 16px', borderRadius: 8,
@@ -178,6 +187,7 @@ function AIProductCard({ product }) {
         </a>
         {product.status !== 'comingSoon' && (
           <a href={`/ai-platform/${slug}#access`}
+            onClick={fireClick}
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 6,
               padding: '10px 16px', borderRadius: 8,

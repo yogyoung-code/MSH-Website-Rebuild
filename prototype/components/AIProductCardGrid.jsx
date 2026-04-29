@@ -31,7 +31,7 @@ function AIProductCardGrid({ products, comingSoonSlot }) {
     }}>
       {Array.isArray(products) && products.map((p, i) => (
         Card
-          ? <Card key={p.slug || i} product={p} />
+          ? <Card key={p.slug || i} product={p} position={i + 1} />
           : <div key={p.slug || i} style={{
               padding: 24, border: '1px dashed var(--border-2)', borderRadius: 16,
               color: 'var(--fg-3)', fontFamily: 'var(--font-mono, monospace)', fontSize: 12,

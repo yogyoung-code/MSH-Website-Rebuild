@@ -126,11 +126,20 @@ function AIProductShowcase({ products, autoRotateMs = 8000, renderBody }) {
   // hydrate flag — useEffect 只在 client 后跑, mark hydrated 后才允许 auto-rotate
   React.useEffect(() => { setHydrated(true); }, []);
 
-  // 自动轮播
+  // 自动轮播 + GA showcase_tab_switch (auto trigger)
   React.useEffect(() => {
     if (!hydrated || paused || products.length < 2) return;
     const t = setInterval(() => {
-      setActiveIdx((i) => (i + 1) % products.length);
+      setActiveIdx((i) => {
+        const next = (i + 1) % products.length;
+        if (typeof window !== 'undefined' && window.MSHAnalytics
+            && typeof window.MSHAnalytics.trackShowcaseTabSwitch === 'function') {
+          window.MSHAnalytics.trackShowcaseTabSwitch(
+            products[i].slug, products[next].slug, 'auto'
+          );
+        }
+        return next;
+      });
     }, autoRotateMs);
     return () => clearInterval(t);
   }, [hydrated, paused, products.length, autoRotateMs]);
@@ -176,7 +185,18 @@ function AIProductShowcase({ products, autoRotateMs = 8000, renderBody }) {
         <TabSwitcher
           products={products}
           activeIdx={activeIdx}
-          onSelect={(i) => { setActiveIdx(i); setPaused(true); }}
+          onSelect={(i) => {
+            // GA showcase_tab_switch (manual trigger)
+            if (typeof window !== 'undefined' && window.MSHAnalytics
+                && typeof window.MSHAnalytics.trackShowcaseTabSwitch === 'function'
+                && i !== activeIdx) {
+              window.MSHAnalytics.trackShowcaseTabSwitch(
+                products[activeIdx].slug, products[i].slug, 'manual'
+              );
+            }
+            setActiveIdx(i);
+            setPaused(true);
+          }}
         />
 
         {/* Browser Mockup (glass-card) */}

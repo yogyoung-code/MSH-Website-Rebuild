@@ -52,6 +52,17 @@
   </div>
 </noscript>
 
+<!-- GA4 + consent-mode v2 (Plan task 15) -->
+<!-- 实际 launch 时把 G-XXXXXX 替换为生产 measurement ID, 解开 gtag.js 加载注释 -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  // gtag('config', 'G-XXXXXX'); // launch 前替换并解开
+</script>
+<script src="assets/consent/consent-mode-v2.js"></script>
+<script src="assets/analytics/ga4-events.js"></script>
+
 <!-- Self-hosted vendor -->
 <script src="assets/vendor/react.development.js"></script>
 <script src="assets/vendor/react-dom.development.js"></script>
