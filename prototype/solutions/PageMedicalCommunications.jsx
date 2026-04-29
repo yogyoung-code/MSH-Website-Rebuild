@@ -57,6 +57,52 @@ function PageMedicalCommunications() {
       <SolutionPageHeader pageMeta={MED_COMMS_META} />
       <SolutionSubNav items={subnav} theme="navy" />
 
+      {/* UXcritique20260429: deliverable-page signature shape — input → output rows. */}
+      <DeliverableSample
+        eyebrow="What you actually receive"
+        title="Each artifact ships bilingual, signed by clinicians on both sides."
+        lede="Bilingual is not a translation step — it's a parallel workflow with one US-licensed and one CN-licensed clinician on the audit log."
+        samples={[
+          {
+            label: 'Peer-reviewed manuscript',
+            input: { format: 'Trial / RWE dataset · target journal',
+                     detail: 'We work from your protocol; AI fills citation slots, physicians draft and sign every section.' },
+            output: { format: 'Submission-ready manuscript · 4k–8k words + figures',
+                      detail: 'Authorship + disclosure block, response-letter library, target journal aligned.' },
+            badge: 'verified',
+            signedBy: 'Lead MD + 1 second reviewer'
+          },
+          {
+            label: 'Congress poster or symposium',
+            input: { format: 'Congress (ASCO / ESMO / AHA / CSCO / CMHA) · abstract',
+                     detail: 'Camera-ready bilingual content. Booth assets and reporter coverage on request.' },
+            output: { format: 'Poster + oral / symposium content · bilingual',
+                      detail: 'Booth assets, presenter notes, congress reporter brief.' },
+            badge: 'verified',
+            signedBy: 'Lead MD + congress lead'
+          },
+          {
+            label: 'Bilingual scientific localization',
+            input: { format: 'Source artifact · target audience · code-of-practice',
+                     detail: 'EN ↔ CN with terminology consistency layer; dual-physician QC.' },
+            output: { format: 'Bilingual artifact + reviewer disclosure log',
+                      detail: 'Pre-physician filtering for off-label, fair-balance, and disclosure.' },
+            badge: 'verified',
+            signedBy: 'US-licensed MD + CN-licensed MD'
+          },
+          {
+            label: 'Compliance-aware QC pass',
+            input: { format: 'Existing draft · target jurisdiction code',
+                     detail: 'PhRMA / EFPIA / RDPAC awareness. Off-label, fair-balance, disclosure scans.' },
+            output: { format: 'Annotated review + remediation list',
+                      detail: 'Code-of-practice mapping, ready for legal review.' },
+            badge: 'in-development',
+            signedBy: 'Compliance lead + Lead MD'
+          }
+        ]}
+      />
+
+
       <SolutionSection
         id="overview" eyebrow="Overview"
         title="Bilingual is not a translation step. It's a parallel workflow."

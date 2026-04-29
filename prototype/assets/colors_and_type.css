@@ -125,6 +125,51 @@
    ========================================================= */
 html, body { font-family: var(--font-ui); color: var(--fg-1); background: var(--bg-1); }
 
+/* =========================================================
+   GLOBAL A11Y — UXcritique20260429 polish pass
+   Spec: Brand Guidelines v1.1 §10.3
+   ========================================================= */
+
+/* Single source of truth for keyboard focus. Brand-spec calls for a 2px
+   accent-500 ring with 2px offset. Inline style="" overrides on individual
+   components do not currently override this — interactive elements that
+   set their own focus styles should match this convention. */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--brand-accent-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm, 4px);
+}
+/* Buttons/links inside dark-bg sections need a brighter ring for AA. */
+.bg-dark :focus-visible,
+[data-theme="dark"] :focus-visible {
+  outline-color: var(--brand-accent-500);
+  outline-offset: 3px;
+}
+
+/* Touch-target floor for primary CTAs (44×44 per WCAG 2.1 AA). Components
+   that produce buttons/anchors get this minimum unless they explicitly
+   opt out via [data-compact]. */
+button, a[role="button"], a.btn, .btn {
+  min-height: 44px;
+}
+button[data-compact], a[data-compact] { min-height: 0; }
+
+/* Reduced-motion: make every page honor user preference without each
+   per-page <style> block needing to repeat the rule. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Selection styling — was previously only set on Homepage. */
+::selection { background: var(--brand-accent-100); color: var(--brand-primary-700); }
+
+
 h1, .h1 {
   font-family: var(--font-display);
   font-size: var(--fs-h1);

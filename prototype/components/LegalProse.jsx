@@ -148,25 +148,13 @@ function LegalProse({ title, eyebrow, lastUpdated, lede, sections, pendingNotice
   );
 }
 
-// Helper: highlight inline ⚠️ counsel markers in legal paragraphs so prototype
-// reviewers immediately see what counsel will replace.
+// LegalParagraph: kept as a thin pass-through after UXcritique20260429
+// stripped inline ⚠️ markers from all legal copy. The page-level <DraftNotice>
+// banner above LegalProse now communicates draft state. We keep the wrapper
+// so existing call sites (`<LegalParagraph text={p} />`) don't break, but it
+// no longer scans for any glyph — if pre-counsel ⚠️ ever returns, render plain.
 function LegalParagraph({ text }) {
-  // Split on ⚠️ … period/closing — naive but adequate for prototype.
-  // We render the surrounding text plain and wrap each ⚠️ run with a tinted span.
-  const parts = String(text).split(/(⚠️[^.]*?\.)/g);
-  return (
-    <>
-      {parts.map((part, i) => part.startsWith('⚠️')
-        ? <mark key={i} style={{
-            background: 'rgba(245, 158, 11, 0.18)',
-            color: 'var(--fg-1)',
-            padding: '0 4px',
-            borderRadius: 2
-          }}>{part}</mark>
-        : <React.Fragment key={i}>{part}</React.Fragment>
-      )}
-    </>
-  );
+  return <>{String(text)}</>;
 }
 
 window.LegalProse = LegalProse;

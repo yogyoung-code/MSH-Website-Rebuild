@@ -72,6 +72,52 @@ function PagePhysicianEngagement() {
       <SolutionPageHeader pageMeta={PHYSICIAN_META} />
       <SolutionSubNav items={subnav} theme="navy" />
 
+      {/* UXcritique20260429: deliverable-page signature shape — input → output rows. */}
+      <DeliverableSample
+        eyebrow="What you actually receive"
+        title="Each engagement type ships as a signed artifact, scoped against an explicit input."
+        lede="Whether you need an advisory board, a KOL map, a CME program or a consented reviewer panel — the input contract is bounded and the output is named-clinician signed."
+        samples={[
+          {
+            label: 'Standing advisory board',
+            input: { format: 'Therapy area · cadence · reviewer profile',
+                     detail: 'Single-instance or standing; we handle agenda, recruitment, and facilitation.' },
+            output: { format: 'Signed board minutes + audit log · per session',
+                      detail: 'Independent facilitation, disclosure register, exportable trail.' },
+            badge: 'verified',
+            signedBy: '5–9 named reviewers per session'
+          },
+          {
+            label: 'Tier-1 KOL map',
+            input: { format: 'Therapy area · geography · use case',
+                     detail: 'Influence + reach scoring across CN tier-1 AMCs and US academic centers.' },
+            output: { format: 'Segmented KOL map + engagement plan · 12–24 pp',
+                      detail: 'Conflict-and-disclosure scan attached for every named clinician.' },
+            badge: 'verified',
+            signedBy: 'Lead MD + KOL programs lead'
+          },
+          {
+            label: 'CME-accredited program',
+            input: { format: 'Educational gap · target audience',
+                     detail: 'Designed for physician learning, not promotion. Independent content review.' },
+            output: { format: 'CME activity + completion log · multi-modal',
+                      detail: 'Accreditation support, outcomes log, completion certificates.' },
+            badge: 'verified',
+            signedBy: 'Independent reviewer + Lead MD'
+          },
+          {
+            label: 'Consented reviewer panel',
+            input: { format: 'Dossier or manuscript · per-claim review questions',
+                     detail: 'Engagement-specific consent — time-bound, revocable, audit-grade.' },
+            output: { format: 'Per-claim sign-off log + reviewer report',
+                      detail: 'Every change timestamped; every reviewer named and disclosed.' },
+            badge: 'verified',
+            signedBy: '5–9 named reviewers + lead'
+          }
+        ]}
+      />
+
+
       <SolutionSection
         id="overview" eyebrow="Overview"
         title="The physician layer of every engagement we run."

@@ -114,6 +114,30 @@ replace patterns flagged as AI-slop / template-feel / brand-spec-drift.
       for `(pending)` approvals — turns the credibility leak into transparent flagging)
 - [x] `index.html` script tags updated to load all four signature components
 
+### Completed in `/bolder` + `/polish` (UXcritique20260429)
+
+- [x] `solutions/PageEnteringChina.jsx` ← `<CountryCompare direction="us-to-cn">`
+- [x] `solutions/PageGoingGlobal.jsx` ← `<CountryCompare direction="cn-to-us">`
+- [x] `solutions/PageMedicalEvidence.jsx` ← `<DeliverableSample>` (4 samples)
+- [x] `solutions/PagePhysicianEngagement.jsx` ← `<DeliverableSample>` (4 samples)
+- [x] `solutions/PageMedicalCommunications.jsx` ← `<DeliverableSample>` (4 samples)
+- [-] `solutions/PageContentSprint.jsx` — **intentionally NOT wired**.
+      The existing `artifactMenu` (6-tile picker) already serves the
+      deliverable-shape role; adding `DeliverableSample` on top would
+      duplicate. Sprint is shape-distinct from other deliverable pages
+      by design (it offers a menu, not a fixed catalog).
+
+### Completed in `/polish`
+
+- [x] Global `:focus-visible` ring (2px accent-500, 2px offset) in `assets/colors_and_type.css`
+- [x] Global `prefers-reduced-motion` rule moved from per-page `<style>` to stylesheet
+      (now covers all 23 pages, was only on Homepage)
+- [x] Touch-target floor (`min-height: 44px`) on `button`, `a[role=button]`, `.btn`
+- [x] `LegalParagraph` ⚠️ highlighter dead-code reduced to thin pass-through
+      (markers stripped in `/harden`; helper kept for call-site compatibility)
+- [x] Homepage `index.html` per-page `prefers-reduced-motion` removed
+      (now redundant with global rule)
+
 ### Intentionally deferred (and why)
 
 - [ ] Pilot pages (`china-evidence-sprint.html`, `fda-evidence-gap-diagnostic.html`):

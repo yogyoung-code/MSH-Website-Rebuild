@@ -88,6 +88,40 @@ function PageGoingGlobal() {
       <SolutionPageHeader pageMeta={GOING_GLOBAL_META} />
       <SolutionSubNav items={subnav} theme="cyan" />
 
+      {/* UXcritique20260429: path-page signature shape, mirrored from EnteringChina
+          but reversed — China origin, US destination. */}
+      <CountryCompare
+        eyebrow="The cross-border path"
+        title="What changes when an asset crosses the Pacific — westbound."
+        lede="Every Going-Global engagement starts with a clear-eyed view of what your existing China stack carries forward to FDA reviewers, US KOLs and US journals — and what we'll need to re-derive locally."
+        direction="cn-to-us"
+        left={{
+          flag: '🇨🇳',
+          label: 'China (origin)',
+          regulator: 'NMPA · CDE',
+          timeline: 'Phase II/III complete in China',
+          reviewerLanguage: '中文 · Simplified Chinese',
+          constraints: [
+            'Tier-1 AMC physician sign-off',
+            'CDE convention dossier structure',
+            'Endpoint vocabulary in CN scientific style'
+          ]
+        }}
+        right={{
+          flag: '🇺🇸',
+          label: 'United States (destination)',
+          regulator: 'FDA · CDER / CDRH',
+          timeline: '6–18 mo dossier prep',
+          reviewerLanguage: 'Regulator-grade English',
+          constraints: [
+            'IRB-ready protocols + SAP',
+            'PCORnet / Sentinel registry mapping',
+            'PSLRA disclosure if SEC-listed instruments in scope'
+          ]
+        }}
+      />
+
+
       <SolutionSection
         id="overview" eyebrow="Overview · why this path"
         title="Bridge China-grade evidence into a dossier the FDA can actually read."
