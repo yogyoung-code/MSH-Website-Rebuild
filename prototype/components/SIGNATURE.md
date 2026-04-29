@@ -89,17 +89,29 @@ replace patterns flagged as AI-slop / template-feel / brand-spec-drift.
 
 ### `AsymmetricFeatureGrid`
 
-✓ Allowed surfaces
+> **2026-04-29 review note**: removed from Homepage Cases + Insights after
+> visual review. `CaseCard` and `InsightCard` are designed for equal-width
+> 3-up rendering; the featured slot left content visually lost in a wide
+> container, while secondary slots squashed it. The component remains
+> available but is currently unused. Before wiring it again, design a
+> dedicated featured-card variant that scales type and metric layout up,
+> rather than forcing the equal-width card into an asymmetric slot.
 
-- Homepage Cases section
-- Homepage Insights section
-- Cases index (when filter result ≥ 3)
-- Insights index (when filter result ≥ 3)
+✓ Allowed surfaces (when card variants exist for it)
+
+- Cases index (when filter result ≥ 3 AND a featured CaseCard variant exists)
+- Insights index (when filter result ≥ 3 AND a featured InsightCard variant exists)
+
+✗ Currently unwired
+
+- Homepage Cases — reverted to clean 3-up; Cases bg-2 alternates with Insights bg-1
+- Homepage Insights — reverted to clean 3-up; bg-1 alternates with Cases bg-2
 
 ✗ Forbidden when
 
 - Fewer than 3 items match (fall back to a single-card or two-up layout)
 - The items are intentionally peer-equal (e.g., compliance pillars on About)
+- Cards inside aren't designed for the featured/secondary scale difference
 
 ## Migration status
 
