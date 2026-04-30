@@ -45,22 +45,70 @@
      </AIProductShowcase>
    ========================================================= */
 
-// 5 color enum (W1-04 v1.2 P1 落实后改 var(--product-accent-{slug}-{shade}))
-// 当前 hardcoded 值是 §3.4 闭合 enum 子集, §6.4 row 11 fallback 路径,
-// gate §8.12 语义不绕过。
+// Parent brand (medscihealthcare.com) is single-hue blue + cyan per §2.
+// Sub-product brands may define their own product-accent palette (anticipated
+// by spec §6.4 row 11). SeekEvidence's public site (seekevidence-web.medsci.cn)
+// already uses violet as its product-brand color — preserved here.
 const PRODUCT_ACCENT = {
-  blue:    { c300: '#93c5fd', c500: '#3b82f6', c600: '#2563eb', c950: '#172554' },
-  violet:  { c300: '#c4b5fd', c500: '#8b5cf6', c600: '#7c3aed', c950: '#2e1065' },
-  teal:    { c300: '#5eead4', c500: '#14b8a6', c600: '#0d9488', c950: '#042f2e' },
-  amber:   { c300: '#fcd34d', c500: '#f59e0b', c600: '#d97706', c950: '#451a03' },
-  emerald: { c300: '#6ee7b7', c500: '#10b981', c600: '#059669', c950: '#022c22' },
+  navy:   { c300: '#7FB8E3', c500: '#005AA4', c600: '#001A51', c950: '#001037' }, // brand-primary scale (DeepEvidence)
+  cyan:   { c300: '#D6F1F9', c500: '#00AEDB', c600: '#0088B0', c950: '#001037' }, // brand-accent scale
+  violet: { c300: '#C4B5FD', c500: '#8B5CF6', c600: '#7C3AED', c950: '#2E1065' }, // SeekEvidence product brand
 };
-function accentOf(slug) { return PRODUCT_ACCENT[slug] || PRODUCT_ACCENT.blue; }
+// Back-compat: legacy enum names that aren't product-brand-aligned still
+// degrade to navy so old data doesn't crash.
+const ACCENT_ALIAS = { blue: 'navy', teal: 'cyan', amber: 'cyan', emerald: 'cyan' };
+function accentOf(slug) {
+  const key = ACCENT_ALIAS[slug] || slug;
+  return PRODUCT_ACCENT[key] || PRODUCT_ACCENT.navy;
+}
 
 // §3.7 row 3 — iconRef 404 / 缺失时, 用产品名首字母 monogram 作为 fallback
 function monogramOf(name, slug) {
   const display = (name && (name.en || name)) || slug || '';
   return String(display).trim().charAt(0).toUpperCase() || '?';
+}
+
+// SeekEvidence 5-bar audio-spectrum icon — ported from
+// _reference/medsci-evidence-tech/components/Hero.tsx SeekIcon (viewBox 346×268).
+// Inline SVG (not Lucide). currentColor inherits from parent.
+function SeekIconSvg({ size = 16 }) {
+  return (
+    <svg viewBox="0 0 346 268" width={size} height={Math.round(size * 268 / 346)}
+         fill="currentColor" aria-hidden="true"
+         style={{ display: 'inline-block', flexShrink: 0 }}>
+      <path d="M114.91 163c-0.024-26.97-0.096-53.44-0.043-79.91 0.017-8.45 3.968-14.74 11.69-18.18 7.99-3.55 15.65-2.43 22.4 3.2 4.78 3.98 6.88 9.39 6.89 15.46 0.103 36.13 0.053 72.25 0.16 108.38 0.027 8.93-8 19.95-19.82 19.24-13.87-0.83-21.16-7.34-21.24-21.22-0.05-8.83-0.024-17.65-0.034-26.97z"/>
+      <path d="M217.03 181.99c0.036-32.79-0.009-65.08 0.14-97.37 0.07-15.28 12.78-24.83 26.99-20.59 8.67 2.59 13.95 10.02 13.96 20.15 0.032 29.79-0.039 59.59-0.077 89.38-0.008 6.49-0.026 12.98-0.076 19.47-0.068 8.88-8.81 18.66-18.7 18.17-15.49-0.77-22.24-7-22.24-22.73-0.0001-2-0.004-4-0.001-6.49z"/>
+      <path d="M166.12 124c0.026-5 -0.16-9.51 0.12-13.99 0.72-11.6 9.76-20.21 20.76-20.01 10.9 0.19 19.78 9.26 19.9 20.86 0.18 17.82 0.18 35.65-0.025 53.47-0.142 12.05-8.94 20.89-20.26 20.93-11.33 0.04-20.2-8.74-20.42-20.78-0.249-13.32-0.062-26.65-0.066-40.47z"/>
+      <path d="M72.33 106.22c15.93-9.63 32.32-0.9 32.74 17.2 0.224 9.65 0.164 19.32-0.053 28.97-0.26 11.58-7.79 19.93-18.27 20.65-11.94 0.82-21.13-5.92-22.11-18.02-0.937-11.56-0.313-23.27 0.054-34.9 0.174-5.53 2.998-10.13 7.636-13.9z"/>
+      <path d="M308.89 133.01c0.005 6.99 0.122 13.49-0.009 19.98-0.24 11.91-8.51 19.96-20.34 19.98-11.85 0.02-20.21-8 -20.42-19.9-0.179-10.32-0.213-20.65-0.015-30.96 0.219-11.4 8.336-19.17 19.79-19.35 11.86-0.18 20.25 7.29 20.91 18.78 0.21 3.65 0.063 7.32 0.08 11.48z"/>
+    </svg>
+  );
+}
+
+/* Render Tab/Sidebar icon: prefer slug-specific custom SVG (DeepEvidence
+   Activity x-flipped, SeekEvidence 5-bar), fallback to Lucide sidebarIcon name,
+   final fallback to monogram. Reference matches medsci-evidence-tech Hero.tsx. */
+function ProductIcon({ product, size = 16 }) {
+  const wrap = (node, extra = {}) => (
+    <span style={{
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      width: size, height: size, ...extra,
+    }}>{node}</span>
+  );
+  if (product.slug === 'seekevidence') {
+    return wrap(<SeekIconSvg size={size} />);
+  }
+  if (product.slug === 'deepevidence') {
+    // Lucide `activity` flipped horizontally — same as reference scale-x-[-1]
+    return wrap(<i data-lucide="activity" width={size} height={size} />,
+                { transform: 'scaleX(-1)' });
+  }
+  if (product.sidebarIcon) {
+    return wrap(<i data-lucide={product.sidebarIcon} width={size} height={size} />);
+  }
+  return wrap(<span style={{ fontWeight: 700, fontSize: Math.round(size * 0.7) }}>
+    {monogramOf(product.name, product.slug)}
+  </span>);
 }
 
 // Render logo: iconRef (image URL) > sidebarIcon (lucide name) > monogram
@@ -100,20 +148,19 @@ function ProductLogo({ active, accent, size = 28 }) {
       </span>
     );
   }
-  // Lucide icon path (prototype demo)
-  if (active.sidebarIcon) {
-    return (
-      <span style={iconStyle}>
-        <i data-lucide={active.sidebarIcon} width={half} height={half} />
-      </span>
-    );
-  }
-  // Monogram fallback
-  return <span style={iconStyle}>{monogramOf(active.name, active.slug)}</span>;
+  // Default: ProductIcon helper (DeepEvidence flipped Activity, SeekEvidence
+  // 5-bar SVG, others fallback to Lucide sidebarIcon → monogram).
+  return (
+    <span style={iconStyle}>
+      <ProductIcon product={active} size={half} />
+    </span>
+  );
 }
 
 // SSR / no-JS 默认 Tab = 0 (spec §3.7); useEffect 在 client hydrate 后启动轮播。
-function AIProductShowcase({ products, autoRotateMs = 8000, renderBody }) {
+// UXcritique: auto-rotate disabled by default. Auto-cycling content is AI-slop;
+// users should be in control. Pass autoRotateMs={8000} explicitly to opt back in.
+function AIProductShowcase({ products, autoRotateMs = 0, renderBody }) {
   // §3.7 row 1 — 0 条产品时显示 placeholder
   if (!Array.isArray(products) || products.length === 0) {
     return <ShowcaseEmptyState />;
@@ -128,7 +175,7 @@ function AIProductShowcase({ products, autoRotateMs = 8000, renderBody }) {
 
   // 自动轮播 + GA showcase_tab_switch (auto trigger)
   React.useEffect(() => {
-    if (!hydrated || paused || products.length < 2) return;
+    if (!hydrated || paused || products.length < 2 || !autoRotateMs) return;
     const t = setInterval(() => {
       setActiveIdx((i) => {
         const next = (i + 1) % products.length;
@@ -168,7 +215,9 @@ function AIProductShowcase({ products, autoRotateMs = 8000, renderBody }) {
       onBlur={() => setPaused(false)}
       style={{
         position: 'relative',
-        background: '#05080f', /* mapping §2 row 1: --product-canvas-dark fallback */
+        /* UXcritique: 原 #05080f near-black 改用 brand-spec --brand-primary-900
+           (#001037),即 spec §2.1 "Hero reverse bg, Footer" token */
+        background: 'var(--brand-primary-900)',
         padding: 'clamp(72px, 9vw, 128px) clamp(24px, 6vw, 64px)',
         overflow: 'hidden',
         color: 'var(--white)',
@@ -220,16 +269,10 @@ function AIProductShowcase({ products, autoRotateMs = 8000, renderBody }) {
       </div>
 
       <style>{`
-        @keyframes aipsOrbPulse { 0%,100% {opacity: 0.30} 50% {opacity: 0.55} }
-        @keyframes aipsCursorPulse { 0%,100% {opacity: 1} 50% {opacity: 0.4} }
-        .ai-product-showcase .aips-orb { animation: aipsOrbPulse 4s ease-in-out infinite; }
-        .ai-product-showcase .aips-input-cursor { animation: aipsCursorPulse 1.2s ease-in-out infinite; }
+        /* UXcritique: removed orb-pulse + cursor-pulse infinite animations
+           per brand spec §9.2 — no infinite loops. */
         @media (max-width: 767px) {
           .ai-product-showcase .aips-sidebar { display: none !important; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .ai-product-showcase .aips-orb,
-          .ai-product-showcase .aips-input-cursor { animation: none !important; }
         }
       `}</style>
     </section>
@@ -266,29 +309,15 @@ function DemoBodySlot({ active, renderBody }) {
   );
 }
 
-/* ── Background orbs ─────────────────────────────────────── */
+/* UXcritique: BackgroundOrbs (4s pulsing cyan blurs) deleted — violated brand
+   spec §9.2 (no infinite-loop animations) and was textbook "AI startup orb"
+   AI-slop. Replaced with single static subtle radial wash, no animation. */
 function BackgroundOrbs({ accent }) {
   return (
     <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
       <div style={{
         position: 'absolute', inset: 0,
-        background: `linear-gradient(to bottom, ${accent.c950}66 0%, #05080f 60%, #05080f 100%)`,
-        transition: 'background 800ms ease-in-out',
-      }} />
-      <div className="aips-orb" style={{
-        position: 'absolute', top: '-20%', right: '-10%',
-        width: 800, height: 800, borderRadius: '50%',
-        background: `${accent.c600}4d`, // ~30% alpha
-        filter: 'blur(100px)',
-        transition: 'background 800ms ease-in-out',
-      }} />
-      <div className="aips-orb" style={{
-        position: 'absolute', bottom: '-10%', left: '-10%',
-        width: 600, height: 600, borderRadius: '50%',
-        background: `${accent.c500}33`, // ~20% alpha
-        filter: 'blur(100px)',
-        transition: 'background 800ms ease-in-out',
-        animationDelay: '2s',
+        background: 'radial-gradient(ellipse at 30% 20%, rgba(0,174,219,0.08), transparent 55%)',
       }} />
     </div>
   );
@@ -299,13 +328,11 @@ function TabSwitcher({ products, activeIdx, onSelect }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 'clamp(24px, 3vw, 40px)' }}>
       <div role="tablist" aria-label="AI products" style={{
-        background: 'rgba(255,255,255,0.05)',
-        backdropFilter: 'blur(24px)',
-        WebkitBackdropFilter: 'blur(24px)',
+        /* UXcritique: glass removed — solid panel per brand red-line */
+        background: 'rgba(255,255,255,0.06)',
         padding: 6,
         borderRadius: 16,
-        border: '1px solid rgba(255,255,255,0.1)',
-        boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
+        border: '1px solid rgba(255,255,255,0.16)',
         display: 'flex', gap: 4,
       }}>
         {products.map((p, i) => {
@@ -329,37 +356,34 @@ function TabSwitcher({ products, activeIdx, onSelect }) {
                 border: 'none',
                 cursor: 'pointer',
                 color: isActive ? '#fff' : '#94a3b8',
-                background: isActive
-                  ? `linear-gradient(to right, ${accent.c600}, ${accent.c500})`
-                  : 'transparent',
-                boxShadow: isActive
-                  ? '0 10px 15px -3px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.20)'
-                  : 'none',
+                /* UXcritique: gradient tab activation replaced with solid brand color */
+                background: isActive ? accent.c500 : 'transparent',
+                boxShadow: 'none',
                 transition: 'background 250ms ease, color 250ms ease, box-shadow 250ms ease',
                 display: 'inline-flex', alignItems: 'center', gap: 8,
               }}
             >
               <span aria-hidden="true" style={{ display: 'inline-flex', width: 16, height: 16, alignItems: 'center', justifyContent: 'center' }}>
                 {p.iconRefUrl ? (
-                  <img src={p.iconRefUrl} alt="" width="16" height="16"
-                    style={{ width: 16, height: 16, objectFit: 'cover', borderRadius: 4 }}
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                      const fb = e.currentTarget.parentElement.querySelector('.aips-tab-mono-fb');
-                      if (fb) fb.style.display = 'inline-flex';
-                    }}
-                  />
-                ) : null}
-                {p.iconRefUrl ? (
-                  <span className="aips-tab-mono-fb" style={{
-                    display: 'none', width: 16, height: 16,
-                    alignItems: 'center', justifyContent: 'center',
-                    fontWeight: 700, fontSize: 11,
-                  }}>{(((p.name && p.name.en) || p.slug || '').charAt(0) || '?').toUpperCase()}</span>
+                  <>
+                    <img src={p.iconRefUrl} alt="" width="16" height="16"
+                      style={{ width: 16, height: 16, objectFit: 'cover', borderRadius: 4 }}
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        const fb = e.currentTarget.parentElement.querySelector('.aips-tab-mono-fb');
+                        if (fb) fb.style.display = 'inline-flex';
+                      }}
+                    />
+                    <span className="aips-tab-mono-fb" style={{
+                      display: 'none', width: 16, height: 16,
+                      alignItems: 'center', justifyContent: 'center',
+                      fontWeight: 700, fontSize: 11,
+                    }}>{(((p.name && p.name.en) || p.slug || '').charAt(0) || '?').toUpperCase()}</span>
+                  </>
                 ) : (
-                  p.sidebarIcon
-                    ? <i data-lucide={p.sidebarIcon} width="16" height="16" />
-                    : <span style={{ fontWeight: 700, fontSize: 11 }}>{(((p.name && p.name.en) || p.slug || '').charAt(0) || '?').toUpperCase()}</span>
+                  /* slug-specific ProductIcon (DeepEvidence flipped Activity,
+                     SeekEvidence 5-bar SVG, else Lucide sidebarIcon name) */
+                  <ProductIcon product={p} size={16} />
                 )}
               </span>
               <span>{(p.name && p.name.en) || p.slug}</span>
@@ -383,19 +407,18 @@ function BrowserMockup({ active, accent, children }) {
         height: 'clamp(480px, 60vh, 600px)',
         position: 'relative',
         display: 'flex', flexDirection: 'row',
-        background: 'rgba(15,17,23,0.6)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
+        /* glass removed; brand-spec navy mid-tier (--brand-primary-700) for the
+           "card sitting on the section" effect */
+        background: 'var(--brand-primary-700)',
         borderRadius: 16,
         overflow: 'hidden',
-        border: '1px solid rgba(255,255,255,0.10)',
-        boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.10)',
+        border: '1px solid rgba(255,255,255,0.16)',
       }}
     >
-      {/* Top accent gradient strip */}
+      {/* UXcritique: gradient strip replaced with solid 2px brand accent line */}
       <div aria-hidden="true" style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: 2,
-        background: `linear-gradient(to right, ${accent.c500}, ${accent.c300}, ${accent.c600})`,
+        background: accent.c500,
         transition: 'background 400ms ease',
         zIndex: 3,
       }} />
@@ -416,10 +439,9 @@ function SidebarMock({ active, accent }) {
   return (
     <div className="aips-sidebar" style={{
       width: 256, flexShrink: 0,
-      background: 'rgba(11,12,16,0.8)',
-      backdropFilter: 'blur(12px)',
-      WebkitBackdropFilter: 'blur(12px)',
-      borderRight: '1px solid rgba(255,255,255,0.05)',
+      /* sidebar 用 --brand-primary-900,比 mockup outer 稍深,营造 inset 列效果 */
+      background: 'var(--brand-primary-900)',
+      borderRight: '1px solid rgba(255,255,255,0.10)',
       display: 'flex', flexDirection: 'column',
       padding: 16,
     }}>
@@ -490,9 +512,8 @@ function MainArea({ active, children }) {
   return (
     <div style={{
       flex: 1,
-      background: 'rgba(15,17,23,0.6)',
-      backdropFilter: 'blur(4px)',
-      WebkitBackdropFilter: 'blur(4px)',
+      /* MainArea matches mockup outer = --brand-primary-700 */
+      background: 'var(--brand-primary-700)',
       display: 'flex', flexDirection: 'column',
       position: 'relative', overflow: 'hidden',
     }}>
@@ -527,7 +548,8 @@ function MainArea({ active, children }) {
         background: 'rgba(255,255,255,0.02)',
       }}>
         <div style={{
-          background: '#0B0C10',
+          /* input 输入条 sits in MainArea — 用更深的 --brand-primary-900 inset */
+          background: 'var(--brand-primary-900)',
           border: '1px solid rgba(255,255,255,0.10)',
           borderRadius: 12,
           height: 48,
@@ -567,8 +589,8 @@ function ShowcaseEmptyState() {
       role="region"
       aria-label="AI Products Live Showcase (empty)"
       style={{
-        background: '#05080f',
-        color: '#fff',
+        background: 'var(--brand-primary-900)',
+        color: 'var(--white)',
         padding: 'clamp(96px, 12vw, 160px) clamp(24px, 6vw, 64px)',
         textAlign: 'center',
       }}
