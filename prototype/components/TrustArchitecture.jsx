@@ -95,11 +95,13 @@ function TrustArchitecture({
             : <DiagramFallback />}
         </PillarBlock>
 
-        {/* Pillar 2 detail — PitlRibbon variant='compact' (Task 1 复用) */}
+        {/* Pillar 2 detail — PitlRibbon (Task 1 复用)
+            UXcritique: removed bogus variant='compact' prop (PitlRibbon does
+            not accept it; was being silently ignored). Outer negative-margin
+            wrapper lets the ribbon's own padding own the section rhythm. */}
         {pitlSteps && (typeof window !== 'undefined' && window.PitlRibbon) && (
           <div style={{ margin: 'clamp(24px, 3vw, 40px) calc(-1 * clamp(24px, 6vw, 96px))' }}>
             <window.PitlRibbon
-              variant="compact"
               eyebrow="PILLAR 2 · PHYSICIAN-IN-THE-LOOP (PITL)"
               title="Named clinicians sign every section."
               steps={pitlSteps}

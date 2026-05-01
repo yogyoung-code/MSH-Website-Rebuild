@@ -26,6 +26,12 @@ const STATUS_BADGE = {
     color: '#0d6e58',
     dot:   'var(--success-500, #2E9F82)',
   },
+  inDevelopment: {
+    label: 'In Development',
+    bg:    'var(--warning-100, #FEF3C7)',
+    color: 'var(--warning-700, #92400E)',
+    dot:   'var(--warning-500, #F59E0B)',
+  },
   comingSoon: {
     label: 'Coming Soon',
     bg:    'var(--neutral-100, #E2E8F0)',
@@ -185,7 +191,7 @@ function AIProductCard({ product, position }) {
         >
           Learn more →
         </a>
-        {product.status !== 'comingSoon' && (
+        {product.status !== 'comingSoon' && product.status !== 'inDevelopment' && (
           <a href={`/ai-platform/${slug}#access`}
             onClick={fireClick}
             style={{
@@ -206,6 +212,23 @@ function AIProductCard({ product, position }) {
             }}
           >
             Request access
+          </a>
+        )}
+        {product.status === 'inDevelopment' && (
+          <a href={`/contact.html?intent=ai_design_partner&product=${slug}`}
+            onClick={fireClick}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              padding: '10px 16px', borderRadius: 8,
+              color: 'var(--brand-accent-700)',
+              background: 'var(--brand-accent-100, #E6FBFF)',
+              border: '1px solid var(--brand-accent-500)',
+              fontFamily: 'var(--font-ui)', fontSize: 13, fontWeight: 600,
+              textDecoration: 'none',
+              transition: 'background 200ms ease',
+            }}
+          >
+            Become a design partner →
           </a>
         )}
       </div>

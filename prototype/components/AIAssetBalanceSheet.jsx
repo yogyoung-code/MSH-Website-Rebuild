@@ -55,95 +55,90 @@ function AIAssetBalanceSheet({
       aria-labelledby={headingId}
       className="ai-asset-balance-sheet"
       style={{
-        background: 'var(--bg-invert)',
-        color: 'var(--white)',
-        padding: 'clamp(64px, 8vw, 128px) clamp(24px, 6vw, 96px)',
+        /* UXcritique: 浅色背景 — 与 Hero 暗色形成自然分段,不再需要 sticky-nav
+           做断隔. 4 stats 在一行水平展开（见下方 stats-row）。 */
+        background: 'var(--bg-2, var(--neutral-50))',
+        color: 'var(--fg-1)',
+        padding: 'clamp(40px, 5vw, 80px) clamp(24px, 6vw, 96px)',
         position: 'relative',
         overflow: 'hidden',
+        borderBottom: '1px solid var(--border-1)',
       }}
     >
-      {/* Subtle gradient glow on the canvas background, pure CSS no SVG noise */}
-      <span aria-hidden="true" style={{
-        position: 'absolute',
-        top: '-20%', right: '-10%',
-        width: 520, height: 520,
-        background: 'radial-gradient(closest-side, rgba(0,174,219,0.12), transparent 70%)',
-        pointerEvents: 'none',
-      }} />
-
       <div style={{
         maxWidth: 'var(--container-max, 1280px)',
         margin: '0 auto',
         position: 'relative',
       }}>
         {/* Heading row */}
-        <div style={{ marginBottom: 'clamp(40px, 5vw, 64px)', maxWidth: 720 }}>
+        <div style={{ marginBottom: 'clamp(20px, 2.5vw, 32px)', maxWidth: 720 }}>
           <h2 id={headingId} style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(28px, 3.4vw, 40px)',
+            fontSize: 'clamp(22px, 2.6vw, 32px)',
             fontWeight: 600,
-            color: 'var(--white)',
+            color: 'var(--brand-primary-700)',
             lineHeight: 1.2,
             margin: 0,
             letterSpacing: '-0.01em',
           }}>{eyebrow}</h2>
           <div style={{
-            marginTop: 12,
+            marginTop: 8,
             fontFamily: 'var(--font-mono, var(--font-ui))',
-            fontSize: 12,
+            fontSize: 11,
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
-            color: 'var(--brand-accent-500)',
+            color: 'var(--brand-accent-700)',
           }}>{subtitle}</div>
         </div>
 
-        {/* Body grid: groups (left) + narrative (right) */}
-        <div className="ai-asset-grid" style={{
+        {/* Stats row — flat 4-up: groups flattened, group label shown as
+            small uppercase chip above each stat to preserve audit semantics. */}
+        <dl className="ai-asset-stats-row" style={{
           display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: 'clamp(32px, 4vw, 56px)',
-          alignItems: 'start',
+          gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+          gap: 'clamp(12px, 1.4vw, 20px)',
+          margin: '0 0 clamp(20px, 2.4vw, 32px)',
         }}>
-          {/* LEFT — 3 groups stacked */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 2.4vw, 32px)' }}>
-            {groups.map((g, gi) => (
-              <Group key={gi} label={g.label} items={g.items} />
-            ))}
-          </div>
-
-          {/* RIGHT — narrative + fineprint */}
-          {(narrative || fineprint) && (
-            <aside style={{
-              borderLeft: '2px solid var(--brand-accent-500)',
-              paddingLeft: 24,
-              fontFamily: 'var(--font-ui)',
-              color: 'rgba(255,255,255,0.78)',
-              fontSize: 15,
-              lineHeight: 1.65,
-            }}>
-              {narrative && (
-                <p style={{ margin: '0 0 24px', fontStyle: 'italic' }}>{narrative}</p>
-              )}
-              {fineprint && (
-                <div style={{
-                  fontFamily: 'var(--font-mono, var(--font-ui))',
-                  fontSize: 11,
-                  letterSpacing: '0.04em',
-                  color: 'rgba(255,255,255,0.42)',
-                  paddingTop: 16,
-                  borderTop: '1px solid rgba(255,255,255,0.12)',
-                }}>{fineprint}</div>
-              )}
-            </aside>
+          {groups.flatMap((g) =>
+            (g.items || []).map((it, idx) => (
+              <Stat key={`${g.label}-${idx}`} group={g.label} item={it} />
+            ))
           )}
-        </div>
+        </dl>
+
+        {/* Narrative + fineprint full-width below (light theme) */}
+        {(narrative || fineprint) && (
+          <aside style={{
+            borderLeft: '2px solid var(--brand-accent-500)',
+            paddingLeft: 18,
+            fontFamily: 'var(--font-ui)',
+            color: 'var(--fg-2)',
+            fontSize: 14,
+            lineHeight: 1.55,
+            maxWidth: 880,
+          }}>
+            {narrative && (
+              <p style={{ margin: '0 0 12px', fontStyle: 'italic' }}>{narrative}</p>
+            )}
+            {fineprint && (
+              <div style={{
+                fontFamily: 'var(--font-mono, var(--font-ui))',
+                fontSize: 10.5,
+                letterSpacing: '0.04em',
+                color: 'var(--fg-3)',
+                paddingTop: 10,
+                borderTop: '1px solid var(--border-1)',
+              }}>{fineprint}</div>
+            )}
+          </aside>
+        )}
       </div>
 
-      {/* Responsive: ≥1024px split into 2 cols */}
+      {/* Responsive: ≥1024px expand to 4-up flat row */}
       <style>{`
         @media (min-width: 1024px) {
-          .ai-asset-balance-sheet .ai-asset-grid {
-            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+          .ai-asset-balance-sheet .ai-asset-stats-row {
+            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
           }
         }
       `}</style>
@@ -151,62 +146,54 @@ function AIAssetBalanceSheet({
   );
 }
 
-function Group({ label, items }) {
-  if (!Array.isArray(items) || items.length === 0) return null;
+/* Stat — single flat cell. Group label appears as small uppercase chip
+   on top so audit semantics ("DEMAND-SIDE NETWORK" / "KNOWLEDGE BASE")
+   survive the flat 4-up layout. */
+function Stat({ group, item }) {
   return (
-    <div>
-      <div style={{
-        fontFamily: 'var(--font-mono, var(--font-ui))',
-        fontSize: 11,
-        letterSpacing: '0.16em',
-        textTransform: 'uppercase',
-        color: 'var(--brand-accent-500)',
-        marginBottom: 14,
-        fontWeight: 600,
-      }}>{label}</div>
-
-      <dl style={{
-        display: 'grid',
-        gridTemplateColumns: `repeat(${Math.min(items.length, 3)}, minmax(0, 1fr))`,
-        gap: 'clamp(12px, 1.4vw, 20px)',
+    <div style={{
+      borderTop: '1px solid var(--border-2)',
+      paddingTop: 'clamp(10px, 1.2vw, 14px)',
+      paddingRight: 'clamp(8px, 1vw, 16px)',
+      minWidth: 0,
+    }}>
+      {group && (
+        <div style={{
+          fontFamily: 'var(--font-mono, var(--font-ui))',
+          fontSize: 10,
+          letterSpacing: '0.14em',
+          textTransform: 'uppercase',
+          color: 'var(--fg-3)',
+          marginBottom: 8,
+          fontWeight: 600,
+        }}>{group}</div>
+      )}
+      <dd style={{
         margin: 0,
-      }}>
-        {items.map((it, i) => (
-          <div key={i} style={{
-            background: 'rgba(255,255,255,0.04)',
-            border: '1px solid rgba(255,255,255,0.10)',
-            borderRadius: 14,
-            padding: 'clamp(18px, 2vw, 24px)',
-            transition: 'background 200ms ease, border-color 200ms ease',
-          }}>
-            <dd style={{
-              margin: 0,
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(28px, 3.6vw, 44px)',
-              fontWeight: 600,
-              lineHeight: 1.05,
-              color: 'var(--brand-accent-500)',
-              letterSpacing: '-0.02em',
-            }}>{it.value}</dd>
-            <dt style={{
-              marginTop: 10,
-              fontFamily: 'var(--font-ui)',
-              fontSize: 13,
-              lineHeight: 1.45,
-              color: 'rgba(255,255,255,0.85)',
-            }}>{it.label}</dt>
-            {it.sourceFootnote && (
-              <div style={{
-                marginTop: 10,
-                fontFamily: 'var(--font-mono, var(--font-ui))',
-                fontSize: 10,
-                letterSpacing: '0.06em',
-                color: 'rgba(255,255,255,0.4)',
-              }}>{it.sourceFootnote}</div>
-            )}
-          </div>
-        ))}
-      </dl>
+        /* spec §3.4: all numbers Inter */
+        fontFamily: 'var(--font-ui)',
+        fontSize: 'clamp(24px, 3vw, 36px)',
+        fontWeight: 600,
+        lineHeight: 1.05,
+        color: 'var(--brand-accent-700)',
+        letterSpacing: '-0.025em',
+      }}>{item.value}</dd>
+      <dt style={{
+        marginTop: 6,
+        fontFamily: 'var(--font-ui)',
+        fontSize: 13,
+        lineHeight: 1.4,
+        color: 'var(--fg-1)',
+      }}>{item.label}</dt>
+      {item.sourceFootnote && (
+        <div style={{
+          marginTop: 6,
+          fontFamily: 'var(--font-mono, var(--font-ui))',
+          fontSize: 10.5,
+          letterSpacing: '0.04em',
+          color: 'var(--fg-3)',
+        }}>{item.sourceFootnote}</div>
+      )}
     </div>
   );
 }

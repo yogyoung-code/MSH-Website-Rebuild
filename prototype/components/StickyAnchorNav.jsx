@@ -37,11 +37,16 @@ function StickyAnchorNav({
     { hash: '#cta',        label: 'Talk' },
   ],
   topOffset = 0,
+  // UXcritique: default sticky=false. Two stacked sticky bars (this + site
+  // Header) confused users. Stays in normal flow — appears once after the
+  // hero and scrolls away. Opt-in `sticky=true` for special cases.
+  sticky = false,
 }) {
   const [activeHash, setActiveHash] = React.useState(sections[0]?.hash || '');
 
-  // scroll-spy via IntersectionObserver
+  // scroll-spy via IntersectionObserver — only meaningful when sticky=true
   React.useEffect(() => {
+    if (!sticky) return;
     if (typeof window === 'undefined' || !window.IntersectionObserver) return;
     const targets = sections
       .map((s) => document.querySelector(s.hash))
@@ -50,7 +55,6 @@ function StickyAnchorNav({
 
     const obs = new IntersectionObserver(
       (entries) => {
-        // 当某 section 在视口中 ≥ 30% 时认为 active
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
@@ -65,7 +69,7 @@ function StickyAnchorNav({
     );
     targets.forEach((t) => obs.observe(t));
     return () => obs.disconnect();
-  }, [sections, topOffset]);
+  }, [sections, topOffset, sticky]);
 
   const onSelectChange = (e) => {
     const hash = e.target.value;
@@ -75,6 +79,20 @@ function StickyAnchorNav({
     }
   };
 
+  // Position style depends on sticky prop. Inline default avoids overlap with
+  // site Header. backdropFilter only when sticky (frosted-bar context); normal
+  // flow uses solid bg.
+  const desktopPos = sticky
+    ? { position: 'sticky', top: topOffset, zIndex: 50,
+        background: 'var(--bg-1)', borderBottom: '1px solid var(--border-1)' }
+    : { position: 'relative',
+        background: 'var(--bg-1)', borderBottom: '1px solid var(--border-1)' };
+  const tabletPos = sticky
+    ? { position: 'sticky', top: topOffset, zIndex: 50,
+        background: 'var(--bg-1)', borderBottom: '1px solid var(--border-1)' }
+    : { position: 'relative',
+        background: 'var(--bg-1)', borderBottom: '1px solid var(--border-1)' };
+
   return (
     <>
       {/* Desktop ≥1024px — 4 horizontal links */}
@@ -82,15 +100,7 @@ function StickyAnchorNav({
         role="navigation"
         aria-label="In-page sections"
         className="aips-sticky-nav-desktop"
-        style={{
-          position: 'sticky',
-          top: topOffset,
-          zIndex: 50,
-          background: 'rgba(255,255,255,0.92)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          borderBottom: '1px solid var(--border-1)',
-        }}
+        style={desktopPos}
       >
         <div style={{
           maxWidth: 'var(--container-max, 1280px)',
@@ -132,17 +142,11 @@ function StickyAnchorNav({
         </div>
       </nav>
 
-      {/* Tablet 640–1023px — sticky <select> dropdown */}
+      {/* Tablet 640–1023px — <select> dropdown (sticky only when sticky=true) */}
       <div
         className="aips-sticky-nav-tablet"
         style={{
-          position: 'sticky',
-          top: topOffset,
-          zIndex: 50,
-          background: 'rgba(255,255,255,0.92)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          borderBottom: '1px solid var(--border-1)',
+          ...tabletPos,
           padding: '12px clamp(24px, 6vw, 96px)',
           display: 'none',
         }}

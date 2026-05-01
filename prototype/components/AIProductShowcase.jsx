@@ -68,6 +68,25 @@ function monogramOf(name, slug) {
   return String(display).trim().charAt(0).toUpperCase() || '?';
 }
 
+// DeepEvidence — Lucide `activity` icon path inlined as SVG (not via lucide
+// createIcons). UXcritique fix: when Lucide rewrites <i> -> <svg>, React's
+// virtual DOM no longer matches real DOM, so unmounting (e.g. on Tab switch)
+// throws NotFoundError on removeChild. Inline SVG avoids that.
+// scaleX(-1) matches reference Hero.tsx (Activity className="scale-x-[-1]").
+function ActivityIconSvg({ size = 16 }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size}
+         fill="none" stroke="currentColor" strokeWidth="2"
+         strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+         style={{
+           display: 'inline-block', flexShrink: 0,
+           transform: 'scaleX(-1)',
+         }}>
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+    </svg>
+  );
+}
+
 // SeekEvidence 5-bar audio-spectrum icon — ported from
 // _reference/medsci-evidence-tech/components/Hero.tsx SeekIcon (viewBox 346×268).
 // Inline SVG (not Lucide). currentColor inherits from parent.
@@ -99,9 +118,9 @@ function ProductIcon({ product, size = 16 }) {
     return wrap(<SeekIconSvg size={size} />);
   }
   if (product.slug === 'deepevidence') {
-    // Lucide `activity` flipped horizontally — same as reference scale-x-[-1]
-    return wrap(<i data-lucide="activity" width={size} height={size} />,
-                { transform: 'scaleX(-1)' });
+    // Inline SVG — NOT Lucide createIcons (which would mutate <i> -> <svg>
+    // outside React's reconciler and break Tab switching with NotFoundError).
+    return wrap(<ActivityIconSvg size={size} />);
   }
   if (product.sidebarIcon) {
     return wrap(<i data-lucide={product.sidebarIcon} width={size} height={size} />);
@@ -404,7 +423,9 @@ function BrowserMockup({ active, accent, children }) {
       aria-labelledby={`aips-tab-${active.slug}`}
       style={{
         maxWidth: 1024, margin: '0 auto',
-        height: 'clamp(480px, 60vh, 600px)',
+        /* UXcritique: 高度从 480-600 → 600-760, 容纳 demo 全部内容 (header+
+           prose+2 bullets+citations+chips ≈ 590px), 不再触发垂直滚动条 */
+        height: 'clamp(600px, 76vh, 760px)',
         position: 'relative',
         display: 'flex', flexDirection: 'row',
         /* glass removed; brand-spec navy mid-tier (--brand-primary-700) for the

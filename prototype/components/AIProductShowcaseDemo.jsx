@@ -85,8 +85,10 @@ function AIProductShowcaseDemo({ demoScenario, accentColor = 'blue' }) {
     <div style={{
       flex: 1,
       padding: 'clamp(16px, 2vw, 24px)',
-      overflowY: 'auto',
-      maxHeight: '100%',
+      /* UXcritique: 去 overflowY:'auto' 防止 mockup 内出现垂直滚动条。
+         BrowserMockup 高度已扩到能容纳 demo 全部内容; overflow:hidden
+         作为兜底,极端窄屏内容若仍超出则 clip 而不是滚动. */
+      overflow: 'hidden',
     }}>
       <div style={{
         display: 'flex', flexDirection: 'column', gap: 24,
