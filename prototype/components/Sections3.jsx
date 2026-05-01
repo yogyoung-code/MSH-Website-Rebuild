@@ -112,9 +112,9 @@ function TrustBar() {
 //    different surfaces because the surrounding chrome differs.
 function Insights() {
   const posts = [
-    { topic: 'China RWE', date: 'Apr 2026', title: 'What NMPA reviewers actually read first: a teardown of 40 oncology dossiers.', reviewer: 'Dr. L. Chen', min: 8 },
-    { topic: 'FDA Evidence Bridge', date: 'Mar 2026', title: 'Bridging a China registry into an FDA submission — what translates and what does not.', reviewer: 'Dr. J. Patel', min: 11 },
-    { topic: 'Medical Communication', date: 'Mar 2026', title: 'Bilingual congress materials that pass compliance on both sides of the Pacific.', reviewer: 'Dr. M. Zhao', min: 6 },
+    { topic: 'China RWE',             date: 'Apr 2026', title: 'What NMPA reviewers actually read first: a teardown of 40 oncology dossiers.',         reviewer: 'Dr. L. Chen',  min:  8 },
+    { topic: 'FDA Evidence Bridge',   date: 'Mar 2026', title: 'Bridging a China registry into an FDA submission — what translates and what does not.', reviewer: 'Dr. J. Patel', min: 11 },
+    { topic: 'Medical Communication', date: 'Mar 2026', title: 'Bilingual congress materials that pass compliance on both sides of the Pacific.',     reviewer: 'Dr. M. Zhao',  min:  6 },
   ];
   return (
     <section id="insights" style={{
@@ -162,6 +162,8 @@ function InsightCard({ p }) {
          boxShadow: hover ? 'var(--shadow-sm)' : 'none',
          transition: 'all 200ms', display: 'block',
        }}>
+      {/* UXcritique image-add pass 2 reverted: Insights cards keep pure-text
+          treatment per design lead. CardPreviewStrip kept for Cases only. */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
         <span style={{
           fontSize: 10, fontWeight: 600, letterSpacing: '0.12em',

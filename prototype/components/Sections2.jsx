@@ -231,6 +231,7 @@ function Cases() {
     {
       cat: 'Entering China',
       theme: 'navy',
+      previewKind: 'case-timeline-11wk',
       title: 'A US oncology device, reviewed and submitted to NMPA in 11 weeks.',
       metrics: [
         { n: '11', u: 'wks', l: 'Submission cycle' },
@@ -243,6 +244,7 @@ function Cases() {
     {
       cat: 'Entering China',
       theme: 'navy',
+      previewKind: 'case-passrate-38',
       title: 'Localized content program for a global Top-10 medtech, across three therapeutic areas.',
       metrics: [
         { n: '38', u: '',    l: 'Bilingual artifacts produced' },
@@ -255,6 +257,7 @@ function Cases() {
     {
       cat: 'Going Global',
       theme: 'cyan',
+      previewKind: 'case-deltabars-42-18',
       title: 'A China oncology innovator, FDA-track evidence bridge and advisory panel.',
       metrics: [
         { n: '42 → 18', u: 'days', l: 'Median response time' },
@@ -314,7 +317,9 @@ function CaseCard({ c }) {
            boxShadow: hover ? 'var(--shadow-sm)' : 'none',
            transition: 'all 200ms',
            display: 'flex', flexDirection: 'column',
+           overflow: 'hidden',
          }}>
+      {c.previewKind && window.CardPreviewStrip && <window.CardPreviewStrip kind={c.previewKind} />}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
         <span style={{
           fontSize: 10, fontWeight: 600, letterSpacing: '0.12em',
