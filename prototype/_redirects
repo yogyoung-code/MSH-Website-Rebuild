@@ -8,10 +8,9 @@
 /ai-platform/deepevidence  /ai-platform-deepevidence.html  200
 /ai-platform/seekevidence  /ai-platform-seekevidence.html  200
 
-# W4 launch 切换:
-# 当前 /ai-platform 仍指 ai-platform.html (v2);
-# Task 19 launch day 把 ai-platform-v3.html 重命名为 ai-platform.html, 并把
-# 旧 v2 移到 _archive/。 在切换前预览 v3 总览页可访问 /ai-platform-v3 (不挂 redirect)。
+# W4 launch 切换 — DONE (2026-05-01):
+# v3 已提升为 ai-platform.html (canonical)。旧 v2 归档至 _archive/ai-platform-v2.html。
+# ai-platform-v4.html (engineering-spec variant) 保留为备选参考，不挂 redirect。
 
 # IA §6 历史保留 URL（旧外链 SEO 继承）
 # 仅在目标 URL 已上线后启用，否则会 301 到 404
