@@ -191,6 +191,57 @@ function App() {
           </ul>
         </div>
       </section>
+
+      {/* Office photo — "exactly one" per image-add strategy */}
+      <section style={{
+        maxWidth: 'var(--container-max, 1280px)',
+        margin: '0 auto',
+        padding: '0 clamp(24px, 6vw, 96px) clamp(64px, 8vw, 96px)',
+      }}>
+        <div style={{
+          borderRadius: 12,
+          overflow: 'hidden',
+          border: '1px solid var(--border-1)',
+          position: 'relative',
+        }}>
+          <picture>
+            <source srcSet="assets/photos/hq-night.jpg" media="(prefers-color-scheme: dark)" />
+            <img
+              src="assets/photos/hq-day.jpg"
+              alt="MedSci Healthcare US office — Irvine, California"
+              loading="lazy"
+              width="1280"
+              height="540"
+              style={{
+                display: 'block',
+                width: '100%',
+                height: 'clamp(200px, 30vw, 400px)',
+                objectFit: 'cover',
+                objectPosition: 'center 40%',
+              }}
+            />
+          </picture>
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            padding: '24px 28px 20px',
+            background: 'linear-gradient(transparent, rgba(0,0,0,0.55))',
+            color: 'var(--white)',
+            fontSize: 13,
+            fontFamily: 'var(--font-ui)',
+            letterSpacing: '0.04em',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+          }}>
+            <span>Irvine, California — US Operations</span>
+            <span style={{ opacity: 0.7, fontSize: 11 }}>MedSci Healthcare</span>
+          </div>
+        </div>
+      </section>
+
     </PageShell>
   );
 }
