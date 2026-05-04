@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insights — MedSci Healthcare</title>
 <meta name="description" content="Field briefings on China RWE, FDA evidence bridges, and bilingual medical communication — written by physicians, reviewed under our PITL workflow.">
 <link rel="canonical" href="https://medscihealthcare.com/insights/">
@@ -53,6 +53,10 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
 <script type="text/babel" src="../components/InsightCard.jsx"></script>
 <script type="text/babel" src="../components/TopicChips.jsx"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
+<script type="text/babel" src="../components/useSanity.jsx"></script>
 
 <script type="text/babel">
 // Mock data — Copy Deck v4.2 §8.2; CMS stage will replace with Sanity Insight schema fetch.
@@ -95,17 +99,39 @@ const INSIGHTS = [
   }
 ];
 
+// Transform Sanity insight → component props
+function transformCmsInsight(doc) {
+  const L = window.MSHContent ? window.MSHContent.L : (o) => (o && o.en) || o || '';
+  const typeToTopic = { regulatory: TOPICS[0], medical_affairs: TOPICS[2], operations: TOPICS[2] };
+  return {
+    slug: doc.slug && doc.slug.current ? doc.slug.current : doc.slug,
+    topic: typeToTopic[doc.type] || TOPICS[0],
+    title: L(doc.title),
+    lede: L(doc.summary),
+    author: doc.authors && doc.authors[0] ? { name: L(doc.authors[0].name), title: doc.authors[0].role } : {},
+    pitlReviewer: {},
+    publishedAt: doc.publishedAt ? doc.publishedAt.slice(0, 10) : '',
+    readingTime: doc.readTime ? doc.readTime + ' min read' : ''
+  };
+}
+
 function App() {
   // Multi-select: empty array = show all
   const [activeTopics, setActiveTopics] = React.useState([]);
+
+  // Fetch from Sanity, fall back to mock
+  const cmsData = useSanity('fetchInsights', null);
+  const allInsights = cmsData
+    ? cmsData.map(transformCmsInsight)
+    : INSIGHTS;
 
   const toggleTopic = (v) => {
     setActiveTopics(prev => prev.indexOf(v) === -1 ? [...prev, v] : prev.filter(x => x !== v));
   };
 
   const visible = activeTopics.length === 0
-    ? INSIGHTS
-    : INSIGHTS.filter(i => activeTopics.indexOf(i.topic.value) !== -1);
+    ? allInsights
+    : allInsights.filter(i => activeTopics.indexOf(i.topic.value) !== -1);
 
   return (
     <PageShell
@@ -126,7 +152,7 @@ function App() {
             <InsightCard
               key={i.slug}
               {...i}
-              href={`/insights/${i.slug}`}
+              href={`/insights/${i.slug}.html`}
             />
           ))}
         </div>
@@ -171,7 +197,7 @@ function App() {
           </p>
           <SubscribeForm topics={TOPICS} />
           <p style={{ fontSize: 12, color: 'var(--fg-3)', marginTop: 16 }}>
-            By subscribing you agree to our <a href="/legal/privacy" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>Privacy Policy</a>. We do not share your email with third parties.
+            By subscribing you agree to our <a href="/legal/privacy.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>Privacy Policy</a>. We do not share your email with third parties.
           </p>
         </div>
       </section>

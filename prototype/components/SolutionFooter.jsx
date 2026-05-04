@@ -28,7 +28,7 @@ function SolutionFooter() {
     ]},
   ];
   return (
-    <footer style={{ background: 'var(--brand-primary-900)', color: 'rgba(255,255,255,0.7)', padding: '72px 40px 32px' }}>
+    <footer style={{ background: 'var(--brand-primary-900)', color: 'rgba(255,255,255,0.7)', padding: '72px clamp(16px, 4vw, 40px) 32px' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr 1fr 1fr', gap: 40, paddingBottom: 48, borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
           <div>

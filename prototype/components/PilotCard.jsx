@@ -353,7 +353,7 @@ function PilotPage({ pilot }) {
             {pilot.related.solution && (
               <div>
                 Solution:{' '}
-                <a href={`/solutions/${pilot.related.solution.slug}`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
+                <a href={`/solutions/${pilot.related.solution.slug}.html`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
                   {pilot.related.solution.label}
                 </a>
               </div>
@@ -361,7 +361,7 @@ function PilotPage({ pilot }) {
             {pilot.related.caseStudy && (
               <div>
                 Case study:{' '}
-                <a href={`/case-studies/${pilot.related.caseStudy.slug}`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
+                <a href={`/case-studies/${pilot.related.caseStudy.slug}.html`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
                   {pilot.related.caseStudy.label}
                 </a>
               </div>

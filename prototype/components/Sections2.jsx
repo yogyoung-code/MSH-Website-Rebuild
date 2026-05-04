@@ -42,7 +42,7 @@ function Services() {
     },
   ];
   return (
-    <section id="services" style={{ padding: '96px 40px', background: 'var(--grad-wash)' }}>
+    <section id="services" style={{ padding: '96px clamp(16px, 4vw, 40px)', background: 'var(--grad-wash)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48, flexWrap: 'wrap', gap: 24 }}>
           <div style={{ maxWidth: 680 }}>
@@ -165,7 +165,7 @@ function WhyMedSci() {
     },
   ];
   return (
-    <section id="why" style={{ padding: '96px 40px', background: '#fff' }}>
+    <section id="why" style={{ padding: '96px clamp(16px, 4vw, 40px)', background: '#fff' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
           <SectionEyebrow>Why MedSci Healthcare</SectionEyebrow>
@@ -288,7 +288,7 @@ function Cases() {
               Three signed engagements. Three signed source trails.
             </h2>
           </div>
-          <a href="/case-studies" style={{
+          <a href="/case-studies/" style={{
             color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 14,
             fontFamily: 'var(--font-ui)',
             display: 'inline-flex', alignItems: 'center', gap: 6,

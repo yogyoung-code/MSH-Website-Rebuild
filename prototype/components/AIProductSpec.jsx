@@ -25,7 +25,7 @@ function AIProductSpec({ products, eyebrow, title, lede }) {
         <p style={{ fontFamily: 'var(--font-display)', fontSize: 22, color: 'var(--fg-2)', margin: 0 }}>
           Products under quiet development.
         </p>
-        <a href="/contact?intent=ai_dd" style={{
+        <a href="/contact.html?intent=ai_dd" style={{
           display: 'inline-block', marginTop: 16,
           color: 'var(--brand-primary-500)', fontFamily: 'var(--font-ui)',
           fontSize: 14, fontWeight: 600, textDecoration: 'underline'

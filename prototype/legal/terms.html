@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Terms of Use — MedSci Healthcare</title>
 <meta name="description" content="Terms governing use of medscihealthcare.com — acceptance, content, intellectual property, disclaimers, limitation of liability, governing law.">
 <link rel="canonical" href="https://medscihealthcare.com/legal/terms">
@@ -45,6 +45,9 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script src="../assets/vendor/react-dom.development.js"></script>
 <script src="../assets/vendor/babel.min.js"></script>
 <script src="../assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
 
 <script type="text/babel" src="../components/Button.jsx"></script>
 <script type="text/babel" src="../components/Header.jsx"></script>
@@ -65,25 +68,31 @@ const CONTENT = {
  lastUpdated: null, // pending counsel sign-off
  sections: [
  { id: 'acceptance', heading: '1. Acceptance of these Terms',
- paragraphs: ['By accessing or using medscihealthcare.com (the "Site"), you agree to these Terms of Use. If you do not agree, do not use the Site.'] },
+ paragraphs: ['By accessing or using medscihealthcare.com (the "Site"), operated by MedSci Healthcare Holdings Limited (梅斯健康控股有限公司, HKEX: 2415) and its affiliates (collectively "MedSci Healthcare"), you agree to these Terms of Use. If you do not agree, do not use the Site. MedSci Healthcare operates across multiple jurisdictions; these Terms apply globally but certain provisions are subject to mandatory local law where business activities take place or where you are located, as described in Section 9 below.'] },
  { id: 'permitted-use', heading: '2. Permitted use of the Site',
- paragraphs: ['The Site provides information about MedSci Healthcare\'s services for global biopharma and medtech clients. You may view and download Site content for non-commercial reference. You may not scrape, mirror, redistribute, or republish content without prior written permission.'] },
+ paragraphs: ['The Site provides information about MedSci Healthcare\'s services for global biopharma and medtech clients. You may view and download Site content for non-commercial reference. You may not scrape, mirror, redistribute, or republish content without prior written permission. Unauthorized use of the Site may give rise to a claim for damages and/or constitute a criminal offense.'] },
  { id: 'ip', heading: '3. Intellectual property',
- paragraphs: ['All content on the Site — including text, graphics, logos, methodology diagrams, and the MedSci Healthcare wordmark — is owned by or licensed to MedSci Healthcare and protected by applicable intellectual property law. The MedSci Healthcare brand and logo are trademarks; please contact us before reproducing them.'] },
+ paragraphs: ['All content on the Site — including text, graphics, logos, methodology diagrams, and the MedSci Healthcare wordmark — is owned by or licensed to MedSci Healthcare Holdings Limited and its subsidiaries (including Shanghai MedSci MedTech Co., Ltd.) and protected by applicable intellectual property law in Hong Kong, mainland China, and internationally. The MedSci Healthcare brand and logo are registered trademarks; please contact us before reproducing them.'] },
  { id: 'third-party', heading: '4. Third-party content and links',
  paragraphs: ['The Site may link to third-party resources (including HKEX disclosures and external research). MedSci Healthcare does not control and is not responsible for third-party content. Outbound links carry rel="external noopener" per our linking policy.'] },
  { id: 'no-advice', heading: '5. No professional advice; no warranty',
- paragraphs: ['Site content is provided for general informational purposes. It is not medical, regulatory, legal, tax, or investment advice. Site content is provided on an "as is" basis without representations or warranties of any kind.S. + China + HK jurisdictional norms.'] },
+ paragraphs: ['Site content is provided for general informational purposes. It is not medical, regulatory, legal, tax, or investment advice. Site content is provided on an "as is" basis without representations or warranties of any kind, whether express or implied, to the fullest extent permitted under applicable law in Hong Kong, the United States, the European Union, and mainland China.'] },
  { id: 'liability', heading: '6. Limitation of liability',
  paragraphs: ['To the maximum extent permitted by applicable law, MedSci Healthcare and its affiliates will not be liable for any indirect, incidental, consequential, or punitive damages arising from your use of the Site.'] },
  { id: 'indemnity', heading: '7. Indemnity',
  paragraphs: ['You agree to indemnify MedSci Healthcare and its affiliates against claims arising from your misuse of the Site.'] },
  { id: 'changes', heading: '8. Changes to these Terms',
  paragraphs: ['We may update these Terms from time to time. Material changes will be reflected in the Last updated date at the top of this page. Continued use after changes constitutes acceptance.'] },
- { id: 'governing-law', heading: '9. Governing law and venue',
- paragraphs: ['These Terms are governed by [Counsel-set jurisdiction], without regard to conflict-of-laws rules. You agree to [Counsel-set venue / arbitration clause].'] },
+ { id: 'governing-law', heading: '9. Governing law, jurisdictional scope, and venue',
+ paragraphs: [
+ 'MedSci Healthcare conducts business across multiple regions. The laws and regulations that apply to any particular engagement, service, or interaction depend on the jurisdiction in which that business activity actually takes place, as well as the location of the parties involved. This multi-jurisdictional approach reflects the reality that different regions impose distinct legal requirements on corporate websites, data handling, advertising claims, and professional services.',
+ 'Default governing law: these Terms are governed by the laws of the Hong Kong Special Administrative Region, without regard to conflict-of-laws rules. Disputes arising under these Terms shall be submitted to the Hong Kong International Arbitration Centre (HKIAC) under its then-current administered arbitration rules.',
+ 'For users located in mainland China: consistent with the MedSci group terms and the laws of the People\'s Republic of China (including but not limited to the Civil Code, E-Commerce Law, Personal Information Protection Law, and Data Protection Law), disputes may alternatively be resolved by a court of competent jurisdiction at the defendant\'s domicile. Where mandatory PRC law provides greater protection to consumers or data subjects than Hong Kong law, PRC law shall prevail for that specific matter.',
+ 'For users located in the European Economic Area (EEA), United Kingdom, or Switzerland: mandatory provisions of local consumer protection and data protection law (including the GDPR) apply to the extent they cannot be excluded by contract. Nothing in these Terms limits rights that are non-waivable under applicable EU or member state law.',
+ 'For users located in the United States: where MedSci Healthcare provides services to U.S.-based clients or processes data of U.S. residents, applicable U.S. federal and state law (including the CCPA/CPRA for California residents and FTC regulations governing advertising claims) shall apply to those specific activities. [Draft — counsel to finalize governing law, venue, and arbitration mechanism for each jurisdiction.]'
+ ] },
  { id: 'contact', heading: '10. Contact',
- paragraphs: [<span>Questions about these Terms: <code>legal@medscihealthcare.com</code> (or use <a href="/contact.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>Contact</a> and select "Legal / Compliance" in the role field).</span>] }
+ paragraphs: [<span>Questions about these Terms: <code>legal@medscihealthcare.com</code> (or use <a href="/contact.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>Contact</a> and select "Legal / Compliance" in the role field). Postal address: 18F, Building 34, Songjiang Caohejing Development Zone, No. 518 Xinqiao Shenzhuan Road, Songjiang District, Shanghai 201612, China.</span>] }
  ]
  },
 
@@ -93,16 +102,16 @@ const CONTENT = {
  lastUpdated: null,
  pendingNotice: '本中文版本由译审在外部律师终签英文版本后产出（Copy Deck v4.2 §12.1.zh）。本批次仅展示章节结构与术语映射，正文内容暂以英文渲染。',
  sections: [
- { id: 'acceptance', heading: '1. 接受本条款', paragraphs: ['By accessing or using medscihealthcare.com (the "Site"), you agree to these Terms of Use. If you do not agree, do not use the Site.'] },
- { id: 'permitted-use', heading: '2. 网站允许使用范围', paragraphs: ['The Site provides information about MedSci Healthcare\'s services for global biopharma and medtech clients.'] },
- { id: 'ip', heading: '3. 知识产权', paragraphs: ['All content on the Site — including text, graphics, logos, methodology diagrams — is owned by or licensed to MedSci Healthcare and protected by applicable intellectual property law.'] },
- { id: 'third-party', heading: '4. 第三方内容与链接', paragraphs: ['The Site may link to third-party resources. MedSci Healthcare does not control and is not responsible for third-party content.'] },
- { id: 'no-advice', heading: '5. 不构成专业意见；无保证', paragraphs: ['Site content is provided for general informational purposes. It is not medical, regulatory, legal, tax, or investment advice.'] },
- { id: 'liability', heading: '6. 责任限制', paragraphs: ['To the maximum extent permitted by applicable law, MedSci Healthcare and its affiliates will not be liable for indirect or consequential damages.'] },
- { id: 'indemnity', heading: '7. 赔偿', paragraphs: [''] },
- { id: 'changes', heading: '8. 条款变更', paragraphs: ['We may update these Terms from time to time. Material changes will be reflected in the Last updated date at the top of this page.'] },
- { id: 'governing-law', heading: '9. 管辖法律与争议解决地', paragraphs: ['[Counsel-set jurisdiction] / [Counsel-set venue / arbitration clause].'] },
- { id: 'contact', heading: '10. 联系我们', paragraphs: [<span>条款相关问题: <code>legal@medscihealthcare.com</code> 或使用 <a href="/contact.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>联系页</a>。</span>] }
+ { id: 'acceptance', heading: '1. 接受本条款', paragraphs: ['访问或使用 medscihealthcare.com（以下简称"本网站"），即表示您同意本使用条款。本网站由梅斯健康控股有限公司（MedSci Healthcare Holdings Limited，HKEX: 2415）及其关联方（统称"MedSci Healthcare"或"梅斯健康"）运营。如您不同意，请勿使用本网站。梅斯健康在多个司法管辖区开展业务；本条款在全球范围适用，但部分条款受业务实际发生地或您所在地区的强制性当地法律约束，详见下文第 9 条。'] },
+ { id: 'permitted-use', heading: '2. 网站允许使用范围', paragraphs: ['本网站提供有关 MedSci Healthcare 面向全球生物制药和医疗科技客户服务的信息。您可以查看和下载网站内容用于非商业参考。未经事先书面许可，不得抓取、镜像、再分发或转载内容。未经授权使用本网站可能导致损害赔偿索赔和/或构成刑事犯罪。'] },
+ { id: 'ip', heading: '3. 知识产权', paragraphs: ['本网站所有内容——包括文本、图形、标识、方法论图表及 MedSci Healthcare 文字标识——均归梅斯健康控股有限公司及其子公司（包括上海梅斯医药科技有限公司）所有或获得许可，并受香港、中国大陆及国际适用知识产权法保护。MedSci Healthcare 品牌和标识为注册商标；转载前请联系我们。'] },
+ { id: 'third-party', heading: '4. 第三方内容与链接', paragraphs: ['本网站可能链接至第三方资源（包括 HKEX 披露及外部研究）。MedSci Healthcare 不控制也不对第三方内容承担责任。外部链接按照我们的链接政策附带 rel="external noopener"。'] },
+ { id: 'no-advice', heading: '5. 不构成专业意见；无保证', paragraphs: ['网站内容仅供一般信息参考，不构成医疗、监管、法律、税务或投资建议。网站内容按"现状"提供，不作任何明示或暗示的陈述或保证，适用于香港、美国、欧盟及中国大陆法律允许的最大范围。'] },
+ { id: 'liability', heading: '6. 责任限制', paragraphs: ['在适用法律允许的最大范围内，MedSci Healthcare 及其��联方不对因您使用本网站而产生的任何间接、附带、后果性或惩罚性损害承担责任。'] },
+ { id: 'indemnity', heading: '7. 赔偿', paragraphs: ['您同意就因您不当使用本网站所引起的索赔，对 MedSci Healthcare 及其关联方进行赔偿。[草稿 — 待外部律师提供最终赔偿条款。]'] },
+ { id: 'changes', heading: '8. 条款变更', paragraphs: ['我���可能不时更新本条款。重大变更将反映在本页顶部的"最近更新"日期中。变更后继续使用即视为接受。'] },
+ { id: 'governing-law', heading: '9. 管辖法律、法域适用与争议解决地', paragraphs: ['梅斯健康在多个地区开展业务。适用于任何特定业务、服务或交互的法律法规取决于该业务活动实际发生地以及相关各方所在地。这种多法域适用方式反映了不同地区对企业网站、数据处理、广告宣传及专业服务各有不同法律要求的现实。', '默认管辖法律：本条款受中国香港特别行政区法律管辖，不适用法律冲突规则。因本条款引起的争议应提交至香港国际仲裁中心（HKIAC），按其届时有效的管理仲裁规则进行仲裁。', '对于中国大陆用户：与梅斯集团条款及中华人民共和国法律（包括但不限于《民法典》《电子商务法》《个人信息保护法》《数据安全法》）一致，争议也可由被告住所地有管辖权的人民法院解决。在中华人民共和国强制性法律对消费者或数据主体的保护高于香港法律的情况下，就该特定事项以中华人民共和国法律为准。', '对于位于欧洲经济区（EEA）、英国或瑞士的用户：当地消费者保护和数据保护法（包括 GDPR）的强制性条款在合同不能排除的范围内适用。本条款不限制适用的欧盟或成员国法律规定不可放弃的权利。', '对于位于美国的用户：当梅斯健康向美国客户提供服务或处理美国居民数据时，适用的美国联邦和州法律（包括针对加州居民的 CCPA/CPRA 以及 FTC 广告法规）适用于该等特定活动。[草稿 — 待律师按各司法管辖区最终确定管辖法律、地点和仲裁机制。]'] },
+ { id: 'contact', heading: '10. ���系我们', paragraphs: [<span>条款相关问题: <code>legal@medscihealthcare.com</code> 或使用 <a href="/contact.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>联系页</a>，选择"法务 / 合规"类别。通讯地址：中国上海市松江区新桥镇莘砖公路518号松江漕河泾开发区34号楼18层，邮编 201612。</span>] }
  ]
  }
 };

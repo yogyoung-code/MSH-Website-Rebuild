@@ -35,7 +35,7 @@ function QuickStart() {
     },
   ];
   return (
-    <section id="pilots" style={{ padding: '96px 40px', background: 'var(--bg-2)' }}>
+    <section id="pilots" style={{ padding: '96px clamp(16px, 4vw, 40px)', background: 'var(--bg-2)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 48, flexWrap: 'wrap', gap: 24 }}>
           <div style={{ maxWidth: 680 }}>
@@ -127,7 +127,7 @@ function TwoPaths() {
     },
   ];
   return (
-    <section id="paths" style={{ padding: '96px 40px', background: '#fff' }}>
+    <section id="paths" style={{ padding: '96px clamp(16px, 4vw, 40px)', background: '#fff' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
           <SectionEyebrow>Two strategic paths · equal weight</SectionEyebrow>

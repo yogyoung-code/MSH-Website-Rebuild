@@ -4,7 +4,7 @@ function Hero() {
     <section id="top" style={{
       background: 'var(--grad-hero)', color: '#fff',
       position: 'relative', overflow: 'hidden',
-      padding: '72px 40px 88px',
+      padding: '72px clamp(16px, 4vw, 40px) 88px',
     }}>
       <DotSpiralBg />
       <div className="two-col-grid" style={{

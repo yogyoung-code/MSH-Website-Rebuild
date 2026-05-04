@@ -67,7 +67,7 @@ function TrustBar() {
     { n: '42 → 18', l: 'Median regulatory response (days)', yr: '2025', s: '3' },
   ];
   return (
-    <section id="trust" style={{ padding: '72px 40px', background: '#fff', borderTop: '1px solid var(--border-1)', borderBottom: '1px solid var(--border-1)' }}>
+    <section id="trust" style={{ padding: '72px clamp(16px, 4vw, 40px)', background: '#fff', borderTop: '1px solid var(--border-1)', borderBottom: '1px solid var(--border-1)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32, flexWrap: 'wrap', gap: 16 }}>
           <SectionEyebrow color="var(--fg-3)">Trust · verified proof points</SectionEyebrow>
@@ -192,7 +192,7 @@ function InsightCard({ p }) {
 // 10. Final CTA
 function FinalCTA() {
   return (
-    <section id="cta" style={{ padding: '96px 40px', background: 'var(--grad-hero)', color: '#fff', position: 'relative', overflow: 'hidden' }}>
+    <section id="cta" style={{ padding: '96px clamp(16px, 4vw, 40px)', background: 'var(--grad-hero)', color: '#fff', position: 'relative', overflow: 'hidden' }}>
       <div style={{ maxWidth: 960, margin: '0 auto', position: 'relative', textAlign: 'center' }}>
         <SectionEyebrow color="var(--brand-accent-500)">Talk to an expert</SectionEyebrow>
         <h2 style={{

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>China RWE: What Travels — MedSci Insights</title>
 <meta name="description" content="What China RWE travels across borders to FDA or EMA — and what teams should plan to re-derive locally. A field briefing from MedSci's evidence team.">
 <link rel="canonical" href="https://medscihealthcare.com/insights/china-rwe-what-travels">
@@ -53,6 +53,9 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script src="../assets/vendor/react-dom.development.js"></script>
 <script src="../assets/vendor/babel.min.js"></script>
 <script src="../assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
 
 <script type="text/babel" src="../components/Button.jsx"></script>
 <script type="text/babel" src="../components/Header.jsx"></script>
@@ -168,7 +171,7 @@ function InsightHero({ article }) {
         lineHeight: 1.5
       }}>
         Every MedSci Insight is drafted by a named author and reviewed by a named physician under our{' '}
-        <a href="/ai-platform" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>PITL workflow</a>.
+        <a href="/ai-platform.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>PITL workflow</a>.
       </p>
     </header>
   );
@@ -222,7 +225,7 @@ function Related({ related }) {
         {related.solution && (
           <div>
             Solution:{' '}
-            <a href={`/solutions/${related.solution.slug}`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
+            <a href={`/solutions/${related.solution.slug}.html`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
               {related.solution.label}
             </a>
           </div>
@@ -230,7 +233,7 @@ function Related({ related }) {
         {related.pilot && (
           <div>
             Pilot:{' '}
-            <a href={`/pilots/${related.pilot.slug}`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
+            <a href={`/pilots/${related.pilot.slug}.html`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
               {related.pilot.shortName}
             </a>
           </div>
@@ -285,7 +288,7 @@ function InsightCTA({ topic, relatedPilot }) {
             Talk to an Expert
           </a>
           {relatedPilot && (
-            <a href={`/pilots/${relatedPilot.slug}`} style={{
+            <a href={`/pilots/${relatedPilot.slug}.html`} style={{
               padding: '12px 24px',
               background: 'transparent',
               color: 'var(--brand-primary-700)',

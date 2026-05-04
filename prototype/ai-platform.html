@@ -46,9 +46,9 @@
     </p>
     <p>This page contains an interactive product showcase that requires JavaScript.
       For an accessible static summary, visit
-      <a href="/ai-platform/deepevidence">DeepEvidence</a> or
-      <a href="/ai-platform/seekevidence">SeekEvidence</a> directly,
-      or <a href="/contact?intent=ai_dd">talk to our AI team</a>.</p>
+      <a href="/ai-platform-deepevidence.html">DeepEvidence</a> or
+      <a href="/ai-platform-seekevidence.html">SeekEvidence</a> directly,
+      or <a href="/contact.html?intent=ai_dd">talk to our AI team</a>.</p>
   </div>
 </noscript>
 
@@ -68,6 +68,9 @@
 <script src="assets/vendor/react-dom.development.js"></script>
 <script src="assets/vendor/babel.min.js"></script>
 <script src="assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="assets/sanity-client.js"></script>
 
 <!-- v0.1 layout -->
 <script type="text/babel" src="components/Button.jsx"></script>
@@ -354,7 +357,7 @@ function V3Hero() {
             textDecoration: 'none',
             transition: 'transform 200ms ease, box-shadow 200ms ease',
           }}>See the products ↓</a>
-          <a href="/contact?intent=ai_dd" style={{
+          <a href="/contact.html?intent=ai_dd" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             padding: '14px 28px', borderRadius: 10,
             background: 'transparent',

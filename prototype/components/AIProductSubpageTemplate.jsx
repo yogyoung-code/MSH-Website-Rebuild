@@ -30,7 +30,7 @@ function AIProductSubpage({ product }) {
     return (
       <div style={{ padding: 96, textAlign: 'center', color: 'var(--fg-3)' }}>
         Product not found.
-        <p><a href="/ai-platform">← Back to AI Platform overview</a></p>
+        <p><a href="/ai-platform.html">← Back to AI Platform overview</a></p>
       </div>
     );
   }
@@ -77,7 +77,7 @@ function SubHero({ product }) {
         }}>
           <a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</a>
           <span style={{ margin: '0 8px' }}>/</span>
-          <a href="/ai-platform#products" style={{ color: 'inherit', textDecoration: 'none' }}>AI Platform</a>
+          <a href="/ai-platform.html#products" style={{ color: 'inherit', textDecoration: 'none' }}>AI Platform</a>
           <span style={{ margin: '0 8px' }}>/</span>
           <span>{nameEn}</span>
         </nav>
@@ -300,12 +300,12 @@ function TrustFootnote({ product }) {
           margin: '0 0 24px',
         }}>
           Built on the same{' '}
-          <a href="/ai-platform#foundation" style={{
+          <a href="/ai-platform.html#foundation" style={{
             color: 'var(--brand-accent-700)', textDecoration: 'underline',
             fontStyle: 'italic',
           }}>data substrate</a>{' '}
           and{' '}
-          <a href="/ai-platform#method" style={{
+          <a href="/ai-platform.html#method" style={{
             color: 'var(--brand-accent-700)', textDecoration: 'underline',
             fontStyle: 'italic',
           }}>physician-in-the-loop method</a>{' '}
@@ -408,7 +408,7 @@ function ProductFinalCTA({ product }) {
         display: 'grid', gridTemplateColumns: '1fr',
         gap: 'clamp(16px, 2vw, 24px)',
       }}>
-        <a href={`/contact?intent=ai_product_team&product=${product.slug}`}
+        <a href={`/contact.html?intent=ai_product_team&product=${product.slug}`}
           style={{
             padding: 'clamp(20px, 2.4vw, 28px)',
             background: 'var(--bg-1)',
@@ -436,7 +436,7 @@ function ProductFinalCTA({ product }) {
             fontWeight: 600, lineHeight: 1.25,
           }}>Workflow questions, integrations, custom evaluations →</span>
         </a>
-        <a href="/ai-platform"
+        <a href="/ai-platform.html"
           style={{
             padding: 'clamp(20px, 2.4vw, 28px)',
             background: 'var(--bg-1)',

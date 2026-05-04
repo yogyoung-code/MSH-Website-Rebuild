@@ -29,7 +29,7 @@ function SolutionHeader() {
         background: 'var(--brand-primary-900)', color: 'rgba(255,255,255,0.75)',
         fontSize: 12, letterSpacing: '0.02em',
       }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '6px 40px', display: 'flex', gap: 20, alignItems: 'center' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '6px clamp(16px, 4vw, 40px)', display: 'flex', gap: 20, alignItems: 'center' }}>
           <span style={{ fontFamily: 'var(--font-slogan)', fontStyle: 'italic', color: 'rgba(255,255,255,0.55)' }}>
             Improving Healthcare Quality
           </span>
@@ -44,7 +44,7 @@ function SolutionHeader() {
       </div>
       <div style={{
         maxWidth: 1280, margin: '0 auto',
-        display: 'flex', alignItems: 'center', gap: 40, padding: '14px 40px',
+        display: 'flex', alignItems: 'center', gap: 40, padding: '14px clamp(16px, 4vw, 40px)',
       }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
           <img src="/assets/logo/medsci-healthcare-logo.svg" alt="MedSci Healthcare" style={{ height: 36 }} />

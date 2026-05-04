@@ -1,0 +1,1389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MedSci Healthcare · Editorial Hi-Fi (Direction D) · W2-03</title>
+  <meta name="description" content="AI-Enabled. Physician-Verified. Globally Ready. Cross-border medical affairs for China–US." />
+
+  <!-- Fonts: Source Serif 4 (display) + Inter (UI) + JetBrains Mono (data) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+  <style>
+    /* ============================================================
+       Design System · VI v1.1 — Direction D · "Editorial Grade"
+       Reference: Lancet / NEJM editorial typography meets Stripe restraint.
+       Single-hue blue system. Accent (cyan) ≤ 5% area — used only for
+       citation superscripts, inline data-claim anchors, evidence ✓.
+       Serif-led display. Asymmetric grid. Hairlines, not cards.
+       ============================================================ */
+    :root {
+      /* ── Brand · Primary (Logo navy system) ── */
+      --primary-900: #001037;
+      --primary-700: #001A51;   /* Logo navy */
+      --primary-500: #005AA4;   /* Logo wordmark blue */
+      --primary-300: #7FB8E3;
+      --primary-100: #E4F2FC;
+
+      /* ── Accent (Logo cyan · ≤ 5% of viewport) ── */
+      --accent-700: #0088B0;
+      --accent-500: #00AEDB;
+      --accent-100: #D6F1F9;
+
+      /* ── Neutrals ── */
+      --neutral-900: #0F172A;
+      --neutral-700: #334155;
+      --neutral-600: #666666;   /* Logo slogan grey */
+      --neutral-500: #64748B;
+      --neutral-300: #CBD5E1;
+      --neutral-200: #E2E8F0;
+      --neutral-100: #F1F5F9;
+      --neutral-50:  #F8FAFC;
+      --paper:       #FDFCF9;   /* warm paper for editorial feel */
+      --white:       #FFFFFF;
+
+      /* ── Semantic ── */
+      --success-500: #2E9F82;
+      --success-100: #E6F4EF;
+      --warning-500: #F59E0B;
+      --warning-100: #FEF3C7;
+
+      /* ── Approved gradients (VI v1.1 §2.6 — only three allowed) ── */
+      --grad-hero:   linear-gradient(135deg, #001037 0%, #001A51 55%, #005AA4 100%);
+      --grad-accent: linear-gradient(135deg, #005AA4 0%, #00AEDB 100%);
+      --grad-wash:   linear-gradient(180deg, #E4F2FC 0%, #FFFFFF 100%);
+
+      /* ── Type stacks ── */
+      --font-display: "Source Serif 4", "Source Serif Pro", "Noto Serif SC", Georgia, serif;
+      --font-ui:      "Inter", system-ui, -apple-system, "Helvetica Neue", "Source Han Sans SC", sans-serif;
+      --font-mono:    "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+      /* ── Fluid scale (Major Third 1.25 × fluid clamp) ── */
+      --size-display-xl: clamp(44px, 5.6vw, 84px);
+      --size-display-l:  clamp(36px, 4.2vw, 60px);
+      --size-h1:         clamp(30px, 3.2vw, 44px);
+      --size-h2:         clamp(24px, 2.4vw, 32px);
+      --size-h3:         24px;
+      --size-h4:         20px;
+      --size-body-l:     18px;
+      --size-body:       16px;
+      --size-body-s:     14px;
+      --size-caption:    12px;
+
+      /* ── Rhythm (8px baseline) ── */
+      --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+      --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px;
+      --s-12: 48px; --s-16: 64px; --s-20: 80px; --s-24: 96px; --s-32: 128px;
+
+      /* ── Radius ── */
+      --r-sm: 4px; --r-md: 6px; --r-lg: 12px; --r-xl: 20px;
+
+      /* ── Shadow (restrained; border-first) ── */
+      --shadow-xs: 0 1px 2px rgba(0,16,55,0.04);
+      --shadow-sm: 0 2px 4px rgba(0,16,55,0.06);
+      --shadow-md: 0 4px 12px rgba(0,16,55,0.08);
+      --shadow-lg: 0 12px 32px rgba(0,26,81,0.12);
+
+      /* ── Motion (exponential ease, reduced-motion aware) ── */
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --dur-1: 180ms; --dur-2: 320ms; --dur-3: 520ms;
+
+      --container: 1280px;
+      --reading: 680px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ── Reset + base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-ui);
+      font-size: var(--size-body);
+      line-height: 1.6;
+      color: var(--neutral-900);
+      background: var(--paper);
+      font-feature-settings: "ss01", "ss02", "cv11";
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: var(--primary-500); text-decoration: none; }
+    a:hover { color: var(--primary-700); }
+    a:focus-visible { outline: 2px solid var(--accent-500); outline-offset: 3px; border-radius: 2px; }
+    button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+    ::selection { background: var(--primary-700); color: var(--white); }
+
+    /* Direction badge (top-right floating marker — spec artifact) */
+    .d-badge {
+      position: fixed; top: 16px; right: 16px; z-index: 9999;
+      background: var(--primary-700); color: var(--white);
+      font: 500 11px/1 var(--font-mono);
+      padding: 6px 10px; border-radius: 999px; letter-spacing: 0.04em;
+      box-shadow: var(--shadow-md);
+    }
+    .d-badge strong { color: var(--accent-500); font-weight: 600; }
+
+    /* Disclosure bar (HKEX compliance — always on, top of page) */
+    .disclosure {
+      background: var(--neutral-900); color: rgba(255,255,255,0.78);
+      font: 400 12px/1.5 var(--font-mono);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .disclosure-inner {
+      max-width: var(--container); margin: 0 auto;
+      padding: 8px 24px; display: flex; gap: 20px; align-items: center;
+      justify-content: space-between; flex-wrap: wrap;
+    }
+    .disclosure .ticker { color: var(--accent-500); letter-spacing: 0.06em; font-weight: 500; }
+    .disclosure .ticker::before { content: "●"; margin-right: 6px; color: var(--success-500); }
+    .disclosure a { color: rgba(255,255,255,0.78); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(253,252,249,0.88);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--neutral-200);
+    }
+    .nav-inner {
+      max-width: var(--container); margin: 0 auto;
+      padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--primary-700); }
+    .nav-brand-mark {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: conic-gradient(from 90deg at 50% 50%, #001A51, #005AA4, #00AEDB, #001A51);
+      position: relative; flex: 0 0 auto;
+    }
+    .nav-brand-mark::after {
+      content: "ms"; position: absolute; inset: 0; display: grid; place-items: center;
+      color: var(--white); font: 600 11px/1 var(--font-display); letter-spacing: -0.02em;
+    }
+    .nav-brand-word {
+      font: 600 17px/1 var(--font-display); letter-spacing: -0.01em;
+      color: var(--primary-700);
+    }
+    .nav-brand-tagline {
+      display: block; font: italic 400 11px/1 var(--font-display);
+      color: var(--neutral-600); margin-top: 2px; letter-spacing: 0;
+    }
+    .nav-links {
+      display: flex; gap: 28px; align-items: center;
+      font: 500 14px/1 var(--font-ui); list-style: none; margin: 0; padding: 0;
+    }
+    .nav-links a {
+      color: var(--neutral-900); text-decoration: none; padding: 6px 0;
+      border-bottom: 1px solid transparent; transition: border-color var(--dur-1) var(--ease-out);
+    }
+    .nav-links a:hover { border-bottom-color: var(--primary-500); }
+    .nav-cta {
+      font: 600 14px/1 var(--font-ui);
+      color: var(--white); background: var(--primary-700);
+      padding: 10px 18px; border-radius: var(--r-md);
+      transition: background var(--dur-1) var(--ease-out), transform var(--dur-1) var(--ease-out);
+    }
+    .nav-cta:hover { background: var(--primary-900); color: var(--white); transform: translateY(-1px); }
+    @media (max-width: 880px) {
+      .nav-links { display: none; }
+      .nav-cta { padding: 8px 14px; font-size: 13px; }
+    }
+
+    /* ────────────────────────────────────────────────
+       01 · Editorial Hero
+       Asymmetric 12-col grid. Left: Slogan + Hero display.
+       Right: a narrow "column of record" — dated, numbered,
+       with inline data citation superscripts [1].
+       No photo. No dark hero. Just typography doing work.
+       ──────────────────────────────────────────────── */
+    .hero {
+      position: relative; background: var(--paper);
+      padding: clamp(56px, 9vw, 128px) 24px clamp(48px, 7vw, 96px);
+      overflow: hidden;
+    }
+    .hero::before {
+      /* A single, restrained hairline accent — NOT a gradient wash,
+         NOT a glow. Echoes journal front-matter rules. */
+      content: ""; position: absolute;
+      left: 24px; right: 24px; top: 0; height: 1px;
+      background: var(--neutral-300);
+    }
+    .hero-inner {
+      max-width: var(--container); margin: 0 auto;
+      display: grid; grid-template-columns: minmax(0,7fr) minmax(0,4fr); gap: clamp(32px, 5vw, 80px);
+      align-items: start;
+    }
+    @media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+    .hero-eyebrow {
+      display: flex; align-items: baseline; gap: 14px;
+      font: 500 12px/1 var(--font-mono); letter-spacing: 0.08em;
+      color: var(--neutral-600); text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow .num { color: var(--primary-700); font-weight: 600; font-size: 13px; }
+    .hero-eyebrow .sep { flex: 1; height: 1px; background: var(--neutral-300); }
+    .hero-eyebrow .issue { color: var(--neutral-500); }
+
+    .slogan-main {
+      font: italic 400 clamp(22px, 2.2vw, 30px)/1.3 var(--font-display);
+      color: var(--neutral-600);
+      margin: 0 0 12px;
+      letter-spacing: 0.005em;
+    }
+
+    .hero-headline {
+      font: 600 var(--size-display-xl)/1.04 var(--font-display);
+      letter-spacing: -0.018em;
+      color: var(--primary-700);
+      margin: 0 0 24px;
+    }
+    .hero-headline .soft { color: var(--neutral-700); font-weight: 400; font-style: italic; }
+    .hero-headline .emph { color: var(--primary-500); }
+
+    .slogan-sub {
+      font: 500 var(--size-body-l)/1.5 var(--font-ui);
+      color: var(--neutral-900);
+      margin: 0 0 12px;
+      max-width: 46ch;
+    }
+    .slogan-sub .dot { color: var(--accent-500); font-weight: 600; }
+
+    .hero-lead {
+      font: 400 var(--size-body-l)/1.65 var(--font-ui);
+      color: var(--neutral-700);
+      max-width: 52ch;
+      margin: 0 0 32px;
+    }
+    .hero-lead sup {
+      color: var(--accent-700); font: 500 11px/1 var(--font-mono);
+      margin-left: 2px; cursor: pointer;
+      border-bottom: 1px dotted var(--accent-500);
+    }
+
+    .hero-cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px; border-radius: var(--r-md);
+      font: 600 15px/1 var(--font-ui); letter-spacing: -0.005em;
+      transition: all var(--dur-1) var(--ease-out);
+    }
+    .btn-primary { background: var(--primary-700); color: var(--white); }
+    .btn-primary:hover { background: var(--primary-900); color: var(--white); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-ghost { background: transparent; color: var(--primary-700); border: 1px solid var(--neutral-300); }
+    .btn-ghost:hover { border-color: var(--primary-700); background: var(--primary-100); color: var(--primary-700); }
+    .btn svg { width: 16px; height: 16px; stroke-width: 1.75; }
+
+    /* Hero right column — "column of record" */
+    .hero-record {
+      border-left: 1px solid var(--neutral-300);
+      padding-left: clamp(20px, 2.5vw, 40px);
+      padding-top: 48px;
+    }
+    @media (max-width: 900px) { .hero-record { border-left: none; padding-left: 0; border-top: 1px solid var(--neutral-300); padding-top: 32px; } }
+
+    .record-label {
+      font: 500 11px/1 var(--font-mono); letter-spacing: 0.12em;
+      color: var(--neutral-500); text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .record-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 20px; }
+    .record-item {
+      display: grid; grid-template-columns: 56px 1fr; gap: 16px; align-items: baseline;
+      padding-bottom: 20px; border-bottom: 1px solid var(--neutral-200);
+    }
+    .record-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .record-num {
+      font: 600 28px/1 var(--font-display);
+      color: var(--primary-700); letter-spacing: -0.015em;
+      font-variant-numeric: tabular-nums;
+    }
+    .record-num .unit { font-size: 14px; color: var(--neutral-500); margin-left: 2px; font-family: var(--font-mono); font-weight: 500; }
+    .record-text {
+      font: 400 14px/1.5 var(--font-ui); color: var(--neutral-700);
+    }
+    .record-text .k { color: var(--neutral-900); font-weight: 500; }
+    .record-text sup {
+      color: var(--accent-700); font: 500 10px/1 var(--font-mono);
+      margin-left: 2px; border-bottom: 1px dotted var(--accent-500);
+    }
+
+    /* ────────────────────────────────────────────────
+       02 · Trust Marquee — typographic ticker
+       A single hairline strip, names running in one row
+       (reduced-motion: static). Replaces the "logo grid of shame".
+       ──────────────────────────────────────────────── */
+    .trust {
+      border-top: 1px solid var(--neutral-300);
+      border-bottom: 1px solid var(--neutral-300);
+      background: var(--white);
+      overflow: hidden;
+      padding: 20px 0;
+    }
+    .trust-inner {
+      max-width: var(--container); margin: 0 auto; padding: 0 24px;
+      display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center;
+    }
+    @media (max-width: 720px) { .trust-inner { grid-template-columns: 1fr; gap: 16px; } }
+    .trust-label {
+      font: 500 11px/1 var(--font-mono); letter-spacing: 0.12em;
+      color: var(--neutral-500); text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .trust-track {
+      display: flex; gap: 56px;
+      font: 500 16px/1 var(--font-display);
+      color: var(--primary-700);
+      animation: trust-scroll 42s linear infinite;
+      white-space: nowrap;
+    }
+    .trust-track span::after {
+      content: "·"; margin-left: 56px; color: var(--accent-500); font-weight: 600;
+    }
+    @keyframes trust-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .trust-track { animation: none; flex-wrap: wrap; }
+    }
+
+    /* ────────────────────────────────────────────────
+       03 · Asymmetric "Three Solutions" — editorial ledger
+       No identical cards. Each solution is a row with
+       a huge numeral, a serif display title, a lead,
+       and inline tabular metrics. Breathing space between.
+       ──────────────────────────────────────────────── */
+    .section {
+      max-width: var(--container); margin: 0 auto;
+      padding: clamp(72px, 9vw, 128px) 24px;
+    }
+    .section-head {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: baseline;
+      margin-bottom: clamp(48px, 6vw, 80px);
+    }
+    .section-num {
+      font: 500 12px/1 var(--font-mono); letter-spacing: 0.1em;
+      color: var(--neutral-600); text-transform: uppercase;
+    }
+    .section-num strong { color: var(--primary-700); font-weight: 600; }
+    .section-title {
+      font: 600 var(--size-h1)/1.1 var(--font-display);
+      letter-spacing: -0.012em;
+      color: var(--primary-700);
+      margin: 0; max-width: 22ch;
+    }
+    .section-meta {
+      font: 500 12px/1 var(--font-mono); letter-spacing: 0.08em;
+      color: var(--neutral-500); text-transform: uppercase;
+    }
+    @media (max-width: 720px) {
+      .section-head { grid-template-columns: 1fr; gap: 12px; }
+      .section-head .section-meta { display: none; }
+    }
+
+    .solution-ledger { display: grid; gap: 0; }
+    .solution-row {
+      display: grid;
+      grid-template-columns: minmax(96px, 1fr) minmax(0, 5fr) minmax(0, 4fr);
+      gap: clamp(24px, 3vw, 56px);
+      padding: clamp(40px, 5vw, 72px) 0;
+      border-top: 1px solid var(--neutral-300);
+      align-items: start;
+    }
+    .solution-row:last-child { border-bottom: 1px solid var(--neutral-300); }
+    @media (max-width: 900px) {
+      .solution-row { grid-template-columns: 1fr; gap: 20px; padding: 32px 0; }
+    }
+
+    .solution-num {
+      font: 600 clamp(48px, 6vw, 88px)/0.95 var(--font-display);
+      color: var(--primary-300);
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    .solution-body h3 {
+      font: 600 clamp(26px, 2.8vw, 36px)/1.15 var(--font-display);
+      letter-spacing: -0.01em;
+      color: var(--primary-700);
+      margin: 0 0 16px;
+    }
+    .solution-body h3 .geo {
+      display: inline-block;
+      font: 500 11px/1 var(--font-mono); letter-spacing: 0.1em;
+      color: var(--accent-700); background: var(--accent-100);
+      padding: 4px 8px; border-radius: var(--r-sm);
+      margin-left: 12px; vertical-align: middle; text-transform: uppercase;
+    }
+    .solution-body p {
+      font: 400 var(--size-body-l)/1.6 var(--font-ui);
+      color: var(--neutral-700);
+      margin: 0 0 20px; max-width: 56ch;
+    }
+    .solution-body p sup {
+      color: var(--accent-700); font: 500 10px/1 var(--font-mono);
+      border-bottom: 1px dotted var(--accent-500);
+    }
+    .solution-link {
+      font: 600 15px/1 var(--font-ui);
+      color: var(--primary-700); display: inline-flex; align-items: center; gap: 6px;
+      border-bottom: 1px solid var(--primary-700);
+      padding-bottom: 2px;
+      transition: gap var(--dur-1) var(--ease-out);
+    }
+    .solution-link:hover { gap: 12px; color: var(--primary-900); }
+    .solution-link svg { width: 14px; height: 14px; stroke-width: 1.75; }
+
+    .solution-metrics {
+      border-left: 1px solid var(--neutral-300);
+      padding-left: clamp(20px, 2.5vw, 40px);
+    }
+    @media (max-width: 900px) { .solution-metrics { border-left: none; padding-left: 0; padding-top: 20px; border-top: 1px solid var(--neutral-200); } }
+    .metric-row {
+      display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline;
+      padding: 12px 0; border-bottom: 1px dotted var(--neutral-300);
+      font-variant-numeric: tabular-nums;
+    }
+    .metric-row:last-child { border-bottom: none; }
+    .metric-num {
+      font: 600 22px/1 var(--font-display);
+      color: var(--primary-700); letter-spacing: -0.01em;
+      min-width: 80px;
+    }
+    .metric-num .unit { font: 500 12px/1 var(--font-mono); color: var(--neutral-500); margin-left: 2px; }
+    .metric-caption {
+      font: 400 13px/1.4 var(--font-ui); color: var(--neutral-700);
+    }
+    .metric-caption .year { color: var(--neutral-500); font: 500 11px/1 var(--font-mono); margin-left: 4px; }
+
+    /* ────────────────────────────────────────────────
+       04 · AI Delivery · Disclosure-first
+       No "neural network animation", no dark canvas.
+       A three-layer editorial diagram rendered in pure CSS:
+       Intake → AI Assist → Physician Verify. Each layer has
+       a restrained description + its evidence/PITL disclosure.
+       ──────────────────────────────────────────────── */
+    .ai-band {
+      background: var(--grad-wash); /* light blue wash → white */
+      border-top: 1px solid var(--neutral-300);
+      border-bottom: 1px solid var(--neutral-300);
+    }
+    .ai-inner { max-width: var(--container); margin: 0 auto; padding: clamp(72px, 9vw, 128px) 24px; }
+    .ai-head {
+      display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: clamp(32px, 5vw, 80px);
+      align-items: baseline; margin-bottom: 56px;
+    }
+    @media (max-width: 860px) { .ai-head { grid-template-columns: 1fr; gap: 20px; } }
+    .ai-head .section-title { max-width: none; }
+    .ai-head-lead {
+      font: 400 var(--size-body-l)/1.6 var(--font-ui);
+      color: var(--neutral-700); margin: 0; max-width: 56ch;
+    }
+
+    .pitl-disclosure {
+      border: 1px solid var(--primary-300);
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 20px 24px;
+      margin-bottom: 48px;
+      display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center;
+    }
+    .pitl-disclosure .pitl-mark {
+      font: 600 16px/1 var(--font-display); color: var(--primary-700);
+      padding: 10px 14px; border: 1px solid var(--primary-700); border-radius: var(--r-md);
+      white-space: nowrap;
+    }
+    .pitl-disclosure .pitl-mark strong { color: var(--accent-700); font-weight: 600; }
+    .pitl-disclosure p {
+      margin: 0; font: 400 14px/1.6 var(--font-ui); color: var(--neutral-700);
+    }
+    .pitl-disclosure p strong { color: var(--primary-700); }
+    .pitl-disclosure .pitl-meta {
+      font: 500 11px/1.4 var(--font-mono); color: var(--neutral-500); text-align: right; white-space: nowrap;
+    }
+    @media (max-width: 720px) {
+      .pitl-disclosure { grid-template-columns: 1fr; gap: 14px; padding: 18px; }
+      .pitl-disclosure .pitl-meta { text-align: left; }
+    }
+
+    .pitl-flow {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      border: 1px solid var(--neutral-300); border-radius: var(--r-lg);
+      overflow: hidden; background: var(--white);
+      position: relative;
+    }
+    @media (max-width: 860px) { .pitl-flow { grid-template-columns: 1fr; } }
+    .pitl-step {
+      padding: 32px; position: relative;
+      border-right: 1px solid var(--neutral-200);
+    }
+    .pitl-step:last-child { border-right: none; }
+    @media (max-width: 860px) {
+      .pitl-step { border-right: none; border-bottom: 1px solid var(--neutral-200); }
+      .pitl-step:last-child { border-bottom: none; }
+    }
+    .pitl-step-num {
+      font: 500 11px/1 var(--font-mono); letter-spacing: 0.1em;
+      color: var(--neutral-500); text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .pitl-step-title {
+      font: 600 20px/1.25 var(--font-display);
+      color: var(--primary-700); margin: 0 0 12px;
+      letter-spacing: -0.008em;
+    }
+    .pitl-step-title .tag {
+      display: inline-block; font: 500 10px/1 var(--font-mono); letter-spacing: 0.08em;
+      padding: 3px 7px; border-radius: var(--r-sm); margin-left: 8px;
+      vertical-align: middle; text-transform: uppercase;
+    }
+    .pitl-step-title .tag.ai { background: var(--accent-100); color: var(--accent-700); }
+    .pitl-step-title .tag.md { background: var(--primary-100); color: var(--primary-700); }
+    .pitl-step-desc {
+      font: 400 14px/1.55 var(--font-ui); color: var(--neutral-700); margin: 0 0 16px;
+    }
+    .pitl-step-spec {
+      font: 500 11px/1.5 var(--font-mono);
+      color: var(--neutral-500); border-top: 1px dotted var(--neutral-300);
+      padding-top: 12px;
+    }
+    .pitl-step-spec span { display: block; }
+    .pitl-step-spec .v { color: var(--neutral-900); }
+    /* Arrows between steps (desktop only) */
+    .pitl-step:not(:last-child)::after {
+      content: ""; position: absolute; top: 50%; right: -9px; width: 18px; height: 18px;
+      background: var(--white);
+      border-top: 1px solid var(--neutral-300);
+      border-right: 1px solid var(--neutral-300);
+      transform: translateY(-50%) rotate(45deg);
+      z-index: 2;
+    }
+    @media (max-width: 860px) { .pitl-step::after { display: none; } }
+
+    /* ────────────────────────────────────────────────
+       05 · Case Studies · Editorial pull-quote layout
+       Two cases in a 2-col layout, each with a pull-quote,
+       3 tabular metrics, a citation line, and placeholder
+       flag if consent not on file.
+       ──────────────────────────────────────────────── */
+    .cases {
+      max-width: var(--container); margin: 0 auto;
+      padding: clamp(72px, 9vw, 128px) 24px;
+    }
+    .case-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px);
+    }
+    @media (max-width: 860px) { .case-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+    .case {
+      padding-top: 24px; border-top: 2px solid var(--primary-700);
+    }
+    .case-meta {
+      display: flex; gap: 12px; align-items: center;
+      font: 500 11px/1 var(--font-mono); letter-spacing: 0.1em;
+      color: var(--neutral-500); text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .case-meta .area { color: var(--primary-700); font-weight: 600; }
+    .case-meta .year { color: var(--neutral-500); }
+    .case-meta .badge-verified {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: var(--success-100); color: var(--success-500);
+      padding: 3px 8px; border-radius: var(--r-sm); font-size: 10px;
+    }
+    .case-meta .badge-placeholder {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: var(--warning-100); color: #92400E;
+      padding: 3px 8px; border-radius: var(--r-sm); font-size: 10px;
+      font-style: italic; letter-spacing: 0.06em;
+    }
+    .case-title {
+      font: 600 clamp(24px, 2.6vw, 32px)/1.2 var(--font-display);
+      letter-spacing: -0.01em;
+      color: var(--primary-700);
+      margin: 0 0 16px;
+    }
+    .case-pullquote {
+      font: italic 400 clamp(18px, 1.8vw, 22px)/1.5 var(--font-display);
+      color: var(--neutral-900);
+      border-left: 2px solid var(--primary-700);
+      padding: 6px 0 6px 18px;
+      margin: 0 0 24px;
+      max-width: 44ch;
+    }
+    .case-pullquote-source {
+      font: 500 12px/1 var(--font-mono);
+      color: var(--neutral-500); text-transform: uppercase; letter-spacing: 0.06em;
+      margin-top: 10px; display: block;
+    }
+    .case-metrics {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+      padding: 20px 0; border-top: 1px solid var(--neutral-300);
+      border-bottom: 1px solid var(--neutral-300);
+      margin-bottom: 20px;
+    }
+    @media (max-width: 520px) { .case-metrics { grid-template-columns: 1fr 1fr; } }
+    .case-metric {
+      font-variant-numeric: tabular-nums;
+    }
+    .case-metric .n {
+      display: block; font: 600 26px/1.1 var(--font-display);
+      color: var(--primary-700); letter-spacing: -0.01em;
+    }
+    .case-metric .n .u { font: 500 12px/1 var(--font-mono); color: var(--neutral-500); margin-left: 2px; }
+    .case-metric .c {
+      font: 400 12px/1.4 var(--font-ui); color: var(--neutral-700); margin-top: 6px;
+    }
+    .case-citations {
+      font: 500 11px/1.5 var(--font-mono);
+      color: var(--neutral-500);
+    }
+    .case-citations strong { color: var(--neutral-700); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-right: 6px; }
+
+    /* ────────────────────────────────────────────────
+       06 · Evidence Ladder — single row, three tiers
+       A small, precise diagram replacing the usual
+       "three tiles with icons" slop.
+       ──────────────────────────────────────────────── */
+    .evidence-band {
+      background: var(--primary-900);
+      color: rgba(255,255,255,0.92);
+      position: relative; overflow: hidden;
+    }
+    .evidence-band::before {
+      content: ""; position: absolute; inset: 0;
+      background: var(--grad-hero); opacity: 0.75; z-index: 0;
+    }
+    .evidence-band > * { position: relative; z-index: 1; }
+    .evidence-inner { max-width: var(--container); margin: 0 auto; padding: clamp(72px, 9vw, 128px) 24px; }
+    .evidence-band .section-num { color: rgba(255,255,255,0.7); }
+    .evidence-band .section-num strong { color: var(--accent-500); }
+    .evidence-band .section-title { color: var(--white); }
+    .evidence-band .section-meta { color: rgba(255,255,255,0.6); }
+    .evidence-ladder {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: var(--r-lg);
+    }
+    @media (max-width: 860px) { .evidence-ladder { grid-template-columns: 1fr; } }
+    .evidence-tier {
+      padding: 32px; border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .evidence-tier:last-child { border-right: none; }
+    @media (max-width: 860px) {
+      .evidence-tier { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+      .evidence-tier:last-child { border-bottom: none; }
+    }
+    .evidence-sigil {
+      display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center;
+      border: 1px solid rgba(255,255,255,0.3); border-radius: 50%;
+      font: 600 20px/1 var(--font-display); margin-bottom: 20px;
+    }
+    .evidence-tier.verified .evidence-sigil { color: var(--success-500); border-color: var(--success-500); }
+    .evidence-tier.inprog   .evidence-sigil { color: var(--warning-500); border-color: var(--warning-500); font-style: italic; }
+    .evidence-tier.onreq    .evidence-sigil { color: var(--accent-500); border-color: var(--accent-500); }
+    .evidence-tier h4 {
+      font: 600 20px/1.2 var(--font-display); margin: 0 0 10px; letter-spacing: -0.008em; color: var(--white);
+    }
+    .evidence-tier p {
+      font: 400 14px/1.55 var(--font-ui); color: rgba(255,255,255,0.8); margin: 0 0 14px;
+    }
+    .evidence-tier .rule {
+      font: 500 11px/1.5 var(--font-mono); color: rgba(255,255,255,0.65);
+      border-top: 1px dotted rgba(255,255,255,0.18); padding-top: 12px;
+    }
+
+    /* ────────────────────────────────────────────────
+       07 · Insights (Press / Analysis) — long-form list
+       Dated, numbered, title + dek + read time + type.
+       Replaces the "three-card blog teaser" everyone uses.
+       ──────────────────────────────────────────────── */
+    .insights { max-width: var(--container); margin: 0 auto; padding: clamp(72px, 9vw, 128px) 24px; }
+    .insights-list { list-style: none; padding: 0; margin: 0; }
+    .insights-item {
+      display: grid;
+      grid-template-columns: 100px minmax(0, 4fr) minmax(0, 3fr) auto;
+      gap: clamp(20px, 3vw, 48px);
+      padding: clamp(24px, 3vw, 40px) 0;
+      border-top: 1px solid var(--neutral-300);
+      align-items: baseline;
+      transition: background var(--dur-1) var(--ease-out);
+    }
+    .insights-item:last-child { border-bottom: 1px solid var(--neutral-300); }
+    .insights-item:hover { background: var(--neutral-50); }
+    @media (max-width: 860px) {
+      .insights-item { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+    }
+    .insight-date {
+      font: 500 12px/1 var(--font-mono); letter-spacing: 0.08em;
+      color: var(--neutral-500); text-transform: uppercase;
+      font-variant-numeric: tabular-nums;
+    }
+    .insight-date strong { color: var(--primary-700); font-weight: 600; display: block; font-size: 14px; margin-bottom: 4px; }
+    .insight-title {
+      font: 600 clamp(20px, 1.8vw, 24px)/1.3 var(--font-display);
+      letter-spacing: -0.008em; color: var(--primary-700);
+      margin: 0;
+    }
+    .insight-title a { color: inherit; text-decoration: none; }
+    .insight-title a:hover { color: var(--primary-900); }
+    .insight-dek {
+      font: 400 14px/1.55 var(--font-ui); color: var(--neutral-700); margin: 0;
+      max-width: 54ch;
+    }
+    .insight-type {
+      font: 500 11px/1 var(--font-mono); letter-spacing: 0.1em;
+      padding: 4px 8px; border-radius: var(--r-sm);
+      text-transform: uppercase; white-space: nowrap;
+      justify-self: end;
+    }
+    .insight-type.press    { background: var(--primary-100); color: var(--primary-700); }
+    .insight-type.analysis { background: var(--accent-100);  color: var(--accent-700); }
+    .insight-type.regulatory { background: var(--warning-100); color: #92400E; }
+    @media (max-width: 860px) { .insight-type { justify-self: start; } }
+
+    /* ────────────────────────────────────────────────
+       08 · Final CTA — full-bleed grad-hero
+       One headline, two lanes (Sponsor vs Investor),
+       no decorative fluff. Real entry points.
+       ──────────────────────────────────────────────── */
+    .final-cta {
+      background: var(--grad-hero);
+      color: var(--white);
+      padding: clamp(80px, 10vw, 144px) 24px;
+      position: relative;
+    }
+    .final-cta-inner {
+      max-width: var(--container); margin: 0 auto;
+      display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr); gap: clamp(40px, 6vw, 96px);
+      align-items: start;
+    }
+    @media (max-width: 900px) { .final-cta-inner { grid-template-columns: 1fr; gap: 40px; } }
+    .final-headline {
+      font: 600 clamp(36px, 4.5vw, 64px)/1.08 var(--font-display);
+      color: var(--white); margin: 0 0 24px;
+      letter-spacing: -0.015em;
+    }
+    .final-headline em {
+      font-style: italic; font-weight: 400; color: var(--primary-300);
+    }
+    .final-sub {
+      font: 400 18px/1.55 var(--font-ui);
+      color: rgba(255,255,255,0.82);
+      margin: 0 0 32px; max-width: 52ch;
+    }
+    .final-lanes {
+      display: grid; gap: 16px;
+    }
+    .lane {
+      display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+      padding: 20px 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: var(--r-lg);
+      transition: all var(--dur-2) var(--ease-out);
+      text-decoration: none; color: var(--white);
+    }
+    .lane:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); transform: translateY(-1px); color: var(--white); }
+    .lane-kicker {
+      font: 500 11px/1 var(--font-mono); letter-spacing: 0.12em;
+      color: var(--accent-500); text-transform: uppercase; margin-bottom: 8px;
+    }
+    .lane-title { font: 600 20px/1.25 var(--font-display); color: var(--white); margin: 0 0 6px; letter-spacing: -0.008em; }
+    .lane-desc { font: 400 14px/1.55 var(--font-ui); color: rgba(255,255,255,0.72); margin: 0; max-width: 42ch; }
+    .lane-arrow {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.3);
+      display: grid; place-items: center; flex-shrink: 0;
+      transition: all var(--dur-1) var(--ease-out);
+    }
+    .lane:hover .lane-arrow { border-color: var(--accent-500); background: var(--accent-500); }
+    .lane-arrow svg { width: 16px; height: 16px; stroke-width: 1.75; color: var(--white); }
+
+    /* ────────────────────────────────────────────────
+       Footer — editorial colophon
+       ──────────────────────────────────────────────── */
+    footer {
+      background: var(--primary-900); color: rgba(255,255,255,0.72);
+      padding: 64px 24px 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .foot-inner { max-width: var(--container); margin: 0 auto; }
+    .foot-top {
+      display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+      gap: clamp(32px, 4vw, 64px);
+      padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    @media (max-width: 860px) { .foot-top { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .foot-top { grid-template-columns: 1fr; } }
+    .foot-brand h5 {
+      font: 600 22px/1.2 var(--font-display); color: var(--white); margin: 0 0 10px; letter-spacing: -0.008em;
+    }
+    .foot-brand p { font: italic 400 15px/1.5 var(--font-display); color: rgba(255,255,255,0.6); margin: 0 0 12px; }
+    .foot-brand .sub { font: 500 12px/1.5 var(--font-ui); color: rgba(255,255,255,0.8); letter-spacing: 0.02em; }
+    .foot-brand .sub .dot { color: var(--accent-500); }
+    .foot-col h6 {
+      font: 500 11px/1 var(--font-mono); color: rgba(255,255,255,0.55);
+      letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 16px;
+    }
+    .foot-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+    .foot-col a { color: rgba(255,255,255,0.85); font: 400 14px/1.3 var(--font-ui); text-decoration: none; }
+    .foot-col a:hover { color: var(--accent-500); }
+    .foot-bottom {
+      padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+      font: 400 12px/1.5 var(--font-mono); color: rgba(255,255,255,0.5);
+    }
+    .foot-bottom a { color: rgba(255,255,255,0.65); }
+    .foot-bottom a:hover { color: var(--white); }
+
+    /* Tiny reveal on scroll (opacity + translateY) — respects reduced-motion */
+    .reveal {
+      opacity: 0; transform: translateY(14px);
+      transition: opacity var(--dur-3) var(--ease-out), transform var(--dur-3) var(--ease-out);
+    }
+    .reveal.is-in { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Direction badge -->
+  <div class="d-badge">Direction <strong>D</strong> · Editorial Grade</div>
+
+  <!-- Compliance disclosure bar -->
+  <div class="disclosure" role="complementary" aria-label="Disclosure">
+    <div class="disclosure-inner">
+      <div>
+        <span class="ticker">HKEX: 2415</span>
+        <span style="margin-left:18px;">Forward-looking statements subject to disclaimer.</span>
+      </div>
+      <div style="display:flex; gap:18px; flex-wrap:wrap;">
+        <a href="#investors">Investors</a>
+        <a href="#ai-disclosure">AI &amp; PITL</a>
+        <a href="#legal">Legal</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary navigation -->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#">
+        <span class="nav-brand-mark" aria-hidden="true"></span>
+        <span>
+          <span class="nav-brand-word">MedSci Healthcare</span>
+          <span class="nav-brand-tagline">Improving Healthcare Quality</span>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#ai">AI &amp; Physician Network</a></li>
+        <li><a href="#cases">Case Studies</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <a class="nav-cta" href="#contact">Book scoping call</a>
+    </div>
+  </nav>
+
+  <!-- ────────────────────────────────────────────── 01 · HERO ── -->
+  <header class="hero" id="top">
+    <div class="hero-inner">
+
+      <!-- Left column — editorial headline -->
+      <div>
+        <div class="hero-eyebrow">
+          <span class="num">N° 01</span>
+          <span class="sep"></span>
+          <span class="issue">Spring 2026 · Cross-Border Medical Affairs</span>
+        </div>
+
+        <p class="slogan-main">Improving Healthcare Quality</p>
+
+        <h1 class="hero-headline">
+          Evidence that <span class="soft">travels</span>.<br />
+          Decisions that <span class="emph">land</span>.
+        </h1>
+
+        <p class="slogan-sub">
+          AI-Enabled<span class="dot">.</span> Physician-Verified<span class="dot">.</span> Globally Ready<span class="dot">.</span>
+        </p>
+
+        <p class="hero-lead">
+          MedSci Healthcare pairs a ~2&nbsp;million-physician medical network<sup>[1]</sup>
+          with retrieval-augmented AI and senior physician review, to move
+          clinical evidence between <span style="color:var(--primary-700);font-weight:500;">China</span> and
+          <span style="color:var(--primary-700);font-weight:500;">the US</span>
+          at journal-grade standards — for sponsors, regulators, and investors.
+        </p>
+
+        <div class="hero-cta-row">
+          <a class="btn btn-primary" href="#contact">
+            Book a 30-min scoping call
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#ai-disclosure">
+            Read the AI &amp; PITL disclosure
+          </a>
+        </div>
+      </div>
+
+      <!-- Right column — "column of record" -->
+      <aside class="hero-record" aria-label="At a glance">
+        <div class="record-label">At a glance · 2026</div>
+        <ol class="record-list">
+          <li class="record-item">
+            <div class="record-num">~2<span class="unit">M</span></div>
+            <p class="record-text">
+              <span class="k">Physician network</span> across Greater China<sup>[1]</sup>
+            </p>
+          </li>
+          <li class="record-item">
+            <div class="record-num">5<span class="unit">+</span></div>
+            <p class="record-text">
+              <span class="k">Cross-border M&amp;A</span> completed, $1B+ aggregate<sup>[2]</sup>
+            </p>
+          </li>
+          <li class="record-item">
+            <div class="record-num">12<span class="unit">wk</span></div>
+            <p class="record-text">
+              <span class="k">Sprint → physician-reviewed deliverable</span>, median
+            </p>
+          </li>
+          <li class="record-item">
+            <div class="record-num">100<span class="unit">%</span></div>
+            <p class="record-text">
+              <span class="k">Physician review</span> on every AI-generated claim · PITL
+            </p>
+          </li>
+        </ol>
+      </aside>
+    </div>
+  </header>
+
+  <!-- ────────────────────────────────────────────── 02 · TRUST ── -->
+  <section class="trust" aria-label="Recognized by">
+    <div class="trust-inner">
+      <div class="trust-label">Trusted by teams at</div>
+      <div class="trust-track" aria-hidden="true">
+        <span>Pfizer</span><span>AstraZeneca</span><span>Novartis</span><span>Sanofi</span><span>Merck</span>
+        <span>BeiGene</span><span>Hengrui</span><span>WuXi</span><span>Mayo Clinic</span><span>Cleveland Clinic</span>
+        <span>Pfizer</span><span>AstraZeneca</span><span>Novartis</span><span>Sanofi</span><span>Merck</span>
+        <span>BeiGene</span><span>Hengrui</span><span>WuXi</span><span>Mayo Clinic</span><span>Cleveland Clinic</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────── 03 · SOLUTIONS ── -->
+  <section class="section" id="solutions">
+    <div class="section-head reveal">
+      <div class="section-num"><strong>N° 03</strong> · Solutions</div>
+      <h2 class="section-title">Three lanes, one bar for evidence.</h2>
+      <div class="section-meta">PRD §2 · IA §4.2</div>
+    </div>
+
+    <div class="solution-ledger">
+
+      <!-- Entering China -->
+      <article class="solution-row reveal">
+        <div class="solution-num">01</div>
+        <div class="solution-body">
+          <h3>Entering China <span class="geo">Inbound</span></h3>
+          <p>
+            Bring US/EU therapies into China with NMPA-ready dossiers, KOL advisory
+            boards, and market-access positioning — built on physician review, not
+            off-the-shelf translation<sup>[3]</sup>.
+          </p>
+          <a class="solution-link" href="#">
+            See Entering China
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="solution-metrics">
+          <div class="metric-row">
+            <div class="metric-num">80<span class="unit">+</span></div>
+            <div class="metric-caption">NMPA submissions supported <span class="year">2019–2025</span></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-num">24<span class="unit">wk</span></div>
+            <div class="metric-caption">Median KOL advisory spin-up <span class="year">2025</span></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-num">5.7<span class="unit">/7</span></div>
+            <div class="metric-caption">Medical review rubric score <span class="year">internal</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Going Global -->
+      <article class="solution-row reveal">
+        <div class="solution-num">02</div>
+        <div class="solution-body">
+          <h3>Going Global <span class="geo">Outbound</span></h3>
+          <p>
+            Take Chinese therapies and devices to US regulators, payers, and the
+            trade press. FDA-aware medical writing, AMCP-aware dossiers, and a
+            cross-border physician bench that actually sees US clinical flow<sup>[4]</sup>.
+          </p>
+          <a class="solution-link" href="#">
+            See Going Global
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="solution-metrics">
+          <div class="metric-row">
+            <div class="metric-num">$1B<span class="unit">+</span></div>
+            <div class="metric-caption">Aggregate cross-border deals supported <span class="year">2021–2025</span></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-num">12</div>
+            <div class="metric-caption">FDA pre-submission / Type B advised <span class="year">2023–2025</span></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-num">100<span class="unit">%</span></div>
+            <div class="metric-caption">Claims bound to citations · publish gate</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Cross-Border Sprint -->
+      <article class="solution-row reveal">
+        <div class="solution-num">03</div>
+        <div class="solution-body">
+          <h3>Cross-Border Sprint <span class="geo">12 weeks</span></h3>
+          <p>
+            A fixed 12-week engagement: AI-accelerated evidence synthesis + weekly
+            physician review + a decision-ready deliverable (dossier, advisory
+            readout, or investment memo). One lane, one price, one timeline.
+          </p>
+          <a class="solution-link" href="#">
+            See the Sprint
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="solution-metrics">
+          <div class="metric-row">
+            <div class="metric-num">12<span class="unit">wk</span></div>
+            <div class="metric-caption">Fixed duration · scope-locked</div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-num">4<span class="unit">+1</span></div>
+            <div class="metric-caption">Physician reviewers · lead + 4 specialists</div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-num">On Req<span class="unit">⌕</span></div>
+            <div class="metric-caption">Pricing by engagement profile</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────── 04 · AI & PITL ── -->
+  <section class="ai-band" id="ai">
+    <div class="ai-inner">
+      <div class="ai-head reveal">
+        <div>
+          <div class="section-num"><strong>N° 04</strong> · AI &amp; Physician Network</div>
+          <h2 class="section-title">AI that goes through a physician — always.</h2>
+        </div>
+        <p class="ai-head-lead">
+          We call this <strong>PITL · Physician-in-the-Loop</strong>. No claim leaves the studio
+          without a named specialist's sign-off, and every publish is blocked until
+          each quantified claim is bound to a verified proof-point.
+        </p>
+      </div>
+
+      <div class="pitl-disclosure reveal" id="ai-disclosure">
+        <div class="pitl-mark">PITL <strong>v1.0</strong></div>
+        <p>
+          <strong>Disclosure.</strong> AI drafts and retrieves; a named specialist signs.
+          Review cadence ≤ 180 days; last reviewed <span style="color:var(--primary-700);font-weight:500;">2026-04-02</span> by
+          Legal + Compliance. Model inventory is on our AI page; customer-bound models are not.
+        </p>
+        <div class="pitl-meta">doc · ai-disclosure<br/>singleton · Studio lock</div>
+      </div>
+
+      <div class="pitl-flow">
+        <div class="pitl-step reveal">
+          <div class="pitl-step-num">STEP 01</div>
+          <h3 class="pitl-step-title">Intake <span class="tag md">Human</span></h3>
+          <p class="pitl-step-desc">
+            Scoping call. A senior medical strategist maps your asset, the target
+            jurisdiction, and the decision the deliverable must enable.
+          </p>
+          <div class="pitl-step-spec">
+            <span><strong>SLA:</strong> <span class="v">48 hours</span></span>
+            <span><strong>Role:</strong> <span class="v">Medical Strategist</span></span>
+          </div>
+        </div>
+
+        <div class="pitl-step reveal">
+          <div class="pitl-step-num">STEP 02</div>
+          <h3 class="pitl-step-title">Draft <span class="tag ai">AI Assist</span></h3>
+          <p class="pitl-step-desc">
+            Retrieval-augmented drafting across PubMed, FDA / NMPA dockets, and our
+            proprietary KOL archive. Every quantified claim is emitted with a
+            candidate citation and a hypothesis flag.
+          </p>
+          <div class="pitl-step-spec">
+            <span><strong>Models:</strong> <span class="v">Published on AI page</span></span>
+            <span><strong>Gate:</strong> <span class="v">Unverified claims cannot publish</span></span>
+          </div>
+        </div>
+
+        <div class="pitl-step reveal">
+          <div class="pitl-step-num">STEP 03</div>
+          <h3 class="pitl-step-title">Verify <span class="tag md">Physician</span></h3>
+          <p class="pitl-step-desc">
+            A named specialist reviews the draft, checks every citation, overwrites
+            anything that does not read like clinical care, and signs. Their name
+            rides with the deliverable.
+          </p>
+          <div class="pitl-step-spec">
+            <span><strong>Evidence:</strong> <span class="v">Verified · In Development · On Request</span></span>
+            <span><strong>Audit:</strong> <span class="v">Publish webhook → Legal</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────── 05 · CASES ── -->
+  <section class="cases" id="cases">
+    <div class="section-head reveal">
+      <div class="section-num"><strong>N° 05</strong> · Case Studies</div>
+      <h2 class="section-title">Three metrics or it's not a case.</h2>
+      <div class="section-meta">All cases · consent-gated · claim-bound</div>
+    </div>
+
+    <div class="case-grid">
+
+      <article class="case reveal">
+        <div class="case-meta">
+          <span class="area">Oncology</span>
+          <span class="year">2024–2025</span>
+          <span class="badge-verified">✓ Verified</span>
+        </div>
+        <h3 class="case-title">Bringing a PD-1 bispecific from Shanghai to Boston.</h3>
+        <p class="case-pullquote">
+          "MedSci kept the medical story clean. Every claim in the FDA pre-sub
+          had a citation I could re-open."
+          <span class="case-pullquote-source">— VP, Regulatory · US Biotech</span>
+        </p>
+        <div class="case-metrics">
+          <div class="case-metric"><span class="n">14<span class="u">wk</span></span><span class="c">Protocol → Type B response</span></div>
+          <div class="case-metric"><span class="n">62</span><span class="c">Citations bound to claims</span></div>
+          <div class="case-metric"><span class="n">0</span><span class="c">Unverified claims at publish</span></div>
+        </div>
+        <p class="case-citations"><strong>Sources</strong> FDA pre-submission memo · internal QA report · sponsor confirmation letter</p>
+      </article>
+
+      <article class="case reveal">
+        <div class="case-meta">
+          <span class="area">Cardiology · Device</span>
+          <span class="year">2025</span>
+          <span class="badge-placeholder">⚑ Placeholder · Client anonymized</span>
+        </div>
+        <h3 class="case-title">A US device maker's NMPA path, rewritten by physicians who do the procedure.</h3>
+        <p class="case-pullquote">
+          "Our translation dossier read like marketing; MedSci's read like a
+          pre-op checklist. NMPA reviewers asked fewer questions."
+          <span class="case-pullquote-source">— Medical Director · Device OEM (anonymized)</span>
+        </p>
+        <div class="case-metrics">
+          <div class="case-metric"><span class="n">−38<span class="u">%</span></span><span class="c">Reviewer questions, round 1</span></div>
+          <div class="case-metric"><span class="n">8</span><span class="c">Interventional cardiologists on review</span></div>
+          <div class="case-metric"><span class="n">3</span><span class="c">Consent forms pending — name withheld</span></div>
+        </div>
+        <p class="case-citations"><strong>Sources</strong> NMPA review correspondence · internal review log · blinded clinician rubric</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────── 06 · EVIDENCE LADDER ── -->
+  <section class="evidence-band">
+    <div class="evidence-inner">
+      <div class="section-head reveal">
+        <div class="section-num"><strong>N° 06</strong> · Evidence Ladder</div>
+        <h2 class="section-title">Three tiers. No fourth.</h2>
+        <div class="section-meta">Copy Deck §1.5 · claim.evidenceTier</div>
+      </div>
+
+      <div class="evidence-ladder">
+        <div class="evidence-tier verified reveal">
+          <div class="evidence-sigil">✓</div>
+          <h4>Verified</h4>
+          <p>Claim is bound to a published, third-party, citeable source. A specialist has signed. The webhook will let it publish.</p>
+          <div class="rule">Publish · allowed</div>
+        </div>
+        <div class="evidence-tier inprog reveal">
+          <div class="evidence-sigil">◐</div>
+          <h4>In Development</h4>
+          <p>Claim is supported internally or by analogous evidence but is not yet third-party verifiable. Rendered with an italic qualifier.</p>
+          <div class="rule">Publish · allowed with inline disclosure</div>
+        </div>
+        <div class="evidence-tier onreq reveal">
+          <div class="evidence-sigil">⌕</div>
+          <h4>On Request</h4>
+          <p>Evidence exists but is under NDA or client-gated. We will share it in a signed data room, not on the public web.</p>
+          <div class="rule">Publish · gated · contact required</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────── 07 · INSIGHTS ── -->
+  <section class="insights" id="insights">
+    <div class="section-head reveal">
+      <div class="section-num"><strong>N° 07</strong> · Insights</div>
+      <h2 class="section-title">What we publish with our name on it.</h2>
+      <div class="section-meta">Press · Analysis · Regulatory</div>
+    </div>
+
+    <ol class="insights-list">
+      <li class="insights-item reveal">
+        <div class="insight-date"><strong>Apr 12</strong>2026</div>
+        <h3 class="insight-title"><a href="#">MedSci Healthcare files US advisory board operating procedures with Cambridge, MA office opening.</a></h3>
+        <p class="insight-dek">Our Cambridge site will anchor US-facing medical review, with a standing panel of 16 specialists drawn from Boston-area academic centers.</p>
+        <span class="insight-type press">Press Release</span>
+      </li>
+      <li class="insights-item reveal">
+        <div class="insight-date"><strong>Apr 02</strong>2026</div>
+        <h3 class="insight-title"><a href="#">Why "AI-enabled" is not a medical claim — and what should replace it in your next dossier.</a></h3>
+        <p class="insight-dek">A short field note on FTC and NMPA aversion to unqualified AI claims, with a four-part reword rubric we apply in-studio.</p>
+        <span class="insight-type analysis">Analysis</span>
+      </li>
+      <li class="insights-item reveal">
+        <div class="insight-date"><strong>Mar 20</strong>2026</div>
+        <h3 class="insight-title"><a href="#">FDA draft guidance on AI/ML medical devices: six places our PITL process will not change, and one place it will.</a></h3>
+        <p class="insight-dek">Reading the FDA's March 2026 draft against MedSci's existing PITL specification — where we already meet the bar, and where we will move.</p>
+        <span class="insight-type regulatory">Regulatory</span>
+      </li>
+      <li class="insights-item reveal">
+        <div class="insight-date"><strong>Mar 04</strong>2026</div>
+        <h3 class="insight-title"><a href="#">Cross-border M&amp;A · four lessons from five completed deals.</a></h3>
+        <p class="insight-dek">What actually broke in the five cross-border deals we supported between 2022 and 2025, told without client names but with exact mechanisms.</p>
+        <span class="insight-type analysis">Analysis</span>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ────────────────────────────────────────────── 08 · FINAL CTA ── -->
+  <section class="final-cta" id="contact">
+    <div class="final-cta-inner">
+      <div class="reveal">
+        <h2 class="final-headline">
+          Bring us a decision that has to <em>survive</em> a physician's eye.
+        </h2>
+        <p class="final-sub">
+          Scoping calls are 30 minutes with a senior medical strategist. If your
+          ask is outside our bar, we will tell you — and route you to a peer firm.
+          That is also PITL.
+        </p>
+      </div>
+
+      <div class="final-lanes reveal">
+        <a class="lane" href="#sponsors">
+          <div>
+            <div class="lane-kicker">Sponsors · Sprint intake</div>
+            <h3 class="lane-title">Book a 30-min scoping call</h3>
+            <p class="lane-desc">For pharma / biotech / device medical affairs. Routes to Medical Strategy · SLA 48 h.</p>
+          </div>
+          <span class="lane-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="lane" href="#investors">
+          <div>
+            <div class="lane-kicker">Investors &amp; analysts</div>
+            <h3 class="lane-title">Request the IR data room</h3>
+            <p class="lane-desc">HKEX 2415 filings, board &amp; leadership, ESG disclosure, and our AI governance policy.</p>
+          </div>
+          <span class="lane-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="lane" href="#press">
+          <div>
+            <div class="lane-kicker">Press &amp; regulatory</div>
+            <h3 class="lane-title">Reach the press desk</h3>
+            <p class="lane-desc">Embargoed interviews, regulatory commentary, and named-source inquiries. Response ≤ 24 h.</p>
+          </div>
+          <span class="lane-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────── FOOTER ── -->
+  <footer id="legal">
+    <div class="foot-inner">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <h5>MedSci Healthcare</h5>
+          <p>Improving Healthcare Quality</p>
+          <p class="sub">AI-Enabled<span class="dot">.</span> Physician-Verified<span class="dot">.</span> Globally Ready<span class="dot">.</span></p>
+        </div>
+        <div class="foot-col">
+          <h6>Solutions</h6>
+          <ul>
+            <li><a href="#">Entering China</a></li>
+            <li><a href="#">Going Global</a></li>
+            <li><a href="#">Cross-Border Sprint</a></li>
+            <li><a href="#">Other Engagements</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h6>Company</h6>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#insights">Insights</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h6>Disclosure</h6>
+          <ul>
+            <li><a href="#investors">Investor Relations · HKEX 2415</a></li>
+            <li><a href="#ai-disclosure">AI &amp; PITL Disclosure</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms &amp; Conditions</a></li>
+            <li><a href="#">Whistleblower Channel</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <div>© 2026 MedSci Healthcare. Stock code 2415.HK — Hong Kong Exchanges.</div>
+        <div>
+          <a href="#">Colophon</a> · <a href="#">Accessibility · WCAG 2.1 AA</a> · <a href="#">中文</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection-based reveal (reduced-motion respected via CSS).
+    (function () {
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+
+</body>
+</html>

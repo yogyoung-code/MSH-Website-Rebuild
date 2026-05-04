@@ -356,7 +356,7 @@ function SmartForm({ onSubmit, simulateError, routedIntent }) {
         />
         <span>
           I agree to the{' '}
-          <a href="/legal/privacy" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
+          <a href="/legal/privacy.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
             Privacy Policy
           </a>
           {' '}and consent to MedSci Healthcare contacting me about this inquiry.

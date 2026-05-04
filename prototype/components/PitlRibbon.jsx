@@ -284,7 +284,7 @@ function PitlRibbon({ steps, eyebrow, title, variant = 'full' }) {
             letterSpacing: '0.02em',
             textAlign: 'right'
           }}>
-            <a href="/ai-platform/method"
+            <a href="/ai-platform.html#method"
                style={{ color: 'var(--brand-accent-700)', textDecoration: 'none', fontWeight: 600 }}>
               See the full PITL workflow →
             </a>

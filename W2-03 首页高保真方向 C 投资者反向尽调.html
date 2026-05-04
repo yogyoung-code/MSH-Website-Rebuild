@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>MSH Healthcare · Direction C · Investor-Grade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#111827;
+    --ink-2:#1f2937;
+    --ink-3:#374151;
+    --muted:#6b7280;
+    --line:#e5e7eb;
+    --line-2:#d1d5db;
+    --paper:#fafaf7;
+    --paper-2:#f5f5ef;
+    --white:#ffffff;
+    --gold:#b8860b;
+    --gold-soft:#d4a84b;
+    --accent-faint:rgba(184,134,11,.08);
+    --ok:#0f766e;
+    --warn:#b45309;
+    --shadow-sm:0 1px 0 rgba(17,24,39,.04);
+    --shadow:0 1px 2px rgba(17,24,39,.04), 0 12px 40px -18px rgba(17,24,39,.15);
+    --r-sm:3px;
+    --r:4px;
+    --r-md:6px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-.005em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+  .serif{font-family:'Source Serif 4',Georgia,serif;letter-spacing:-.02em}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.02em}
+  .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .rule{height:1px;background:var(--line);width:100%}
+
+  /* ───────── TOP DISCLOSURE BAR ───────── */
+  .disclosure{background:var(--ink);color:#e5e7eb;font-size:12px}
+  .disclosure .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:10px;padding-bottom:10px}
+  .disclosure .left{display:flex;gap:24px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em}
+  .disclosure .left b{color:var(--gold-soft);font-weight:500}
+  .disclosure .right{display:flex;gap:18px;align-items:center;color:#9ca3af}
+  .disclosure .right a:hover{color:var(--gold-soft)}
+
+  /* ───────── NAV ───────── */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(250,250,247,.92);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line)}
+  header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand .logo{width:34px;height:34px;border-radius:2px;background:var(--ink);color:#fafaf7;display:grid;place-items:center;font-family:'Source Serif 4',serif;font-weight:700;font-size:18px;letter-spacing:-.02em}
+  .brand .wordmark{display:flex;flex-direction:column;line-height:1}
+  .brand .wordmark b{font-family:'Source Serif 4',serif;font-weight:600;font-size:16px;letter-spacing:-.01em}
+  .brand .wordmark span{font-size:10.5px;color:var(--muted);margin-top:3px;letter-spacing:.08em;text-transform:uppercase}
+  nav.primary{display:flex;gap:32px;font-size:13.5px}
+  nav.primary a{color:var(--ink-3);padding:6px 0;border-bottom:1px solid transparent;transition:.15s}
+  nav.primary a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+  .nav-cta{display:flex;gap:10px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;font-size:13px;font-weight:500;border-radius:var(--r);border:1px solid var(--line-2);background:var(--white);color:var(--ink);transition:.15s;letter-spacing:.01em}
+  .btn:hover{border-color:var(--ink);background:var(--ink);color:var(--white)}
+  .btn-ghost{background:transparent;border-color:transparent;color:var(--ink-3)}
+  .btn-ghost:hover{color:var(--ink);background:transparent;border-color:var(--line-2)}
+  .btn-gold{background:var(--ink);color:var(--white);border-color:var(--ink);position:relative}
+  .btn-gold::before{content:"";position:absolute;inset:0;border-left:2px solid var(--gold);border-radius:var(--r)}
+  .btn-gold:hover{background:var(--ink-2)}
+
+  /* ───────── HERO · Text-first, no imagery ───────── */
+  .hero{padding:96px 0 72px;border-bottom:1px solid var(--line)}
+  .hero .eyebrow-row{display:flex;align-items:center;gap:14px;margin-bottom:36px}
+  .hero .eyebrow-row .dot{width:5px;height:5px;background:var(--gold);border-radius:50%}
+  .hero h1{font-family:'Source Serif 4',serif;font-weight:400;font-size:68px;line-height:1.03;letter-spacing:-.025em;color:var(--ink);max-width:960px}
+  .hero h1 em{font-style:italic;color:var(--ink-2)}
+  .hero h1 u{text-decoration:none;border-bottom:2px solid var(--gold);padding-bottom:2px}
+  .hero .lede{max-width:680px;margin-top:32px;font-size:18px;line-height:1.6;color:var(--ink-3)}
+  .hero .meta{display:flex;gap:48px;margin-top:48px;padding-top:28px;border-top:1px solid var(--line);max-width:820px}
+  .hero .meta > div{flex:1}
+  .hero .meta .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:8px}
+  .hero .meta .v{font-family:'Source Serif 4',serif;font-size:22px;font-weight:500;letter-spacing:-.015em;line-height:1.25}
+  .hero .meta .v small{font-family:'Inter',sans-serif;font-weight:400;font-size:12.5px;color:var(--muted);letter-spacing:0;display:block;margin-top:4px}
+  .hero .cta-row{display:flex;gap:12px;margin-top:44px}
+
+  /* ───────── TRUST BAR · moved up, right under hero ───────── */
+  .trust{background:var(--ink);color:#e5e7eb;padding:64px 0;border-bottom:1px solid var(--ink)}
+  .trust .head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:40px}
+  .trust .eyebrow{color:var(--gold-soft)}
+  .trust .note{font-size:11.5px;color:#9ca3af;font-family:'JetBrains Mono',monospace;letter-spacing:.06em}
+  .trust .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #374151;border-bottom:1px solid #374151}
+  .trust .cell{padding:36px 28px 32px;border-right:1px solid #374151;position:relative}
+  .trust .cell:last-child{border-right:none}
+  .trust .cell .big{font-family:'Source Serif 4',serif;font-size:48px;font-weight:400;letter-spacing:-.02em;line-height:1;color:var(--white)}
+  .trust .cell .unit{font-family:'Source Serif 4',serif;font-size:20px;color:var(--gold-soft);margin-left:2px}
+  .trust .cell .lbl{font-size:12.5px;color:#d1d5db;margin-top:14px;line-height:1.5;max-width:200px}
+  .trust .cell .cite{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#9ca3af;margin-top:14px;letter-spacing:.04em}
+  .trust .logo-row{margin-top:40px;display:flex;align-items:center;gap:36px;flex-wrap:wrap;padding-top:28px;border-top:1px solid #374151}
+  .trust .logo-row span{color:#9ca3af;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+  .trust .logo-row em{font-style:normal;color:#d1d5db;font-family:'Source Serif 4',serif;font-size:16px;letter-spacing:.02em;padding:6px 12px;border:1px solid #4b5563;border-radius:2px}
+
+  /* ───────── ABOUT BAND · investor-facing, prominent ───────── */
+  .about{padding:96px 0;background:var(--paper)}
+  .about .layout{display:grid;grid-template-columns:320px 1fr;gap:80px;align-items:start}
+  .about h2{font-family:'Source Serif 4',serif;font-weight:400;font-size:40px;line-height:1.1;letter-spacing:-.02em;color:var(--ink)}
+  .about h2 u{text-decoration:none;border-bottom:1.5px solid var(--gold);padding-bottom:1px}
+  .about .rside{font-size:16px;color:var(--ink-3);line-height:1.7;max-width:680px}
+  .about .rside p + p{margin-top:18px}
+  .about .stats{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;padding-top:40px;border-top:1px solid var(--line)}
+  .about .stat .n{font-family:'Source Serif 4',serif;font-size:44px;font-weight:400;letter-spacing:-.02em;color:var(--ink);line-height:1}
+  .about .stat .n .u{color:var(--gold);margin-left:2px;font-size:24px}
+  .about .stat .lb{font-size:12.5px;color:var(--muted);margin-top:10px;letter-spacing:.02em}
+  .about .ir-links{display:flex;flex-direction:column;gap:0;margin-top:40px;border-top:1px solid var(--line)}
+  .about .ir-links a{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink);transition:.15s}
+  .about .ir-links a:hover{padding-left:8px;color:var(--ink)}
+  .about .ir-links a:hover::after{color:var(--gold)}
+  .about .ir-links a::after{content:"→";color:var(--muted);font-family:'JetBrains Mono',monospace;transition:.15s}
+  .about .ir-links a .t{font-family:'Source Serif 4',serif;font-size:16px;font-weight:500}
+  .about .ir-links a .d{font-size:12px;color:var(--muted);margin-top:4px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+
+  /* ───────── PATHS ───────── */
+  .paths{padding:96px 0;border-top:1px solid var(--line);background:var(--paper-2)}
+  .paths .head{max-width:760px;margin-bottom:56px}
+  .paths h2{font-family:'Source Serif 4',serif;font-size:38px;font-weight:400;line-height:1.12;letter-spacing:-.02em;margin-top:14px}
+  .paths .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .path{padding:44px 40px 40px;border-right:1px solid var(--line);position:relative;background:var(--white);transition:.2s}
+  .path:last-child{border-right:none}
+  .path:hover{background:var(--paper)}
+  .path .num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.18em}
+  .path h3{font-family:'Source Serif 4',serif;font-size:30px;font-weight:500;letter-spacing:-.02em;margin-top:16px;line-height:1.15}
+  .path .sub{font-size:14px;color:var(--muted);margin-top:10px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+  .path .body{margin-top:28px;font-size:14.5px;color:var(--ink-3);line-height:1.7;padding-top:24px;border-top:1px solid var(--line)}
+  .path ul{margin-top:20px;padding:0;list-style:none}
+  .path ul li{position:relative;padding:10px 0 10px 20px;font-size:13.5px;color:var(--ink-2);border-bottom:1px dotted var(--line)}
+  .path ul li::before{content:"";position:absolute;left:0;top:16px;width:10px;height:1px;background:var(--gold)}
+  .path ul li:last-child{border-bottom:none}
+  .path .foot{margin-top:28px;display:flex;gap:12px}
+
+  /* ───────── QUICK START ───────── */
+  .qs{padding:80px 0;border-top:1px solid var(--line);background:var(--white)}
+  .qs .head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px}
+  .qs h2{font-family:'Source Serif 4',serif;font-size:30px;font-weight:400;letter-spacing:-.02em}
+  .qs .g{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+  .qs .item{padding:32px 28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:.15s;position:relative}
+  .qs .item:nth-child(3n){border-right:none}
+  .qs .item:hover{background:var(--paper-2)}
+  .qs .item::before{content:"";position:absolute;top:0;left:0;width:0;height:2px;background:var(--gold);transition:.2s}
+  .qs .item:hover::before{width:60px}
+  .qs .item .t{font-family:'Source Serif 4',serif;font-size:18px;font-weight:500;letter-spacing:-.01em}
+  .qs .item .d{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.55}
+  .qs .item .ln{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-2);letter-spacing:.08em}
+
+  /* ───────── CASE STUDIES · citation-weighted ───────── */
+  .cases{padding:96px 0;background:var(--paper);border-top:1px solid var(--line)}
+  .cases .head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;gap:40px}
+  .cases .head h2{font-family:'Source Serif 4',serif;font-size:38px;font-weight:400;line-height:1.1;letter-spacing:-.02em;max-width:640px}
+  .cases .head p{max-width:380px;font-size:13.5px;color:var(--ink-3);line-height:1.65}
+  .case{display:grid;grid-template-columns:140px 1fr 280px;gap:40px;padding:36px 0;border-top:1px solid var(--line);align-items:start}
+  .case:last-child{border-bottom:1px solid var(--line)}
+  .case .idx{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.16em}
+  .case .idx .yr{display:block;font-family:'Source Serif 4',serif;font-size:32px;color:var(--ink);font-weight:400;margin-top:10px;letter-spacing:-.02em}
+  .case .main h3{font-family:'Source Serif 4',serif;font-size:22px;font-weight:500;letter-spacing:-.015em;line-height:1.3}
+  .case .main .tag-row{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+  .case .main .tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 8px;border:1px solid var(--line-2);color:var(--ink-3);letter-spacing:.06em;border-radius:2px}
+  .case .main .tag.g{border-color:var(--gold);color:var(--warn);background:var(--accent-faint)}
+  .case .main .body{margin-top:18px;font-size:14px;color:var(--ink-3);line-height:1.7}
+  .case .main .cite{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.04em;padding-top:14px;border-top:1px dotted var(--line)}
+  .case .main .cite b{color:var(--ink-3);font-weight:500}
+  .case .metrics{display:flex;flex-direction:column;gap:16px;padding-left:32px;border-left:1px solid var(--line)}
+  .case .metrics .m{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+  .case .metrics .m .k{font-size:12px;color:var(--muted);letter-spacing:.02em}
+  .case .metrics .m .v{font-family:'Source Serif 4',serif;font-size:24px;font-weight:500;letter-spacing:-.015em;color:var(--ink)}
+  .case .metrics .m .v .u{font-size:13px;color:var(--gold);margin-left:1px}
+
+  /* ───────── AI DELIVERY · compact, evidence-first ───────── */
+  .ai{padding:96px 0;background:var(--ink);color:#e5e7eb;border-top:1px solid var(--ink)}
+  .ai .head{max-width:760px;margin-bottom:56px}
+  .ai .eyebrow{color:var(--gold-soft)}
+  .ai h2{font-family:'Source Serif 4',serif;font-weight:400;font-size:38px;line-height:1.12;letter-spacing:-.02em;color:var(--white);margin-top:14px}
+  .ai .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid #374151}
+  .ai .card{padding:32px 28px;border-right:1px solid #374151;border-bottom:1px solid #374151}
+  .ai .card:nth-child(3n){border-right:none}
+  .ai .card .step{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-soft);letter-spacing:.18em}
+  .ai .card h3{font-family:'Source Serif 4',serif;font-size:22px;color:var(--white);margin-top:14px;letter-spacing:-.015em;font-weight:500}
+  .ai .card p{font-size:13.5px;color:#d1d5db;margin-top:14px;line-height:1.7}
+  .ai .card .pitl{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--gold-soft);letter-spacing:.08em;padding-top:12px;border-top:1px solid #374151}
+  .ai .card .pitl::before{content:"● ";color:var(--gold)}
+  .ai .discl{margin-top:32px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#9ca3af;letter-spacing:.04em}
+
+  /* ───────── INSIGHTS ───────── */
+  .ins{padding:80px 0;background:var(--paper);border-top:1px solid var(--line)}
+  .ins .head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px}
+  .ins h2{font-family:'Source Serif 4',serif;font-size:32px;font-weight:400;letter-spacing:-.02em}
+  .ins .g{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+  .ins a.card{padding:28px 24px 32px;border-right:1px solid var(--line);transition:.15s;display:block}
+  .ins a.card:last-child{border-right:none}
+  .ins a.card:hover{background:var(--paper-2)}
+  .ins .type{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+  .ins .t{font-family:'Source Serif 4',serif;font-size:19px;font-weight:500;margin-top:14px;letter-spacing:-.015em;line-height:1.3}
+  .ins .d{font-size:12.5px;color:var(--muted);margin-top:14px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+
+  /* ───────── FINAL CTA · investor-weighted ───────── */
+  .cta{padding:104px 0 96px;background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .cta .wrap{display:grid;grid-template-columns:1fr 340px;gap:64px;align-items:center}
+  .cta h2{font-family:'Source Serif 4',serif;font-weight:400;font-size:44px;line-height:1.1;letter-spacing:-.02em;color:var(--ink)}
+  .cta h2 u{text-decoration:none;border-bottom:2px solid var(--gold)}
+  .cta p{margin-top:18px;font-size:15px;color:var(--ink-3);max-width:540px;line-height:1.7}
+  .cta .card{background:var(--white);padding:28px;border:1px solid var(--line);border-radius:var(--r-md)}
+  .cta .card .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dotted var(--line);font-size:12.5px}
+  .cta .card .row:last-child{border-bottom:none;padding-bottom:0}
+  .cta .card .row b{font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:.02em;color:var(--ink)}
+  .cta .card .row span{color:var(--muted);font-family:'JetBrains Mono',monospace}
+  .cta .card a.btn{width:100%;justify-content:center;margin-top:18px}
+
+  /* ───────── FOOTER ───────── */
+  footer.site{background:var(--ink);color:#9ca3af;padding:60px 0 32px;font-size:12.5px}
+  footer.site .top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid #374151}
+  footer.site .col h4{color:var(--white);font-family:'Source Serif 4',serif;font-weight:500;font-size:14px;margin-bottom:16px;letter-spacing:-.01em}
+  footer.site .col a{display:block;padding:5px 0;color:#9ca3af;font-size:12.5px;transition:.1s}
+  footer.site .col a:hover{color:var(--gold-soft)}
+  footer.site .brand-block b{font-family:'Source Serif 4',serif;color:var(--white);font-size:17px;letter-spacing:-.01em;display:block;margin-bottom:12px;font-weight:500}
+  footer.site .brand-block p{color:#9ca3af;line-height:1.65;max-width:260px;font-size:12px}
+  footer.site .brand-block .ticker{margin-top:18px;padding:10px 12px;border:1px solid #4b5563;border-radius:2px;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--gold-soft)}
+  footer.site .bottom{display:flex;justify-content:space-between;padding-top:28px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#6b7280}
+
+  /* ───────── DIRECTION BADGE ───────── */
+  .dir-badge{position:fixed;bottom:18px;left:18px;background:var(--ink);color:var(--gold-soft);padding:10px 14px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:11px;z-index:100;letter-spacing:.06em;box-shadow:var(--shadow);border-left:2px solid var(--gold)}
+</style>
+</head>
+<body>
+
+<!-- DISCLOSURE BAR -->
+<div class="disclosure">
+  <div class="wrap">
+    <div class="left"><b>HKEX: 2415</b><span>HK$ 2.48 <em style="color:#10b981;font-style:normal">+0.4%</em></span><span>As of Apr 19, 2026 · 16:00 HKT</span></div>
+    <div class="right">
+      <a href="#ir">Investor Relations</a>
+      <a href="#">Announcements</a>
+      <a href="#">EN / 中文</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <span class="logo">M</span>
+      <span class="wordmark"><b>MSH Healthcare</b><span>Medical Scientific Hub · Est. 2013</span></span>
+    </a>
+    <nav class="primary">
+      <a href="#">Solutions</a>
+      <a href="#">Case Studies</a>
+      <a href="#">AI Platform</a>
+      <a href="#">Insights</a>
+      <a href="#">About</a>
+      <a href="#ir">Investors</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="#">Contact</a>
+      <a class="btn btn-gold" href="#">Start Engagement</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO · text-first, no imagery -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow-row">
+      <span class="dot"></span>
+      <span class="eyebrow">A Publicly Listed Medical Affairs Group · Since 2013</span>
+    </div>
+
+    <h1 class="serif">
+      Connecting China and global healthcare with <u>verified medical evidence</u>, disciplined delivery, and <em>investor-grade</em> disclosure.
+    </h1>
+
+    <p class="lede">
+      MSH Healthcare Group (HKEX: 2415) operates clinical development, medical communications, real-world evidence, and AI-assisted services for pharmaceutical and medical-technology sponsors seeking entry, expansion, and global integration across the China–U.S. corridor.
+    </p>
+
+    <div class="meta">
+      <div>
+        <div class="k">Listed</div>
+        <div class="v">HKEX Main Board<small>Stock Code 2415 · since 2024</small></div>
+      </div>
+      <div>
+        <div class="k">Headquarters</div>
+        <div class="v">Shanghai · Boston<small>6 international offices</small></div>
+      </div>
+      <div>
+        <div class="k">Engagements</div>
+        <div class="v">320+ sponsors served<small>Across 40+ therapeutic areas</small></div>
+      </div>
+      <div>
+        <div class="k">Reporting</div>
+        <div class="v">IFRS audited<small>Big-Four audit since IPO</small></div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-gold" href="#">View Engagement Playbooks →</a>
+      <a class="btn" href="#ir">Latest Interim Report (2025)</a>
+      <a class="btn btn-ghost" href="#">Download Corporate Factsheet (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR · moved up · module 02 -->
+<section class="trust">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">02 · Trust &amp; Evidence Footprint</span>
+      <span class="note">// last updated 2026-03-31 · quarterly</span>
+    </div>
+    <div class="grid">
+      <div class="cell">
+        <div class="big">320<span class="unit">+</span></div>
+        <div class="lbl">Sponsor engagements delivered since 2013</div>
+        <div class="cite">verified · audited engagement log</div>
+      </div>
+      <div class="cell">
+        <div class="big">47</div>
+        <div class="lbl">Peer-reviewed publications co-authored (2023–25)</div>
+        <div class="cite">PubMed indexed · verifiable</div>
+      </div>
+      <div class="cell">
+        <div class="big">6</div>
+        <div class="lbl">International offices · Shanghai · Beijing · HK · Boston · Basel · Tokyo</div>
+        <div class="cite">on-balance-sheet presence</div>
+      </div>
+      <div class="cell">
+        <div class="big">ISO<span class="unit">27001</span></div>
+        <div class="lbl">Information security certified · GDPR + HIPAA-aligned</div>
+        <div class="cite">current certification on file</div>
+      </div>
+    </div>
+    <div class="logo-row">
+      <span>Selected Sponsor Base · Anonymized per NDA</span>
+      <em>Top-10 Global Pharma × 6</em>
+      <em>HK-listed Biotech × 12</em>
+      <em>US FDA-reporting CRO × 4</em>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT BAND · investor-facing -->
+<section class="about" id="ir">
+  <div class="wrap">
+    <div class="layout">
+      <div class="lside">
+        <span class="eyebrow">03 · About &amp; Investor Relations</span>
+        <h2 class="serif">A thirteen-year medical-affairs operator, <u>governed as a public company</u>.</h2>
+
+        <div class="stats">
+          <div class="stat"><div class="n">13<span class="u">yr</span></div><div class="lb">Operating history</div></div>
+          <div class="stat"><div class="n">2024</div><div class="lb">HKEX listing year</div></div>
+          <div class="stat"><div class="n">900<span class="u">+</span></div><div class="lb">Staff headcount</div></div>
+        </div>
+      </div>
+
+      <div class="rside">
+        <p>MSH Healthcare is a medical-affairs group founded in Shanghai in 2013 and listed on the Main Board of The Stock Exchange of Hong Kong (HKEX: 2415) in 2024. The Group provides integrated clinical, scientific, and market-access services across the China–U.S. corridor, with a disciplined operating model, audited reporting under IFRS, and a physician-in-the-loop compliance framework across every AI-assisted workstream.</p>
+        <p>We do not position ourselves as a technology vendor. We are a medical-affairs operator that uses technology — deliberately, and with accountability — in service of pharmaceutical and device sponsors entering new geographies.</p>
+
+        <div class="ir-links">
+          <a href="#"><div><div class="t">Latest Interim Report · 2025 H2</div><div class="d">Published 2026-03-28 · HKEX filing</div></div></a>
+          <a href="#"><div><div class="t">Annual Report · FY2024</div><div class="d">Published 2025-04-15 · Audited</div></div></a>
+          <a href="#"><div><div class="t">Announcements &amp; Circulars</div><div class="d">HKEX disclosure · continuing obligations</div></div></a>
+          <a href="#"><div><div class="t">ESG &amp; Corporate Governance</div><div class="d">ISO 27001 · GDPR · HIPAA-aligned</div></div></a>
+          <a href="#"><div><div class="t">Board &amp; Committees</div><div class="d">Independent directors · audit · remuneration</div></div></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATHS · module 04 -->
+<section class="paths">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">04 · Primary Engagement Playbooks</span>
+      <h2 class="serif">Two disciplined paths, one operating model.</h2>
+    </div>
+
+    <div class="grid2">
+      <div class="path">
+        <div class="num">PATH 01 · CN Entry</div>
+        <h3 class="serif">Global sponsors entering China</h3>
+        <div class="sub">NMPA registration · KOL network · commercial launch</div>
+        <div class="body">
+          A structured playbook for foreign sponsors pursuing clinical development, regulatory submission, and commercial landing in the People's Republic of China. Delivered against fixed milestones, audited budgets, and disclosed change-control procedures.
+        </div>
+        <ul>
+          <li>NMPA dossier strategy &amp; regulatory correspondence</li>
+          <li>KOL mapping &amp; advisory board orchestration</li>
+          <li>Medical affairs &amp; field-medical operations</li>
+          <li>Real-world evidence generation in Chinese hospital networks</li>
+          <li>HCP education &amp; conference execution</li>
+        </ul>
+        <div class="foot">
+          <a class="btn" href="#">Engagement Playbook →</a>
+          <a class="btn btn-ghost" href="#">Case Disclosures</a>
+        </div>
+      </div>
+
+      <div class="path">
+        <div class="num">PATH 02 · Global Expansion</div>
+        <h3 class="serif">China-origin sponsors going global</h3>
+        <div class="sub">FDA interactions · U.S. medical affairs · cross-border scientific credibility</div>
+        <div class="body">
+          A playbook for Chinese biotech and device sponsors seeking U.S. FDA engagement, American medical-affairs presence, and cross-border scientific positioning — delivered from our Boston office with U.S.-resident medical and regulatory staff.
+        </div>
+        <ul>
+          <li>Pre-IND &amp; IND correspondence support</li>
+          <li>U.S. advisory boards &amp; congress strategy</li>
+          <li>English-language scientific writing &amp; publications</li>
+          <li>Investor-grade scientific positioning (reverse due diligence)</li>
+          <li>Cross-border medical affairs continuity</li>
+        </ul>
+        <div class="foot">
+          <a class="btn" href="#">Engagement Playbook →</a>
+          <a class="btn btn-ghost" href="#">Case Disclosures</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK START -->
+<section class="qs">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow">05 · Quick Access</span><h2 class="serif">Direct paths by visitor role.</h2></div>
+      <span class="mono" style="color:var(--muted)">/role-based shortcuts</span>
+    </div>
+    <div class="g">
+      <a class="item" href="#">
+        <div class="t">Pharma &amp; Biotech Sponsors</div>
+        <div class="d">Start a scoping conversation on a specific compound, indication, or territory.</div>
+        <div class="ln">→ Request a scoping call</div>
+      </a>
+      <a class="item" href="#">
+        <div class="t">Institutional Investors</div>
+        <div class="d">Review listing disclosures, annual report, ESG statements, and investor decks.</div>
+        <div class="ln">→ Investor Relations hub</div>
+      </a>
+      <a class="item" href="#">
+        <div class="t">Journalists &amp; Analysts</div>
+        <div class="d">Request press materials, analyst briefings, or fact-checked statements.</div>
+        <div class="ln">→ Press inquiries</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES · citation-weighted -->
+<section class="cases">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="serif">Selected engagements · scientific and commercial outcomes on the public record.</h2>
+      <p>Each entry lists a verifiable citation — PubMed identifier, conference reference, or HKEX announcement — against which the claim can be audited by a third party.</p>
+    </div>
+
+    <div class="case">
+      <div class="idx">CASE 01<span class="yr">2025</span></div>
+      <div class="main">
+        <h3>Oncology · Pre-IND package delivered for a China-origin CAR-T sponsor pursuing U.S. FDA entry.</h3>
+        <div class="tag-row">
+          <span class="tag">Oncology · Cell therapy</span>
+          <span class="tag">FDA Pre-IND</span>
+          <span class="tag g">Verified · PubMed 38XXXXXX</span>
+        </div>
+        <div class="body">Medical writing, CMC narrative coordination, and U.S.-side KOL advisory board across Boston and Houston. Pre-IND meeting achieved; written responses received. Engagement disclosed under NDA class A.</div>
+        <div class="cite">// <b>Source:</b> sponsor-disclosed AACR 2025 poster · abstract #CT-XXX · PubMed 38XXXXXX</div>
+      </div>
+      <div class="metrics">
+        <div class="m"><span class="k">Time to Pre-IND</span><span class="v">9<span class="u">mo</span></span></div>
+        <div class="m"><span class="k">Countries engaged</span><span class="v">3</span></div>
+        <div class="m"><span class="k">Adv-board KOLs</span><span class="v">12</span></div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="idx">CASE 02<span class="yr">2024</span></div>
+      <div class="main">
+        <h3>Cardio-metabolic · Real-world evidence generation from Chinese tertiary hospital networks for a top-10 global sponsor.</h3>
+        <div class="tag-row">
+          <span class="tag">Cardiovascular</span>
+          <span class="tag">RWE · Retrospective</span>
+          <span class="tag g">Verified · JAMA Cardiol 2024</span>
+        </div>
+        <div class="body">Retrospective cohort across 14 tertiary hospitals; statistical analysis plan pre-registered. Publication accepted in a peer-reviewed cardiology journal; post-marketing commitment satisfied.</div>
+        <div class="cite">// <b>Source:</b> JAMA Cardiol 2024;9(X):XXX–XXX · doi:10.1001/jamacardio.2024.XXXX</div>
+      </div>
+      <div class="metrics">
+        <div class="m"><span class="k">Patient cohort</span><span class="v">12.4<span class="u">k</span></span></div>
+        <div class="m"><span class="k">Hospitals</span><span class="v">14</span></div>
+        <div class="m"><span class="k">PMC satisfied</span><span class="v">Yes</span></div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="idx">CASE 03<span class="yr">2024</span></div>
+      <div class="main">
+        <h3>Rare disease · NMPA accelerated-pathway dossier for a European orphan-drug sponsor entering China.</h3>
+        <div class="tag-row">
+          <span class="tag">Rare disease</span>
+          <span class="tag">NMPA · Priority review</span>
+          <span class="tag g">Verified · HKEX announcement 2024-09-11</span>
+        </div>
+        <div class="body">Full dossier assembly, translated clinical summaries, KOL physician network for early-access program, and post-approval medical affairs handover.</div>
+        <div class="cite">// <b>Source:</b> sponsor press release 2024-09-11 · HKEX filing cross-referenced</div>
+      </div>
+      <div class="metrics">
+        <div class="m"><span class="k">Submission cycle</span><span class="v">7<span class="u">mo</span></span></div>
+        <div class="m"><span class="k">Priority accepted</span><span class="v">Yes</span></div>
+        <div class="m"><span class="k">Post-approval HCPs</span><span class="v">86</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI DELIVERY · dark band · compact -->
+<section class="ai">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">07 · AI-Assisted Delivery &amp; Controls</span>
+      <h2 class="serif">Technology used deliberately. Every output cleared by a qualified physician.</h2>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="step">LAYER 01 · INTAKE</div>
+        <h3>Structured scoping &amp; provenance</h3>
+        <p>Every engagement begins with a structured intake that defines indication, geography, sponsor class, and regulatory scope. All outputs trace back to this intake record.</p>
+        <div class="pitl">PITL: medical lead · sign-off</div>
+      </div>
+      <div class="card">
+        <div class="step">LAYER 02 · DRAFT</div>
+        <h3>AI-assisted draft generation</h3>
+        <p>Medical writers and AI systems collaborate on dossiers, advisory-board materials, and scientific communications under named-author accountability.</p>
+        <div class="pitl">PITL: physician reviewer · sign-off</div>
+      </div>
+      <div class="card">
+        <div class="step">LAYER 03 · AUDIT</div>
+        <h3>Evidence audit &amp; claim binding</h3>
+        <p>Every outbound scientific claim is bound to a verifiable evidence record — publication DOI, registry entry, or internal validated dataset. No orphaned claims.</p>
+        <div class="pitl">PITL: compliance lead · sign-off</div>
+      </div>
+    </div>
+
+    <div class="discl">// Disclosure: MSH does not deploy unsupervised AI in any HCP-facing or regulator-facing output. PITL = Physician-in-the-Loop.</div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="ins">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow">08 · Insights</span><h2 class="serif">Recent analysis from our medical and regulatory teams.</h2></div>
+      <a class="btn btn-ghost" href="#">All insights →</a>
+    </div>
+    <div class="g">
+      <a class="card" href="#">
+        <span class="type">Regulatory</span>
+        <div class="t">NMPA 2026 accelerated-review channels for rare-disease sponsors: what has actually changed.</div>
+        <div class="d">Apr 2026 · 9 min read</div>
+      </a>
+      <a class="card" href="#">
+        <span class="type">Medical Affairs</span>
+        <div class="t">Reverse due diligence: what U.S. investors actually look for in Chinese biotech medical assets.</div>
+        <div class="d">Mar 2026 · 11 min read</div>
+      </a>
+      <a class="card" href="#">
+        <span class="type">Operations</span>
+        <div class="t">Physician-in-the-Loop AI: our published methodology for claim-to-evidence binding.</div>
+        <div class="d">Feb 2026 · White paper</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA · investor-weighted -->
+<section class="cta">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">09 · Start an Engagement</span>
+      <h2 class="serif">Every engagement begins with a <u>structured scoping call</u>.</h2>
+      <p>A thirty-minute scoping call with our medical lead establishes indication, geography, and sponsor class before any proposal is drafted. Conversations are governed by mutual non-disclosure.</p>
+    </div>
+    <div class="card">
+      <div class="row"><span>Scoping call</span><b>30 min</b></div>
+      <div class="row"><span>Written proposal</span><b>≤ 10 business days</b></div>
+      <div class="row"><span>Disclosure</span><b>mNDA on file</b></div>
+      <div class="row"><span>Entry contact</span><b>medical lead</b></div>
+      <a class="btn btn-gold" href="#">Request scoping call →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wrap">
+    <div class="top">
+      <div class="col brand-block">
+        <b>MSH Healthcare Group</b>
+        <p>A publicly listed medical-affairs group operating across the China–U.S. corridor. Listed on the Main Board of the Stock Exchange of Hong Kong since 2024.</p>
+        <div class="ticker">HKEX: 2415 · HK$ 2.48</div>
+      </div>
+      <div class="col">
+        <h4>Solutions</h4>
+        <a href="#">Entering China</a>
+        <a href="#">Going Global</a>
+        <a href="#">Cross-border Sprint</a>
+        <a href="#">AI-Enabled Delivery</a>
+      </div>
+      <div class="col">
+        <h4>Evidence</h4>
+        <a href="#">Case Studies</a>
+        <a href="#">Publications</a>
+        <a href="#">White Papers</a>
+        <a href="#">Insights</a>
+      </div>
+      <div class="col">
+        <h4>Investors</h4>
+        <a href="#">Annual Report</a>
+        <a href="#">Interim Report</a>
+        <a href="#">Announcements</a>
+        <a href="#">ESG &amp; Governance</a>
+      </div>
+      <div class="col">
+        <h4>Company</h4>
+        <a href="#">About MSH</a>
+        <a href="#">Leadership</a>
+        <a href="#">Offices</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 MSH Healthcare Group · Incorporated in the Cayman Islands · Listed on HKEX Main Board · Stock Code 2415</span>
+      <span>Privacy · Terms · Disclaimers</span>
+    </div>
+  </div>
+</footer>
+
+<div class="dir-badge">Direction C · IR-Weighted</div>
+
+</body>
+</html>

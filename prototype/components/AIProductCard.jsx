@@ -168,7 +168,7 @@ function AIProductCard({ product, position }) {
         display: 'flex', gap: 12,
         flexWrap: 'wrap',
       }}>
-        <a href={`/ai-platform/${slug}`}
+        <a href={`/ai-platform-${slug}.html`}
           onClick={fireClick}
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 6,

@@ -622,7 +622,7 @@ function ShowcaseEmptyState() {
       }}>
         Products under quiet development. Talk to us.
       </p>
-      <a href="/contact?intent=ai_dd"
+      <a href="/contact.html?intent=ai_dd"
         style={{
           display: 'inline-block',
           padding: '12px 24px', borderRadius: 10,

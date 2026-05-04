@@ -7,7 +7,7 @@ function SolutionPageHeader({ pageMeta }) {
     <section style={{
       background: 'var(--grad-hero)', color: '#fff',
       position: 'relative', overflow: 'hidden',
-      padding: '56px 40px 80px',
+      padding: '56px clamp(16px, 4vw, 40px) 80px',
       borderBottom: '1px solid rgba(255,255,255,0.08)',
     }}>
       {/* faint dot grid */}
@@ -155,7 +155,7 @@ function SolutionSubNav({ items, theme = 'navy' }) {
       borderBottom: '1px solid var(--border-1)',
     }}>
       <div style={{
-        maxWidth: 1280, margin: '0 auto', padding: '0 40px',
+        maxWidth: 1280, margin: '0 auto', padding: '0 clamp(16px, 4vw, 40px)',
         display: 'flex', alignItems: 'center', gap: 4, overflowX: 'auto',
       }}>
         <span style={{
@@ -189,7 +189,7 @@ function SolutionSubNav({ items, theme = 'navy' }) {
 // Section component with eyebrow, title, kicker
 function SolutionSection({ id, eyebrow, title, kicker, children, bg = '#fff', screen, label }) {
   return (
-    <section id={id} data-screen-label={label} style={{ padding: '88px 40px', background: bg }}>
+    <section id={id} data-screen-label={label} style={{ padding: '88px clamp(16px, 4vw, 40px)', background: bg }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         {(eyebrow || title) && (
           <div style={{
@@ -390,7 +390,7 @@ function SolutionCTA({ pageMeta }) {
   const { ctaTitle, ctaBody, primaryCta, secondaryCta, theme = 'navy' } = pageMeta;
   return (
     <section style={{
-      padding: '88px 40px', background: 'var(--grad-hero)',
+      padding: '88px clamp(16px, 4vw, 40px)', background: 'var(--grad-hero)',
       color: '#fff', position: 'relative', overflow: 'hidden',
     }}>
       <div style={{ maxWidth: 1080, margin: '0 auto', position: 'relative' }}>
@@ -439,7 +439,7 @@ function RelatedSolutions({ current }) {
   ].filter(s => s.id !== current);
 
   return (
-    <section style={{ padding: '72px 40px', background: '#fff', borderTop: '1px solid var(--border-1)' }}>
+    <section style={{ padding: '72px clamp(16px, 4vw, 40px)', background: '#fff', borderTop: '1px solid var(--border-1)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 32 }}>
           <div>
