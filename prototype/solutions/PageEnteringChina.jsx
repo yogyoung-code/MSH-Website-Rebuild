@@ -88,8 +88,7 @@ function PageEnteringChina() {
       <SolutionPageHeader pageMeta={ENTERING_CHINA_META} />
       <SolutionSubNav items={subnav} theme="navy" />
 
-      {/* UXcritique20260429: path-page signature shape — country-comparator strip
-          gives this page a visual identity distinct from deliverable-block pages. */}
+      {}
       <CountryCompare
         eyebrow="The cross-border path"
         title="What changes when an asset crosses the Pacific."
@@ -127,7 +126,7 @@ function PageEnteringChina() {
         title="A single thread from literature to NMPA, signed by China physicians."
         kicker="Most cross-border evidence breaks at translation, at reviewer hand-off, or at advisory. We pre-empt all three with one team, one source trail, and named clinician sign-off."
         bg="#fff"
-        label="01 · Overview"
+       
       >
         <div className="two-col-grid" style={{
           display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 32,
@@ -181,7 +180,7 @@ function PageEnteringChina() {
         title="Three innovator profiles we work with most often."
         kicker="If your asset is somewhere between US/EU clearance and a working China commercialization plan, we can usually compress 3–6 months out of the path."
         bg="var(--bg-2)"
-        label="02 · Who it's for"
+       
       >
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {personas.map((p, i) => (
@@ -218,7 +217,7 @@ function PageEnteringChina() {
         title="One pipeline. Four steps. One physician sign-off at every gate."
         kicker="The same pipeline that runs every other engagement, tuned to NMPA cadence and Chinese-language reviewer norms."
         bg="#fff"
-        label="03 · Approach"
+       
       >
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, border: '1px solid var(--border-1)', borderRadius: 16, overflow: 'hidden' }}>
           {approachSteps.map((s, i) => (
@@ -248,7 +247,7 @@ function PageEnteringChina() {
         id="deliverables" eyebrow="Deliverables · 4 workstreams"
         title="What ships, where the physician signs, and what the audit trail looks like."
         bg="var(--bg-2)"
-        label="04 · Deliverables"
+       
       >
         <DeliverablesGrid items={deliverables} theme="navy" />
       </SolutionSection>
@@ -259,7 +258,7 @@ function PageEnteringChina() {
         title="A typical China-entry engagement, end-to-end."
         kicker="Most engagements run 14–24 weeks. We scope shorter pilots if you only need the gap scan."
         bg="#fff"
-        label="05 · Timeline"
+       
       >
         <PhaseTimeline phases={phases} theme="navy" />
       </SolutionSection>
@@ -269,7 +268,7 @@ function PageEnteringChina() {
         id="proof" eyebrow="Proof · 2025 cohort"
         title="Numbers we can show you with a signed source trail."
         bg="var(--bg-2)"
-        label="06 · Proof"
+       
       >
         <SolutionStatStrip stats={stats} theme="navy" />
         <div style={{ marginTop: 20, fontSize: 11.5, color: 'var(--fg-3)', lineHeight: 1.5 }}>
@@ -283,7 +282,7 @@ function PageEnteringChina() {
         title="The 30-Day China Evidence Sprint."
         kicker="A bounded engagement to pressure-test your evidence package against current NMPA expectations — before either side commits to a full program."
         bg="#fff"
-        label="07 · Pilot"
+       
       >
         <div className="two-col-grid" style={{
           background: 'var(--grad-wash)', border: '1px solid var(--brand-primary-300)',
@@ -349,6 +348,7 @@ function PageEnteringChina() {
         </div>
       </SolutionSection>
 
+      <ContentReviewCrossSell />
       <SolutionCTA pageMeta={ENTERING_CHINA_META} />
       <RelatedSolutions current="entering-china" />
       <SolutionFooter />

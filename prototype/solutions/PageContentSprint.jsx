@@ -70,7 +70,7 @@ function PageContentSprint() {
         id="overview" eyebrow="Overview"
         title="A two-week test drive of our pipeline."
         kicker="The same AI-assisted, dual-physician-reviewed pipeline that ships everything else — compressed to a single artifact, a flat fee, and a fixed timeline."
-        bg="#fff" label="01 · Overview"
+        bg="#fff"
       >
         <div style={{
           background: 'linear-gradient(180deg, #D6F1F9 0%, #FFFFFF 100%)',
@@ -106,7 +106,7 @@ function PageContentSprint() {
         id="artifact-menu" eyebrow="Artifact menu · pick one"
         title="Six artifact types we can ship within the sprint."
         kicker="If your need fits one of these, the sprint can absorb it. If not, send us the spec — we'll quote a custom sprint or recommend a longer engagement."
-        bg="var(--bg-2)" label="02 · Artifact menu"
+        bg="var(--bg-2)"
       >
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
           {artifactMenu.map((a, i) => (
@@ -139,7 +139,7 @@ function PageContentSprint() {
       <SolutionSection
         id="timeline" eyebrow="14-day timeline"
         title="Day-by-day, what happens on a sprint."
-        bg="#fff" label="03 · Timeline"
+        bg="#fff"
       >
         <PhaseTimeline phases={timeline} theme="cyan" />
       </SolutionSection>
@@ -147,7 +147,7 @@ function PageContentSprint() {
       <SolutionSection
         id="whats-included" eyebrow="What's included · what's not"
         title="A bounded scope, with no surprise add-ons."
-        bg="var(--bg-2)" label="04 · Includes"
+        bg="var(--bg-2)"
       >
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
           <div style={{
@@ -194,7 +194,7 @@ function PageContentSprint() {
       <SolutionSection
         id="faq" eyebrow="FAQ"
         title="The questions we get most often before a sprint."
-        bg="#fff" label="05 · FAQ"
+        bg="#fff"
       >
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           {faqs.map((f, i) => (

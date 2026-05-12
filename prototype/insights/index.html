@@ -22,9 +22,12 @@
   "@type": "ItemList",
   "name": "MedSci Healthcare Insights",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "url": "https://medscihealthcare.com/insights/china-rwe-what-travels" },
-    { "@type": "ListItem", "position": 2, "url": "https://medscihealthcare.com/insights/china-data-fda-bridge" },
-    { "@type": "ListItem", "position": 3, "url": "https://medscihealthcare.com/insights/bilingual-content-both-tracks-sign" }
+    { "@type": "ListItem", "position": 1, "url": "https://medscihealthcare.com/insights/china-rwe-regulatory-landscape" },
+    { "@type": "ListItem", "position": 2, "url": "https://medscihealthcare.com/insights/bridging-china-data-fda" },
+    { "@type": "ListItem", "position": 3, "url": "https://medscihealthcare.com/insights/named-patient-programs-china" },
+    { "@type": "ListItem", "position": 4, "url": "https://medscihealthcare.com/insights/medical-affairs-2030" },
+    { "@type": "ListItem", "position": 5, "url": "https://medscihealthcare.com/insights/ai-driven-medical-affairs" },
+    { "@type": "ListItem", "position": 6, "url": "https://medscihealthcare.com/insights/hcp-engagement-connected-channels" }
   ]
 }
 </script>
@@ -49,7 +52,7 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script type="text/babel" src="../components/Button.jsx"></script>
 <script type="text/babel" src="../components/Header.jsx"></script>
 <script type="text/babel" src="../components/Footer.jsx"></script>
-<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx?v=2"></script>
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
 <script type="text/babel" src="../components/InsightCard.jsx"></script>
 <script type="text/babel" src="../components/TopicChips.jsx"></script>
@@ -59,42 +62,74 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script type="text/babel" src="../components/useSanity.jsx"></script>
 
 <script type="text/babel">
-// Mock data — Copy Deck v4.2 §8.2; CMS stage will replace with Sanity Insight schema fetch.
 const TOPICS = [
-  { value: 'rwe',             label: 'China RWE' },
-  { value: 'evidence_bridge', label: 'FDA Evidence Bridge' },
-  { value: 'med_comm',        label: 'Medical Communication' }
+  { value: 'rwe',              label: 'China RWE' },
+  { value: 'evidence_bridge',  label: 'FDA Evidence Bridge' },
+  { value: 'china_access',     label: 'China Market Access' },
+  { value: 'med_affairs',      label: 'Medical Affairs' },
+  { value: 'ai_health',        label: 'AI in Healthcare' },
+  { value: 'hcp_engagement',   label: 'HCP Engagement' }
 ];
 
 const INSIGHTS = [
   {
-    slug: 'china-rwe-what-travels',
+    slug: 'china-rwe-regulatory-landscape',
     topic: TOPICS[0],
-    title: "China Real-World Evidence: What Travels Across Borders, and What Doesn't",
-    lede: "Real-world evidence generated in China is increasingly cited in global submissions — but not all of it travels. We separate what regulators outside China tend to accept, what they question, and what teams should plan to re-derive locally before quoting it in an FDA or EMA package.",
+    title: "Evolving RWE Policies in China: What Global Sponsors Need to Know",
+    lede: "Since 2019, China's NMPA and CDE have issued a series of guidelines that formalize how real-world evidence can support drug registration. We map the current policy landscape, highlight the key use cases Chinese regulators have accepted, and outline what this means for sponsors planning cross-border submissions.",
     author:        { name: 'Dr. L. Chen', title: 'Medical Director, Evidence' },
     pitlReviewer:  { name: 'Dr. M. Park', title: 'Senior Reviewer, PITL' },
-    publishedAt:   '2026-04-15',
-    readingTime:   '6 min read'
-  },
-  {
-    slug: 'china-data-fda-bridge',
-    topic: TOPICS[1],
-    title: 'Bridging China-Generated Data to an FDA Submission: A Field Checklist',
-    lede: 'Most China-headquartered sponsors arrive at the FDA conversation with strong domestic data and an unclear sense of which parts will translate. We share the gating questions our reviewers run before a single page of a U.S.-facing dossier gets drafted — and the three places that bridges most often fail.',
-    author:        { name: 'Dr. R. Iyer', title: 'Medical Director, U.S. Programs' },
-    pitlReviewer:  { name: 'Dr. K. Liu',  title: 'Senior Reviewer, PITL' },
-    publishedAt:   '2026-04-08',
+    publishedAt:   '2026-04-28',
     readingTime:   '7 min read'
   },
   {
-    slug: 'bilingual-content-both-tracks-sign',
+    slug: 'bridging-china-data-fda',
+    topic: TOPICS[1],
+    title: 'Bridging China-Generated Data to an FDA Submission: A Field Checklist',
+    lede: "China's 2024 State Council reform opinions accelerated clinical trial approvals from 60 to 30 working days and endorsed international multi-center trials. For sponsors bridging Chinese data into U.S. submissions, these changes rewrite the playbook. We share the gating questions our reviewers run before a U.S.-facing dossier gets drafted.",
+    author:        { name: 'Dr. R. Iyer', title: 'Medical Director, U.S. Programs' },
+    pitlReviewer:  { name: 'Dr. K. Liu',  title: 'Senior Reviewer, PITL' },
+    publishedAt:   '2026-04-21',
+    readingTime:   '8 min read'
+  },
+  {
+    slug: 'named-patient-programs-china',
     topic: TOPICS[2],
-    title: 'Bilingual Medical Content That Both Tracks Will Sign',
-    lede: 'Translating EN clinical content into CN — or the reverse — is rarely the actual problem. The actual problem is that two physician tracks need to sign off the same artifact, against two different regulatory and stylistic frames. We share the parallel-reviewer model we use, and where it shortens revision cycles by half.',
-    author:        { name: 'Dr. S. Tan',  title: 'Medical Director, Communications' },
+    title: "Named Patient Programs: A New Pathway into China for Innovative Therapies",
+    lede: "Hainan's Boao Lecheng pilot zone and the 2019 Drug Administration Law have opened a named-patient route for overseas-approved drugs to reach Chinese patients before full NMPA registration. We examine how the pathway works, where it applies, and what global sponsors should prepare before filing.",
+    author:        { name: 'Dr. S. Tan',  title: 'Medical Director, Market Access' },
     pitlReviewer:  { name: 'Dr. J. Wang', title: 'Senior Reviewer, PITL' },
-    publishedAt:   '2026-03-30',
+    publishedAt:   '2026-04-14',
+    readingTime:   '6 min read'
+  },
+  {
+    slug: 'medical-affairs-2030',
+    topic: TOPICS[3],
+    title: 'Medical Affairs 2030: Five Priorities for the AI Era',
+    lede: "Medical affairs teams are under pressure to deliver more with less — shorter timelines, broader stakeholder expectations, and exponentially growing data volumes. We review five strategic priorities that will define the function by 2030, and where AI will make the biggest difference.",
+    author:        { name: 'Dr. K. Liu',  title: 'Senior Reviewer, Medical Strategy' },
+    pitlReviewer:  { name: 'Dr. L. Chen', title: 'Medical Director, Evidence' },
+    publishedAt:   '2026-04-07',
+    readingTime:   '7 min read'
+  },
+  {
+    slug: 'ai-driven-medical-affairs',
+    topic: TOPICS[4],
+    title: 'AI-Driven Decision Making in Medical Affairs: From Literature to Action',
+    lede: "Generative AI and predictive analytics are already reshaping how medical affairs teams screen literature, identify key opinion leaders, and generate compliant content. We examine the practical applications that are delivering measurable value today — and the governance guardrails that make adoption sustainable.",
+    author:        { name: 'Dr. M. Park', title: 'Senior Reviewer, AI & Evidence' },
+    pitlReviewer:  { name: 'Dr. R. Iyer', title: 'Medical Director, U.S. Programs' },
+    publishedAt:   '2026-03-31',
+    readingTime:   '6 min read'
+  },
+  {
+    slug: 'hcp-engagement-connected-channels',
+    topic: TOPICS[5],
+    title: 'HCP Engagement in 2025: Why Connected Channels Win',
+    lede: "With fewer than half of healthcare professionals now accessible to field teams, the traditional single-channel rep model is breaking down. New data from global surveys shows that coordinated engagement across sales, medical, and digital channels delivers measurably better outcomes. We analyze what this means for pharma engagement strategy in China and beyond.",
+    author:        { name: 'Dr. S. Tan',  title: 'Medical Director, Communications' },
+    pitlReviewer:  { name: 'Dr. K. Liu',  title: 'Senior Reviewer, PITL' },
+    publishedAt:   '2026-03-24',
     readingTime:   '5 min read'
   }
 ];
@@ -102,7 +137,7 @@ const INSIGHTS = [
 // Transform Sanity insight → component props
 function transformCmsInsight(doc) {
   const L = window.MSHContent ? window.MSHContent.L : (o) => (o && o.en) || o || '';
-  const typeToTopic = { regulatory: TOPICS[0], medical_affairs: TOPICS[2], operations: TOPICS[2] };
+  const typeToTopic = { regulatory: TOPICS[0], evidence_bridge: TOPICS[1], china_access: TOPICS[2], medical_affairs: TOPICS[3], ai_health: TOPICS[4], hcp_engagement: TOPICS[5], operations: TOPICS[3] };
   return {
     slug: doc.slug && doc.slug.current ? doc.slug.current : doc.slug,
     topic: typeToTopic[doc.type] || TOPICS[0],
@@ -147,12 +182,12 @@ function App() {
       />
 
       <section style={{ padding: '0 clamp(24px, 6vw, 96px) 64px', maxWidth: 1280, margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 24 }}>
           {visible.map(i => (
             <InsightCard
               key={i.slug}
               {...i}
-              href={`/insights/${i.slug}.html`}
+              href={`${i.slug}.html`}
             />
           ))}
         </div>
@@ -206,7 +241,7 @@ function App() {
 }
 
 function SubscribeForm({ topics }) {
-  // UXcritique20260429: opt-in default (only first topic), error state with retry,
+
   // email validation, button disabled during submit.
   const [email, setEmail] = React.useState('');
   const [emailError, setEmailError] = React.useState('');

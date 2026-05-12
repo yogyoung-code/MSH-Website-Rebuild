@@ -239,7 +239,6 @@ function ArrowCell() {
   );
 }
 
-// Inline Lucide `lock` glyph — UXcritique20260429 normalize pass replaced 🔒
 // emoji per Brand Guidelines §8 (no emoji in product UI).
 function DSLockGlyph({ size = 10 }) {
   return (

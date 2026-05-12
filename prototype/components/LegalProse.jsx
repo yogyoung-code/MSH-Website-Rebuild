@@ -27,7 +27,7 @@ function LegalProse({ title, eyebrow, lastUpdated, lede, sections, pendingNotice
 
   return (
     <article style={{
-      maxWidth: 800,
+      maxWidth: 1280,
       margin: '0 auto',
       padding: 'clamp(48px, 6vw, 96px) clamp(24px, 6vw, 96px) 64px'
     }}>
@@ -148,7 +148,6 @@ function LegalProse({ title, eyebrow, lastUpdated, lede, sections, pendingNotice
   );
 }
 
-// LegalParagraph: removed in /polish (UXcritique20260429). Marker-stripping
 // no longer needed — DraftNotice banner replaces it. LegalProse now renders
 // string paragraphs directly. The window.LegalParagraph export below is a
 // no-op shim kept ONLY so any external page that still references it doesn't

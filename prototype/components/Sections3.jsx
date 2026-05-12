@@ -1,7 +1,6 @@
 /* Sections3.jsx — AI, Trust, Insights, Final CTA, Footer */
 
 // 7. AI-Enabled Delivery
-//    UXcritique20260429 distill: was a long dark band with an inline 4-step
 //    pipeline + 3-up capability cards + 2 buttons. That duplicated the
 //    full PitlRibbon now living on /ai-platform. Distilled to a tight
 //    intro: eyebrow + 2-line headline + 1 primary CTA. The dark band
@@ -105,16 +104,12 @@ function TrustBar() {
   );
 }
 
-// 9. Insights — clean 3-up grid (UXcritique20260429 polish-2)
-//    Reverted from AsymmetricFeatureGrid (over-fit InsightCard's equal-width
-//    design). Differentiation from Cases section now via background:
-//    Cases = bg-2 gray, Insights = bg-1 white. Two adjacent 3-ups read as
-//    different surfaces because the surrounding chrome differs.
+// 9. Insights — 3×2 grid of real articles (updated 2026-05-04)
 function Insights() {
   const posts = [
-    { topic: 'China RWE',             date: 'Apr 2026', title: 'What NMPA reviewers actually read first: a teardown of 40 oncology dossiers.',         reviewer: 'Dr. L. Chen',  min:  8 },
-    { topic: 'FDA Evidence Bridge',   date: 'Mar 2026', title: 'Bridging a China registry into an FDA submission — what translates and what does not.', reviewer: 'Dr. J. Patel', min: 11 },
-    { topic: 'Medical Communication', date: 'Mar 2026', title: 'Bilingual congress materials that pass compliance on both sides of the Pacific.',     reviewer: 'Dr. M. Zhao',  min:  6 },
+    { topic: 'China RWE',           date: 'Apr 2026', title: 'Evolving RWE Policies in China: What Global Sponsors Need to Know',    reviewer: 'Dr. M. Park', min: 7, href: 'insights/china-rwe-regulatory-landscape.html' },
+    { topic: 'FDA Evidence Bridge', date: 'Apr 2026', title: 'Bridging China-Generated Data to an FDA Submission: A Field Checklist', reviewer: 'Dr. K. Liu',  min: 8, href: 'insights/bridging-china-data-fda.html' },
+    { topic: 'China Market Access', date: 'Apr 2026', title: 'Named Patient Programs: A New Pathway into China for Innovative Therapies', reviewer: 'Dr. J. Wang', min: 6, href: 'insights/named-patient-programs-china.html' },
   ];
   return (
     <section id="insights" style={{
@@ -136,7 +131,7 @@ function Insights() {
               Written by our operators. Reviewed by our physicians.
             </h2>
           </div>
-          <a href="/insights/" style={{
+          <a href="insights/" style={{
             color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 14,
             fontFamily: 'var(--font-ui)'
           }}>All insights →</a>
@@ -162,8 +157,7 @@ function InsightCard({ p }) {
          boxShadow: hover ? 'var(--shadow-sm)' : 'none',
          transition: 'all 200ms', display: 'block',
        }}>
-      {/* UXcritique image-add pass 2 reverted: Insights cards keep pure-text
-          treatment per design lead. CardPreviewStrip kept for Cases only. */}
+      {}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
         <span style={{
           fontSize: 10, fontWeight: 600, letterSpacing: '0.12em',

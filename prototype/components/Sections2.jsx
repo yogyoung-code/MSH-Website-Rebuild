@@ -36,7 +36,7 @@ function Services() {
       desc: 'The pipeline underneath — AI drafts with retrieval, a physician-in-the-loop workflow, and audit-ready source trails.',
       deliverables: ['See the full AI Platform page →'],
       icon: 'cpu',
-      href: '#ai',
+      href: '/ai-platform.html',
       accent: true,
       compact: true,
     },
@@ -220,7 +220,6 @@ function WhyMedSci() {
   );
 }
 
-// 6. Selected Case Studies — clean 3-up grid (UXcritique20260429 polish-2)
 //    AsymmetricFeatureGrid was over-fitting CaseCard's equal-width design;
 //    the featured slot left big empty space while secondary slots squashed.
 //    Reverted to 3-up. Visual differentiation between Cases and Insights now
@@ -240,6 +239,7 @@ function Cases() {
       ],
       badge: 'verified',
       year: '2025-09',
+      href: '/case-studies/entering-china-evidence-hcp.html',
     },
     {
       cat: 'Entering China',
@@ -253,6 +253,7 @@ function Cases() {
       ],
       badge: 'verified',
       year: '2025-11',
+      href: '/case-studies/entering-china-localized-content.html',
     },
     {
       cat: 'Going Global',
@@ -266,6 +267,7 @@ function Cases() {
       ],
       badge: 'development',
       year: 'In progress',
+      href: '/case-studies/going-global-fda-evidence-bridge.html',
     },
   ];
   return (
@@ -310,14 +312,14 @@ function CaseCard({ c }) {
   const [hover, setHover] = React.useState(false);
   const isNavy = c.theme === 'navy';
   return (
-    <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+    <a href={c.href || '#'} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
          style={{
            background: '#fff', border: `1px solid ${hover ? 'var(--brand-primary-300)' : 'var(--border-1)'}`,
            borderRadius: 12, padding: 28, cursor: 'pointer',
            boxShadow: hover ? 'var(--shadow-sm)' : 'none',
            transition: 'all 200ms',
            display: 'flex', flexDirection: 'column',
-           overflow: 'hidden',
+           overflow: 'hidden', textDecoration: 'none', color: 'inherit',
          }}>
       {c.previewKind && window.CardPreviewStrip && <window.CardPreviewStrip kind={c.previewKind} />}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
@@ -364,7 +366,7 @@ function CaseCard({ c }) {
           Read case <span style={{ transform: hover ? 'translateX(4px)' : 'none', transition: 'transform 200ms', display: 'inline-block' }}>→</span>
         </span>
       </div>
-    </div>
+    </a>
   );
 }
 

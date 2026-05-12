@@ -69,7 +69,6 @@ function monogramOf(name, slug) {
 }
 
 // DeepEvidence — Lucide `activity` icon path inlined as SVG (not via lucide
-// createIcons). UXcritique fix: when Lucide rewrites <i> -> <svg>, React's
 // virtual DOM no longer matches real DOM, so unmounting (e.g. on Tab switch)
 // throws NotFoundError on removeChild. Inline SVG avoids that.
 // scaleX(-1) matches reference Hero.tsx (Activity className="scale-x-[-1]").
@@ -177,7 +176,6 @@ function ProductLogo({ active, accent, size = 28 }) {
 }
 
 // SSR / no-JS 默认 Tab = 0 (spec §3.7); useEffect 在 client hydrate 后启动轮播。
-// UXcritique: auto-rotate disabled by default. Auto-cycling content is AI-slop;
 // users should be in control. Pass autoRotateMs={8000} explicitly to opt back in.
 function AIProductShowcase({ products, autoRotateMs = 0, renderBody }) {
   // §3.7 row 1 — 0 条产品时显示 placeholder
@@ -234,9 +232,7 @@ function AIProductShowcase({ products, autoRotateMs = 0, renderBody }) {
       onBlur={() => setPaused(false)}
       style={{
         position: 'relative',
-        /* UXcritique: 原 #05080f near-black 改用 brand-spec --brand-primary-900
-           (#001037),即 spec §2.1 "Hero reverse bg, Footer" token */
-        background: 'var(--brand-primary-900)',
+                background: 'var(--brand-primary-900)',
         padding: 'clamp(72px, 9vw, 128px) clamp(24px, 6vw, 64px)',
         overflow: 'hidden',
         color: 'var(--white)',
@@ -288,9 +284,7 @@ function AIProductShowcase({ products, autoRotateMs = 0, renderBody }) {
       </div>
 
       <style>{`
-        /* UXcritique: removed orb-pulse + cursor-pulse infinite animations
-           per brand spec §9.2 — no infinite loops. */
-        @media (max-width: 767px) {
+                @media (max-width: 767px) {
           .ai-product-showcase .aips-sidebar { display: none !important; }
         }
       `}</style>
@@ -328,9 +322,6 @@ function DemoBodySlot({ active, renderBody }) {
   );
 }
 
-/* UXcritique: BackgroundOrbs (4s pulsing cyan blurs) deleted — violated brand
-   spec §9.2 (no infinite-loop animations) and was textbook "AI startup orb"
-   AI-slop. Replaced with single static subtle radial wash, no animation. */
 function BackgroundOrbs({ accent }) {
   return (
     <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
@@ -347,8 +338,7 @@ function TabSwitcher({ products, activeIdx, onSelect }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 'clamp(24px, 3vw, 40px)' }}>
       <div role="tablist" aria-label="AI products" style={{
-        /* UXcritique: glass removed — solid panel per brand red-line */
-        background: 'rgba(255,255,255,0.06)',
+                background: 'rgba(255,255,255,0.06)',
         padding: 6,
         borderRadius: 16,
         border: '1px solid rgba(255,255,255,0.16)',
@@ -375,8 +365,7 @@ function TabSwitcher({ products, activeIdx, onSelect }) {
                 border: 'none',
                 cursor: 'pointer',
                 color: isActive ? '#fff' : '#94a3b8',
-                /* UXcritique: gradient tab activation replaced with solid brand color */
-                background: isActive ? accent.c500 : 'transparent',
+                                background: isActive ? accent.c500 : 'transparent',
                 boxShadow: 'none',
                 transition: 'background 250ms ease, color 250ms ease, box-shadow 250ms ease',
                 display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -423,9 +412,7 @@ function BrowserMockup({ active, accent, children }) {
       aria-labelledby={`aips-tab-${active.slug}`}
       style={{
         maxWidth: 1024, margin: '0 auto',
-        /* UXcritique: 高度从 480-600 → 600-760, 容纳 demo 全部内容 (header+
-           prose+2 bullets+citations+chips ≈ 590px), 不再触发垂直滚动条 */
-        height: 'clamp(600px, 76vh, 760px)',
+                height: 'clamp(600px, 76vh, 760px)',
         position: 'relative',
         display: 'flex', flexDirection: 'row',
         /* glass removed; brand-spec navy mid-tier (--brand-primary-700) for the
@@ -436,7 +423,7 @@ function BrowserMockup({ active, accent, children }) {
         border: '1px solid rgba(255,255,255,0.16)',
       }}
     >
-      {/* UXcritique: gradient strip replaced with solid 2px brand accent line */}
+      {}
       <div aria-hidden="true" style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: 2,
         background: accent.c500,

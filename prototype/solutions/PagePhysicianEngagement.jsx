@@ -72,7 +72,7 @@ function PagePhysicianEngagement() {
       <SolutionPageHeader pageMeta={PHYSICIAN_META} />
       <SolutionSubNav items={subnav} theme="navy" />
 
-      {/* UXcritique20260429: deliverable-page signature shape — input → output rows. */}
+      {}
       <DeliverableSample
         eyebrow="What you actually receive"
         title="Each engagement type ships as a signed artifact, scoped against an explicit input."
@@ -122,7 +122,7 @@ function PagePhysicianEngagement() {
         id="overview" eyebrow="Overview"
         title="The physician layer of every engagement we run."
         kicker="Every other workstream — evidence, communications, regulatory — depends on a named clinician at the gate. This is the team that runs that gate."
-        bg="#fff" label="01 · Overview"
+        bg="#fff"
       >
         <div className="two-col-grid" style={{
           background: 'var(--brand-primary-900)', color: '#fff',
@@ -150,7 +150,7 @@ function PagePhysicianEngagement() {
         id="network" eyebrow="The network · 3.33M+ physicians"
         title="Coverage by geography and care setting."
         kicker="A physician network we audit annually. Coverage is uneven by design — we go deep on tier-1 AMCs in both markets, where regulatory and reimbursement decisions are actually shaped."
-        bg="var(--bg-2)" label="02 · The network"
+        bg="var(--bg-2)"
       >
         <div style={{
           background: '#fff', border: '1px solid var(--border-1)',
@@ -191,7 +191,7 @@ function PagePhysicianEngagement() {
       <SolutionSection
         id="engagements" eyebrow="Engagement types · 4 modes"
         title="How we put a physician on the record."
-        bg="#fff" label="03 · Engagement types"
+        bg="#fff"
       >
         <DeliverablesGrid items={engagementTypes} theme="navy" />
       </SolutionSection>
@@ -200,7 +200,7 @@ function PagePhysicianEngagement() {
         id="consent" eyebrow="Consent & ethics"
         title="Five rules we apply to every engagement."
         kicker="The reason a physician will work with us a second time is the same reason a regulator will accept the deliverable: the consent infrastructure is real."
-        bg="var(--bg-2)" label="04 · Consent & ethics"
+        bg="var(--bg-2)"
       >
         <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16 }}>
           {[
@@ -225,7 +225,7 @@ function PagePhysicianEngagement() {
       <SolutionSection
         id="proof" eyebrow="Proof · 2025"
         title="Signed numbers, signed source trail."
-        bg="#fff" label="05 · Proof"
+        bg="#fff"
       >
         <SolutionStatStrip stats={stats} theme="navy" />
         <div style={{ marginTop: 16, fontSize: 11.5, color: 'var(--fg-3)', lineHeight: 1.5 }}>
@@ -233,6 +233,7 @@ function PagePhysicianEngagement() {
         </div>
       </SolutionSection>
 
+      <ContentReviewCrossSell />
       <SolutionCTA pageMeta={PHYSICIAN_META} />
       <RelatedSolutions current="physician-engagement" />
       <SolutionFooter />

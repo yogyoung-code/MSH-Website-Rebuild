@@ -55,9 +55,7 @@ function AIAssetBalanceSheet({
       aria-labelledby={headingId}
       className="ai-asset-balance-sheet"
       style={{
-        /* UXcritique: 浅色背景 — 与 Hero 暗色形成自然分段,不再需要 sticky-nav
-           做断隔. 4 stats 在一行水平展开（见下方 stats-row）。 */
-        background: 'var(--bg-2, var(--neutral-50))',
+                background: 'var(--bg-2, var(--neutral-50))',
         color: 'var(--fg-1)',
         padding: 'clamp(40px, 5vw, 80px) clamp(24px, 6vw, 96px)',
         position: 'relative',

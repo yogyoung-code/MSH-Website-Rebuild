@@ -141,8 +141,7 @@ function CountryColumn({ data, role }) {
           fontWeight: 700,
           flexShrink: 0
         }}>{isOrigin ? 'From' : 'To'}</span>
-        {/* UXcritique20260429: country-code mono chip replaces flag emoji
-            (Brand Guidelines v1.1 §8 — no emoji in product UI). */}
+        {}
         {(data.code || data.flag) && (
           <span style={{
             fontFamily: 'var(--font-mono)',

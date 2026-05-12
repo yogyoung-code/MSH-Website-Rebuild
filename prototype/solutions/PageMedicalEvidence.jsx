@@ -73,7 +73,7 @@ function PageMedicalEvidence() {
         id="overview" eyebrow="Overview"
         title="The pipeline that runs underneath every other engagement."
         kicker="Whether you're entering China, going global, or just need a registry rebuilt — the evidence pipeline is the same. Retrieval, structured synthesis, physician review, signed source trail."
-        bg="#fff" label="01 · Overview"
+        bg="#fff"
       >
         <div style={{
           display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24,
@@ -120,14 +120,12 @@ function PageMedicalEvidence() {
       <SolutionSection
         id="capabilities" eyebrow="Capabilities · 4 workstreams"
         title="What we deliver under the Medical Evidence block."
-        bg="var(--bg-2)" label="02 · Capabilities"
+        bg="var(--bg-2)"
       >
         <DeliverablesGrid items={capabilities} theme="navy" />
       </SolutionSection>
 
-      {/* UXcritique20260429: deliverable-page signature shape — input → output
-          spec rows give this page a visual identity distinct from path pages.
-          Reads as an engineering spec, not marketing. */}
+      {}
       <DeliverableSample
         eyebrow="What you actually receive"
         title="Each capability ships as a signed artifact, with a defined input shape."
@@ -192,7 +190,7 @@ function PageMedicalEvidence() {
         id="process" eyebrow="Source-trail process"
         title="Every claim travels with its source. Every source carries a signature."
         kicker="The audit log is part of the deliverable, not a side artifact you have to ask for later."
-        bg="#fff" label="03 · Process"
+        bg="#fff"
       >
         <div style={{ background: 'var(--bg-2)', border: '1px solid var(--border-1)', borderRadius: 16, padding: 36 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 0 }}>
@@ -229,7 +227,7 @@ function PageMedicalEvidence() {
         id="evidence-tiers" eyebrow="Three-tier evidence system"
         title="Always know what you can quote, and what you cannot."
         kicker="Every claim in our deliverables carries one of three badges. You always know the maturity of the evidence you're holding."
-        bg="var(--bg-2)" label="04 · Evidence tiers"
+        bg="var(--bg-2)"
       >
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {tiers.map(t => (
@@ -252,11 +250,12 @@ function PageMedicalEvidence() {
       <SolutionSection
         id="proof" eyebrow="Proof · 2025"
         title="Numbers we can show you with a signed source trail."
-        bg="#fff" label="05 · Proof"
+        bg="#fff"
       >
         <SolutionStatStrip stats={stats} theme="navy" />
       </SolutionSection>
 
+      <ContentReviewCrossSell />
       <SolutionCTA pageMeta={MED_EVIDENCE_META} />
       <RelatedSolutions current="medical-evidence" />
       <SolutionFooter />

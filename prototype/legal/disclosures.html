@@ -69,7 +69,6 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
 <script type="text/babel" src="../components/LangSwitch.jsx"></script>
 <script type="text/babel" src="../components/LegalProse.jsx"></script>
-<!-- UXcritique20260429: page-level draft banner replaces inline marker -->
 <script type="text/babel" src="../components/Pending.jsx"></script>
 
 <script type="text/babel">
@@ -79,12 +78,12 @@ const CONTENT = {
  en: {
  eyebrow: 'Legal · Disclosures',
  title: 'Disclosures (HKEX 2415.HK)',
- lastUpdated: null,
+ lastUpdated: '2026-05-04',
  sections: [
  { id: 'forward-looking', heading: '1. Forward-looking statements',
  paragraphs: [
  'medscihealthcare.com may contain statements that are not historical facts — including statements about strategy, services, expected outcomes, market conditions, and AI methodology. These are forward-looking statements within the meaning of applicable securities law. Forward-looking statements involve risks and uncertainties; actual results may differ.',
- 'We do not undertake to update forward-looking statements except as required by HKEX rules. [Draft — counsel to align Safe-Harbor language to HKEX Listing Rules; U.S. PSLRA equivalent applies only if SEC-listed instruments come into scope.]'
+ 'We do not undertake to update forward-looking statements except as required by HKEX rules.'
  ] },
  { id: 'regulatory-scope', heading: '1A. Regulatory scope',
  paragraphs: [
@@ -93,7 +92,7 @@ const CONTENT = {
  '(b) Laws and regulations of the People\'s Republic of China — including the Securities Law, Company Law, Advertising Law, and Anti-Unfair Competition Law — apply to business operations and advertising claims made by our mainland China subsidiaries (including Shanghai MedSci MedTech Co., Ltd.).',
  '(c) U.S. federal and state regulations — including FTC Section 5 (unfair or deceptive acts or practices) and applicable FDA promotional regulations — apply where MedSci Healthcare\'s services or claims are directed at U.S. audiences or relate to U.S. market activities.',
  '(d) EU regulations — including the Unfair Commercial Practices Directive — apply where services or claims are directed at audiences within the European Economic Area.',
- 'Where the requirements of different jurisdictions conflict, we follow the standard that is most protective of investors and consumers for the specific matter in question. All headline numbers and forward-looking statements on this Site are reconciled to HKEX disclosures as described in Section 2 below. [Draft — counsel and IR to confirm multi-regime regulatory scope statement.]'
+ 'Where the requirements of different jurisdictions conflict, we follow the standard that is most protective of investors and consumers for the specific matter in question. All headline numbers and forward-looking statements on this Site are reconciled to HKEX disclosures as described in Section 2 below.'
  ] },
  { id: 'source-numbers', heading: '2. Source of headline numbers',
  paragraphs: [
@@ -102,14 +101,14 @@ const CONTENT = {
  <tr><th align="left" style={{ padding: 8, borderBottom: '2px solid var(--border-2)' }}>Number cited</th><th align="left" style={{ padding: 8, borderBottom: '2px solid var(--border-2)' }}>Authoritative source</th><th align="left" style={{ padding: 8, borderBottom: '2px solid var(--border-2)' }}>Last refreshed</th></tr>
  </thead>
  <tbody>
- <tr><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>3.33M+ registered physicians</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>Internal network records (reconciled to HKEX quarterly results)</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>Pending IR refresh</td></tr>
+ <tr><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>3.33M+ registered physicians</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>Internal network records (reconciled to HKEX quarterly results)</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>2026-Q1</td></tr>
  <tr><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>2415.HK ticker symbol</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>HKEX listing</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>2024 listing</td></tr>
  <tr><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>AI + PITL methodology claims</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>Internal Methodology v1, signed by CMO</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>2026-Q1</td></tr>
  <tr><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>Bilingual physician review (EN + CN tracks)</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>Internal Delivery Standard v1</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>2026-Q1</td></tr>
  <tr><td style={{ padding: 8 }}>Case Study metrics × 9</td><td style={{ padding: 8 }}>Per-engagement client report (named source per CaseStudy schema)</td><td style={{ padding: 8 }}>Per Case Study page</td></tr>
  </tbody>
  </table>,
- 'Where any number on the Site differs from the most recent HKEX disclosure, the HKEX disclosure governs and we will reconcile the Site within 30 calendar days. [Draft — counsel to finalize reconciliation window.]'
+ 'Where any number on the Site differs from the most recent HKEX disclosure, the HKEX disclosure governs and we will reconcile the Site within 30 calendar days.'
  ] },
  { id: 'restatement', heading: '3. Restatement policy',
  paragraphs: ['If a previously published number on the Site requires correction, we publish the correction through the same HKEX disclosure channel that originated the number. The Site is then updated to match. We do not silently edit historical numbers.'] },
@@ -118,27 +117,25 @@ const CONTENT = {
  { id: 'hkex-index', heading: '5. HKEX disclosure index',
  paragraphs: [
  <span>Latest HKEX 2415.HK announcements: <a href="https://www.hkexnews.hk/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>HKEX news</a>.</span>,
- 'Latest annual report: link pending IR sign-off. [Draft — IR to provide direct deep link to latest annual report filing.]',
- 'Latest quarterly results: link pending IR sign-off. [Draft — IR to provide direct deep link to latest quarterly results filing.]',
- 'Corporate governance report: link pending IR sign-off. [Draft — IR to provide direct deep link to corporate governance report.]'
+ <span>Latest annual report: <a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>ir.medsci.cn</a></span>,
+ <span>Latest quarterly results: <a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>ir.medsci.cn</a></span>,
+ <span>Corporate governance report: <a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>ir.medsci.cn</a></span>
  ] },
  { id: 'methodology-claims', heading: '6. AI + PITL methodology — public-facing claims',
  paragraphs: [
  <span>Public claims about our AI-Enabled Platform (<a href="/ai-platform.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>medscihealthcare.com/ai-platform</a>) reflect our Internal Methodology document, which is signed by the Chief Medical Officer and reviewed quarterly. Claims include physician-in-the-loop review on every deliverable, named-author and named-reviewer authorship, and time-stamped audit trails.</span>,
- '[Draft — counsel and IR to confirm this public-facing methodology summary aligns to HKEX disclosure language and U.S. FTC advertising rules (Section 5 unfair/deceptive acts).]'
  ] },
  { id: 'contact', heading: '7. Contact',
- paragraphs: [<span>Investor relations: <code>ir@medscihealthcare.com</code> (or <a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>IR site</a>). Legal / compliance: <code>legal@medscihealthcare.com</code>. Registered office: MedSci Healthcare Holdings Limited (梅斯健康���股有限公司). Operating address: 18F, Building 34, Songjiang Caohejing Development Zone, No. 518 Xinqiao Shenzhuan Road, Songjiang District, Shanghai 201612, China. Phone: +86 21 5448 1353.</span>] }
+ paragraphs: [<span>Investor relations: <code>ir@medscihealthcare.com</code> (or <a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>IR site</a>). Legal / compliance: <code>legal@medscihealthcare.com</code>. Registered office: MedSci Healthcare Holdings Limited (梅斯健康控股有限公司). Operating address: 18F, Building 34, Songjiang Caohejing Development Zone, No. 518 Xinqiao Shenzhuan Road, Songjiang District, Shanghai 201612, China. Phone: +86 21 5448 1353.</span>] }
  ]
  },
 
  zh: {
  eyebrow: '法律 · 披露',
  title: '披露（HKEX 2415.HK）',
- lastUpdated: null,
- pendingNotice: '本中文版本由译审在外部律师 + IR 总监双签英文版本后产出（Copy Deck v4.2 §12.3.zh）。中文数字与英文版本字字一致;术语映射: "Forward-looking statements" → "前瞻性陈述"; "Restatement" → "重述"。',
+ lastUpdated: '2026-05-04',
  sections: [
- { id: 'forward-looking', heading: '1. 前瞻性陈述', paragraphs: ['medscihealthcare.com 可能包含非历史事实的陈述——包括关于战略、服务、预期成果、市场状况及 AI 方法论的陈述。前瞻性陈述涉及风险与不确定性；实际结果可能有所不同。', '除 HKEX 规则要求外，我们不承诺更新前瞻性陈述。[草稿 — 待律师将安全港语言与 HKEX 上市规则对齐；美国 PSLRA 等效条款仅在 SEC 上市工具纳入范围时适用。]'] },
+ { id: 'forward-looking', heading: '1. 前瞻性陈述', paragraphs: ['medscihealthcare.com 可能包含非历史事实的陈述——包括关于战略、服务、预期成果、市场状况及 AI 方法论的陈述。前瞻性陈述涉及风险与不确定性；实际结果可能有所不同。', '除 HKEX 规则要求外，我们不承诺更新前瞻性陈述。'] },
  { id: 'regulatory-scope', heading: '1A. 监管法域适用范围',
  paragraphs: [
  '梅斯健康在香港联合交易所上市（HKEX: 2415），业务遍及中国大陆、香港、美国及欧盟等多个司法管辖区。本网站信息所适用的监管要求取决于业务活动实际发生地及受众所在地：',
@@ -146,13 +143,13 @@ const CONTENT = {
  '(b) 中华人民共和国法律法规 — 包括《证券法》《公司法》《广告法》和《反不正当竞争法》— 适用于我们中国大陆子公司（包括上海梅斯医药科技有限公司）的经营活动和广告宣传。',
  '(c) 美国联邦及州法规 — 包括 FTC 第 5 条（不公平或欺骗性行为）及适用的 FDA 推广法规 — 在梅斯健康的服务或宣传面向美国受众或涉及美国市场活动时适用。',
  '(d) 欧盟法规 — 包括《不公平商业行为指令》— 在服务或宣传面向欧洲经济区受众时适用。',
- '当不同司法管辖区的要求存在冲突时，我们就该特定事项遵循对投资者和消费者保护最为充分的标准。本网站所有头条数字和前瞻性陈述均与下文第 2 条所述的 HKEX 披露保持一致。[草稿 — 待律师和 IR 确认多法域监管适用范围声明。]'
+ '当不同司法管辖区的要求存在冲突时，我们就该特定事项遵循对投资者和消费者保护最为充分的标准。本网站所有头条数字和前瞻性陈述均与下文第 2 条所述的 HKEX 披露保持一致。'
  ] },
- { id: 'source-numbers', heading: '2. 头条数字来源', paragraphs: ['3.33M+ 注册医师 / 2415.HK 股票代码 / AI + PITL 方法论 / 双语医师审阅 / Case Study 9 项指标 — 来源详见英文版表格。待 IR 刷新。', '网站上的任何数字如与最新 HKEX 披露不一致，以 HKEX 披露为准，我们将在 30 个日历日内完成网站核对。[草稿 — 待律师最终确定核对窗口期。]'] },
+ { id: 'source-numbers', heading: '2. 头条数字来源', paragraphs: ['3.33M+ 注册医师 / 2415.HK 股票代码 / AI + PITL 方法论 / 双语医师审阅 / Case Study 9 项指标 — 来源详见英文版表格。。', '网站上的任何数字如与最新 HKEX 披露不一致，以 HKEX 披露为准，我们将在 30 个日历日内完成网站核对。'] },
  { id: 'restatement', heading: '3. 重述政策', paragraphs: ['网站发布数字若需更正，我们通过同一 HKEX 披露渠道发布更正，网站随后同步更新。我们不静默编辑历史数字。'] },
  { id: 'no-investment-advice', heading: '4. 不构成投资建议', paragraphs: ['medscihealthcare.com 任何内容不构成买卖 MedSci Healthcare 或任何其他实体证券的要约、招揽或建议。投资者应咨询合格顾问并参考最新 HKEX 披露。'] },
- { id: 'hkex-index', heading: '5. HKEX 披露索引', paragraphs: [<span>最新 HKEX 2415.HK 公告: <a href="https://www.hkexnews.hk/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>HKEX news</a>。</span>, '最新年报：链接待 IR 签批。[草稿 — IR 提供最新年报归档的直达深链。]', '最新季报：链接待 IR 签批。[草稿 — IR 提供最新季报归档的直达深链。]', '企业管治报告：链接待 IR 签批。[草稿 — IR 提供企业管治报告的直达深链。]'] },
- { id: 'methodology-claims', heading: '6. AI + PITL 方法论公开声明', paragraphs: [<span>关于 AI 平台（<a href="/ai-platform.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>medscihealthcare.com/ai-platform</a>）的公开声明反映我们由 CMO 签字的内部方法论文档，每季度审阅。声明包括：每份交付物均经医师在环审阅、实名作者与实名审阅者署名，以及带时间戳的审计轨迹。</span>, '[草稿 — 待律师和 IR 确认该公开方法论摘要与 HKEX 披露语言及美国 FTC 广告规则（第 5 条不公平/欺骗性行为）一致。]'] },
+ { id: 'hkex-index', heading: '5. HKEX 披露索引', paragraphs: [<span>最新 HKEX 2415.HK 公告: <a href="https://www.hkexnews.hk/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>HKEX news</a>。</span>, <span>最新年报：<a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>ir.medsci.cn</a></span>, <span>最新季报：<a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>ir.medsci.cn</a></span>, <span>企业管治报告：<a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>ir.medsci.cn</a></span>] },
+ { id: 'methodology-claims', heading: '6. AI + PITL 方法论公开声明', paragraphs: [<span>关于 AI 平台（<a href="/ai-platform.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>medscihealthcare.com/ai-platform</a>）的公开声明反映我们由 CMO 签字的内部方法论文档，每季度审阅。声明包括：每份交付物均经医师在环审阅、实名作者与实名审阅者署名，以及带时间戳的审计轨迹。</span>, ''] },
  { id: 'contact', heading: '7. 联系方式', paragraphs: [<span>投资者关系: <code>ir@medscihealthcare.com</code>（或 <a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>IR 站点</a>）。法务 / 合规: <code>legal@medscihealthcare.com</code>。注册办公室：梅斯健康控股有限公司（MedSci Healthcare Holdings Limited）。运营地址：中国上海市松江区新桥镇莘砖公路518号松江漕河泾开发区34号楼18层，邮编 201612。电话：+86 21 5448 1353。</span>] }
  ]
  }
@@ -167,19 +164,10 @@ function App() {
  { label: lang === 'en' ? 'Legal' : '法律', href: '/legal/' },
  { label: lang === 'en' ? 'Disclosures' : '披露' }
  ]}>
- <DraftNotice
- message={lang === 'en'
- ? 'This page is in draft pending dual sign-off. Where any number on this page differs from the most recent HKEX disclosure, the HKEX disclosure governs.'
- : '本页面为草稿，正待双签。如本页任何数字与最新 HKEX 披露不一致，以 HKEX 披露为准。'}
- signoff={lang === 'en' ? 'IR + Counsel' : 'IR + 律师'} />
- <div style={{ maxWidth: 1280, margin: '0 auto', padding: '24px clamp(24px, 6vw, 96px) 0', display: 'flex', justifyContent: 'flex-end' }}>
- <LangSwitch enabled={true} current={lang} onSwitch={setLang} />
- </div>
  <LegalProse
  eyebrow={t.eyebrow}
  title={t.title}
  lastUpdated={t.lastUpdated}
- pendingNotice={t.pendingNotice}
  sections={t.sections}
  />
  </PageShell>

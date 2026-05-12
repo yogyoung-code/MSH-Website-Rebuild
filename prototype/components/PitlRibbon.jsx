@@ -50,7 +50,6 @@ function PitlRibbon({ steps, eyebrow, title, variant = 'full' }) {
     && window.matchMedia
     && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // UXcritique20260429 /delight (3a): on-scroll-into-view stagger.
   // AI lane cells fade in first (0–180ms), Physician lane cells follow
   // (200–380ms). Single one-shot reveal — no looping. IntersectionObserver
   // disconnects after first trigger. Honors prefers-reduced-motion.

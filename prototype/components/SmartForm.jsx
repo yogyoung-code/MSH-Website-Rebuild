@@ -1,22 +1,4 @@
 /* SmartForm.jsx — Contact intake with business_block routing (B4) */
-/*
- * Spec sources:
- *   - Plan §1796–1853 (verbatim structure: 4 intents + 7 business blocks +
- *     name/email/company/message + sprint-not-for-fit redirect heuristic)
- *   - Copy Deck v4.2 §10.1.3 (privacy consent + disabled submit) — hard
- *     legal requirement, added as surgical extension over plan code.
- *   - Copy Deck v4.2 §10.2 thank-you branches: deferred to V2 CMS;
- *     prototype keeps deterministic branches but renders inline thank-you
- *     instead of alert() (UXcritique20260429 hardening).
- *
- * UXcritique20260429 hardening:
- *   - Full state machine: idle → submitting → success | error.
- *   - Inline field-level email validation (HTML pattern + JS check).
- *   - Submit button disabled during submission AND when consent missing.
- *   - Network failures surface a retry button; form state preserved.
- *   - alert() removed; success / error rendered as live regions for SR.
- *   - prefers-reduced-motion respected (no transition on state changes).
- */
 
 // v3.0 AI Platform routed intents (Plan task 14 / Spec §5).
 // 当 URL ?intent=ai_* 时, contact.html 读取并以 routedIntent prop 传入,
@@ -68,7 +50,7 @@ function SmartForm({ onSubmit, simulateError, routedIntent }) {
     // block='other' + message hints at individual / patient / hospital intent →
     // redirect to /services/other-engagements (anti-loop guard: never back to /contact).
     if (block === 'other' && /^(individual|patient|hospital).*$/i.test(form.message)) {
-      window.location.href = '/services/other-engagements';
+      window.location.href = '/services/other-engagements.html';
       return;
     }
 
@@ -121,7 +103,7 @@ function SmartForm({ onSubmit, simulateError, routedIntent }) {
   if (phase === 'success') {
     return (
       <div role="status" aria-live="polite" style={{
-        maxWidth: 600, margin: '0 auto', padding: '0 24px'
+        maxWidth: 'var(--form-max-width, 600px)', margin: '0 auto', padding: '0 var(--form-padding, 24px)'
       }}>
         <div style={{
           border: '1px solid var(--success-500)',
@@ -193,7 +175,7 @@ function SmartForm({ onSubmit, simulateError, routedIntent }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate style={{ maxWidth: 600, margin: '0 auto', padding: '0 24px' }}>
+    <form onSubmit={handleSubmit} noValidate style={{ maxWidth: 'var(--form-max-width, 600px)', margin: '0 auto', padding: '0 var(--form-padding, 24px)' }}>
       {phase === 'error' && (
         <div role="alert" aria-live="assertive" style={{
           border: '1px solid var(--error-500)',
@@ -271,6 +253,7 @@ function SmartForm({ onSubmit, simulateError, routedIntent }) {
             <option value="platform">AI-Enabled Platform</option>
             <option value="paths">Entering China / Going Global</option>
             <option value="sprint">Cross-Border Sprint</option>
+            <option value="content-review">Content review & localization</option>
             <option value="other">Other</option>
           </select>
         </label>

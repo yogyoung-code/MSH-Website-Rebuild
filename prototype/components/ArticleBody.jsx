@@ -20,7 +20,6 @@
  */
 
 // Defensive: detect "Section content in development" stubs that the prior
-// prototype rendered as user-visible prose. UXcritique20260429 wraps them
 // in <Pending> instead.
 function isPendingSection(s) {
   if (!s) return false;
@@ -35,7 +34,7 @@ function ArticleBody({ sections }) {
   if (!Array.isArray(sections) || sections.length === 0) return null;
   return (
     <article style={{
-      maxWidth: 720,
+      maxWidth: 1280,
       margin: '0 auto',
       padding: '0 clamp(24px, 6vw, 96px) 64px'
     }}>

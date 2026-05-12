@@ -1,27 +1,3 @@
-/* =========================================================
-   Pending.jsx — UXcritique20260429 hardening artifacts
-   ---------------------------------------------------------
-   Two related components for handling unfinished content
-   without leaking placeholder strings into rendered prose.
-
-   1) <Pending>      — replaces missing body content with a
-                        small "Coming soon" callout. Use anywhere
-                        an article section, bio, table cell, or
-                        list item has no signed-off content.
-
-   2) <DraftNotice>  — page-level "DRAFT — pending counsel
-                        review" banner. Use ONCE per page (top)
-                        on legal/IR/disclosure pages whose prose
-                        is awaiting external sign-off, instead of
-                        sprinkling ⚠️ markers through the body.
-
-   Brand-spec compliance:
-   - Uses warning-100 / warning-700 tokens (semantic, not brand)
-   - 1px dashed warning border (matches LeadershipGrid pending pattern)
-   - No emoji glyphs in user-visible text — uses the spec'd
-     placeholder badge ⚑ from Brand Guidelines v1.1 §6.4 only
-     where the badge system already calls for it.
-   ========================================================= */
 
 function Pending({ label, note, compact }) {
   return (

@@ -48,7 +48,7 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
   gtag('js', new Date());
-  // gtag('config', 'G-XXXXXX'); // launch 前替换
+
 </script>
 <script src="assets/consent/consent-mode-v2.js"></script>
 <script src="assets/analytics/ga4-events.js"></script>
@@ -107,99 +107,110 @@ function App() {
       { label: 'Home', href: '/' },
       { label: 'Contact' }
     ]}>
-      {/* Hero */}
+      {/* Wide two-column layout */}
       <section style={{
-        maxWidth: 880,
+        maxWidth: 1280,
         margin: '0 auto',
-        padding: 'clamp(48px, 6vw, 96px) clamp(24px, 6vw, 96px) 32px'
+        padding: 'clamp(48px, 6vw, 96px) clamp(16px, 4vw, 40px) 64px',
       }}>
-        <div style={{
-          fontFamily: 'var(--font-slogan)',
-          fontSize: 12,
-          letterSpacing: '0.16em',
-          textTransform: 'uppercase',
-          color: 'var(--brand-accent-700)',
-          marginBottom: 16
-        }}>{aiHero ? aiHero.eyebrow : 'Contact MedSci Healthcare'}</div>
-
-        <h1 style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(32px, 5vw, 48px)',
-          lineHeight: 1.2,
-          color: 'var(--brand-primary-700)',
-          margin: '0 0 20px'
-        }}>{aiHero ? aiHero.title : 'Talk to a physician on our team.'}</h1>
-
-        <p style={{
-          fontSize: 17,
-          color: 'var(--fg-1)',
-          lineHeight: 1.6,
-          margin: 0,
-          maxWidth: 720
+        <div className="two-col-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1.1fr',
+          gap: 'clamp(40px, 5vw, 80px)',
+          alignItems: 'start',
         }}>
-          {aiHero
-            ? aiHero.body
-            : "Tell us a bit about what you're working on. We route by business block — Evidence, Physician Engagement, Communications, AI Platform — and the same person who reaches out is on the deliverable when work begins."
-          }
-        </p>
-      </section>
+          {/* LEFT — copy + routing info */}
+          <div>
+            <div style={{
+              fontFamily: 'var(--font-slogan)',
+              fontSize: 12,
+              letterSpacing: '0.16em',
+              textTransform: 'uppercase',
+              color: 'var(--brand-accent-700)',
+              marginBottom: 16
+            }}>{aiHero ? aiHero.eyebrow : 'Contact MedSci Healthcare'}</div>
 
-      {/* Form */}
-      <section style={{ padding: '0 0 64px' }}>
-        <SmartForm routedIntent={routedIntent} />
-      </section>
+            <h1 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(32px, 4vw, 44px)',
+              lineHeight: 1.2,
+              color: 'var(--brand-primary-700)',
+              margin: '0 0 20px'
+            }}>{aiHero ? aiHero.title : 'Talk to an expert on our team.'}</h1>
 
-      {/* Side info: routing transparency + alt channels */}
-      <section style={{
-        maxWidth: 720,
-        margin: '0 auto',
-        padding: '0 clamp(24px, 6vw, 96px) 96px'
-      }}>
-        <div style={{
-          borderTop: '1px solid var(--border-1)',
-          paddingTop: 32,
-          fontSize: 14,
-          color: 'var(--fg-2)',
-          lineHeight: 1.6
-        }}>
+            <p style={{
+              fontSize: 16,
+              color: 'var(--fg-1)',
+              lineHeight: 1.65,
+              margin: '0 0 40px',
+            }}>
+              {aiHero
+                ? aiHero.body
+                : "Tell us a bit about what you're working on. We route by business block — Evidence, Physician Engagement, Communications, AI Platform — and the same person who reaches out is on the deliverable when work begins."
+              }
+            </p>
+
+            {/* Routing transparency */}
+            <div style={{
+              borderTop: '1px solid var(--border-1)',
+              paddingTop: 28,
+              fontSize: 14,
+              color: 'var(--fg-2)',
+              lineHeight: 1.6,
+            }}>
+              <div style={{
+                fontFamily: 'var(--font-slogan)',
+                fontSize: 11,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'var(--brand-primary-700)',
+                marginBottom: 12,
+                fontWeight: 600,
+              }}>How we route this</div>
+
+              <p style={{ margin: '0 0 16px', fontSize: 14 }}>
+                Pilot and Expert intents go to BD by business block. RFP intent routes to our formal-proposal queue.
+              </p>
+
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 0' }}>
+                <li style={{ marginBottom: 10, fontSize: 13 }}>
+                  → Investor Relations (HKEX 2415.HK):{' '}
+                  <a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
+                    ir.medsci.cn/en/
+                  </a>
+                </li>
+                <li style={{ marginBottom: 10, fontSize: 13 }}>
+                  → Press &amp; Media: select <em>Other</em> and mention your outlet and deadline.
+                </li>
+                <li style={{ marginBottom: 10, fontSize: 13 }}>
+                  → Compliance / vendor security pack: select <em>Other</em> and describe your audit context.
+                </li>
+                <li style={{ marginBottom: 0, fontSize: 13 }}>
+                  → Existing engagement: please use the email thread from your engagement letter.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* RIGHT — form */}
           <div style={{
-            fontFamily: 'var(--font-slogan)',
-            fontSize: 12,
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: 'var(--brand-primary-700)',
-            marginBottom: 12
-          }}>How we route this</div>
-
-          <p style={{ margin: '0 0 12px' }}>
-            Pilot and Expert intents go to BD by business block. RFP intent routes to our formal-proposal queue. Investor and Press inquiries are best routed through their dedicated channels below.
-          </p>
-
-          <ul style={{ listStyle: 'none', padding: 0, margin: '20px 0 0' }}>
-            <li style={{ marginBottom: 8 }}>
-              → Investor Relations (HKEX 2415.HK):{' '}
-              <a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
-                ir.medsci.cn/en/
-              </a>
-            </li>
-            <li style={{ marginBottom: 8 }}>
-              → Press &amp; Media: select <em>Other</em> above and mention your outlet and deadline.
-            </li>
-            <li style={{ marginBottom: 8 }}>
-              → Compliance / vendor security pack: select <em>Other</em> above and describe your audit context.
-            </li>
-            <li style={{ marginBottom: 0 }}>
-              → Existing engagement &amp; account questions: please use the email thread from your engagement letter.
-            </li>
-          </ul>
+            background: 'var(--bg-2)',
+            borderRadius: 16,
+            border: '1px solid var(--border-1)',
+            padding: 'clamp(24px, 3vw, 40px)',
+            '--form-max-width': 'none',
+            '--form-padding': '0px',
+          }}>
+            <SmartForm routedIntent={routedIntent} />
+          </div>
         </div>
       </section>
 
-      {/* Office photo — "exactly one" per image-add strategy */}
+      {/* Office photo */}
       <section style={{
-        maxWidth: 'var(--container-max, 1280px)',
+        maxWidth: 1280,
         margin: '0 auto',
-        padding: '0 clamp(24px, 6vw, 96px) clamp(64px, 8vw, 96px)',
+        padding: '0 clamp(16px, 4vw, 40px) clamp(64px, 8vw, 96px)',
       }}>
         <div style={{
           borderRadius: 12,

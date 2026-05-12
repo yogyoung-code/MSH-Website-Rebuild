@@ -88,8 +88,7 @@ function PageGoingGlobal() {
       <SolutionPageHeader pageMeta={GOING_GLOBAL_META} />
       <SolutionSubNav items={subnav} theme="cyan" />
 
-      {/* UXcritique20260429: path-page signature shape, mirrored from EnteringChina
-          but reversed — China origin, US destination. */}
+      {}
       <CountryCompare
         eyebrow="The cross-border path"
         title="What changes when an asset crosses the Pacific — westbound."
@@ -126,7 +125,7 @@ function PageGoingGlobal() {
         id="overview" eyebrow="Overview · why this path"
         title="Bridge China-grade evidence into a dossier the FDA can actually read."
         kicker="The hardest part of going global is not translation — it’s rewriting your scientific narrative for reviewers who weren’t in the room when you generated the data."
-        bg="#fff" label="01 · Overview"
+        bg="#fff"
       >
         <div className="two-col-grid" style={{
           display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 32,
@@ -174,7 +173,7 @@ function PageGoingGlobal() {
       <SolutionSection
         id="who-its-for" eyebrow="Who it's for"
         title="Three China-innovator profiles we work with most often."
-        bg="var(--bg-2)" label="02 · Who it's for"
+        bg="var(--bg-2)"
       >
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {personas.map((p, i) => (
@@ -207,7 +206,7 @@ function PageGoingGlobal() {
       <SolutionSection
         id="approach" eyebrow="Approach · 4 steps"
         title="Diagnose. Bridge. Sign. Submit."
-        bg="#fff" label="03 · Approach"
+        bg="#fff"
       >
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, border: '1px solid var(--border-1)', borderRadius: 16, overflow: 'hidden' }}>
           {approachSteps.map((s, i) => (
@@ -233,7 +232,7 @@ function PageGoingGlobal() {
       <SolutionSection
         id="deliverables" eyebrow="Deliverables · 4 workstreams"
         title="What ships, where the US clinician signs, what the source trail captures."
-        bg="var(--bg-2)" label="04 · Deliverables"
+        bg="var(--bg-2)"
       >
         <DeliverablesGrid items={deliverables} theme="cyan" />
       </SolutionSection>
@@ -242,7 +241,7 @@ function PageGoingGlobal() {
         id="timeline" eyebrow="Engagement timeline"
         title="A typical Going-Global engagement, end-to-end."
         kicker="Most engagements run 18–28 weeks. Pre-Sub or Q-Sub interactions can shift the back half."
-        bg="#fff" label="05 · Timeline"
+        bg="#fff"
       >
         <PhaseTimeline phases={phases} theme="cyan" />
       </SolutionSection>
@@ -250,7 +249,7 @@ function PageGoingGlobal() {
       <SolutionSection
         id="proof" eyebrow="Proof · 2025 cohort"
         title="Numbers we can show you with a signed source trail."
-        bg="var(--bg-2)" label="06 · Proof"
+        bg="var(--bg-2)"
       >
         <SolutionStatStrip stats={stats} theme="cyan" />
         <div style={{ marginTop: 20, fontSize: 11.5, color: 'var(--fg-3)', lineHeight: 1.5 }}>
@@ -262,7 +261,7 @@ function PageGoingGlobal() {
         id="pilot" eyebrow="Pilot · low-commitment entry"
         title="The 30-Day FDA Evidence Gap Diagnostic."
         kicker="A bounded engagement to identify the three or four FDA gaps that will actually slow your submission — before a full Going-Global program."
-        bg="#fff" label="07 · Pilot"
+        bg="#fff"
       >
         <div className="two-col-grid" style={{
           background: 'linear-gradient(180deg, #D6F1F9 0%, #FFFFFF 100%)', border: '1px solid var(--brand-accent-500)',
@@ -325,6 +324,7 @@ function PageGoingGlobal() {
         </div>
       </SolutionSection>
 
+      <ContentReviewCrossSell />
       <SolutionCTA pageMeta={GOING_GLOBAL_META} />
       <RelatedSolutions current="going-global-us" />
       <SolutionFooter />

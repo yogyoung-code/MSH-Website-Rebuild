@@ -60,12 +60,11 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script type="text/babel" src="../components/Button.jsx"></script>
 <script type="text/babel" src="../components/Header.jsx"></script>
 <script type="text/babel" src="../components/Footer.jsx"></script>
-<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx?v=2"></script>
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
 <script type="text/babel" src="../components/AuthorMeta.jsx"></script>
-<!-- UXcritique20260429: hides "Section content in development" stubs behind <Pending> -->
 <script type="text/babel" src="../components/Pending.jsx"></script>
-<script type="text/babel" src="../components/ArticleBody.jsx"></script>
+<script type="text/babel" src="../components/ArticleBody.jsx?v=2"></script>
 
 <script type="text/babel">
 // Mock data — Copy Deck v4.2 §8.2.1 (china-rwe-what-travels).
@@ -132,9 +131,9 @@ function App() {
 function InsightHero({ article }) {
   return (
     <header style={{
-      maxWidth: 880,
+      maxWidth: 1280,
       margin: '0 auto',
-      padding: 'clamp(48px, 6vw, 96px) clamp(24px, 6vw, 96px) 24px'
+      padding: '20px clamp(24px, 6vw, 96px) 24px'
     }}>
       <div style={{
         fontFamily: 'var(--font-slogan)',
@@ -180,7 +179,7 @@ function InsightHero({ article }) {
 function Lede({ text }) {
   return (
     <div style={{
-      maxWidth: 720,
+      maxWidth: 1280,
       margin: '0 auto',
       padding: '24px clamp(24px, 6vw, 96px) 32px'
     }}>
@@ -203,7 +202,7 @@ function Related({ related }) {
   if (!related || (!related.solution && !related.pilot)) return null;
   return (
     <section style={{
-      maxWidth: 720,
+      maxWidth: 1280,
       margin: '0 auto',
       padding: '0 clamp(24px, 6vw, 96px) 32px'
     }}>
@@ -250,7 +249,7 @@ function InsightCTA({ topic, relatedPilot }) {
       borderTop: '1px solid var(--border-1)',
       padding: '64px clamp(24px, 6vw, 96px)'
     }}>
-      <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', textAlign: 'center' }}>
         <div style={{
           fontFamily: 'var(--font-slogan)',
           fontSize: 12,

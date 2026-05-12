@@ -1,8 +1,32 @@
 /* Sections.jsx — All body sections per IA §4.1 */
 
-// 2. Quick Start Offers (3 cards)
+// 2. Quick Start Offers (2×2 grid — quick entry first row, pilots second row)
 function QuickStart() {
   const offers = [
+    // Row 1 — lowest commitment, fastest turnaround
+    {
+      tag: 'Quick Review',
+      title: 'Medical & Compliance Content Review',
+      desc: 'Submit your existing materials — get a compliance-flagged review with rewrite suggestions in 3–5 business days.',
+      included: ['Risk-rated markup (Critical / Advisory / Style)', 'Rewrite suggestions per finding', 'Named reviewer sign-off'],
+      price: '⚑ Flat fee — on request',
+      cta: 'Submit materials',
+      variant: 'outline',
+      accent: false,
+      href: '/solutions/content-review.html',
+    },
+    {
+      tag: 'Quick Entry',
+      title: 'Cross-Border Content Sprint',
+      desc: 'One medically reviewed, bilingual artifact in two weeks. The lowest-commitment way to produce new content with us.',
+      included: ['1 artifact, EN + CN', 'Physician QC sign-off', 'Source trail attached'],
+      price: '⚑ Flat fee — on request',
+      cta: 'Start a sprint',
+      variant: 'outline',
+      accent: false,
+      href: '/solutions/cross-border-medical-content-sprint.html',
+    },
+    // Row 2 — deeper engagement pilots
     {
       tag: '30-Day Pilot',
       title: 'China Evidence Sprint',
@@ -12,6 +36,7 @@ function QuickStart() {
       cta: 'Book the pilot',
       variant: 'primary',
       accent: false,
+      href: '/pilots/china-evidence-sprint.html',
     },
     {
       tag: '30-Day Pilot',
@@ -22,16 +47,7 @@ function QuickStart() {
       cta: 'Book the pilot',
       variant: 'primary-light',
       accent: true,
-    },
-    {
-      tag: 'Quick Entry',
-      title: 'Cross-Border Content Sprint',
-      desc: 'One medically reviewed, bilingual artifact in two weeks. The lowest-commitment way to work with us.',
-      included: ['1 artifact, EN + CN', 'Physician QC sign-off', 'Source trail attached'],
-      price: '⚑ Flat fee — on request',
-      cta: 'Start a sprint',
-      variant: 'outline',
-      accent: false,
+      href: '/pilots/fda-evidence-gap-diagnostic.html',
     },
   ];
   return (
@@ -39,7 +55,7 @@ function QuickStart() {
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 48, flexWrap: 'wrap', gap: 24 }}>
           <div style={{ maxWidth: 680 }}>
-            <SectionEyebrow color="var(--brand-primary-500)">Quick start · three funnel doors</SectionEyebrow>
+            <SectionEyebrow color="var(--brand-primary-500)">Quick start · no commitment required</SectionEyebrow>
             <h2 style={{
               fontFamily: 'var(--font-display)', fontSize: 44, fontWeight: 600,
               color: 'var(--brand-primary-700)', margin: 0, letterSpacing: '-0.012em', lineHeight: 1.15,
@@ -48,11 +64,22 @@ function QuickStart() {
             </h2>
           </div>
           <p style={{ maxWidth: 360, fontSize: 15, color: 'var(--fg-2)', lineHeight: 1.6, margin: 0 }}>
-            Three bounded entry points — a China pilot, an FDA diagnostic, or a content sprint. Each one is scoped so your team can evaluate us before a full engagement.
+            Four bounded entry points — from a 3-day content review to a 30-day pilot. Each one is scoped so your team can evaluate us before a full engagement.
           </p>
         </div>
-        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
-          {offers.map((o, i) => <OfferCard key={o.title} o={o} idx={i} />)}
+        {/* Row label — Quick Entry */}
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--brand-accent-700)', marginBottom: 12 }}>
+          Immediate — days, not weeks
+        </div>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20, marginBottom: 32 }}>
+          {offers.slice(0, 2).map((o, i) => <OfferCard key={o.title} o={o} idx={i} />)}
+        </div>
+        {/* Row label — 30-Day Pilots */}
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--brand-primary-500)', marginBottom: 12 }}>
+          Deeper — 30-day bounded pilots
+        </div>
+        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
+          {offers.slice(2, 4).map((o, i) => <OfferCard key={o.title} o={o} idx={i + 2} />)}
         </div>
       </div>
     </section>
@@ -100,7 +127,7 @@ function OfferCard({ o, idx }) {
       </div>
       <div style={{ marginTop: 'auto' }}>
         <div style={{ fontSize: 12, color: 'var(--fg-3)', marginBottom: 14, fontFamily: 'var(--font-mono)' }}>{o.price}</div>
-        <Button variant={o.variant}>{o.cta}</Button>
+        <Button variant={o.variant} href={o.href}>{o.cta}</Button>
       </div>
     </div>
   );
@@ -198,7 +225,7 @@ function PathCard({ p }) {
           </div>
         ))}
       </div>
-      <Button variant={isNavy ? 'primary' : 'primary-light'}>{p.cta}</Button>
+      <Button variant={isNavy ? 'primary' : 'primary-light'} href={isNavy ? '/solutions/entering-china.html' : '/solutions/going-global-us.html'}>{p.cta}</Button>
     </div>
   );
 }

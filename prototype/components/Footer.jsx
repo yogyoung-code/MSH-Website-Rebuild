@@ -7,6 +7,7 @@ function Footer() {
       { label: 'Medical Evidence',        href: '/solutions/medical-evidence.html' },
       { label: 'Physician Engagement',    href: '/solutions/physician-engagement.html' },
       { label: 'Medical Communications',  href: '/solutions/medical-communications.html' },
+      { label: 'Content Review',          href: '/solutions/content-review.html' },
     ] },
     { title: 'Pilots', items: [
       { label: '30-Day China Sprint',       href: '/pilots/china-evidence-sprint.html' },

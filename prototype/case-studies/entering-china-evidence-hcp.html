@@ -52,14 +52,17 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
 <script type="text/babel" src="../components/CaseStudyHeroChart.jsx"></script>
 <script type="text/babel" src="../components/CaseStudyHero.jsx"></script>
-<!-- Migrated MetricTriad → EvidenceTrail (UXcritique20260429) -->
 <script type="text/babel" src="../components/EvidenceTrail.jsx"></script>
 <script type="text/babel" src="../components/QuoteBlock.jsx"></script>
 
 <script type="text/babel">
 function App() {
   return (
-    <PageShell hero={<CaseStudyHero
+    <PageShell breadcrumbs={[
+        { label: 'Home', href: '/' },
+        { label: 'Case Studies', href: '/case-studies/' },
+        { label: 'Evidence + HCP Enablement' }
+      ]} hero={<CaseStudyHero
       category="Entering China · Evidence + HCP Enablement"
       title="From Global Evidence Stack to a China-Ready Engagement Package — in 12 Months"
       client="Global Top-10 Medtech (anonymized)"

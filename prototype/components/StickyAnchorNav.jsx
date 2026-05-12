@@ -37,7 +37,6 @@ function StickyAnchorNav({
     { hash: '#cta',        label: 'Talk' },
   ],
   topOffset = 0,
-  // UXcritique: default sticky=false. Two stacked sticky bars (this + site
   // Header) confused users. Stays in normal flow — appears once after the
   // hero and scrolls away. Opt-in `sticky=true` for special cases.
   sticky = false,

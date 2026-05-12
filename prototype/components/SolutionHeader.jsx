@@ -4,7 +4,6 @@ function SolutionHeader() {
   const [megaOpen, setMegaOpen] = React.useState(false);
   const [lang, setLang] = React.useState('EN');
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  // UXcritique20260429 polish: 150ms hover-intent (matches Header.jsx).
   const megaTimerRef = React.useRef(null);
   const openMegaIntent = () => {
     if (megaTimerRef.current) clearTimeout(megaTimerRef.current);
@@ -130,21 +129,25 @@ function SolutionHeader() {
   );
 }
 
-// UXcritique20260429 polish: 3-col / 9-item panel collapsed to 2 columns
-// (matches MegaMenu in Header.jsx).
+// Synced with MegaMenu in Header.jsx — 3 columns with Quick Start entry.
 function SolutionMegaMenu() {
   const strategic = [
-    { title: 'Entering China',              desc: 'Evidence, regulatory and HCP traction inside China.',  href: '/solutions/entering-china.html',                       tag: 'Navy' },
-    { title: 'Going Global (US)',           desc: 'US / global launch readiness for China innovators.',   href: '/solutions/going-global-us.html',                      tag: 'Cyan' },
-    { title: 'Cross-Border Content Sprint', desc: 'Low-commitment entry. A single artifact in 2 weeks.',  href: '/solutions/cross-border-medical-content-sprint.html', tag: 'Sprint' },
+    { title: 'Entering China',    desc: 'Evidence, regulatory and HCP traction inside China.',  href: '/solutions/entering-china.html',  tag: 'Navy' },
+    { title: 'Going Global (US)', desc: 'US / global launch readiness for China innovators.',   href: '/solutions/going-global-us.html', tag: 'Cyan' },
   ];
   const deliverables = [
     { title: 'Medical Evidence',       desc: 'RWE · Registry · Literature · HEOR.',     href: '/solutions/medical-evidence.html' },
     { title: 'Physician Engagement',   desc: '3.33M+ network · Advisory · KOL · CME.',  href: '/solutions/physician-engagement.html' },
     { title: 'Medical Communications', desc: 'Publications · Congress · Localization.', href: '/solutions/medical-communications.html' },
+    { title: 'AI-Enabled Platform',    desc: 'DeepEvidence · SeekEvidence · PITL · QC.', href: '/ai-platform.html', tag: 'Platform' },
   ];
-  const tagBg = (t) => t === 'Cyan' ? 'var(--brand-accent-100)' : t === 'Sprint' ? 'var(--bg-3)' : 'var(--brand-primary-100)';
-  const tagFg = (t) => t === 'Cyan' ? 'var(--brand-accent-700)' : t === 'Sprint' ? 'var(--fg-2)'  : 'var(--brand-primary-700)';
+  const quickStart = [
+    { title: 'Content Review',              desc: 'Compliance-flagged review of your materials in 3–5 days.', href: '/solutions/content-review.html',                       tag: 'New' },
+    { title: 'Cross-Border Content Sprint', desc: 'One bilingual artifact, expert-reviewed, in 2 weeks.',     href: '/solutions/cross-border-medical-content-sprint.html', tag: 'Sprint' },
+    { title: '30-Day Pilots',               desc: 'China Evidence Sprint or FDA Evidence Gap Diagnostic.',    href: '/#pilots',                                             tag: 'Pilots' },
+  ];
+  const tagBg = (tag) => ({ Cyan: 'var(--brand-accent-100)', New: 'var(--success-100, #ecfdf5)', Sprint: 'var(--bg-3)', Platform: 'var(--brand-accent-100)' }[tag] || 'var(--brand-primary-100)');
+  const tagFg = (tag) => ({ Cyan: 'var(--brand-accent-700)', New: 'var(--success-500, #16a34a)', Sprint: 'var(--fg-2)', Platform: 'var(--brand-accent-700)' }[tag] || 'var(--brand-primary-700)');
   const Column = ({ label, items }) => (
     <div>
       <div style={{
@@ -173,11 +176,12 @@ function SolutionMegaMenu() {
       position: 'absolute', top: '100%', left: -40,
       background: '#fff', border: '1px solid var(--border-1)',
       borderRadius: 12, boxShadow: 'var(--shadow-md)',
-      padding: 28, width: 720, zIndex: 60,
-      display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32,
+      padding: 28, width: 960, zIndex: 60,
+      display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 32,
     }}>
-      <Column label="By Path · Strategy"     items={strategic} />
-      <Column label="By Deliverable · Block" items={deliverables} />
+      <Column label="By Path · Strategy"          items={strategic} />
+      <Column label="By Deliverable · Block"      items={deliverables} />
+      <Column label="Quick Start · Entry"         items={quickStart} />
     </div>
   );
 }

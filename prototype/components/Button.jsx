@@ -55,7 +55,6 @@ function Button({ variant = 'primary', children, icon = true, onClick, disabled,
   );
 }
 
-// Inline Lucide `lock` glyph for on-request status. UXcritique20260429
 // normalize pass replaced 🔒 emoji per Brand Guidelines v1.1 §8 — no emoji
 // in product UI. Self-contained SVG (no lucide.createIcons() dependency).
 function _BtnLockGlyph({ size = 11 }) {

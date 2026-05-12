@@ -48,38 +48,13 @@ import aiProductSignedBy from './objects/aiProductSignedBy'
 import aiProductShowcase from './objects/aiProductShowcase'
 
 export const schemaTypes = [
-  // documents
-  page,
-  solution,
-  pilotOffer,
-  caseStudy,
-  proofPoint,
-  claim,
-  clientReference,
-  insight,
-  otherEngagementCard,
-  navigation,
-  pilotSubpage,
-  aiDisclosure,
-  legalPage,
-  redirectRule,
-  person,
-  contactMethod,
-  siteSettings,
-  aiProduct, // v3.0
-  // objects
-  seo,
-  cta,
-  portableText,
-  metric,
-  evidenceTag,
-  localizedString,
-  localizedText,
-  pageSection,
-  citation,
-  pricingTier,
-  aiProductSignedBy, // v3.0 — must register before aiProductShowcase
-  aiProductShowcase, // v3.0 — must register before aiProduct (already covered by Sanity's resolution but order kept for clarity)
+  localizedString, localizedText, seo, cta, portableText,
+  metric, evidenceTag, citation, pricingTier, pageSection,
+  aiProductSignedBy, aiProductShowcase,
+  page, solution, pilotOffer, caseStudy, proofPoint,
+  claim, clientReference, insight, otherEngagementCard,
+  navigation, pilotSubpage, aiDisclosure, legalPage,
+  redirectRule, person, contactMethod, siteSettings, aiProduct,
 ]
 
 export default schemaTypes

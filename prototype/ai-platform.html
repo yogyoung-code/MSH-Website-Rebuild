@@ -53,12 +53,11 @@
 </noscript>
 
 <!-- GA4 + consent-mode v2 (Plan task 15) -->
-<!-- 实际 launch 时把 G-XXXXXX 替换为生产 measurement ID, 解开 gtag.js 加载注释 -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
   gtag('js', new Date());
-  // gtag('config', 'G-XXXXXX'); // launch 前替换并解开
+
 </script>
 <script src="assets/consent/consent-mode-v2.js"></script>
 <script src="assets/analytics/ga4-events.js"></script>
@@ -108,7 +107,7 @@
      #cta          Final Dual CTA
    ========================================================= */
 
-// UXcritique distill: 8 stats → 4. Kept the highest-cardinality, most-quotable
+
 // numbers per group; "WORKING CORPUS" group dropped (manuscripts/protocols are
 // engagement-specific, On-Request, not platform-defining). Reduced cognitive
 // load + matches site-wide one-stat-surface discipline.
@@ -132,7 +131,7 @@ const ASSET_GROUPS = [
 const ASSET_NARRATIVE =
   "This is the data substrate every MedSci AI product is built on. We don't generate medical knowledge. We index, structure, and route what physicians and regulators have already validated — and pair every output with a named human reviewer.";
 
-// UXcritique: demo content rewritten in English. Was Chinese-language clinical
+
 // scenarios in an English-default page — credibility leak for the international
 // audience this page is meant to convert (海外投资人反向尽调). EN here is a
 // placeholder approved for prototype review; production demos require physician
@@ -290,9 +289,7 @@ function V3Hero() {
   return (
     <section style={{
       position: 'relative',
-      /* UXcritique: replaced multi-stop dark gradient + double radial spotlight
-         with brand-spec --grad-hero. Single sanctioned gradient per §2.6. */
-      background: 'var(--grad-hero)',
+            background: 'var(--grad-hero)',
       color: 'var(--white)',
       padding: 'clamp(64px, 9vw, 128px) clamp(24px, 6vw, 96px) clamp(48px, 6vw, 80px)',
       overflow: 'hidden',
@@ -516,10 +513,7 @@ function App() {
 
   return (
     <PageShell hero={<V3Hero />}>
-      {/* UXcritique: StickyAnchorNav removed. White anchor bar between
-          dark Hero and dark Foundation created a visual sandwich-break.
-          Hero CTA "See the products ↓" already provides jump access. */}
-
+      
       <section id="foundation">
         <AIAssetBalanceSheet
           eyebrow="THE NUMBERS BEHIND THE PLATFORM"
@@ -553,12 +547,7 @@ function App() {
           pitlSteps={PITL_STEPS}
           evidenceRows={EVIDENCE_ROWS}
         />
-        {/* UXcritique: ComplianceCallout removed per design lead.
-            "What we do not claim / What we do claim, with audit trails"
-            block was redundant with TrustArchitecture's three-pillar
-            framing above (Pillar 1 RAG anchoring + Pillar 3 audit trail
-            already convey the same boundaries). */}
-      </section>
+              </section>
 
       <FinalDualCTA />
     </PageShell>

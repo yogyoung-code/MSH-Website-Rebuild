@@ -1,25 +1,37 @@
 /* PageShell.jsx — Generic non-solutions page shell (B1+) */
 
-function PageShell({ title, subtitle, eyebrow, children, hero, breadcrumbs }) {
+function PageShell({ title, subtitle, eyebrow, children, hero, breadcrumbs, hideHero }) {
+  const crumbNav = breadcrumbs ? (
+    <nav aria-label="Breadcrumb" style={{ marginBottom: 0, fontSize: 13, color: 'var(--fg-3)' }}>
+      {breadcrumbs.map((b, i) => (
+        <span key={i}>
+          {i > 0 && <span style={{ margin: '0 6px' }}>/</span>}
+          {b.href ? <a href={b.href} style={{ color: 'inherit' }}>{b.label}</a> : <span>{b.label}</span>}
+        </span>
+      ))}
+    </nav>
+  ) : null;
+
   return (
     <div style={{ background: 'var(--bg-1)', color: 'var(--fg-1)', minHeight: '100vh' }}>
       <Header />
-      {hero || (
+      {/* Breadcrumb bar — always shown when breadcrumbs provided and hero is custom or hidden */}
+      {crumbNav && (hideHero || hero) && (
+        <div style={{
+          padding: '20px clamp(24px, 6vw, 96px) 0',
+          maxWidth: 1280,
+          margin: '0 auto'
+        }}>
+          {crumbNav}
+        </div>
+      )}
+      {hideHero ? null : hero ? hero : (
         <section style={{
           padding: 'clamp(48px, 8vw, 96px) clamp(24px, 6vw, 96px)',
           maxWidth: 1280,
           margin: '0 auto'
         }}>
-          {breadcrumbs && (
-            <nav aria-label="Breadcrumb" style={{ marginBottom: 16, fontSize: 14, color: 'var(--fg-3)' }}>
-              {breadcrumbs.map((b, i) => (
-                <span key={i}>
-                  {i > 0 && <span style={{ margin: '0 8px' }}>/</span>}
-                  {b.href ? <a href={b.href} style={{ color: 'inherit' }}>{b.label}</a> : <span>{b.label}</span>}
-                </span>
-              ))}
-            </nav>
-          )}
+          {crumbNav}
           {eyebrow && (
             <div style={{
               fontFamily: 'var(--font-slogan)',

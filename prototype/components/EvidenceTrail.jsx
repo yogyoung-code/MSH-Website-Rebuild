@@ -133,7 +133,6 @@ function EvidenceTrail({ rows, eyebrow, title }) {
 }
 
 // Inline Lucide `lock` icon — used for on-request evidence status.
-// UXcritique20260429 normalize pass: replaced 🔒 emoji per Brand Guidelines §8
 // (no emoji in product UI). Renders inline so we don't depend on
 // lucide.createIcons() lifecycle.
 function LockGlyph({ size = 11 }) {

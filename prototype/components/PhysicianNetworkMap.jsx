@@ -1,35 +1,6 @@
-/* =========================================================
-   PhysicianNetworkMap.jsx — Homepage · "Network footprint"
-   ---------------------------------------------------------
-   Pure-SVG dot-density visualization of MedSci Healthcare's
-   3.33M+ registered-physician network across China, plus a
-   small US-presence inset for the "across the U.S. and
-   China" claim in the Hero.
-
-   Design intent (UXcritique20260429 image-add pass 1):
-     · NOT a real geographic map — no Mapbox, no topojson.
-       A stylised dot-density plot in equirectangular
-       projection that lets the dot pattern itself reveal
-       China's eastern-coast medical-centre concentration.
-     · Brand-spec-only: navy + cyan, 1px borders, no shadows.
-     · Deterministic — same render every load (mulberry32
-       seed = 2415, the HKEX ticker).
-     · Accessible — <title>/<desc>, prefers-reduced-motion
-       respected (animation gated below), city labels readable
-       at 14px+, all ratios use unit-less viewBox.
-     · No external assets, no fonts loaded for SVG text.
-
-   Sources for the per-city physician count distribution:
-     Internal MedSci Healthcare registry, 2026-Q1.
-     Numbers below are intentionally rounded for display;
-     authoritative counts ship via PITL audit footer.
-
-   Inserted in index.html between <WhyMedSci /> and <Cases />.
-   ========================================================= */
 
 (function () {
   // ----- Geometry constants ---------------------------------------------
-  // UXcritique image-add pass 2: zoomed to central+eastern dense regions
   // (BTH · Yangtze Delta · Pearl Delta · Cheng-Yu · Wuhan-Changsha-Zhengzhou
   // · Shandong peninsula · Hainan). Drops Xinjiang, Tibet, NE Heilongjiang
   // for clarity at homepage viewport size. US inset removed entirely.

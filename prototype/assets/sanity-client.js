@@ -26,7 +26,7 @@
   'use strict';
 
   // ─── Config ──────────────────────────────────────────────
-  const PROJECT_ID = 'YOUR_PROJECT_ID';   // ← 替换
+  const PROJECT_ID = 'dtsbk1qu';
   const DATASET    = 'production';
   const API_VERSION = '2024-01-01';
   const USE_CDN    = true;               // 公开读取用 CDN

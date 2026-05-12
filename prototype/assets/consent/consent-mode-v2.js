@@ -22,7 +22,7 @@
        window.dataLayer = window.dataLayer || [];
        function gtag(){ dataLayer.push(arguments); }
        gtag('js', new Date());
-       gtag('config', 'G-XXXXXX');  // 实际 GA4 measurement ID
+       gtag('config', 'G-XXXXXX');
      </script>
      <script src="assets/consent/consent-mode-v2.js"></script>
      <script src="assets/analytics/ga4-events.js"></script>

@@ -1,5 +1,5 @@
 import { defineType, defineArrayMember } from 'sanity'
-import { noForbiddenPhrases } from '../lib/validators'
+import { noForbiddenText } from '../lib/validators'
 
 /**
  * Portable Text · 富文本
@@ -87,5 +87,5 @@ export default defineType({
       ],
     }),
   ],
-  validation: noForbiddenPhrases,
+  validation: noForbiddenText,
 })

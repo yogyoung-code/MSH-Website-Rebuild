@@ -125,10 +125,6 @@
    ========================================================= */
 html, body { font-family: var(--font-ui); color: var(--fg-1); background: var(--bg-1); }
 
-/* =========================================================
-   GLOBAL A11Y — UXcritique20260429 polish pass
-   Spec: Brand Guidelines v1.1 §10.3
-   ========================================================= */
 
 /* Single source of truth for keyboard focus. Brand-spec calls for a 2px
    accent-500 ring with 2px offset. Inline style="" overrides on individual
