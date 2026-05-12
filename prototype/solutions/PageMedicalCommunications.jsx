@@ -57,11 +57,57 @@ function PageMedicalCommunications() {
       <SolutionPageHeader pageMeta={MED_COMMS_META} />
       <SolutionSubNav items={subnav} theme="navy" />
 
+      {}
+      <DeliverableSample
+        eyebrow="What you actually receive"
+        title="Each artifact ships bilingual, signed by clinicians on both sides."
+        lede="Bilingual is not a translation step — it's a parallel workflow with one US-licensed and one CN-licensed clinician on the audit log."
+        samples={[
+          {
+            label: 'Peer-reviewed manuscript',
+            input: { format: 'Trial / RWE dataset · target journal',
+                     detail: 'We work from your protocol; AI fills citation slots, physicians draft and sign every section.' },
+            output: { format: 'Submission-ready manuscript · 4k–8k words + figures',
+                      detail: 'Authorship + disclosure block, response-letter library, target journal aligned.' },
+            badge: 'verified',
+            signedBy: 'Lead MD + 1 second reviewer'
+          },
+          {
+            label: 'Congress poster or symposium',
+            input: { format: 'Congress (ASCO / ESMO / AHA / CSCO / CMHA) · abstract',
+                     detail: 'Camera-ready bilingual content. Booth assets and reporter coverage on request.' },
+            output: { format: 'Poster + oral / symposium content · bilingual',
+                      detail: 'Booth assets, presenter notes, congress reporter brief.' },
+            badge: 'verified',
+            signedBy: 'Lead MD + congress lead'
+          },
+          {
+            label: 'Bilingual scientific localization',
+            input: { format: 'Source artifact · target audience · code-of-practice',
+                     detail: 'EN ↔ CN with terminology consistency layer; dual-physician QC.' },
+            output: { format: 'Bilingual artifact + reviewer disclosure log',
+                      detail: 'Pre-physician filtering for off-label, fair-balance, and disclosure.' },
+            badge: 'verified',
+            signedBy: 'US-licensed MD + CN-licensed MD'
+          },
+          {
+            label: 'Compliance-aware QC pass',
+            input: { format: 'Existing draft · target jurisdiction code',
+                     detail: 'PhRMA / EFPIA / RDPAC awareness. Off-label, fair-balance, disclosure scans.' },
+            output: { format: 'Annotated review + remediation list',
+                      detail: 'Code-of-practice mapping, ready for legal review.' },
+            badge: 'in-development',
+            signedBy: 'Compliance lead + Lead MD'
+          }
+        ]}
+      />
+
+
       <SolutionSection
         id="overview" eyebrow="Overview"
         title="Bilingual is not a translation step. It's a parallel workflow."
         kicker="A US-grade manuscript translated into Chinese is not a CN-grade manuscript. We run two reviewer tracks in parallel — one in each language — and reconcile."
-        bg="#fff" label="01 · Overview"
+        bg="#fff"
       >
         <div style={{
           background: 'var(--bg-2)', border: '1px solid var(--border-1)',
@@ -88,7 +134,7 @@ function PageMedicalCommunications() {
       <SolutionSection
         id="capabilities" eyebrow="Capabilities · 4 workstreams"
         title="What ships under the Medical Communications block."
-        bg="var(--bg-2)" label="02 · Capabilities"
+        bg="var(--bg-2)"
       >
         <DeliverablesGrid items={capabilities} theme="navy" />
       </SolutionSection>
@@ -97,7 +143,7 @@ function PageMedicalCommunications() {
         id="workflow" eyebrow="Bilingual workflow"
         title="Two reviewer tracks. One reconciled artifact."
         kicker="The artifact you ship is a single bilingual deliverable. The work behind it is two parallel reviewer tracks that meet in the middle."
-        bg="#fff" label="03 · Workflow"
+        bg="#fff"
       >
         <div style={{
           background: 'var(--brand-primary-900)', color: '#fff',
@@ -137,7 +183,7 @@ function PageMedicalCommunications() {
         id="compliance" eyebrow="Compliance · pre-physician filtering"
         title="Four codes our QC layer maps against."
         kicker="Before a physician reviews, the artifact has already been scanned for off-label, fair-balance, disclosure and code-of-practice issues — saving the clinician's time for medical judgment."
-        bg="var(--bg-2)" label="04 · Compliance"
+        bg="var(--bg-2)"
       >
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
           {[
@@ -160,7 +206,7 @@ function PageMedicalCommunications() {
       <SolutionSection
         id="proof" eyebrow="Proof · 2025"
         title="Bilingual artifacts shipped, audited, signed."
-        bg="#fff" label="05 · Proof"
+        bg="#fff"
       >
         <SolutionStatStrip stats={[
           { n: '38',   l: 'Bilingual artifacts produced (single program)', note: 'Top-10 medtech, 12 wks' },
@@ -170,6 +216,7 @@ function PageMedicalCommunications() {
         ]} theme="navy" />
       </SolutionSection>
 
+      <ContentReviewCrossSell />
       <SolutionCTA pageMeta={MED_COMMS_META} />
       <RelatedSolutions current="medical-communications" />
       <SolutionFooter />

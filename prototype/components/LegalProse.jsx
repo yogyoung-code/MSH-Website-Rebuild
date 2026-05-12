@@ -27,7 +27,7 @@ function LegalProse({ title, eyebrow, lastUpdated, lede, sections, pendingNotice
 
   return (
     <article style={{
-      maxWidth: 800,
+      maxWidth: 1280,
       margin: '0 auto',
       padding: 'clamp(48px, 6vw, 96px) clamp(24px, 6vw, 96px) 64px'
     }}>
@@ -148,26 +148,9 @@ function LegalProse({ title, eyebrow, lastUpdated, lede, sections, pendingNotice
   );
 }
 
-// Helper: highlight inline ⚠️ counsel markers in legal paragraphs so prototype
-// reviewers immediately see what counsel will replace.
-function LegalParagraph({ text }) {
-  // Split on ⚠️ … period/closing — naive but adequate for prototype.
-  // We render the surrounding text plain and wrap each ⚠️ run with a tinted span.
-  const parts = String(text).split(/(⚠️[^.]*?\.)/g);
-  return (
-    <>
-      {parts.map((part, i) => part.startsWith('⚠️')
-        ? <mark key={i} style={{
-            background: 'rgba(245, 158, 11, 0.18)',
-            color: 'var(--fg-1)',
-            padding: '0 4px',
-            borderRadius: 2
-          }}>{part}</mark>
-        : <React.Fragment key={i}>{part}</React.Fragment>
-      )}
-    </>
-  );
-}
-
+// no longer needed — DraftNotice banner replaces it. LegalProse now renders
+// string paragraphs directly. The window.LegalParagraph export below is a
+// no-op shim kept ONLY so any external page that still references it doesn't
+// crash; new code should not call it.
 window.LegalProse = LegalProse;
-window.LegalParagraph = LegalParagraph;
+window.LegalParagraph = ({ text }) => text;

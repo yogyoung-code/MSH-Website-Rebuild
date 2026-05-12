@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Case Studies — MedSci Healthcare</title>
+<meta name="description" content="Selected engagement examples with verified outcomes — China entry, FDA bridge, bilingual medical communications. Each case includes signed metrics.">
+<link rel="canonical" href="https://medscihealthcare.com/case-studies/">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/case-studies/">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Case Studies — MedSci Healthcare">
+<meta property="og:description" content="Verified case outcomes across China entry, FDA bridge, and bilingual medical communications.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/case-studies-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/case-studies/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "MedSci Healthcare Case Studies",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "url": "https://medscihealthcare.com/case-studies/entering-china-evidence-hcp" },
+    { "@type": "ListItem", "position": 2, "url": "https://medscihealthcare.com/case-studies/entering-china-localized-content" },
+    { "@type": "ListItem", "position": 3, "url": "https://medscihealthcare.com/case-studies/going-global-fda-evidence-bridge" }
+  ]
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/CaseStudyCard.jsx"></script>
+<script type="text/babel" src="../components/FilterBar.jsx"></script>
+
+<script type="text/babel">
+function App() {
+  const [filter, setFilter] = React.useState('all');
+
+  const cases = [
+    {
+      slug: 'entering-china-evidence-hcp',
+      eyebrow: 'Entering China · Evidence',
+      title: 'From Global Evidence Stack to a China-Ready Engagement Package',
+      summary: 'A Global Top-10 medtech moved from internal debate to NMPA pre-submission within 12 months — with a regulator-ready dossier and a physician-validated HCP map.',
+      metrics: [{ value: '60% faster', label: 'time to evidence package vs internal benchmark' }],
+      serviceLines: ['evidence', 'physicians']
+    },
+    {
+      slug: 'entering-china-localized-content',
+      eyebrow: 'Entering China · Communications',
+      title: 'Localized Medical Content for a Specialty Launch',
+      summary: 'Bilingual reviewer tracks dropped revision cycles from 4-pass to 2-pass on a specialty product launch into China — and built a reusable localization layer for the team.',
+      metrics: [{ value: '88%', label: 'first-pass physician review approval rate' }],
+      serviceLines: ['communications']
+    },
+    {
+      slug: 'going-global-fda-evidence-bridge',
+      eyebrow: 'Going Global (US) · Evidence',
+      title: 'From China Trial Data to FDA-Facing Evidence Package',
+      summary: 'A China bio-tech reached FDA-ready evidence package status 8 months ahead of original timeline, with three publications in flight and a U.S. medical kit ready before commercial planning.',
+      metrics: [{ value: '8 months', label: 'evidence package readiness ahead of plan' }],
+      serviceLines: ['evidence', 'platform']
+    }
+  ];
+
+  const visible = filter === 'all' ? cases : cases.filter(c => c.serviceLines.includes(filter));
+
+  return (
+    <PageShell
+      eyebrow="Case Studies"
+      title="Selected work, with verified outcomes."
+      subtitle="Each engagement below has been signed off by our partners and includes audit-traceable metrics."
+      breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Case Studies' }]}
+    >
+      <FilterBar
+        filters={[
+          { value: 'all', label: 'All' },
+          { value: 'evidence', label: 'Medical Evidence' },
+          { value: 'physicians', label: 'Physician Engagement' },
+          { value: 'communications', label: 'Medical Communications' },
+          { value: 'platform', label: 'AI Platform' }
+        ]}
+        active={filter}
+        onChange={setFilter}
+      />
+      <section style={{ padding: '0 clamp(24px, 6vw, 96px) 96px', maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          {visible.map(c => (
+            <CaseStudyCard
+              key={c.slug}
+              {...c}
+              href={`/case-studies/${c.slug}`}
+            />
+          ))}
+        </div>
+        {visible.length === 0 && (
+          <div style={{ textAlign: 'center', color: 'var(--fg-3)', padding: 48 }}>
+            No case studies match this filter.
+          </div>
+        )}
+      </section>
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

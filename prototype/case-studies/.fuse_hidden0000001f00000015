@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>China Entry: Evidence + HCP Package — MedSci</title>
+<meta name="description" content="Global Top-10 medtech moved from debate to NMPA pre-submission in 12 months. Regulator-ready dossier, physician-validated HCP map, signed source trail.">
+<link rel="canonical" href="https://medscihealthcare.com/case-studies/entering-china-evidence-hcp">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/case-studies/entering-china-evidence-hcp">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="China Entry: Evidence + HCP Package — MedSci">
+<meta property="og:description" content="Global Top-10 medtech moved from debate to NMPA pre-submission in 12 months. Regulator-ready dossier, physician-validated HCP map, signed source trail.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/case-entering-china-evidence-hcp-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/case-studies/entering-china-evidence-hcp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "From Global Evidence Stack to a China-Ready Engagement Package — in 12 Months",
+  "publisher": { "@type": "Organization", "name": "MedSci Healthcare" }
+}
+</script>
+<style>
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/CaseStudyHero.jsx"></script>
+<!-- Migrated MetricTriad → EvidenceTrail (UXcritique20260429) -->
+<script type="text/babel" src="../components/EvidenceTrail.jsx"></script>
+<script type="text/babel" src="../components/QuoteBlock.jsx"></script>
+
+<script type="text/babel">
+function App() {
+  return (
+    <PageShell hero={<CaseStudyHero
+      category="Entering China · Evidence + HCP Enablement"
+      title="From Global Evidence Stack to a China-Ready Engagement Package — in 12 Months"
+      client="Global Top-10 Medtech (anonymized)"
+      year="2025"
+    />}>
+      <ProseBlock heading="Challenge" anchor="challenge">
+        <p>A Global Top-10 medtech preparing for China entry had a strong international evidence stack but no clear path to NMPA-relevant claims, no segmented HCP map, and no localized communication assets. The internal team needed an independent evidence + HCP package they could put on a regulator's desk and on a KOL's screen — within one fiscal year.</p>
+      </ProseBlock>
+      <ProseBlock heading="Approach" anchor="approach">
+        <p>MedSci paired AI retrieval against the client's existing dossier with PITL physician review of every gap. We built three streams in parallel: (1) China RWE feasibility and registry path; (2) HCP segmentation across tier-1 AMCs and 5 priority therapeutic areas; (3) localized communication assets reviewed by Chinese clinicians. Every claim entered the deliverable with a named reviewer and a year-stamped source.</p>
+      </ProseBlock>
+      <ProseBlock heading="Outcome" anchor="outcome">
+        <p>The client received a regulator-ready evidence dossier with full source trail, a physician-validated HCP map, and a content kit signed off by both EN and CN reviewer tracks. The China entry plan moved from internal debate to NMPA pre-submission within the engagement window.</p>
+      </ProseBlock>
+      <EvidenceTrail
+        eyebrow="OUTCOMES — VERIFIED + PENDING"
+        title="What we shipped — and where the audit trail stands."
+        rows={[
+          { claim: '2,400+ HCPs reached across tier-1 academic medical centers',
+            status: 'placeholder',
+            trace: ['AI: HCP segmentation', 'MD: medical-affairs review'],
+            source: 'Client engagement report', year: '2025', approvedBy: 'Sponsor + IR (pending)' },
+          { claim: '18 localized bilingual communication assets delivered',
+            status: 'placeholder',
+            trace: ['AI: terminology QC', 'MD: dual-track EN+CN review'],
+            source: 'Internal delivery log', year: '2025', approvedBy: 'Sponsor + Legal (pending)' },
+          { claim: '60% faster time-to-evidence-package vs. prior internal benchmark',
+            status: 'placeholder',
+            trace: ['AI: gap-scan', 'AI: claim-trail', 'MD: lead reviewer signed'],
+            source: 'Client benchmark report', year: '2025', approvedBy: 'Sponsor (pending)' }
+        ]}
+      />
+      <QuoteBlock text="MedSci built the evidence package and the HCP map at the same time. Most agencies do one or the other — we needed both." attribution="VP, Medical Affairs (anonymized)" />
+      <ProseBlock heading="Talk to an Expert" anchor="cta">
+        <p><a href="/contact.html" style={{
+          display: 'inline-block', padding: '14px 28px',
+          background: 'var(--brand-primary-700)', color: '#fff',
+          textDecoration: 'none', fontFamily: 'var(--font-slogan)',
+          letterSpacing: '0.08em'
+        }}>Talk to an Expert about Entering China →</a></p>
+      </ProseBlock>
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

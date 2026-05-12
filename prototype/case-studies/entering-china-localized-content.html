@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Localized Medical Content for a Specialty Launch — MedSci</title>
 <meta name="description" content="Bilingual reviewers cut revision cycles from 4-pass to 2-pass. 88% first-pass physician approval, reusable localization layer. China specialty launch.">
 <link rel="canonical" href="https://medscihealthcare.com/case-studies/entering-china-localized-content">
@@ -29,7 +29,7 @@
     --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
     --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
   }
-  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
   *, *::before, *::after { box-sizing: border-box; }
   a { color: inherit; }
 </style>
@@ -41,24 +41,33 @@
 <script src="../assets/vendor/react-dom.development.js"></script>
 <script src="../assets/vendor/babel.min.js"></script>
 <script src="../assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
 
 <script type="text/babel" src="../components/Button.jsx"></script>
 <script type="text/babel" src="../components/Header.jsx"></script>
 <script type="text/babel" src="../components/Footer.jsx"></script>
 <script type="text/babel" src="../components/PageShell.jsx"></script>
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/CaseStudyHeroChart.jsx"></script>
 <script type="text/babel" src="../components/CaseStudyHero.jsx"></script>
-<script type="text/babel" src="../components/MetricTriad.jsx"></script>
+<script type="text/babel" src="../components/EvidenceTrail.jsx"></script>
 <script type="text/babel" src="../components/QuoteBlock.jsx"></script>
 
 <script type="text/babel">
 function App() {
   return (
-    <PageShell hero={<CaseStudyHero
+    <PageShell breadcrumbs={[
+        { label: 'Home', href: '/' },
+        { label: 'Case Studies', href: '/case-studies/' },
+        { label: 'Localized Content QC' }
+      ]} hero={<CaseStudyHero
       category="Entering China · Communications"
       title="Localized Medical Content for a Specialty Launch — Bilingual, Compliant, On-Schedule"
       client="Mid-cap pharmaceutical company (anonymized)"
       year="2024"
+      chart="localized-content-qc"
     />}>
       <ProseBlock heading="Challenge" anchor="challenge">
         <p>A specialty product launch into China was held up by content: translated EN materials read poorly to Chinese clinicians, off-label flags were inconsistent, and the sales enablement kit lacked evidence backing for the local market. The team needed a content engine, not a translation desk.</p>
@@ -69,11 +78,24 @@ function App() {
       <ProseBlock heading="Outcome" anchor="outcome">
         <p>The launch team received a physician-ready content kit usable across MSL decks, KOL meetings, and channel materials. First-pass physician approval rate dropped revision cycles from typical 4-pass to 2-pass on average. The localization layer became a reusable asset for subsequent product extensions.</p>
       </ProseBlock>
-      <MetricTriad metrics={[
-        { value: '120+', label: 'content pieces localized across 3 therapeutic areas', source: 'Internal delivery log', year: '2024', approvedBy: 'Sponsor (pending)' },
-        { value: '88%', label: 'first-pass physician review approval rate', source: 'Internal QC log', year: '2024', approvedBy: 'Sponsor (pending)' },
-        { value: 'From 8 to 4 weeks', label: 'content production cycle reduced', source: 'Client engagement report', year: '2024', approvedBy: 'Sponsor (pending)' }
-      ]} />
+      <EvidenceTrail
+        eyebrow="OUTCOMES — VERIFIED + PENDING"
+        title="What we shipped — and where the audit trail stands."
+        rows={[
+          { claim: '120+ content pieces localized across 3 therapeutic areas',
+            status: 'placeholder',
+            trace: ['AI: terminology layer', 'MD: EN-track review', 'MD: CN-track review'],
+            source: 'Internal delivery log', year: '2024', approvedBy: 'Sponsor (pending)' },
+          { claim: '88% first-pass physician review approval rate',
+            status: 'placeholder',
+            trace: ['MD: bilingual review panel'],
+            source: 'Internal QC log', year: '2024', approvedBy: 'Sponsor (pending)' },
+          { claim: 'Content production cycle reduced from 8 to 4 weeks',
+            status: 'placeholder',
+            trace: ['AI: first-pass localization', 'MD: PITL closure on off-label/disclosure'],
+            source: 'Client engagement report', year: '2024', approvedBy: 'Sponsor (pending)' }
+        ]}
+      />
       <QuoteBlock text="We thought we had a translation problem. MedSci showed us we had a content problem — and fixed it bilingually." attribution="Head of Medical Affairs (anonymized)" />
       <ProseBlock heading="Talk to an Expert" anchor="cta">
         <p><a href="/contact.html" style={{

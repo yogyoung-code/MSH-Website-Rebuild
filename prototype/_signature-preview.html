@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Signature Components Preview — UXcritique20260429</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<style>
+  /* Spec-correct fonts only. NO Footlight MT override here —
+     this preview shows what brand-spec rendering looks like. */
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg-1); color: var(--fg-1);
+    font-family: var(--font-ui);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+
+  .preview-banner {
+    background: var(--brand-primary-900); color: var(--white);
+    padding: 16px 24px; font-family: var(--font-mono);
+    font-size: 12px; letter-spacing: 0.04em;
+  }
+  .preview-banner code { color: var(--brand-accent-500); }
+  .preview-section-label {
+    max-width: var(--container-max, 1280px);
+    margin: 48px auto 0;
+    padding: 0 clamp(24px, 6vw, 96px);
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--fg-3);
+    border-bottom: 1px solid var(--border-1);
+    padding-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="assets/vendor/react.development.js"></script>
+<script src="assets/vendor/react-dom.development.js"></script>
+<script src="assets/vendor/babel.min.js"></script>
+
+<script type="text/babel" src="components/PitlRibbon.jsx"></script>
+<script type="text/babel" src="components/MetricStrip.jsx"></script>
+<script type="text/babel" src="components/EvidenceTrail.jsx"></script>
+<script type="text/babel" src="components/AsymmetricFeatureGrid.jsx"></script>
+<!-- Page-type differentiators (added by /bolder) -->
+<script type="text/babel" src="components/CountryCompare.jsx"></script>
+<script type="text/babel" src="components/DeliverableSample.jsx"></script>
+<!-- /ai-platform v3.0 components (added W3) -->
+<script type="text/babel" src="components/AIAssetBalanceSheet.jsx"></script>
+<script type="text/babel" src="components/AIProductShowcase.jsx"></script>
+<script type="text/babel" src="components/AIProductShowcaseDemo.jsx"></script>
+<script type="text/babel" src="components/AIProductCard.jsx"></script>
+<script type="text/babel" src="components/AIProductCardGrid.jsx"></script>
+<script type="text/babel" src="components/ComingSoonCard.jsx"></script>
+<script type="text/babel" src="components/StickyAnchorNav.jsx"></script>
+<script type="text/babel" src="components/RagAnchorDiagram.jsx"></script>
+<script type="text/babel" src="components/TrustArchitecture.jsx"></script>
+<!-- lucide icons (for data-lucide attrs in v3.0 components) -->
+<script src="assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel">
+function SectionLabel({ children }) {
+  return <div className="preview-section-label">{children}</div>;
+}
+
+function SamplePreviewCard({ kicker, title, body, cta }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, height: '100%' }}>
+      <div style={{
+        fontFamily: 'var(--font-ui)',
+        fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase',
+        color: 'var(--brand-accent-700)', fontWeight: 600
+      }}>{kicker}</div>
+      <h3 style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: 'clamp(20px, 2vw, 26px)',
+        margin: 0, color: 'var(--brand-primary-700)', lineHeight: 1.25, fontWeight: 600
+      }}>{title}</h3>
+      <p style={{
+        margin: 0, color: 'var(--fg-2)',
+        fontSize: 14, lineHeight: 1.6
+      }}>{body}</p>
+      <div style={{ marginTop: 'auto' }}>
+        <a style={{
+          fontFamily: 'var(--font-ui)', fontSize: 14, fontWeight: 500,
+          color: 'var(--brand-primary-500)', textDecoration: 'none'
+        }} href="#">{cta} →</a>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <div className="preview-banner">
+        SIGNATURE COMPONENTS PREVIEW · branch <code>UXcritique20260429</code> · spec-correct fonts (no Footlight MT override)
+      </div>
+
+      <SectionLabel>1 · PitlRibbon — signature dual-lane workflow</SectionLabel>
+      <PitlRibbon
+        eyebrow="HOW WE WORK"
+        title="AI-Enabled. Physician-Verified. Every step."
+        steps={[
+          { num: 1, title: 'Ingestion',
+            ai: 'Source extraction, entity & claim tagging across structured + unstructured data.',
+            physician: 'Scope-of-truth check; flag claims that need primary-source review.',
+            output: 'tagged corpus' },
+          { num: 2, title: 'Gap Analysis',
+            ai: 'Map evidence inventory against regulatory/payer criteria; surface gaps.',
+            physician: 'Confirm gap classification; reject AI calls that miss medical context.',
+            output: 'gap report' },
+          { num: 3, title: 'PITL Review',
+            ai: 'Draft synthesis: positions, citations, claim-trail. Self-flag low-confidence outputs.',
+            physician: 'Lead reviewer signs each section; named MD on the work.',
+            output: 'signed draft' },
+          { num: 4, title: 'Deliverable',
+            ai: 'Format to client schema; bilingual variants; audit log packaged.',
+            physician: 'Final QA + sign-off; deliverable ships with named accountability.',
+            output: 'audit-grade pack' }
+        ]}
+      />
+
+      <SectionLabel>0 · AIAssetBalanceSheet — /ai-platform Act 1 (v3.0)</SectionLabel>
+      <AIAssetBalanceSheet
+        eyebrow="THE NUMBERS BEHIND THE PLATFORM"
+        subtitle="AS OF 2026 Q1 · IR-VERIFIED"
+        groups={[
+          {
+            label: 'DEMAND-SIDE NETWORK',
+            items: [
+              { value: '3.3M+',  label: 'Registered physicians',
+                sourceFootnote: 'Internal registry · 2026-Q1' },
+              { value: '25K+',   label: 'Tertiary-hospital KOLs',
+                sourceFootnote: 'Internal registry · 2026-Q1' },
+            ],
+          },
+          {
+            label: 'KNOWLEDGE BASE',
+            items: [
+              { value: '250M+',  label: 'Indexed literature',
+                sourceFootnote: 'PubMed + biomedical sources · 2026-Q1' },
+              { value: '100K+',  label: 'Structured drug labels (SPL)',
+                sourceFootnote: 'FDA SPL · NMPA · MHRA · 2026-Q1' },
+              { value: '15K+',   label: 'Multi-specialty guidelines',
+                sourceFootnote: 'NCCN · ESMO · CSCO · ADA · KDIGO · 2026-Q1' },
+            ],
+          },
+          {
+            label: 'WORKING CORPUS',
+            items: [
+              { value: '20K+',   label: 'Manuscript drafts',
+                sourceFootnote: 'Internal corpus · 2026-Q1' },
+              { value: '35K+',   label: 'Clinical study protocols',
+                sourceFootnote: 'Internal corpus · 2026-Q1' },
+              { value: '20 yr',  label: 'Accumulated medical language',
+                sourceFootnote: 'Founded 2005 · ongoing' },
+            ],
+          },
+        ]}
+        narrative="This is the data substrate every MedSci AI product is built on. We don't generate medical knowledge. We index, structure, and route what physicians and regulators have already validated — and pair every output with a named human reviewer."
+      />
+
+      <SectionLabel>0b · AIProductShowcase + Demo renderer — /ai-platform Act 2 (v3.0 · Task 6a + 6b)</SectionLabel>
+      <AIProductShowcase
+        products={[
+          {
+            slug: 'deepevidence',
+            name: { en: 'DeepEvidence' },
+            accentColor: 'blue',
+            status: 'limitedPreview',
+            sidebarBrand: 'DeepEvidence',
+            sidebarIcon: 'activity',
+            headerModel: 'MED-LLM-PRO-V2 (Clinical)',
+            showcase: {
+              demoLanguage: 'en',
+              // NOTE: 此 demoScenario 是 prototype 演示用的中文 placeholder。
+              // 真实上线 (Task 13) 必须由医学写作团队全文重写为 EN
+              // + 临床医师签字 (P4 + §8.15 gate)。
+              demoScenario: [
+                {
+                  _type: 'userMessage',
+                  body: '患者 65 岁,2 型糖尿病合并慢性肾脏病 (CKD G3a),目前服用二甲双胍。 是否需要调整降糖方案?参考最新指南。',
+                },
+                {
+                  _type: 'aiResponse',
+                  eyebrow: 'Evidence-Based Analysis',
+                  prose: '根据 [2024 ADA 糖尿病诊疗标准] 及 [KDIGO 2024 指南]:',
+                  bullets: [
+                    {
+                      title: '推荐加用 SGLT2i',
+                      body: '对于 T2DM 合并 CKD 患者,若 eGFR ≥ 20 ml/min/1.73m²,强烈推荐使用 SGLT2i (如达格列净、恩格列净) 以延缓肾病进展并降低心血管风险 (证据级别 A)。',
+                    },
+                    {
+                      title: '二甲双胍调整',
+                      body: '若 eGFR 在 45–60 之间可维持原量;若 eGFR < 45,应减量;若 < 30 则禁忌。 建议监测 eGFR 变化。',
+                    },
+                  ],
+                  citations: [
+                    { type: 'Guideline', label: 'ADA 2024 Standards of Care' },
+                    { type: 'RCT',       label: 'DAPA-CKD Trial' },
+                    { type: 'SPL',       label: 'Metformin Label (NMPA)' },
+                  ],
+                },
+                {
+                  _type: 'actionChips',
+                  items: [
+                    { icon: 'file-text', label: '生成处方建议' },
+                    { icon: 'share-2',   label: '发送至患者端' },
+                  ],
+                },
+              ],
+            },
+          },
+          {
+            slug: 'seekevidence',
+            name: { en: 'SeekEvidence' },
+            accentColor: 'violet',
+            status: 'limitedPreview',
+            sidebarBrand: 'SeekEvidence',
+            sidebarIcon: 'search',
+            headerModel: 'Research-Graph-V4',
+            showcase: {
+              demoLanguage: 'en',
+              demoScenario: [
+                {
+                  _type: 'userMessage',
+                  body: '提取近 5 年关于 "免疫检查点抑制剂治疗非小细胞肺癌" 的所有 III 期临床试验,对比 PFS 和 OS 数据。',
+                },
+                {
+                  _type: 'dataTable',
+                  eyebrow: 'Structured Data Extraction',
+                  badge: 'N = 12 Trials Found',
+                  columns: ['Trial Name', 'Intervention', 'PFS (mo)', 'HR (95% CI)'],
+                  rows: [
+                    ['KEYNOTE-189',   'Pembrolizumab + Chemo', { value: '8.8 vs 4.9', highlight: true }, { value: '0.52 (0.43-0.64)', mono: true }],
+                    ['IMpower150',    'Atezo + Bevacizumab',   { value: '8.3 vs 6.8', highlight: true }, { value: '0.62 (0.52-0.74)', mono: true }],
+                    ['CheckMate 9LA', 'Nivo + Ipi + Chemo',    { value: '6.8 vs 5.0', highlight: true }, { value: '0.70 (0.57-0.86)', mono: true }],
+                  ],
+                },
+                {
+                  _type: 'actionChips',
+                  items: [
+                    { icon: 'bar-chart-3', label: '生成森林图 (Forest Plot)' },
+                    { icon: 'file-text',   label: '导出 Excel' },
+                  ],
+                },
+              ],
+            },
+          },
+        ]}
+      />
+
+      <SectionLabel>0c · AIProductCardGrid + AIProductCard + ComingSoonCard (v3.0 · Task 7+8)</SectionLabel>
+      <div style={{ padding: 'clamp(40px, 5vw, 80px) clamp(24px, 6vw, 96px)', background: 'var(--bg-1)' }}>
+        <AIProductCardGrid
+          products={[
+            {
+              slug: 'deepevidence',
+              name: { en: 'DeepEvidence' },
+              status: 'limitedPreview',
+              userRole: { en: 'Clinical AI · Point of Care' },
+              positioningOneLiner: { en: 'Authoritative-source clinical guidance at the bedside. Each answer anchored to guidelines and drug labels.' },
+              capabilitiesShort: [
+                { en: 'Real-time guideline citation' },
+                { en: 'Bedside differential diagnosis' },
+                { en: 'Patient-communication translation' },
+              ],
+            },
+            {
+              slug: 'seekevidence',
+              name: { en: 'SeekEvidence' },
+              status: 'limitedPreview',
+              userRole: { en: 'Research AI · Evidence Synthesis' },
+              positioningOneLiner: { en: 'From literature review to manuscript drafting. Structured evidence extraction across global trials and registries.' },
+              capabilitiesShort: [
+                { en: 'Multi-trial PFS / OS comparison' },
+                { en: 'Forest plot generation' },
+                { en: 'Manuscript-ready data export' },
+              ],
+            },
+          ]}
+          comingSoonSlot={
+            <ComingSoonCard
+              title="Next product"
+              subtitle="Working on it · 2026 H2"
+              description="A focused workflow for a third evidence-driven medical role."
+            />
+          }
+        />
+      </div>
+
+      <SectionLabel>0d · StickyAnchorNav — desktop / tablet / mobile breakpoints (v3.0 · Task 9)</SectionLabel>
+      <StickyAnchorNav />
+      <div style={{ padding: 'clamp(40px, 5vw, 80px) clamp(24px, 6vw, 96px)' }}>
+        <p style={{ color: 'var(--fg-3)', fontSize: 13, fontFamily: 'var(--font-mono, monospace)' }}>
+          ↑ scroll-spy 在真实有 #foundation / #products / #method / #cta section 的页面才能高亮 active。
+          preview 这里只是结构与断点演示。 桌面端 ≥1024 显示 4 link / 平板 640–1023 显示 select / 移动端 ≤639 隐藏。
+        </p>
+      </div>
+
+      <SectionLabel>0e · TrustArchitecture (Act 3 三支柱) — Task 10</SectionLabel>
+      <TrustArchitecture
+        pitlSteps={[
+          { num: 1, title: 'Ingestion',
+            ai: 'Source extraction, entity & claim tagging across structured + unstructured data.',
+            physician: 'Scope-of-truth check; flag claims that need primary-source review.',
+            output: 'tagged corpus' },
+          { num: 2, title: 'Gap Analysis',
+            ai: 'Map evidence inventory against regulatory/payer criteria; surface gaps.',
+            physician: 'Confirm gap classification; reject AI calls that miss medical context.',
+            output: 'gap report' },
+          { num: 3, title: 'PITL Review',
+            ai: 'Draft synthesis: positions, citations, claim-trail. Self-flag low-confidence outputs.',
+            physician: 'Lead reviewer signs each section; named MD on the work.',
+            output: 'signed draft' },
+          { num: 4, title: 'Deliverable',
+            ai: 'Format to client schema; bilingual variants; audit log packaged.',
+            physician: 'Final QA + sign-off; deliverable ships with named accountability.',
+            output: 'audit-grade pack' },
+        ]}
+        evidenceRows={[
+          { claim: 'Every claim is bound to a ProofPoint document with named custodian.',
+            status: 'verified',
+            trace: ['AI: claim tagging', 'MD: source check', 'Audit: quarterly export'],
+            source: 'ProofPoint custodian registry', year: '2026' },
+          { claim: 'Source / reviewer / timestamp / edit history exportable on engagement.',
+            status: 'verified',
+            trace: ['Audit Trail spec §13', 'CMS schema W2-05'],
+            source: 'Internal audit log', year: '2026' },
+        ]}
+      />
+
+      <SectionLabel>1b · PitlRibbon variant="compact" — Act 3 三支柱场景 (v3.0)</SectionLabel>
+      <PitlRibbon
+        variant="compact"
+        eyebrow="ACT 3 · PILLAR 2"
+        title="Physician-In-The-Loop (PITL)"
+        steps={[
+          { num: 1, title: 'Ingestion',
+            ai: 'Source extraction, entity & claim tagging across structured + unstructured data.',
+            physician: 'Scope-of-truth check; flag claims that need primary-source review.',
+            output: 'tagged corpus' },
+          { num: 2, title: 'Gap Analysis',
+            ai: 'Map evidence inventory against regulatory/payer criteria; surface gaps.',
+            physician: 'Confirm gap classification; reject AI calls that miss medical context.',
+            output: 'gap report' },
+          { num: 3, title: 'PITL Review',
+            ai: 'Draft synthesis: positions, citations, claim-trail. Self-flag low-confidence outputs.',
+            physician: 'Lead reviewer signs each section; named MD on the work.',
+            output: 'signed draft' },
+          { num: 4, title: 'Deliverable',
+            ai: 'Format to client schema; bilingual variants; audit log packaged.',
+            physician: 'Final QA + sign-off; deliverable ships with named accountability.',
+            output: 'audit-grade pack' }
+        ]}
+      />
+
+      <SectionLabel>2 · MetricStrip — strict, single-use</SectionLabel>
+      <MetricStrip
+        variant="featured"
+        eyebrow="WHY MEDSCI"
+        metrics={[
+          { value: '3.33M+', label: 'physicians in our network',
+            source: 'Internal registry', year: '2025', approvedBy: 'IR (pending)' },
+          { value: 'AI + PITL', label: 'every project, every step',
+            source: 'Methodology v1.1', year: '2026' },
+          { value: '2415.HK', label: 'Main Board Hong Kong listing',
+            source: 'HKEX disclosure', year: '2026' }
+        ]}
+      />
+
+      <SectionLabel>3 · EvidenceTrail — annotated, audit-grade</SectionLabel>
+      <EvidenceTrail
+        eyebrow="ENGAGEMENT OUTCOMES — Entering China · Evidence + HCP"
+        title="What we shipped"
+        rows={[
+          { claim: '60% faster time-to-evidence-package vs. prior internal benchmark',
+            status: 'verified',
+            trace: ['AI: gap-scan', 'AI: claim-trail', 'MD: lead reviewer signed', 'MD: bilingual QA'],
+            source: 'Client engagement report', year: '2025', approvedBy: 'Sponsor + IR' },
+          { claim: '2,400+ HCPs reached via the targeted network map',
+            status: 'verified',
+            trace: ['AI: HCP segmentation', 'MD: medical-affairs review'],
+            source: 'Client engagement report', year: '2025' },
+          { claim: 'NMPA pre-submission package accepted at first filing',
+            status: 'in-development',
+            trace: ['MD: regulatory lead'],
+            source: 'Regulatory submission tracker', year: '2026' },
+          { claim: 'Cross-border data-handling pathway documented per PIPL',
+            status: 'on-request',
+            source: 'Compliance pack', year: '2026' }
+        ]}
+      />
+
+      <SectionLabel>4 · CountryCompare — path-page shape</SectionLabel>
+      <CountryCompare
+        eyebrow="The cross-border path"
+        title="What changes when an asset crosses the Pacific."
+        lede="Path pages get this shape; deliverable pages do not."
+        direction="us-to-cn"
+        left={{
+          code: 'US / EU / JP',
+          label: 'United States / EU / JP',
+          regulator: 'FDA · CDER / CDRH',
+          timeline: '6–18 mo dossier prep',
+          reviewerLanguage: 'English',
+          constraints: ['IRB-ready protocols', 'CDISC comparator construction', 'Western RWE registries']
+        }}
+        right={{
+          code: 'CN',
+          label: 'China (Mainland)',
+          regulator: 'NMPA · CDE',
+          timeline: '11 wks median (2025 cohort)',
+          reviewerLanguage: '中文 · Simplified Chinese',
+          constraints: ['Tier-1 AMC physician sign-off', 'PIPL data residency', 'NRDL value dossier']
+        }}
+      />
+
+      <SectionLabel>5 · DeliverableSample — deliverable-page shape</SectionLabel>
+      <DeliverableSample
+        eyebrow="What you actually receive"
+        title="Deliverable pages show artifact-level inputs and outputs."
+        lede="Deliverable pages get this shape; path pages do not."
+        samples={[
+          {
+            label: 'Real-world evidence (RWE) report',
+            input: { format: 'Therapy area · target dossier · jurisdiction',
+                     detail: 'Works from existing trial protocol and registry questions.' },
+            output: { format: 'PRISMA-aligned RWE report · 18–60 pp + appendix',
+                      detail: 'Citation-level source trail; year + signed reviewer per claim.' },
+            badge: 'verified',
+            signedBy: 'Lead reviewer + 1 second reviewer'
+          },
+          {
+            label: 'HEOR value dossier',
+            input: { format: 'Therapy area · payer model · jurisdiction',
+                     detail: 'NRDL / ICER / commercial-payer scenarios.' },
+            output: { format: 'Cost-effectiveness model + value dossier · 20–50 pp',
+                      detail: 'Sensitivity scenarios, budget-impact analysis.' },
+            badge: 'verified',
+            signedBy: 'HEOR lead + Lead MD'
+          },
+          {
+            label: 'Cross-jurisdictional bridge memo',
+            input: { format: 'Origin dossier · target market · gap question',
+                     detail: 'For bridging China data into FDA/EMA expectations.' },
+            output: { format: 'Bridge memo + comparability table · 10–24 pp',
+                      detail: 'Per-claim status: travels / partial / re-derive locally.' },
+            badge: 'in-development',
+            signedBy: 'Per-engagement panel'
+          }
+        ]}
+      />
+
+      <SectionLabel>6 · AsymmetricFeatureGrid — break the 3-up monotony</SectionLabel>
+      <AsymmetricFeatureGrid
+        eyebrow="LATEST CASE STUDIES"
+        title="Selected work, with verified outcomes"
+        lede="Featured case + two recent engagements. One layout, three different stories."
+        featured="left"
+        items={[
+          { featured: true,
+            render: () => <SamplePreviewCard
+              kicker="ENTERING CHINA · EVIDENCE + HCP"
+              title="From internal debate to NMPA pre-submission within the engagement window"
+              body="MedSci built the evidence package and the HCP map at the same time. Most agencies do one or the other; we needed both — and we needed it auditable."
+              cta="Read the case" />
+          },
+          { render: () => <SamplePreviewCard
+              kicker="GOING GLOBAL · FDA EVIDENCE BRIDGE"
+              title="China RWE, restructured for an FDA pre-IND meeting"
+              body="A US sponsor needed China-origin data formatted to FDA evidentiary expectations without losing fidelity to the original protocol."
+              cta="Read the case" />
+          },
+          { render: () => <SamplePreviewCard
+              kicker="ENTERING CHINA · LOCALIZED CONTENT"
+              title="A bilingual HCP-engagement program, shipped weekly"
+              body="Cross-border content sprint: English source, Chinese delivery, physician-reviewed every cycle."
+              cta="Read the case" />
+          }
+        ]}
+      />
+
+      <div style={{ height: 96 }} />
+    </>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+</body>
+</html>

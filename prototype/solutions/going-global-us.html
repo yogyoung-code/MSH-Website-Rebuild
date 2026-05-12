@@ -19,15 +19,29 @@
 <style>
   :root {
     --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
-    --font-slogan:  "Footlight MT Light", "Footlight MT", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
   }
-  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
   *, *::before, *::after { box-sizing: border-box; }
   a { color: inherit; }
   sup { font-size: 0.7em; vertical-align: super; line-height: 0; }
   button { font-family: var(--font-ui); }
   ::selection { background: var(--brand-accent-100); color: var(--brand-primary-700); }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Going Global (US)",
+  "description": "Two-path strategy for China-headquartered teams going global — FDA evidence, IRB protocols, US KOL engagement, publications.",
+  "url": "https://medscihealthcare.com/solutions/going-global-us.html",
+  "provider": {
+    "@type": "Organization",
+    "name": "MedSci Healthcare",
+    "url": "https://medscihealthcare.com"
+  }
+}
+</script>
 </head>
 <body>
 <div id="root"></div>
@@ -35,10 +49,14 @@
 <script src="../assets/vendor/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="../assets/vendor/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="../assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
 <script type="text/babel" src="../components/Button.jsx"></script>
 <script type="text/babel" src="../components/SolutionHeader.jsx"></script>
 <script type="text/babel" src="../components/SolutionsShell.jsx"></script>
 <script type="text/babel" src="../components/SolutionFooter.jsx"></script>
+<script type="text/babel" src="../components/CountryCompare.jsx"></script>
 <script type="text/babel" src="PageGoingGlobal.jsx"></script>
 <script type="text/babel">
 function App() {

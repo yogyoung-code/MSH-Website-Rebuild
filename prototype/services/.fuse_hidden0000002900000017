@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Other engagements — MedSci Healthcare</title>
+<meta name="description" content="Other engagements MedSci Healthcare occasionally supports — specialty clinic content, healthcare brand evidence, and cross-border review.">
+<link rel="canonical" href="https://medscihealthcare.com/services/other-engagements">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/services/other-engagements">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Other engagements — MedSci Healthcare">
+<meta property="og:description" content="Selected non-Pilot engagements — specialty clinic content, healthcare brand evidence, cross-border review.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/services-other-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/services/other-engagements">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/OtherEngagementCard.jsx"></script>
+
+<script type="text/babel">
+// Copy Deck v4.1 §5 (extracted, MEDSCI → MedSci Healthcare rebrand applied).
+// Strategy note (IA §10): this page is NOT in the Pilot funnel KPI; leads
+// route to Sales Owner relationship channels, not structured BD queue.
+const ENGAGEMENTS = [
+  {
+    title: 'Specialty Clinic Patient Education & Website Content',
+    body: 'For selected clinics that need stronger patient communication, website content improvement, and localized educational materials.',
+    audience: 'Audience: specialty clinics not seeking a full Pilot.',
+    contactRoute: 'other'
+  },
+  {
+    title: 'Evidence-Backed Content for Healthcare Brands',
+    body: 'For healthcare and wellness brands that need medically reviewed communication and claims-aware content support.',
+    audience: 'Audience: healthcare and wellness brands.',
+    contactRoute: 'other'
+  },
+  {
+    title: 'Cross-Border Review, Localization & Compliance-Aware Communication',
+    body: 'For smaller companies that first need review, translation, localization, and communication support before broader market work. Different from the Cross-Border Sprint (which is structured for teams already in flight).',
+    audience: 'Audience: smaller cross-border teams not yet ready for a full Pilot.',
+    contactRoute: 'other'
+  }
+];
+
+function App() {
+  return (
+    <PageShell hideHero breadcrumbs={[
+      { label: 'Home',     href: '/' },
+      { label: 'Services', href: '#' },
+      { label: 'Other engagements' }
+    ]}>
+      {/* Strategy banner (subtle) */}
+      <div style={{
+        maxWidth: 1280, margin: '0 auto',
+        padding: '24px clamp(24px, 6vw, 96px) 0',
+        fontSize: 12,
+        color: 'var(--fg-3)',
+        letterSpacing: '0.04em'
+      }}>
+        Page status: noindex · Reached via footer or private referral
+      </div>
+
+      {/* Hero */}
+      <header style={{
+        maxWidth: 880, margin: '0 auto',
+        padding: 'clamp(32px, 5vw, 64px) clamp(24px, 6vw, 96px) 32px'
+      }}>
+        <div style={{
+          fontFamily: 'var(--font-slogan)',
+          fontSize: 12,
+          letterSpacing: '0.16em',
+          textTransform: 'uppercase',
+          color: 'var(--brand-accent-700)',
+          marginBottom: 16
+        }}>Other Engagements</div>
+
+        <h1 style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 'clamp(32px, 4.5vw, 48px)',
+          lineHeight: 1.2,
+          color: 'var(--brand-primary-700)',
+          margin: '0 0 24px'
+        }}>Other engagements we occasionally support</h1>
+
+        <p style={{
+          fontSize: 17,
+          color: 'var(--fg-1)',
+          lineHeight: 1.6,
+          margin: 0,
+          maxWidth: 720
+        }}>
+          Beyond our two core cross-border pathways, MedSci Healthcare occasionally supports selected teams with practical medical content and communication work that does not fit a full Pilot engagement. These engagements are scoped individually through direct conversation with our team.
+        </p>
+      </header>
+
+      <OtherEngagementGrid engagements={ENGAGEMENTS} />
+
+      {/* CTA */}
+      <section style={{
+        background: 'var(--bg-2)',
+        borderTop: '1px solid var(--border-1)',
+        padding: '48px clamp(24px, 6vw, 96px)'
+      }}>
+        <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(24px, 3vw, 32px)',
+            color: 'var(--brand-primary-700)',
+            margin: '0 0 12px',
+            lineHeight: 1.25
+          }}>Talk to our team</h2>
+          <p style={{ fontSize: 15, color: 'var(--fg-2)', lineHeight: 1.6, margin: '0 0 24px' }}>
+            These engagements are scoped one at a time. Tell us what you're working on and we'll route to the right person.
+          </p>
+          <a href="/contact.html?topic=other" style={{
+            display: 'inline-block',
+            padding: '14px 32px',
+            background: 'var(--brand-primary-700)',
+            color: 'var(--bg-1)',
+            fontFamily: 'var(--font-ui)',
+            fontSize: 14,
+            fontWeight: 600,
+            letterSpacing: '0.04em',
+            textDecoration: 'none'
+          }}>Talk to our team</a>
+        </div>
+      </section>
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

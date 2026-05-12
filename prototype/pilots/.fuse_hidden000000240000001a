@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>30-Day FDA Evidence Gap Diagnostic — MedSci Healthcare</title>
+<meta name="description" content="Fixed-scope 30-day pilot for China-based teams preparing for FDA-facing evidence work — gap mapping, applicability review, named physician sign-off.">
+<link rel="canonical" href="https://medscihealthcare.com/pilots/fda-evidence-gap-diagnostic">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/pilots/fda-evidence-gap-diagnostic">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="30-Day FDA Evidence Gap Diagnostic — MedSci Healthcare">
+<meta property="og:description" content="Fixed-scope 30-day pilot for China-based teams preparing for FDA-facing evidence work.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/pilot-fda-diagnostic-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/pilots/fda-evidence-gap-diagnostic">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "30-Day FDA Evidence Gap Diagnostic",
+      "url": "https://medscihealthcare.com/pilots/fda-evidence-gap-diagnostic",
+      "provider": { "@type": "Organization", "name": "MedSci Healthcare", "tickerSymbol": "2415.HK", "url": "https://medscihealthcare.com" },
+      "serviceType": "FDA-facing evidence gap diagnostic pilot for China-headquartered biotech and medtech teams"
+    },
+    {
+      "@type": "Offer",
+      "name": "30-Day FDA Evidence Gap Diagnostic",
+      "url": "https://medscihealthcare.com/pilots/fda-evidence-gap-diagnostic",
+      "availability": "https://schema.org/PreOrder",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "USD",
+        "price": "0",
+        "description": "Pricing on request — pending BD + Finance sign-off"
+      }
+    }
+  ]
+}
+</script>
+<style>
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/PilotCard.jsx"></script>
+
+<script type="text/babel">
+// Data — Copy Deck v4.2 §11.2; CMS stage will fetch from Sanity Pilot schema.
+const PILOT = {
+  slug: 'fda-evidence-gap-diagnostic',
+  contactTopic: 'fda_bridge',
+
+  hero: {
+    eyebrow: 'PILOT · GOING GLOBAL (US) · EVIDENCE',
+    title: '30-Day FDA Evidence Gap Diagnostic',
+    lede: 'A fixed-scope pilot for China-headquartered biotech and medtech teams preparing for FDA-facing evidence work. We map where current data, evidence framing, and U.S.-facing communication may need strengthening — physician-signed, in 30 days.'
+  },
+
+  includes: {
+    intro: '4 deliverables, scoped before kick-off and signed off by a named physician at the end:',
+    items: [
+      { label: 'Evidence gap assessment vs. intended U.S.-facing use', body: 'What holds, what slips, what to plan around.' },
+      { label: 'Applicability / bridging review',                       body: 'Comparator alignment, endpoint mapping, population read-across notes.' },
+      { label: 'Recommended publication / evidence / next-step path',  body: 'Single-page direction with named workstreams.' },
+      { label: 'Next-step plan and indicative scope',                  body: 'What an extended engagement would cover, with named workstreams and rough budget bands.' }
+    ]
+  },
+
+  bestFor: [
+    'Teams preparing for broader FDA-facing strategy discussions.',
+    'Teams that need more structured U.S.-facing evidence and communication planning.',
+    'Teams that want a decision-ready view before investing further.'
+  ],
+
+  engagementDetails: [
+    { label: 'Scope',                     value: 'Fixed-scope; no scope creep without written change order' },
+    { label: 'Duration',                  value: '30 calendar days' },
+    { label: 'Kick-off',                  value: 'Within 3 business days of signature' },
+    { label: 'Mid-engagement checkpoint', value: 'Day 15' },
+    { label: 'Output format',             value: 'One signed PDF + one editable working document + one 60-min readout' },
+    { label: 'Named physician reviewer',  value: 'U.S.-licensed lead reviewer + China-licensed co-reviewer; both signatures on output' }
+  ],
+
+  pricing: { status: 'pending' },
+
+  cta: {
+    primaryLabel:   'Book the FDA Evidence Gap Diagnostic',
+    primaryHref:    '/contact.html?topic=fda_bridge',
+    secondaryLabel: 'Talk to an expert first',
+    secondaryHref:  '/contact.html?topic=going_global'
+  },
+
+  faq: [
+    {
+      q: "We have phase-3 data from China — does this Sprint tell us if it'll fly with the FDA?",
+      a: "The Diagnostic gives you a structured view, not a regulatory opinion. We map where your data aligns to U.S. reviewer expectations (typically: comparator arm, endpoint definition, population) and flag where additional bridging work, U.S. site data, or sub-group analyses may be needed. Final regulatory judgment is FDA's."
+    },
+    {
+      q: 'Do you write the actual submission?',
+      a: 'No. The Diagnostic is a planning artifact. Submission writing happens in extended engagements (or with specialist regulatory partners we can recommend). We do produce content scaffolds — manuscript outlines, abstract drafts, MSL kit drafts — that map to the Diagnostic findings.'
+    },
+    {
+      q: 'Who reviews our data — and is anyone in the U.S. on the team?',
+      a: 'Yes. Our physician reviewer for U.S.-facing work is U.S.-licensed, and a separate China-licensed physician is on the team for the China-data side. Both signatures appear on the Diagnostic. Subject-area specialists are pulled in by therapeutic context.'
+    },
+    {
+      q: "NDA, data residency, and IP — what's the boundary?",
+      a: 'Mutual NDA is signed before kick-off. Data shared in the Diagnostic stays inside the engagement, is not used to train any model, and is not aggregated with other client work. We can sign your NDA template or use ours.'
+    },
+    {
+      q: "We're not yet sure whether to file IND, IDE, or 510(k) — does the Diagnostic help with that?",
+      a: "The Diagnostic does not replace a regulatory filing path decision. It does help you walk into that decision with a clearer picture of what your evidence package looks like under each path's expectations."
+    },
+    {
+      q: 'Cancellation, refund, extension policy?',
+      a: 'Cancel within 3 business days of signature for a full refund. Pro-rated refund after kick-off minus committed physician hours. Extension into a broader engagement credits the Diagnostic fee against the first month.'
+    }
+  ],
+
+  boundaries: {
+    do: [
+      'Evidence bridge support and applicability review',
+      'Publication and scientific communication strategy',
+      'English-language medical affairs content',
+      'Advisory startup support'
+    ],
+    dont: [
+      'Full-service FDA filing partner',
+      'A U.S. site network provider',
+      'A payer strategy firm',
+      'A clinical trial CRO'
+    ],
+    footnote: 'Where needed, we work alongside specialist regulatory and clinical partners.'
+  },
+
+  related: {
+    solution:  { slug: 'going-global-us',                     label: 'Going Global (US)' },
+    caseStudy: { slug: 'going-global-fda-evidence-bridge',    label: "Going Global · U.S.-Facing FDA Evidence Bridge" }
+  }
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<PilotPage pilot={PILOT} />);
+</script>
+</body>
+</html>

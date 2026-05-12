@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>G1 baseline pair</title>
+<style>
+  html,body{margin:0;padding:0;background:#0d1117;color:#eee;font:12px/1.4 ui-monospace,monospace}
+  .lbl{padding:6px 10px;background:#161b22;border-bottom:1px solid #30363d;display:flex;justify-content:space-between;align-items:center}
+  .lbl strong{color:#7fb8e3}
+  .lbl .sub{color:#8b949e;font-size:11px}
+  iframe{display:block;border:0;background:#fff}
+  .row{display:flex;flex-direction:column}
+  #status{padding:6px 10px;background:#21262d;color:#a5d6ff;font-size:11px}
+</style>
+</head>
+<body>
+<div id="status">Loading…</div>
+<div class="row">
+  <div class="lbl"><strong>BASELINE @ 1280</strong> <span class="sub" id="lab"></span></div>
+  <iframe id="b" width="1280" height="600"></iframe>
+</div>
+<div class="row">
+  <div class="lbl"><strong>CURRENT  @ 1280</strong> <span class="sub" id="lac"></span></div>
+  <iframe id="c" width="1280" height="600"></iframe>
+</div>
+<script>
+(function(){
+  const params = new URLSearchParams(location.search);
+  const baseURL = params.get('base') || 'http://localhost:8001/Homepage.html';
+  const curURL  = params.get('cur')  || 'http://localhost:8000/index.html';
+  document.getElementById('lab').textContent = baseURL;
+  document.getElementById('lac').textContent = curURL;
+  const b = document.getElementById('b');
+  const c = document.getElementById('c');
+  let bDone = false, cDone = false;
+  function update(){
+    document.getElementById('status').textContent =
+      `baseline=${bDone?'OK':'…'}  current=${cDone?'OK':'…'}`;
+    if (bDone && cDone) window.G1_READY = true;
+  }
+  b.addEventListener('load', () => { setTimeout(()=>{ bDone = true; update(); }, 3500); });
+  c.addEventListener('load', () => { setTimeout(()=>{ cDone = true; update(); }, 3500); });
+  b.src = baseURL;
+  c.src = curURL;
+  window.G1_READY = false;
+})();
+</script>
+</body>
+</html>

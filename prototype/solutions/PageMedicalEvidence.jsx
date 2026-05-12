@@ -73,7 +73,7 @@ function PageMedicalEvidence() {
         id="overview" eyebrow="Overview"
         title="The pipeline that runs underneath every other engagement."
         kicker="Whether you're entering China, going global, or just need a registry rebuilt — the evidence pipeline is the same. Retrieval, structured synthesis, physician review, signed source trail."
-        bg="#fff" label="01 · Overview"
+        bg="#fff"
       >
         <div style={{
           display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24,
@@ -120,16 +120,77 @@ function PageMedicalEvidence() {
       <SolutionSection
         id="capabilities" eyebrow="Capabilities · 4 workstreams"
         title="What we deliver under the Medical Evidence block."
-        bg="var(--bg-2)" label="02 · Capabilities"
+        bg="var(--bg-2)"
       >
         <DeliverablesGrid items={capabilities} theme="navy" />
       </SolutionSection>
+
+      {}
+      <DeliverableSample
+        eyebrow="What you actually receive"
+        title="Each capability ships as a signed artifact, with a defined input shape."
+        lede="Every deliverable is scoped against an explicit input contract and ships in a format that a regulator, payer, or peer reviewer can read without translation."
+        samples={[
+          {
+            label: 'Real-world evidence (RWE) report',
+            input: {
+              format: 'Therapy area · target dossier · jurisdiction',
+              detail: 'We work from your existing trial protocol and registry questions; no raw PHI required.'
+            },
+            output: {
+              format: 'PRISMA-aligned RWE report · 18–60 pp + appendix',
+              detail: 'Citation-level source trail · year + signed reviewer per claim.'
+            },
+            badge: 'verified',
+            signedBy: 'Lead reviewer + 1 second reviewer'
+          },
+          {
+            label: 'Registry protocol package',
+            input: {
+              format: 'Research question · sites in scope',
+              detail: 'Single-question or multi-arm; either prospective or retrospective.'
+            },
+            output: {
+              format: 'Protocol + IRB packet + SAP · 30–80 pp',
+              detail: 'Statistical analysis plan, ethics packet, ongoing PITL audit cadence.'
+            },
+            badge: 'verified',
+            signedBy: 'Biostatistician + Lead MD'
+          },
+          {
+            label: 'HEOR value dossier',
+            input: {
+              format: 'Therapy area · payer model · jurisdiction',
+              detail: 'NRDL / ICER / commercial-payer scenarios scoped against your asset.'
+            },
+            output: {
+              format: 'Cost-effectiveness model + value dossier · 20–50 pp',
+              detail: 'Sensitivity scenarios, budget-impact analysis, payer-by-payer scan.'
+            },
+            badge: 'verified',
+            signedBy: 'HEOR lead + Lead MD'
+          },
+          {
+            label: 'Cross-jurisdictional bridge memo',
+            input: {
+              format: 'Origin dossier · target market · gap question',
+              detail: 'Used most often to bridge China-generated data into FDA/EMA expectations or vice versa.'
+            },
+            output: {
+              format: 'Bridge memo + comparability table · 10–24 pp',
+              detail: 'Per-claim translation status: travels / partial / re-derive locally.'
+            },
+            badge: 'in-development',
+            signedBy: 'Per-engagement panel'
+          }
+        ]}
+      />
 
       <SolutionSection
         id="process" eyebrow="Source-trail process"
         title="Every claim travels with its source. Every source carries a signature."
         kicker="The audit log is part of the deliverable, not a side artifact you have to ask for later."
-        bg="#fff" label="03 · Process"
+        bg="#fff"
       >
         <div style={{ background: 'var(--bg-2)', border: '1px solid var(--border-1)', borderRadius: 16, padding: 36 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 0 }}>
@@ -166,7 +227,7 @@ function PageMedicalEvidence() {
         id="evidence-tiers" eyebrow="Three-tier evidence system"
         title="Always know what you can quote, and what you cannot."
         kicker="Every claim in our deliverables carries one of three badges. You always know the maturity of the evidence you're holding."
-        bg="var(--bg-2)" label="04 · Evidence tiers"
+        bg="var(--bg-2)"
       >
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {tiers.map(t => (
@@ -189,11 +250,12 @@ function PageMedicalEvidence() {
       <SolutionSection
         id="proof" eyebrow="Proof · 2025"
         title="Numbers we can show you with a signed source trail."
-        bg="#fff" label="05 · Proof"
+        bg="#fff"
       >
         <SolutionStatStrip stats={stats} theme="navy" />
       </SolutionSection>
 
+      <ContentReviewCrossSell />
       <SolutionCTA pageMeta={MED_EVIDENCE_META} />
       <RelatedSolutions current="medical-evidence" />
       <SolutionFooter />

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Localized Medical Content for a Specialty Launch — MedSci</title>
+<meta name="description" content="Bilingual reviewers cut revision cycles from 4-pass to 2-pass. 88% first-pass physician approval, reusable localization layer. China specialty launch.">
+<link rel="canonical" href="https://medscihealthcare.com/case-studies/entering-china-localized-content">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/case-studies/entering-china-localized-content">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Localized Medical Content for a Specialty Launch — MedSci">
+<meta property="og:description" content="Bilingual reviewers cut revision cycles from 4-pass to 2-pass. 88% first-pass physician approval, reusable localization layer. China specialty launch.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/case-entering-china-localized-content-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/case-studies/entering-china-localized-content">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Localized Medical Content for a Specialty Launch — Bilingual, Compliant, On-Schedule",
+  "publisher": { "@type": "Organization", "name": "MedSci Healthcare" }
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/CaseStudyHero.jsx"></script>
+<!-- Migrated MetricTriad → EvidenceTrail (UXcritique20260429) -->
+<script type="text/babel" src="../components/EvidenceTrail.jsx"></script>
+<script type="text/babel" src="../components/QuoteBlock.jsx"></script>
+
+<script type="text/babel">
+function App() {
+  return (
+    <PageShell hero={<CaseStudyHero
+      category="Entering China · Communications"
+      title="Localized Medical Content for a Specialty Launch — Bilingual, Compliant, On-Schedule"
+      client="Mid-cap pharmaceutical company (anonymized)"
+      year="2024"
+    />}>
+      <ProseBlock heading="Challenge" anchor="challenge">
+        <p>A specialty product launch into China was held up by content: translated EN materials read poorly to Chinese clinicians, off-label flags were inconsistent, and the sales enablement kit lacked evidence backing for the local market. The team needed a content engine, not a translation desk.</p>
+      </ProseBlock>
+      <ProseBlock heading="Approach" anchor="approach">
+        <p>MedSci stood up a parallel reviewer model: one EN-track physician and one CN-track physician reviewed every artifact, with a bilingual terminology layer enforcing consistency. AI extraction supported first-pass localization; PITL closed the loop on off-label, fair-balance, and disclosure scans. The kit shipped as a single bilingual deliverable with a signed source trail.</p>
+      </ProseBlock>
+      <ProseBlock heading="Outcome" anchor="outcome">
+        <p>The launch team received a physician-ready content kit usable across MSL decks, KOL meetings, and channel materials. First-pass physician approval rate dropped revision cycles from typical 4-pass to 2-pass on average. The localization layer became a reusable asset for subsequent product extensions.</p>
+      </ProseBlock>
+      <EvidenceTrail
+        eyebrow="OUTCOMES — VERIFIED + PENDING"
+        title="What we shipped — and where the audit trail stands."
+        rows={[
+          { claim: '120+ content pieces localized across 3 therapeutic areas',
+            status: 'placeholder',
+            trace: ['AI: terminology layer', 'MD: EN-track review', 'MD: CN-track review'],
+            source: 'Internal delivery log', year: '2024', approvedBy: 'Sponsor (pending)' },
+          { claim: '88% first-pass physician review approval rate',
+            status: 'placeholder',
+            trace: ['MD: bilingual review panel'],
+            source: 'Internal QC log', year: '2024', approvedBy: 'Sponsor (pending)' },
+          { claim: 'Content production cycle reduced from 8 to 4 weeks',
+            status: 'placeholder',
+            trace: ['AI: first-pass localization', 'MD: PITL closure on off-label/disclosure'],
+            source: 'Client engagement report', year: '2024', approvedBy: 'Sponsor (pending)' }
+        ]}
+      />
+      <QuoteBlock text="We thought we had a translation problem. MedSci showed us we had a content problem — and fixed it bilingually." attribution="Head of Medical Affairs (anonymized)" />
+      <ProseBlock heading="Talk to an Expert" anchor="cta">
+        <p><a href="/contact.html" style={{
+          display: 'inline-block', padding: '14px 28px',
+          background: 'var(--brand-primary-700)', color: '#fff',
+          textDecoration: 'none', fontFamily: 'var(--font-slogan)',
+          letterSpacing: '0.08em'
+        }}>Start a Cross-Border Content Sprint →</a></p>
+      </ProseBlock>
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

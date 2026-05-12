@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>G2 overflow harness</title>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html,body{margin:0;padding:0;background:#222;color:#eee;font:14px/1.4 system-ui}
+  #bar{padding:8px 12px;background:#111;border-bottom:1px solid #333;font-family:ui-monospace,monospace}
+  #stage{padding:8px;background:#222}
+  iframe{display:block;border:0;background:#fff}
+  #result{padding:6px 12px;font-family:ui-monospace,monospace;color:#9f9}
+  #result.fail{color:#f88}
+</style>
+</head>
+<body>
+<div id="bar">G2 harness — params: <code id="p"></code></div>
+<div id="result">measuring…</div>
+<div id="stage"><iframe id="f"></iframe></div>
+<script>
+(function(){
+  const params = new URLSearchParams(location.search);
+  const url = params.get('url') || '/index.html';
+  const w = parseInt(params.get('w') || '1280', 10);
+  const h = parseInt(params.get('h') || '900', 10);
+  const wait = parseInt(params.get('wait') || '2500', 10);
+  document.getElementById('p').textContent = JSON.stringify({url, w, h, wait});
+  const f = document.getElementById('f');
+  f.style.width = w + 'px';
+  f.style.height = h + 'px';
+  f.src = url;
+  window.G2_RESULT = null;
+  f.addEventListener('load', () => {
+    setTimeout(() => {
+      try {
+        const doc = f.contentDocument;
+        const html = doc.documentElement;
+        const body = doc.body;
+        const sw = html.scrollWidth;
+        const cw = html.clientWidth;
+        const bw = body ? body.scrollWidth : 0;
+        const iw = f.contentWindow.innerWidth;
+        const overflow = sw > w + 1; // 1px tolerance
+        const out = {url, w, h, sw, cw, bw, iw, overflow, title: doc.title};
+        window.G2_RESULT = out;
+        const r = document.getElementById('result');
+        r.textContent = JSON.stringify(out);
+        if (overflow) r.classList.add('fail');
+      } catch (e) {
+        window.G2_RESULT = {url, w, error: String(e)};
+        document.getElementById('result').textContent = 'ERR ' + e;
+      }
+    }, wait);
+  });
+})();
+</script>
+</body>
+</html>

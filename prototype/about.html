@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About MedSci Healthcare — AI + Physician-in-the-Loop</title>
 <meta name="description" content="MedSci Healthcare (2415.HK) — physician-verified evidence, engagement, and communication for global biopharma and medtech. AI-assisted, PITL-reviewed.">
 <link rel="canonical" href="https://medscihealthcare.com/about">
@@ -45,7 +45,7 @@
     --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
     --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
   }
-  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
   *, *::before, *::after { box-sizing: border-box; }
   a { color: inherit; }
 </style>
@@ -57,6 +57,9 @@
 <script src="assets/vendor/react-dom.development.js"></script>
 <script src="assets/vendor/babel.min.js"></script>
 <script src="assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="assets/sanity-client.js"></script>
 
 <script type="text/babel" src="components/Button.jsx"></script>
 <script type="text/babel" src="components/Header.jsx"></script>
@@ -109,28 +112,46 @@ const CONTENT = {
       footerNote: 'Full board composition and committee assignments are disclosed in our HKEX Annual Report and Corporate Governance Report.',
       cards: [
         {
-          title: 'Chief Executive Officer',
-          name: '',
-          bio: 'Bio pending HKEX-disclosed sign-off. Will reference founding year and core MedSci thesis when the IR + People Ops review closes.',
-          pending: true
+          title: 'Chairman & Founder',
+          name: 'Fabao Zhang',
+          bio: 'Founded MedSci and has served as Chairman since November 2021. Responsible for overall strategic development, corporate governance and management. Associate professor at Anhui University of Chinese Medicine. PhD, University of Chinese Academy of Sciences.',
+          photo: 'https://medsci-customer.medsci.cn/wp-content/uploads/2023/04/paul-300x300.jpg',
+          disclosures: 'https://ir.medsci.cn/en/management/'
         },
         {
-          title: 'Chief Medical Officer',
-          name: '',
-          bio: 'Bio pending HKEX-disclosed sign-off. Will name therapeutic specialty and PITL governance role when the IR + People Ops review closes.',
-          pending: true
+          title: 'Co-CEO',
+          name: 'Xinmei Li',
+          bio: 'Co-CEO and Director of Shanghai MedSci since 2012. Former postdoctoral researcher at Florida State University and UT Southwestern Medical Center. PhD in biophysics, University of Science and Technology of China.',
+          photo: 'https://medsci-customer.medsci.cn/wp-content/uploads/2023/04/xinmei-300x300.jpg',
+          disclosures: 'https://ir.medsci.cn/en/management/'
         },
         {
-          title: 'Chief Financial Officer',
-          name: '',
-          bio: 'Bio pending HKEX-disclosed sign-off. Will reference IR cadence ownership when the IR + People Ops review closes.',
-          pending: true
+          title: 'Co-CEO & Executive Director',
+          name: 'Shuai Wang',
+          bio: 'Appointed Co-CEO in July 2024. Executive Director since April 2022. VP of Shanghai MedSci since 2016. BS in Clinical Medicine, China Medical University.',
+          photo: 'https://medsci-customer.medsci.cn/wp-content/uploads/2023/04/shuai-300x300.jpg',
+          disclosures: 'https://ir.medsci.cn/en/management/'
         },
         {
-          title: 'Chief Compliance Officer',
-          name: '',
-          bio: 'Bio pending HKEX-disclosed sign-off. Will reference legal review chain ownership when the IR + Legal review closes.',
-          pending: true
+          title: 'Chief Operating Officer',
+          name: 'Liang Cheng',
+          bio: 'Responsible for legal compliance and strategic cooperation. Over 11 years consulting experience. Member of International Association of Management Consultants. EMBA, Shanghai Jiao Tong University.',
+          photo: 'https://medsci-customer.medsci.cn/wp-content/uploads/2024/07/chengliang-300x300.png',
+          disclosures: 'https://ir.medsci.cn/en/management/'
+        },
+        {
+          title: 'Vice President',
+          name: 'Chun Yang',
+          bio: 'Responsible for overall strategic planning and general management of business operations at Shanghai MedSci since 2012.',
+          photo: 'https://medsci-customer.medsci.cn/wp-content/uploads/2023/04/yog-300x300.jpg',
+          disclosures: 'https://ir.medsci.cn/en/management/'
+        },
+        {
+          title: 'Vice President of Medicine',
+          name: 'Mingai Huang',
+          bio: 'Leads medical affairs and physician review governance across MedSci products and deliverables.',
+          photo: 'https://medsci-customer.medsci.cn/wp-content/uploads/2023/04/mingai-300x300.jpg',
+          disclosures: 'https://ir.medsci.cn/en/management/'
         }
       ]
     },
@@ -300,53 +321,79 @@ function App() {
   const t = CONTENT[lang];
 
   return (
-    <PageShell hideHero breadcrumbs={[
-      { label: lang === 'en' ? 'Home' : '首页', href: '/' },
-      { label: lang === 'en' ? 'About' : '关于' }
-    ]}>
-      {/* Lang switch — top-right corner above hero */}
-      <div style={{
-        maxWidth: 1280,
-        margin: '0 auto',
-        padding: '24px clamp(24px, 6vw, 96px) 0',
-        display: 'flex',
-        justifyContent: 'flex-end'
+    <PageShell hero={
+      <section className="about-hero-bg" style={{
+        position: 'relative',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center 35%',
+        overflow: 'hidden',
       }}>
-        <LangSwitch enabled={true} current={lang} onSwitch={setLang} />
-      </div>
-
-      {/* Hero */}
-      <section style={{
-        maxWidth: 1280,
-        margin: '0 auto',
-        padding: 'clamp(32px, 5vw, 64px) clamp(24px, 6vw, 96px) 32px'
-      }}>
+        <style>{`
+          .about-hero-bg {
+            background-image: url(assets/photos/hq-night.jpg);
+          }
+        `}</style>
         <div style={{
-          fontFamily: 'var(--font-slogan)',
-          fontSize: 12,
-          letterSpacing: '0.16em',
-          textTransform: 'uppercase',
-          color: 'var(--brand-accent-700)',
-          marginBottom: 16
-        }}>{t.eyebrow}</div>
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(10,25,47,0.40)',
+        }} />
 
-        <h1 style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(32px, 5vw, 56px)',
-          lineHeight: 1.15,
-          color: 'var(--brand-primary-700)',
-          margin: '0 0 24px',
-          maxWidth: 960
-        }}>{t.h1}</h1>
+        <div style={{
+          position: 'relative',
+          maxWidth: 1280,
+          margin: '0 auto',
+          padding: 'clamp(32px, 5vw, 64px) clamp(24px, 6vw, 96px) clamp(48px, 6vw, 80px)',
+        }}>
+          {/* Breadcrumb */}
+          <nav aria-label="Breadcrumb" style={{
+            marginBottom: 24, fontSize: 14,
+            color: 'rgba(255,255,255,0.5)',
+          }}>
+            <a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>
+              {lang === 'en' ? 'Home' : '首页'}
+            </a>
+            <span style={{ margin: '0 8px' }}>/</span>
+            <span>{lang === 'en' ? 'About' : '关于'}</span>
+          </nav>
 
-        <p style={{
-          fontSize: 18,
-          color: 'var(--fg-1)',
-          lineHeight: 1.6,
-          margin: 0,
-          maxWidth: 880
-        }}>{t.lede}</p>
+          {/* Lang switch — top-right */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            marginBottom: 'clamp(16px, 3vw, 32px)',
+          }}>
+            <LangSwitch enabled={true} current={lang} onSwitch={setLang} />
+          </div>
+
+          <div style={{
+            fontFamily: 'var(--font-slogan)',
+            fontSize: 12,
+            letterSpacing: '0.16em',
+            textTransform: 'uppercase',
+            color: 'var(--brand-accent-500)',
+            marginBottom: 16,
+          }}>{t.eyebrow}</div>
+
+          <h1 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(32px, 5vw, 56px)',
+            lineHeight: 1.15,
+            color: 'var(--white)',
+            margin: '0 0 24px',
+            maxWidth: 960,
+          }}>{t.h1}</h1>
+
+          <p style={{
+            fontSize: 18,
+            color: 'rgba(255,255,255,0.82)',
+            lineHeight: 1.6,
+            margin: 0,
+            maxWidth: 880,
+          }}>{t.lede}</p>
+        </div>
       </section>
+    }>
 
       {/* At-a-glance stat strip */}
       <StatStrip items={t.statStrip} anchor="company" />

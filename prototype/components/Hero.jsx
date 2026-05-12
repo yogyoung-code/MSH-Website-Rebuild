@@ -4,7 +4,7 @@ function Hero() {
     <section id="top" style={{
       background: 'var(--grad-hero)', color: '#fff',
       position: 'relative', overflow: 'hidden',
-      padding: '72px 40px 88px',
+      padding: '72px clamp(16px, 4vw, 40px) 88px',
     }}>
       <DotSpiralBg />
       <div className="two-col-grid" style={{
@@ -24,7 +24,7 @@ function Hero() {
             MedSci Healthcare · 2415.HK
           </div>
           <h1 style={{
-            fontFamily: 'var(--font-display)', fontSize: 62, fontWeight: 500,
+                        fontFamily: 'var(--font-display)', fontSize: 62, fontWeight: 600,
             lineHeight: 1.08, letterSpacing: '-0.012em',
             margin: 0, color: '#fff', textWrap: 'balance',
           }}>
@@ -44,8 +44,8 @@ function Hero() {
             Your team gets an evidence package every regulator, reviewer and reimbursement committee can read in under ten minutes — assembled by AI, signed by physicians.
           </p>
           <div style={{ display: 'flex', gap: 12, marginTop: 36, flexWrap: 'wrap' }}>
-            <Button variant="primary-light" style={{ background: '#fff', color: 'var(--brand-primary-700)' }}>Enter China</Button>
-            <Button variant="outline-light">Go Global</Button>
+            <Button variant="primary-light" style={{ background: '#fff', color: 'var(--brand-primary-700)' }} href="/solutions/entering-china.html">Enter China</Button>
+            <Button variant="outline-light" href="/solutions/going-global-us.html">Go Global</Button>
             <Button variant="ghost" style={{ color: 'rgba(255,255,255,0.85)' }} icon={true} href="/contact.html">Talk to an Expert</Button>
           </div>
         </div>
@@ -61,19 +61,19 @@ function Hero() {
 
 function WhatWeDeliverCard() {
   const items = [
-    { num: '01', label: 'EVIDENCE',       title: 'Medical Evidence',       deliverables: 'RWE · Registry · Literature · HEOR', href: '#services' },
-    { num: '02', label: 'PHYSICIANS',     title: 'Physician Engagement',   deliverables: '3.33M+ network · Advisory · KOL · CME', href: '#services' },
-    { num: '03', label: 'COMMUNICATIONS', title: 'Medical Communications', deliverables: 'Publications · Congress · Localization', href: '#services' },
-    { num: '04', label: 'PLATFORM',       title: 'AI-Enabled Platform',    deliverables: 'AI Drafts · PITL · QC · Source trails', href: '#ai', accent: true },
+    { num: '01', label: 'EVIDENCE',       title: 'Medical Evidence',       deliverables: 'RWE · Registry · Literature · HEOR', href: '/solutions/medical-evidence.html' },
+    { num: '02', label: 'PHYSICIANS',     title: 'Physician Engagement',   deliverables: '3.33M+ network · Advisory · KOL · CME', href: '/solutions/physician-engagement.html' },
+    { num: '03', label: 'COMMUNICATIONS', title: 'Medical Communications', deliverables: 'Publications · Congress · Localization', href: '/solutions/medical-communications.html' },
+    { num: '04', label: 'PLATFORM',       title: 'AI-Enabled Platform',    deliverables: 'AI Drafts · PITL · QC · Source trails', href: '/ai-platform.html', accent: true },
+    { num: '05', label: 'QUICK START',    title: 'Content Review & Localization', deliverables: 'Compliance review · Medical rewrite · 3–5 days', href: '/solutions/content-review.html', isNew: true },
   ];
   const [hoverIdx, setHoverIdx] = React.useState(null);
   return (
     <div style={{
-      background: 'rgba(255,255,255,0.04)',
-      border: '1px solid rgba(255,255,255,0.14)',
+            background: 'var(--brand-primary-900)',
+      border: '1px solid rgba(255,255,255,0.16)',
       borderRadius: 16,
       padding: 6,
-      backdropFilter: 'blur(8px)',
     }}>
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -88,77 +88,63 @@ function WhatWeDeliverCard() {
           background: 'rgba(0,174,219,0.18)', color: 'var(--brand-accent-500)',
           fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase',
         }}>
-          4 Blocks
+          5 Blocks
         </span>
       </div>
       <div>
         {items.map((it, i) => (
-          <a key={it.num} href={it.href}
-             onMouseEnter={() => setHoverIdx(i)} onMouseLeave={() => setHoverIdx(null)}
-             style={{
-               display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'center', gap: 12,
-               padding: '16px 22px',
-               borderTop: i === 0 ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(255,255,255,0.06)',
-               textDecoration: 'none',
-               transition: 'all 200ms',
-               background: hoverIdx === i ? 'rgba(0,174,219,0.06)' : 'transparent',
-               transform: hoverIdx === i ? 'translateX(4px)' : 'none',
-             }}>
-            <div>
-              <div style={{
-                fontFamily: 'var(--font-mono)', fontSize: 10.5, fontWeight: 500,
-                color: it.accent ? 'var(--brand-accent-500)' : 'rgba(255,255,255,0.5)',
-                letterSpacing: '0.1em', marginBottom: 6,
-              }}>
-                {it.num} · {it.label}
+          <React.Fragment key={it.num}>
+            {it.isNew && (
+              <div style={{ margin: '0 22px', borderTop: '1px solid rgba(0,174,219,0.25)' }}></div>
+            )}
+            <a href={it.href}
+               onMouseEnter={() => setHoverIdx(i)} onMouseLeave={() => setHoverIdx(null)}
+               style={{
+                 display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'center', gap: 12,
+                 padding: it.isNew ? '14px 22px 18px' : '16px 22px',
+                 borderTop: it.isNew ? 'none' : (i === 0 ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(255,255,255,0.06)'),
+                 borderRadius: it.isNew ? '0 0 12px 12px' : 0,
+                 textDecoration: 'none',
+                 transition: 'all 200ms',
+                 background: it.isNew
+                   ? (hoverIdx === i ? 'rgba(0,174,219,0.12)' : 'rgba(0,174,219,0.05)')
+                   : (hoverIdx === i ? 'rgba(0,174,219,0.06)' : 'transparent'),
+                 transform: hoverIdx === i ? 'translateX(4px)' : 'none',
+               }}>
+              <div>
+                <div style={{
+                  fontFamily: 'var(--font-mono)', fontSize: 10.5, fontWeight: 500,
+                  color: it.accent ? 'var(--brand-accent-500)' : it.isNew ? 'var(--brand-accent-500)' : 'rgba(255,255,255,0.5)',
+                  letterSpacing: '0.1em', marginBottom: 6,
+                  display: 'flex', alignItems: 'center', gap: 8,
+                }}>
+                  <span>{it.isNew ? '↗' : it.num} · {it.label}</span>
+                  {it.isNew && <span style={{
+                    padding: '1px 6px', borderRadius: 3, fontSize: 9, fontWeight: 700,
+                    background: 'rgba(0,174,219,0.22)', color: 'var(--brand-accent-500)',
+                    letterSpacing: '0.08em',
+                  }}>NEW</span>}
+                </div>
+                <div style={{
+                  fontFamily: 'var(--font-ui)', fontSize: it.isNew ? 16 : 17, fontWeight: 600,
+                  color: hoverIdx === i ? 'var(--brand-accent-500)' : '#fff',
+                  letterSpacing: '-0.005em', marginBottom: 4,
+                }}>
+                  {it.title}
+                </div>
+                <div style={{ fontSize: 12.5, color: it.isNew ? 'rgba(0,174,219,0.7)' : 'rgba(255,255,255,0.6)', letterSpacing: '0.01em' }}>
+                  {it.deliverables}
+                </div>
               </div>
               <div style={{
-                fontFamily: 'var(--font-ui)', fontSize: 17, fontWeight: 600,
-                color: hoverIdx === i ? 'var(--brand-accent-500)' : '#fff',
-                letterSpacing: '-0.005em', marginBottom: 4,
-              }}>
-                {it.title}
-              </div>
-              <div style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.6)', letterSpacing: '0.01em' }}>
-                {it.deliverables}
-              </div>
-            </div>
-            <div style={{
-              fontSize: 16, color: hoverIdx === i ? 'var(--brand-accent-500)' : 'rgba(255,255,255,0.4)',
-              transform: hoverIdx === i ? 'translateX(4px)' : 'none', transition: 'all 200ms',
-            }}>→</div>
-          </a>
+                fontSize: 16, color: hoverIdx === i ? 'var(--brand-accent-500)' : it.isNew ? 'var(--brand-accent-500)' : 'rgba(255,255,255,0.4)',
+                transform: hoverIdx === i ? 'translateX(4px)' : 'none', transition: 'all 200ms',
+              }}>→</div>
+            </a>
+          </React.Fragment>
         ))}
       </div>
-      {/* Stat strip */}
-      <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
-        borderTop: '1px solid rgba(255,255,255,0.14)',
-        background: 'rgba(0,16,55,0.35)',
-        borderRadius: '0 0 12px 12px',
-      }}>
-        {[
-          { v: '3.33M+', l: 'Physician network', n: '1' },
-          { v: 'AI + PITL', l: 'Physician-in-the-loop', n: null },
-          { v: '2415.HK', l: 'HKEX listed', n: null },
-        ].map((s, i) => (
-          <div key={s.v} style={{
-            padding: '16px 18px',
-            borderLeft: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.08)',
-          }}>
-            <div style={{
-              fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 20, fontWeight: 600,
-              color: '#fff', letterSpacing: '-0.01em',
-            }}>
-              {s.v}
-              {s.n && <sup style={{ fontSize: 9, color: 'var(--brand-accent-500)', marginLeft: 3, fontWeight: 500 }}>{s.n}</sup>}
-            </div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)', marginTop: 3, letterSpacing: '0.02em' }}>
-              {s.l}
-            </div>
-          </div>
-        ))}
-      </div>
+      {}
     </div>
   );
 }

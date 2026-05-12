@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Case Studies — MedSci Healthcare</title>
 <meta name="description" content="Selected engagement examples with verified outcomes — China entry, FDA bridge, bilingual medical communications. Each case includes signed metrics.">
 <link rel="canonical" href="https://medscihealthcare.com/case-studies/">
@@ -33,7 +33,7 @@
     --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
     --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
   }
-  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
   *, *::before, *::after { box-sizing: border-box; }
   a { color: inherit; }
 </style>
@@ -53,37 +53,62 @@
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
 <script type="text/babel" src="../components/CaseStudyCard.jsx"></script>
 <script type="text/babel" src="../components/FilterBar.jsx"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
+<script type="text/babel" src="../components/useSanity.jsx"></script>
 
 <script type="text/babel">
+// Mock data — used as fallback when Sanity is not configured
+const MOCK_CASES = [
+  {
+    slug: 'entering-china-evidence-hcp',
+    eyebrow: 'Entering China · Evidence',
+    title: 'From Global Evidence Stack to a China-Ready Engagement Package',
+    summary: 'A Global Top-10 medtech moved from internal debate to NMPA pre-submission within 12 months — with a regulator-ready dossier and a physician-validated HCP map.',
+    metrics: [{ value: '60% faster', label: 'time to evidence package vs internal benchmark' }],
+    serviceLines: ['evidence', 'physicians']
+  },
+  {
+    slug: 'entering-china-localized-content',
+    eyebrow: 'Entering China · Communications',
+    title: 'Localized Medical Content for a Specialty Launch',
+    summary: 'Bilingual reviewer tracks dropped revision cycles from 4-pass to 2-pass on a specialty product launch into China — and built a reusable localization layer for the team.',
+    metrics: [{ value: '88%', label: 'first-pass physician review approval rate' }],
+    serviceLines: ['communications']
+  },
+  {
+    slug: 'going-global-fda-evidence-bridge',
+    eyebrow: 'Going Global (US) · Evidence',
+    title: 'From China Trial Data to FDA-Facing Evidence Package',
+    summary: 'A China bio-tech reached FDA-ready evidence package status 8 months ahead of original timeline, with three publications in flight and a U.S. medical kit ready before commercial planning.',
+    metrics: [{ value: '8 months', label: 'evidence package readiness ahead of plan' }],
+    serviceLines: ['evidence', 'platform']
+  }
+];
+
+// Transform Sanity data → component props
+function transformCmsCase(doc) {
+  const L = window.MSHContent ? window.MSHContent.L : (o) => (o && o.en) || o || '';
+  const solKind = doc.solution ? L(doc.solution.title) : '';
+  return {
+    slug: doc.slug && doc.slug.current ? doc.slug.current : doc.slug,
+    eyebrow: solKind + (doc.industry ? ' · ' + doc.industry : ''),
+    title: L(doc.title),
+    summary: L(doc.challenge) || L(doc.title),
+    metrics: (doc.metrics || []).map(m => ({ value: m.value, label: L(m.label) })),
+    serviceLines: ['evidence'] // CMS v2 will add explicit tags
+  };
+}
+
 function App() {
   const [filter, setFilter] = React.useState('all');
 
-  const cases = [
-    {
-      slug: 'entering-china-evidence-hcp',
-      eyebrow: 'Entering China · Evidence',
-      title: 'From Global Evidence Stack to a China-Ready Engagement Package',
-      summary: 'A Global Top-10 medtech moved from internal debate to NMPA pre-submission within 12 months — with a regulator-ready dossier and a physician-validated HCP map.',
-      metrics: [{ value: '60% faster', label: 'time to evidence package vs internal benchmark' }],
-      serviceLines: ['evidence', 'physicians']
-    },
-    {
-      slug: 'entering-china-localized-content',
-      eyebrow: 'Entering China · Communications',
-      title: 'Localized Medical Content for a Specialty Launch',
-      summary: 'Bilingual reviewer tracks dropped revision cycles from 4-pass to 2-pass on a specialty product launch into China — and built a reusable localization layer for the team.',
-      metrics: [{ value: '88%', label: 'first-pass physician review approval rate' }],
-      serviceLines: ['communications']
-    },
-    {
-      slug: 'going-global-fda-evidence-bridge',
-      eyebrow: 'Going Global (US) · Evidence',
-      title: 'From China Trial Data to FDA-Facing Evidence Package',
-      summary: 'A China bio-tech reached FDA-ready evidence package status 8 months ahead of original timeline, with three publications in flight and a U.S. medical kit ready before commercial planning.',
-      metrics: [{ value: '8 months', label: 'evidence package readiness ahead of plan' }],
-      serviceLines: ['evidence', 'platform']
-    }
-  ];
+  // Fetch from Sanity, fall back to mock
+  const cmsData = useSanity('fetchCaseStudies', null);
+  const cases = cmsData
+    ? cmsData.map(transformCmsCase)
+    : MOCK_CASES;
 
   const visible = filter === 'all' ? cases : cases.filter(c => c.serviceLines.includes(filter));
 
@@ -111,7 +136,7 @@ function App() {
             <CaseStudyCard
               key={c.slug}
               {...c}
-              href={`/case-studies/${c.slug}`}
+              href={`/case-studies/${c.slug}.html`}
             />
           ))}
         </div>

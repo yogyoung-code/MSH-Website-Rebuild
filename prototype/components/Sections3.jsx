@@ -1,112 +1,57 @@
 /* Sections3.jsx — AI, Trust, Insights, Final CTA, Footer */
 
-// 7. AI-Enabled Delivery (detailed)
+// 7. AI-Enabled Delivery
+//    pipeline + 3-up capability cards + 2 buttons. That duplicated the
+//    full PitlRibbon now living on /ai-platform. Distilled to a tight
+//    intro: eyebrow + 2-line headline + 1 primary CTA. The dark band
+//    (grad-hero gradient via brand-primary-900) stays — it's brand-spec.
 function AISection() {
-  const steps = [
-    { n: '01', t: 'Ingestion', d: 'Literature, registries, regulatory guidance and prior submissions — sourced, tagged, and indexed for retrieval.' },
-    { n: '02', t: 'Gap Analysis', d: 'AI drafts a structured gap matrix across evidence, regulatory and reimbursement axes — flags contradictions.' },
-    { n: '03', t: 'PITL Review', d: 'Named physicians review, edit and sign off. Every change is logged. No sign-off, no ship.' },
-    { n: '04', t: 'Deliverable', d: 'An audit-ready package — dossier, deck or publication draft — with an attached source trail.' },
-  ];
-  const caps = [
-    { t: 'Faster Evidence Review', d: 'AI-structured synthesis across 10k+ sources in a week, not a quarter — retrieval, not generation, at the core.' },
-    { t: 'AI-Assisted Scientific Drafting', d: 'Section-level drafts with citation slots. Physicians edit and approve; the model never writes the final.' },
-    { t: 'AI-Enhanced Content Production', d: 'Bilingual QC, terminology consistency, and compliance-aware review — pre-filtered before the physician sees it.' },
-  ];
   return (
-    <section id="ai" style={{ padding: '104px 40px', background: 'var(--brand-primary-900)', color: '#fff', position: 'relative', overflow: 'hidden' }}>
-      <div style={{
+    <section id="ai" style={{
+      padding: 'clamp(72px, 9vw, 128px) clamp(24px, 6vw, 96px)',
+      background: 'var(--brand-primary-900)',
+      color: '#fff',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
+      {/* Subtle radial spotlight — kept restrained */}
+      <div aria-hidden="true" style={{
         position: 'absolute', left: '50%', top: -200, width: 800, height: 800, borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(0,174,219,0.12) 0%, transparent 60%)', transform: 'translateX(-50%)', pointerEvents: 'none',
+        background: 'radial-gradient(circle, rgba(0,174,219,0.10) 0%, transparent 60%)',
+        transform: 'translateX(-50%)', pointerEvents: 'none',
       }}></div>
-      <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative' }}>
-        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start', marginBottom: 64 }}>
-          <div>
-            <SectionEyebrow color="var(--brand-accent-500)">AI-Enabled Platform · /ai-platform</SectionEyebrow>
-            <h2 style={{
-              fontFamily: 'var(--font-display)', fontSize: 44, fontWeight: 600,
-              color: '#fff', margin: 0, letterSpacing: '-0.012em', lineHeight: 1.15,
-            }}>
-              Faster, more structured, medically reviewed delivery.
-            </h2>
-          </div>
-          <div>
-            <p style={{ fontSize: 16.5, color: 'rgba(255,255,255,0.78)', lineHeight: 1.65, margin: '0 0 16px' }}>
-              Our platform pairs retrieval-based AI with a physician-in-the-loop (PITL) workflow. AI accelerates synthesis and drafting; doctors gate release. Every deliverable ships with a traceable source log.
-            </p>
-            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', lineHeight: 1.6, margin: 0, fontStyle: 'italic' }}>
-              We do not claim zero-hallucination, 100% accuracy, or an AI doctor. We claim structured, auditable, and reviewed.
-            </p>
-          </div>
-        </div>
 
-        {/* PITL flow diagram */}
-        <div style={{
-          background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)',
-          borderRadius: 20, padding: 32, marginBottom: 48,
+      <div style={{
+        maxWidth: 960, margin: '0 auto', position: 'relative',
+        textAlign: 'left',
+      }}>
+        <SectionEyebrow color="var(--brand-accent-500)">AI-Enabled Platform · /ai-platform</SectionEyebrow>
+        <h2 style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 'clamp(32px, 4.4vw, 52px)',
+          fontWeight: 600,
+          color: '#fff',
+          margin: '0 0 20px',
+          letterSpacing: '-0.012em',
+          lineHeight: 1.15,
+          maxWidth: 760,
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
-            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.14em', color: 'var(--brand-accent-500)', textTransform: 'uppercase' }}>
-              AI + PITL pipeline · 4 steps
-            </div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>
-              ingestion → gap → PITL → deliverable
-            </div>
-          </div>
-          <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0 }}>
-            {steps.map((s, i) => (
-              <div key={s.n} style={{
-                padding: '20px 24px',
-                borderLeft: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.08)',
-                position: 'relative',
-              }}>
-                <div style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 8,
-                  fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--brand-accent-500)',
-                  marginBottom: 10, letterSpacing: '0.08em',
-                }}>
-                  <span style={{
-                    width: 24, height: 24, borderRadius: '50%',
-                    background: i === 2 ? 'var(--brand-accent-500)' : 'rgba(0,174,219,0.18)',
-                    color: i === 2 ? 'var(--brand-primary-900)' : 'var(--brand-accent-500)',
-                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                    fontWeight: 700, fontSize: 11,
-                  }}>{s.n}</span>
-                  {i === 2 ? 'HUMAN GATE' : 'AI-ASSISTED'}
-                </div>
-                <div style={{ fontSize: 17, fontWeight: 600, color: '#fff', marginBottom: 8, letterSpacing: '-0.005em' }}>{s.t}</div>
-                <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.62)', lineHeight: 1.55 }}>{s.d}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 3 capabilities */}
-        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20, marginBottom: 40 }}>
-          {caps.map((c, i) => (
-            <div key={c.t} style={{
-              padding: 28, borderRadius: 12,
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.1)',
-            }}>
-              <div style={{
-                fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--brand-accent-500)',
-                letterSpacing: '0.1em', marginBottom: 12,
-              }}>
-                CAPABILITY 0{i + 1}
-              </div>
-              <h3 style={{ fontFamily: 'var(--font-ui)', fontSize: 18, fontWeight: 600, color: '#fff', margin: '0 0 10px', letterSpacing: '-0.005em' }}>
-                {c.t}
-              </h3>
-              <p style={{ fontSize: 13.5, color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, margin: 0 }}>{c.d}</p>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
-          <Button variant="accent">Explore the AI Platform</Button>
-          <Button variant="outline-light">See a source trail</Button>
-        </div>
+          AI lane on top. Physician lane on the bottom.
+          <br />
+          <span style={{ color: 'var(--brand-accent-500)' }}>Every handoff is signed.</span>
+        </h2>
+        <p style={{
+          fontSize: 17,
+          color: 'rgba(255,255,255,0.72)',
+          lineHeight: 1.6,
+          margin: '0 0 36px',
+          maxWidth: 640,
+        }}>
+          AI accelerates retrieval and drafting; named physicians gate every release. Every deliverable
+          ships with a traceable source log. We don't claim zero-hallucination — we claim structured,
+          auditable, and reviewed.
+        </p>
+        <Button variant="accent" href="/ai-platform.html">See the full PITL workflow</Button>
       </div>
     </section>
   );
@@ -121,7 +66,7 @@ function TrustBar() {
     { n: '42 → 18', l: 'Median regulatory response (days)', yr: '2025', s: '3' },
   ];
   return (
-    <section id="trust" style={{ padding: '72px 40px', background: '#fff', borderTop: '1px solid var(--border-1)', borderBottom: '1px solid var(--border-1)' }}>
+    <section id="trust" style={{ padding: '72px clamp(16px, 4vw, 40px)', background: '#fff', borderTop: '1px solid var(--border-1)', borderBottom: '1px solid var(--border-1)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32, flexWrap: 'wrap', gap: 16 }}>
           <SectionEyebrow color="var(--fg-3)">Trust · verified proof points</SectionEyebrow>
@@ -135,8 +80,9 @@ function TrustBar() {
               background: '#fff',
             }}>
               <div style={{
-                fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 40, fontWeight: 600,
-                color: 'var(--brand-primary-700)', letterSpacing: '-0.02em', lineHeight: 1.05,
+                /* Spec §3.4: all numbers in Inter. */
+                fontFamily: 'var(--font-ui)', fontSize: 40, fontWeight: 600,
+                color: 'var(--brand-primary-700)', letterSpacing: '-0.025em', lineHeight: 1.05,
               }}>
                 {s.n}
                 <sup style={{ fontSize: 11, color: 'var(--brand-primary-500)', marginLeft: 4, fontWeight: 500 }}>{s.s}</sup>
@@ -158,29 +104,41 @@ function TrustBar() {
   );
 }
 
-// 9. Insights
+// 9. Insights — 3×2 grid of real articles (updated 2026-05-04)
 function Insights() {
   const posts = [
-    { topic: 'China RWE', date: 'Apr 2026', title: 'What NMPA reviewers actually read first: a teardown of 40 oncology dossiers.', reviewer: 'Dr. L. Chen', min: 8 },
-    { topic: 'FDA Evidence Bridge', date: 'Mar 2026', title: 'Bridging a China registry into an FDA submission — what translates and what does not.', reviewer: 'Dr. J. Patel', min: 11 },
-    { topic: 'Medical Communication', date: 'Mar 2026', title: 'Bilingual congress materials that pass compliance on both sides of the Pacific.', reviewer: 'Dr. M. Zhao', min: 6 },
+    { topic: 'China RWE',           date: 'Apr 2026', title: 'Evolving RWE Policies in China: What Global Sponsors Need to Know',    reviewer: 'Dr. M. Park', min: 7, href: 'insights/china-rwe-regulatory-landscape.html' },
+    { topic: 'FDA Evidence Bridge', date: 'Apr 2026', title: 'Bridging China-Generated Data to an FDA Submission: A Field Checklist', reviewer: 'Dr. K. Liu',  min: 8, href: 'insights/bridging-china-data-fda.html' },
+    { topic: 'China Market Access', date: 'Apr 2026', title: 'Named Patient Programs: A New Pathway into China for Innovative Therapies', reviewer: 'Dr. J. Wang', min: 6, href: 'insights/named-patient-programs-china.html' },
   ];
   return (
-    <section id="insights" style={{ padding: '96px 40px', background: 'var(--bg-2)' }}>
+    <section id="insights" style={{
+      padding: 'clamp(72px, 9vw, 96px) clamp(24px, 6vw, 40px)',
+      background: 'var(--bg-1)'
+    }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 48, flexWrap: 'wrap', gap: 24 }}>
+        <div style={{
+          display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
+          marginBottom: 48, flexWrap: 'wrap', gap: 24
+        }}>
           <div style={{ maxWidth: 680 }}>
             <SectionEyebrow>Insights · PITL-reviewed</SectionEyebrow>
             <h2 style={{
-              fontFamily: 'var(--font-display)', fontSize: 40, fontWeight: 600,
-              color: 'var(--brand-primary-700)', margin: 0, letterSpacing: '-0.012em', lineHeight: 1.15,
+              fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 3.6vw, 40px)', fontWeight: 600,
+              color: 'var(--brand-primary-700)', margin: 0,
+              letterSpacing: '-0.012em', lineHeight: 1.15,
             }}>
               Written by our operators. Reviewed by our physicians.
             </h2>
           </div>
-          <a href="/insights/" style={{ color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 14 }}>All insights →</a>
+          <a href="insights/" style={{
+            color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 14,
+            fontFamily: 'var(--font-ui)'
+          }}>All insights →</a>
         </div>
-        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+        <div className="two-col-grid" style={{
+          display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20
+        }}>
           {posts.map((p, i) => <InsightCard key={i} p={p} />)}
         </div>
       </div>
@@ -199,6 +157,7 @@ function InsightCard({ p }) {
          boxShadow: hover ? 'var(--shadow-sm)' : 'none',
          transition: 'all 200ms', display: 'block',
        }}>
+      {}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
         <span style={{
           fontSize: 10, fontWeight: 600, letterSpacing: '0.12em',
@@ -227,7 +186,7 @@ function InsightCard({ p }) {
 // 10. Final CTA
 function FinalCTA() {
   return (
-    <section id="cta" style={{ padding: '96px 40px', background: 'var(--grad-hero)', color: '#fff', position: 'relative', overflow: 'hidden' }}>
+    <section id="cta" style={{ padding: '96px clamp(16px, 4vw, 40px)', background: 'var(--grad-hero)', color: '#fff', position: 'relative', overflow: 'hidden' }}>
       <div style={{ maxWidth: 960, margin: '0 auto', position: 'relative', textAlign: 'center' }}>
         <SectionEyebrow color="var(--brand-accent-500)">Talk to an expert</SectionEyebrow>
         <h2 style={{

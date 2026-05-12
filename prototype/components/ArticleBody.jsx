@@ -19,11 +19,22 @@
  * (Sanity field name: `body`); render via @portabletext/react.
  */
 
+// Defensive: detect "Section content in development" stubs that the prior
+// in <Pending> instead.
+function isPendingSection(s) {
+  if (!s) return false;
+  if (s.pending === true) return true;
+  if (!Array.isArray(s.paragraphs) || s.paragraphs.length === 0) return true;
+  return s.paragraphs.every(
+    (p) => typeof p === 'string' && /Section content in development|TBD|coming soon/i.test(p)
+  );
+}
+
 function ArticleBody({ sections }) {
   if (!Array.isArray(sections) || sections.length === 0) return null;
   return (
     <article style={{
-      maxWidth: 720,
+      maxWidth: 1280,
       margin: '0 auto',
       padding: '0 clamp(24px, 6vw, 96px) 64px'
     }}>
@@ -40,7 +51,14 @@ function ArticleBody({ sections }) {
               {s.heading}
             </h2>
           )}
-          {Array.isArray(s.paragraphs) && s.paragraphs.map((p, j) => (
+          {isPendingSection(s) ? (
+            typeof window !== 'undefined' && window.Pending
+              ? <Pending
+                  label={s.pendingLabel || 'This section is being written by the article author and reviewed under PITL.'}
+                  note={s.pendingNote || 'Subscribe below to be notified when the full article ships.'} />
+              : null
+          ) : (
+            Array.isArray(s.paragraphs) && s.paragraphs.map((p, j) => (
             <p key={j} style={{
               fontSize: 17,
               lineHeight: 1.7,
@@ -49,8 +67,8 @@ function ArticleBody({ sections }) {
             }}>
               {p}
             </p>
-          ))}
-          {s.evidence && Array.isArray(s.evidence.items) && s.evidence.items.length > 0 && (
+          )))}
+          {!isPendingSection(s) && s.evidence && Array.isArray(s.evidence.items) && s.evidence.items.length > 0 && (
             <div style={{ margin: '24px 0 0', padding: 0 }}>
               {/* Inline lightweight evidence list (not the full EvidenceList component
                   which is full-width section-level). */}

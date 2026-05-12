@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>G2 batch overflow scan</title>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html,body{margin:0;padding:0;background:#111;color:#eee;font:13px/1.4 system-ui}
+  #log{padding:10px;font-family:ui-monospace,monospace;white-space:pre;max-height:60vh;overflow:auto;border-bottom:1px solid #333}
+  #stage{padding:8px;background:#222}
+  iframe{display:block;border:0;background:#fff}
+  .ok{color:#9f9}.fail{color:#f88}.pending{color:#fc6}
+  #status{padding:6px 10px;background:#222;border-bottom:1px solid #333;font-family:ui-monospace,monospace}
+</style>
+</head>
+<body>
+<div id="status">G2 batch — initializing…</div>
+<div id="log"></div>
+<div id="stage"><iframe id="f"></iframe></div>
+<script>
+(function(){
+  const PAGES = [
+    '/index.html',
+    '/ai-platform.html',
+    '/about.html',
+    '/contact.html',
+    '/case-studies/index.html',
+    '/case-studies/entering-china-evidence-hcp.html',
+    '/case-studies/entering-china-localized-content.html',
+    '/case-studies/going-global-fda-evidence-bridge.html',
+    '/insights/index.html',
+    '/insights/slug-template.html',
+    '/pilots/china-evidence-sprint.html',
+    '/pilots/fda-evidence-gap-diagnostic.html',
+    '/legal/disclosures.html',
+    '/legal/privacy.html',
+    '/legal/terms.html',
+    '/services/other-engagements.html',
+    '/solutions/cross-border-medical-content-sprint.html',
+    '/solutions/entering-china.html',
+    '/solutions/going-global-us.html',
+    '/solutions/medical-communications.html',
+    '/solutions/medical-evidence.html',
+    '/solutions/physician-engagement.html'
+  ];
+  const WIDTHS = [640, 1024, 1280];
+  const WAIT_BABEL = 3000; // ms after iframe load before measuring
+  const f = document.getElementById('f');
+  const log = document.getElementById('log');
+  const status = document.getElementById('status');
+  window.G2_ALL_RESULTS = [];
+  window.G2_DONE = false;
+  window.G2_PROGRESS = {total: PAGES.length * WIDTHS.length, done: 0};
+
+  function loadIframe(url, w, h){
+    return new Promise((resolve, reject) => {
+      f.style.width = w + 'px';
+      f.style.height = h + 'px';
+      const onLoad = () => {
+        f.removeEventListener('load', onLoad);
+        setTimeout(() => resolve(), WAIT_BABEL);
+      };
+      f.addEventListener('load', onLoad);
+      // cache-bust to make sure each navigation is fresh
+      f.src = url + (url.includes('?')?'&':'?') + '_t=' + Date.now();
+      setTimeout(() => reject(new Error('iframe load timeout')), 15000);
+    });
+  }
+
+  function measure(url, w){
+    try{
+      const doc = f.contentDocument;
+      const html = doc.documentElement;
+      const body = doc.body;
+      const sw = html.scrollWidth;
+      const cw = html.clientWidth;
+      const bw = body ? body.scrollWidth : 0;
+      const iw = f.contentWindow.innerWidth;
+      const overflow = sw > w + 1;
+      // find largest offending element if overflow
+      let offender = null;
+      if (overflow) {
+        const all = doc.querySelectorAll('*');
+        let maxRight = w;
+        for (const el of all) {
+          try{
+            const r = el.getBoundingClientRect();
+            if (r.right > maxRight + 1) {
+              maxRight = r.right;
+              offender = {
+                tag: el.tagName.toLowerCase(),
+                cls: (el.className && typeof el.className === 'string') ? el.className.slice(0, 80) : '',
+                id: el.id || '',
+                right: Math.round(r.right),
+                width: Math.round(r.width)
+              };
+            }
+          }catch(e){}
+        }
+      }
+      return {url, w, sw, cw, bw, iw, overflow, offender, title: doc.title};
+    }catch(e){
+      return {url, w, error: String(e)};
+    }
+  }
+
+  async function run(){
+    for (const url of PAGES) {
+      for (const w of WIDTHS) {
+        status.textContent = `[${window.G2_PROGRESS.done+1}/${window.G2_PROGRESS.total}] ${url} @ ${w}px`;
+        try{
+          await loadIframe(url, w, 900);
+          const r = measure(url, w);
+          window.G2_ALL_RESULTS.push(r);
+          const cls = r.error ? 'fail' : (r.overflow ? 'fail' : 'ok');
+          const tag = r.error ? 'ERR' : (r.overflow ? 'FAIL' : 'PASS');
+          const off = r.offender ? ` <${r.offender.tag}.${r.offender.cls.split(' ')[0]||''}#${r.offender.id} right=${r.offender.right}>` : '';
+          const line = document.createElement('div');
+          line.className = cls;
+          line.textContent = `${tag} ${url.padEnd(60)} w=${w} sw=${r.sw||'-'}${off}`;
+          log.appendChild(line);
+        }catch(e){
+          window.G2_ALL_RESULTS.push({url, w, error: String(e)});
+          const line = document.createElement('div');
+          line.className = 'fail';
+          line.textContent = `ERR  ${url} w=${w} ${e}`;
+          log.appendChild(line);
+        }
+        window.G2_PROGRESS.done++;
+      }
+    }
+    window.G2_DONE = true;
+    status.textContent = `G2 batch DONE — ${window.G2_ALL_RESULTS.filter(r=>!r.overflow && !r.error).length}/${window.G2_ALL_RESULTS.length} PASS`;
+  }
+  run();
+})();
+</script>
+</body>
+</html>

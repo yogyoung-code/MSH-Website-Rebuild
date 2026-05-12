@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MedSci Healthcare · Homepage Mockup v0.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- Anthropic Serif (primary) + Lora/Source Serif 4 fallbacks + Inter for UI labels -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+<style>
+  /* Anthropic Serif — proprietary webfont; loaded from Anthropic CDN if reachable, otherwise falls back to Lora/Source Serif 4/Georgia */
+  @font-face {
+    font-family: 'Anthropic Serif';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: local('Anthropic Serif'), local('AnthropicSerif');
+  }
+</style>
+<style>
+/* ============ Design Tokens ============ */
+:root {
+  /* Brand palette · derived from real Logo SVG (#001a51 / #005aa4 / #00aedb) */
+  --primary-900: #001037;
+  --primary-700: #001a51;   /* Logo navy */
+  --primary-500: #005aa4;   /* Logo wordmark blue */
+  --primary-300: #7fb8e3;
+  --primary-100: #e4f2fc;
+
+  --accent-700: #0088b0;
+  --accent-500: #00aedb;    /* Logo cyan (AI accent) */
+  --accent-100: #d6f1f9;
+
+  /* Green demoted to functional success only (per VI v1.1) */
+  --success-500: #2E9F82;
+  --success-100: #E6F4EF;
+
+  --n-900: #0F172A;
+  --n-700: #334155;
+  --n-500: #64748B;
+  --n-300: #CBD5E1;
+  --n-200: #E2E8F0;
+  --n-100: #F1F5F9;
+  --n-50: #F8FAFC;
+  --white: #FFFFFF;
+
+  --warning-100: #FEF3C7;
+  --warning-700: #92400E;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+
+  --shadow-xs: 0 1px 2px rgba(15,23,42,0.04);
+  --shadow-sm: 0 2px 4px rgba(15,23,42,0.06);
+  --shadow-md: 0 4px 12px rgba(15,23,42,0.08);
+  --shadow-lg: 0 12px 32px rgba(10,37,64,0.12);
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  /* Default font: Anthropic Serif → Georgia → Source Serif 4 */
+  font-family: 'Anthropic Serif', Georgia, 'Source Serif 4', 'Source Serif Pro', serif;
+  color: var(--n-900);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+/* Display headings share the same serif for a coherent wordmark-echoing look */
+.display-xl, .display-l, .h1, .h2 { font-family: 'Anthropic Serif', Georgia, 'Source Serif 4', serif; font-weight: 600; letter-spacing: -0.01em; }
+/* UI labels, buttons, eyebrows, tags, nav and data-dense chrome remain Sans for legibility */
+.eyebrow, .tag, .chip, .nav-link, .btn, .metric-label, .source, .badge, button, input, select, textarea, .kpi-label, .footer-meta { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+@media (max-width: 1024px) { .container { padding: 0 40px; } }
+@media (max-width: 640px) { .container { padding: 0 20px; } }
+
+/* ============ Typography ============ */
+.display-xl { font-size: 72px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
+.display-l { font-size: 56px; line-height: 1.15; letter-spacing: -0.015em; font-weight: 700; }
+.h1 { font-size: 40px; line-height: 1.2; letter-spacing: -0.01em; font-weight: 700; }
+.h2 { font-size: 32px; line-height: 1.25; letter-spacing: -0.005em; font-weight: 700; }
+.h3 { font-size: 24px; line-height: 1.35; font-weight: 600; }
+.h4 { font-size: 20px; line-height: 1.4; font-weight: 600; }
+.body-l { font-size: 18px; line-height: 1.6; }
+.body { font-size: 16px; line-height: 1.6; }
+.body-s { font-size: 14px; line-height: 1.5; }
+.caption { font-size: 12px; line-height: 1.4; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; }
+.muted { color: var(--n-500); }
+.strong { font-weight: 600; }
+
+@media (max-width: 768px) {
+  .display-xl { font-size: 44px; }
+  .display-l { font-size: 36px; }
+  .h1 { font-size: 32px; }
+  .h2 { font-size: 26px; }
+  .h3 { font-size: 20px; }
+}
+
+/* ============ Buttons ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 200ms var(--ease);
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: var(--primary-700);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background: var(--primary-900);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--primary-700);
+  border: 1px solid var(--primary-700);
+}
+.btn-secondary:hover {
+  background: var(--primary-100);
+}
+.btn-ghost {
+  color: var(--primary-500);
+  padding: 12px 8px;
+  background: transparent;
+}
+.btn-ghost:hover {
+  color: var(--primary-700);
+  text-decoration: underline;
+}
+.btn-lg { padding: 16px 32px; font-size: 16px; }
+.btn .arrow { transition: transform 200ms var(--ease); }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* ============ Top Nav ============ */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--n-200);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+.logo-img { height: 36px; width: auto; display: block; }
+.footer-brand .logo-img { height: 40px; filter: brightness(0) invert(1); opacity: 0.95; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--n-700);
+  transition: color 150ms;
+  padding: 8px 0;
+  position: relative;
+}
+.nav-links a:hover { color: var(--primary-700); }
+.nav-cta { display: flex; gap: 12px; align-items: center; }
+.lang-switch {
+  font-size: 13px;
+  color: var(--n-500);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--n-200);
+  cursor: pointer;
+}
+.lang-switch:hover { background: var(--n-50); }
+
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  padding: 96px 0 128px;
+  background: linear-gradient(180deg, var(--white) 0%, var(--primary-100) 100%);
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 45%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 80% 30%, rgba(0,198,184,0.12), transparent 60%),
+    radial-gradient(circle at 60% 70%, rgba(30,110,140,0.08), transparent 60%);
+  pointer-events: none;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--white);
+  border: 1px solid var(--n-200);
+  border-radius: 999px;
+  color: var(--primary-500);
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-xs);
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent-500);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.hero-subslogan {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--primary-500);
+  letter-spacing: 0.01em;
+  margin-bottom: 16px;
+}
+.hero-subslogan .dot {
+  display: inline-block;
+  margin: 0 10px;
+  color: var(--accent-500);
+}
+.hero h1 {
+  color: var(--primary-900);
+  margin-bottom: 24px;
+}
+.hero h1 .highlight {
+  color: var(--primary-700);
+  background: linear-gradient(120deg, transparent 0%, transparent 50%, rgba(0,198,184,0.22) 50%, rgba(0,198,184,0.22) 100%);
+  padding: 0 4px;
+}
+.hero .subhead {
+  color: var(--n-700);
+  margin-bottom: 40px;
+  max-width: 640px;
+}
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hero-visual {
+  position: relative;
+}
+.hero-card {
+  background: var(--white);
+  border: 1px solid var(--n-200);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 16px;
+}
+.hero-card .label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--n-500);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.hero-card .metric-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.hero-card .metric {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--primary-700);
+  letter-spacing: -0.02em;
+}
+.hero-card .metric-unit {
+  font-size: 16px;
+  color: var(--n-500);
+  font-weight: 500;
+}
+.hero-card .metric-desc {
+  font-size: 13px;
+  color: var(--n-700);
+}
+.hero-card .source {
+  font-size: 11px;
+  color: var(--n-500);
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--n-100);
+}
+.hero-card-row { display: flex; gap: 12px; }
+.hero-card-sm {
+  flex: 1;
+  background: var(--primary-700);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+.hero-card-sm .label { color: rgba(255,255,255,0.6); }
+.hero-card-sm .metric { color: var(--white); font-size: 28px; }
+.hero-card-sm.variant {
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+}
+
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero { padding: 64px 0 80px; }
+}
+
+/* ============ Section Header ============ */
+.section {
+  padding: 96px 0;
+}
+.section-header {
+  max-width: 720px;
+  margin-bottom: 64px;
+}
+.section-eyebrow {
+  color: var(--primary-500);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section h2 { color: var(--primary-900); margin-bottom: 16px; }
+.section .intro { color: var(--n-700); }
+
+/* ============ Quick Start Offers (§1.2) ============ */
+.quickstart { background: var(--n-50); border-top: 1px solid var(--n-200); border-bottom: 1px solid var(--n-200); }
+.cards-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 960px) { .cards-3 { grid-template-columns: 1fr; } }
+
+.pilot-card {
+  background: var(--white);
+  border: 1px solid var(--n-200);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: all 200ms var(--ease);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.pilot-card:hover {
+  border-color: var(--primary-300);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.pilot-card .pilot-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--primary-500);
+  background: var(--accent-100);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  width: fit-content;
+  text-transform: uppercase;
+}
+.pilot-card h3 { color: var(--primary-900); margin-bottom: 16px; }
+.pilot-card .desc { color: var(--n-700); margin-bottom: 24px; flex-grow: 1; }
+.pilot-card .what-you-get {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--n-500);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.pilot-card ul {
+  list-style: none;
+  margin-bottom: 24px;
+}
+.pilot-card li {
+  font-size: 14px;
+  color: var(--n-700);
+  padding: 6px 0 6px 22px;
+  position: relative;
+  line-height: 1.5;
+}
+.pilot-card li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 13px;
+  width: 14px; height: 14px;
+  background:
+    linear-gradient(var(--accent-500), var(--accent-500)) 2px 6px / 10px 2px no-repeat,
+    linear-gradient(var(--accent-500), var(--accent-500)) 6px 2px / 2px 10px no-repeat;
+  border-radius: 4px;
+  opacity: 0;
+}
+.pilot-card li::after {
+  content: '✓';
+  position: absolute;
+  left: 0; top: 5px;
+  width: 16px; height: 16px;
+  color: var(--accent-500);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+.pilot-card .cta {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary-700);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 200ms var(--ease);
+}
+.pilot-card .cta:hover { gap: 12px; }
+
+/* ============ Two Primary Paths (§1.3) ============ */
+.paths {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+@media (max-width: 960px) { .paths { grid-template-columns: 1fr; } }
+.path {
+  background: var(--white);
+  border: 1px solid var(--n-200);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all 250ms var(--ease);
+}
+.path:hover {
+  border-color: var(--primary-300);
+  box-shadow: var(--shadow-md);
+}
+.path-head {
+  padding: 40px 40px 24px;
+  position: relative;
+  background: linear-gradient(135deg, var(--primary-100) 0%, var(--white) 100%);
+  border-bottom: 1px solid var(--n-200);
+}
+.path-body { padding: 32px 40px 40px; }
+.path-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary-500);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.path-eyebrow .arrow-icon {
+  width: 18px; height: 18px;
+  background: var(--accent-500);
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+}
+.path-eyebrow .arrow-icon::after {
+  content: '→';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+}
+.path h3 {
+  color: var(--primary-900);
+  margin-bottom: 12px;
+  font-size: 28px;
+}
+.path .path-head p { color: var(--n-700); }
+.path-body p { color: var(--n-700); margin-bottom: 24px; }
+.path .cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--primary-700);
+  padding-top: 12px;
+  border-top: 1px solid var(--n-200);
+}
+
+/* ============ Why MedSci (§1.4) ============ */
+.why { background: var(--primary-900); color: var(--white); }
+.why h2 { color: var(--white); }
+.why .intro { color: rgba(255,255,255,0.7); }
+.why .section-eyebrow { color: var(--accent-500); }
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+@media (max-width: 960px) { .why-grid { grid-template-columns: 1fr; } }
+.why-block {
+  padding: 32px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  transition: all 300ms var(--ease);
+}
+.why-block:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: var(--accent-500);
+}
+.why-block .num {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-500);
+  margin-bottom: 20px;
+}
+.why-block h3 { color: var(--white); margin-bottom: 12px; }
+.why-block p { color: rgba(255,255,255,0.7); }
+
+/* ============ Case Studies (§1.5) ============ */
+.cases-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 16px; }
+.cases-header h2 { margin-bottom: 12px; }
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 1024px) { .case-grid { grid-template-columns: 1fr; } }
+.case-card {
+  background: var(--white);
+  border: 1px solid var(--n-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 200ms var(--ease);
+}
+.case-card:hover {
+  border-color: var(--primary-300);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.case-head {
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--n-100);
+}
+.case-category {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary-500);
+  margin-bottom: 12px;
+}
+.case-head h3 {
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--primary-900);
+}
+.case-body { padding: 24px 28px; flex-grow: 1; }
+.case-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--n-500);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.case-body .challenge { color: var(--n-700); font-size: 14px; margin-bottom: 20px; }
+.case-metrics {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  background: var(--n-50);
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+.case-metric {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 13px;
+}
+.case-metric .num {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary-700);
+  line-height: 1;
+  min-width: 80px;
+  letter-spacing: -0.01em;
+}
+.case-metric .txt { color: var(--n-700); }
+.case-metric sup {
+  font-size: 10px;
+  color: var(--n-500);
+  cursor: help;
+  margin-left: 2px;
+  font-weight: 500;
+}
+.case-foot {
+  padding: 16px 28px;
+  border-top: 1px solid var(--n-100);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.case-foot .cta {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary-700);
+}
+.case-foot .meta {
+  font-size: 11px;
+  color: var(--n-500);
+  font-weight: 500;
+}
+
+/* ============ AI-Enabled Delivery (§1.6) ============ */
+.ai-delivery {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(0,198,184,0.06), transparent 50%),
+    linear-gradient(180deg, var(--white), var(--n-50));
+}
+.ai-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+@media (max-width: 1024px) { .ai-grid { grid-template-columns: 1fr; } }
+.ai-sub-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+.ai-sub {
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid var(--n-200);
+  border-radius: var(--radius-md);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 200ms var(--ease);
+}
+.ai-sub:hover {
+  border-color: var(--accent-500);
+  box-shadow: var(--shadow-sm);
+}
+.ai-sub .icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--accent-100);
+  color: var(--primary-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+.ai-sub h4 { color: var(--primary-900); margin-bottom: 4px; font-size: 16px; font-weight: 600; }
+.ai-sub p { color: var(--n-700); font-size: 14px; line-height: 1.5; }
+
+.ai-visual {
+  background: var(--primary-900);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.ai-visual::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0,198,184,0.25), transparent 60%);
+}
+.flow-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255,255,255,0.04);
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+.flow-item .step {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--accent-500);
+  color: var(--primary-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.flow-item .label { flex: 1; font-size: 14px; font-weight: 500; }
+.flow-item .tag {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.8);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.flow-arrow { text-align: center; color: var(--accent-500); font-size: 14px; line-height: 1; padding: 4px 0; }
+
+/* ============ Trust Bar (§1.7) ============ */
+.trust {
+  background: var(--white);
+  border-top: 1px solid var(--n-200);
+  border-bottom: 1px solid var(--n-200);
+  padding: 80px 0;
+}
+.trust h3 { text-align: center; color: var(--n-700); margin-bottom: 48px; font-weight: 500; font-size: 18px; }
+.trust-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+@media (max-width: 768px) { .trust-metrics { grid-template-columns: repeat(2, 1fr); } }
+.trust-metric {
+  text-align: center;
+  padding: 24px 16px;
+  border-right: 1px solid var(--n-200);
+}
+.trust-metric:last-child { border-right: none; }
+.trust-metric .num {
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--primary-700);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.trust-metric .label {
+  font-size: 13px;
+  color: var(--n-700);
+  line-height: 1.4;
+}
+.trust-metric .source {
+  font-size: 10px;
+  color: var(--n-500);
+  margin-top: 6px;
+  font-weight: 500;
+}
+.trust-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+.logo-placeholder {
+  height: 28px;
+  padding: 0 16px;
+  border: 1px dashed var(--n-300);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: var(--n-500);
+  letter-spacing: 0.02em;
+}
+
+/* ============ Insights (§1.8) ============ */
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 960px) { .insights-grid { grid-template-columns: 1fr; } }
+.insight-card {
+  background: var(--white);
+  border: 1px solid var(--n-200);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: all 200ms var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+.insight-card:hover {
+  border-color: var(--primary-300);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+.insight-topic {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary-500);
+  margin-bottom: 16px;
+}
+.insight-card h3 {
+  font-size: 20px;
+  line-height: 1.35;
+  color: var(--primary-900);
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+.insight-meta {
+  font-size: 12px;
+  color: var(--n-500);
+  padding-top: 16px;
+  border-top: 1px solid var(--n-100);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ============ Final CTA (§1.9) ============ */
+.final-cta {
+  background:
+    linear-gradient(135deg, var(--primary-900) 0%, var(--primary-700) 50%, var(--primary-500) 100%);
+  color: var(--white);
+  padding: 96px 0;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 50%, rgba(0,198,184,0.18), transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(127,167,214,0.15), transparent 40%);
+}
+.final-cta .container { position: relative; z-index: 1; }
+.final-cta .content { max-width: 720px; }
+.final-cta h2 { color: var(--white); margin-bottom: 20px; }
+.final-cta p { color: rgba(255,255,255,0.8); margin-bottom: 36px; max-width: 560px; }
+.final-cta .btn-primary {
+  background: var(--accent-500);
+  color: var(--primary-900);
+}
+.final-cta .btn-primary:hover {
+  background: var(--white);
+}
+.final-cta .btn-secondary {
+  color: var(--white);
+  border-color: rgba(255,255,255,0.3);
+}
+.final-cta .btn-secondary:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: var(--white);
+}
+
+/* ============ Footer ============ */
+.footer {
+  background: var(--primary-900);
+  color: rgba(255,255,255,0.6);
+  padding: 64px 0 32px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+@media (max-width: 960px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+.footer h5 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.footer ul { list-style: none; }
+.footer li { margin-bottom: 10px; }
+.footer a {
+  color: rgba(255,255,255,0.65);
+  font-size: 14px;
+  transition: color 150ms;
+}
+.footer a:hover { color: var(--white); }
+.footer .muted-link { color: rgba(255,255,255,0.35); }
+.footer-brand .logo { color: var(--white); margin-bottom: 16px; }
+.footer-brand p { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.55); max-width: 280px; }
+.footer-bottom {
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ============ Mockup Notice ============ */
+.mockup-ribbon {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  background: var(--warning-100);
+  color: var(--warning-700);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 1000;
+  box-shadow: var(--shadow-md);
+  border: 1px solid #FCD34D;
+}
+
+/* ============ Hero · Right-Column Deliverables Card ============ */
+.hero-services-card {
+  background: linear-gradient(180deg, var(--white), var(--n-50));
+  border: 1px solid var(--n-200);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+}
+.hero-services-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--n-200);
+  margin-bottom: 4px;
+}
+.hero-services-title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--n-500);
+}
+.hero-services-badge {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-500);
+  background: var(--accent-100);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+.hero-service-row {
+  display: block;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--n-200);
+  transition: padding-left 180ms var(--ease);
+}
+.hero-service-row:last-of-type { border-bottom: none; }
+.hero-service-row:hover { padding-left: 6px; }
+.hero-service-row:hover .hero-service-title { color: var(--primary-500); }
+.hero-service-num {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--accent-500);
+  margin-bottom: 4px;
+}
+.hero-service-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--primary-900);
+  margin-bottom: 4px;
+  transition: color 180ms var(--ease);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hero-service-title .arrow {
+  color: var(--primary-500);
+  font-size: 14px;
+}
+.hero-service-items {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12.5px;
+  color: var(--n-500);
+  line-height: 1.4;
+}
+.hero-services-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--n-200);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  color: var(--n-500);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.hero-services-foot strong { color: var(--primary-700); font-weight: 700; }
+
+/* ============ Services — What We Deliver ============ */
+.services { background: var(--n-50); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media (max-width: 1024px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { .services-grid { grid-template-columns: 1fr; } }
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--n-200);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 200ms var(--ease), transform 200ms var(--ease);
+}
+.service-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.service-num {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary-500);
+  letter-spacing: 0.14em;
+  margin-bottom: 14px;
+}
+.service-card h3 {
+  font-size: 22px;
+  color: var(--primary-900);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+.service-desc {
+  font-size: 15px;
+  color: var(--n-700);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.service-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+  flex-grow: 1;
+}
+.service-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--n-900);
+  line-height: 1.45;
+}
+.service-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 9px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent-500);
+}
+.service-cta {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary-500);
+  cursor: pointer;
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.service-cta:hover { color: var(--primary-700); }
+/* AI card — dark variant pointing into #ai */
+.service-card--ai {
+  background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-700) 100%);
+  color: var(--white);
+  border-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+.service-card--ai::after {
+  content: '';
+  position: absolute;
+  inset: -40% -40% auto auto;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,174,219,0.35), transparent 70%);
+}
+.service-card--ai .service-num { color: var(--accent-500); }
+.service-card--ai h3 { color: var(--white); }
+.service-card--ai .service-desc { color: rgba(255,255,255,0.78); }
+.service-card--ai .service-cta { color: var(--accent-500); }
+.service-card--ai .service-cta:hover { color: var(--white); }
+.service-card--ai .ai-pill {
+  display: inline-block;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent-500);
+  background: rgba(0,174,219,0.12);
+  border: 1px solid rgba(0,174,219,0.35);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-top: auto;
+  margin-bottom: 16px;
+  align-self: flex-start;
+}
+</style>
+</head>
+<body>
+
+<!-- ============ TOP NAV ============ -->
+<header class="topbar">
+  <div class="container nav">
+    <a class="logo" href="#" aria-label="MedSci Healthcare — Home">
+      <img class="logo-img" src="assets/logo/medsci-healthcare-logo.svg" alt="MedSci Healthcare — Improving Healthcare Quality" />
+    </a>
+    <nav class="nav-links">
+      <a href="#services">Solutions</a>
+      <a href="#cases">Case Studies</a>
+      <a href="#ai">AI Platform</a>
+      <a href="#insights">Insights</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="btn btn-primary">Talk to an Expert</button>
+      <button class="lang-switch">EN ▾</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 1.1 HERO ============ -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-eyebrow">2415.HK · Cross-Border Medical Evidence & Communication</div>
+      <div class="hero-subslogan">AI-Enabled.<span class="dot">·</span>Physician-Verified.<span class="dot">·</span>Globally Ready.</div>
+      <h1 class="display-l">
+        Medical evidence and physician engagement,
+        <span class="highlight">across the U.S. and China.</span>
+      </h1>
+      <p class="body-l subhead">
+        Whether you are entering China or bringing a Chinese innovation to the U.S., MedSci helps you build the evidence, medical content, and physician engagement needed to move faster — powered by 3.33M+ physicians and AI-enabled delivery.
+      </p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary btn-lg">
+          Entering China
+          <span class="arrow">→</span>
+        </button>
+        <button class="btn btn-primary btn-lg" style="background: var(--primary-500);">
+          Going Global (US)
+          <span class="arrow">→</span>
+        </button>
+        <button class="btn btn-ghost btn-lg">Talk to an Expert</button>
+      </div>
+
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-services-card">
+        <div class="hero-services-head">
+          <span class="hero-services-title">WHAT WE DELIVER</span>
+          <span class="hero-services-badge">4 BLOCKS</span>
+        </div>
+
+        <a class="hero-service-row" href="#services">
+          <div class="hero-service-num">01 · EVIDENCE</div>
+          <div class="hero-service-title">Medical Evidence <span class="arrow">→</span></div>
+          <div class="hero-service-items">RWE Studies · Registry Data · Literature Review · HEOR</div>
+        </a>
+
+        <a class="hero-service-row" href="#services">
+          <div class="hero-service-num">02 · PHYSICIANS</div>
+          <div class="hero-service-title">Physician Engagement <span class="arrow">→</span></div>
+          <div class="hero-service-items">3.33M+ Network · Advisory Boards · KOL Mapping · CME</div>
+        </a>
+
+        <a class="hero-service-row" href="#services">
+          <div class="hero-service-num">03 · COMMUNICATIONS</div>
+          <div class="hero-service-title">Medical Communications <span class="arrow">→</span></div>
+          <div class="hero-service-items">Publications · Congress · Slide Decks · Digital Content</div>
+        </a>
+
+        <a class="hero-service-row" href="#ai">
+          <div class="hero-service-num">04 · PLATFORM</div>
+          <div class="hero-service-title">AI-Enabled Platform <span class="arrow">→</span></div>
+          <div class="hero-service-items">AI Drafting · PITL Review · Compliance Scan · Bilingual QC</div>
+        </a>
+
+        <div class="hero-services-foot">
+          <span><strong>3.33M+</strong> physicians</span>
+          <span><strong>AI + PITL</strong></span>
+          <span><strong>2415.HK</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1.2 QUICK START OFFERS ============ -->
+<section class="section quickstart" id="pilots">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Quick Start Offers</div>
+      <h2 class="h1">Start with a focused pilot, not a full-scale engagement</h2>
+      <p class="body-l intro">
+        Many teams do not need a large engagement to get started. They need a clear first step, a defined scope, and a decision-ready output. Our pilot offers are designed to help clients move quickly while reducing ambiguity.
+      </p>
+    </div>
+
+    <div class="cards-3">
+      <div class="pilot-card">
+        <span class="pilot-tag">30-Day Pilot</span>
+        <h3>China Evidence Sprint</h3>
+        <p class="desc">A focused starting point for global healthcare companies preparing for China evidence strategy, physician engagement, and localized medical communication.</p>
+        <div class="what-you-get">What you get</div>
+        <ul>
+          <li>China evidence gap review</li>
+          <li>Target HCP hypothesis</li>
+          <li>Recommended next-step plan and budget view</li>
+        </ul>
+        <a class="cta">See the Sprint <span>→</span></a>
+      </div>
+
+      <div class="pilot-card">
+        <span class="pilot-tag">30-Day Pilot</span>
+        <h3>FDA Evidence Gap Diagnostic</h3>
+        <p class="desc">A structured first step for Chinese innovators preparing for FDA-facing evidence bridge, publication planning, and U.S.-facing medical communication.</p>
+        <div class="what-you-get">What you get</div>
+        <ul>
+          <li>Evidence gap assessment</li>
+          <li>Applicability / bridging review</li>
+          <li>Recommended publication and next-step plan</li>
+        </ul>
+        <a class="cta">See the Diagnostic <span>→</span></a>
+      </div>
+
+      <div class="pilot-card">
+        <span class="pilot-tag">2–3 Week Sprint</span>
+        <h3>Cross-Border Medical Content Sprint</h3>
+        <p class="desc">A lightweight starting point for cross-border healthcare teams that need medically reviewed English–Chinese content, physician communication, or publication-ready drafts.</p>
+        <div class="what-you-get">What you get</div>
+        <ul>
+          <li>Scoped medical content review and restructuring</li>
+          <li>Expert-reviewed English or Chinese assets</li>
+          <li>Cross-border audience adaptation recommendations</li>
+        </ul>
+        <a class="cta">Explore Quick Start <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1.3 TWO PRIMARY PATHS ============ -->
+<section class="section" id="paths">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Two Primary Paths</div>
+      <h2 class="h1">Two primary ways we help healthcare innovators move across markets</h2>
+    </div>
+
+    <div class="paths">
+      <div class="path">
+        <div class="path-head">
+          <div class="path-eyebrow"><span class="arrow-icon"></span>Entering China</div>
+          <h3>For global biotech, medtech, pharma, and selected healthcare brands</h3>
+          <p class="body">That need China-ready evidence, physician engagement, and localized medical communication.</p>
+        </div>
+        <div class="path-body">
+          <p>We help global healthcare teams localize scientific communication, develop China-facing evidence strategies, and create physician-ready materials that fit the local clinical and commercial context.</p>
+          <a class="cta-link">Explore Entering China <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="path">
+        <div class="path-head" style="background: linear-gradient(135deg, var(--accent-100), var(--white));">
+          <div class="path-eyebrow" style="color: var(--primary-500);"><span class="arrow-icon" style="background: var(--accent-500);"></span>Going Global (US)</div>
+          <h3>For Chinese biotech, medtech, and selected innovators</h3>
+          <p class="body">That need evidence bridge support, U.S.-facing publication strategy, and English-language medical communication.</p>
+        </div>
+        <div class="path-body">
+          <p>We help innovation teams translate China-generated data into more structured, publication-ready, and U.S.-facing evidence and communication packages.</p>
+          <a class="cta-link">Explore Going Global <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES · What We Deliver ============ -->
+<section class="section services" id="services">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">What We Deliver</div>
+      <h2 class="h1">Four business blocks. Explicit deliverables.</h2>
+      <p class="body-l intro">Every engagement draws from a defined catalog of evidence, physician, and communication deliverables — tied together by an AI-enabled, physician-verified platform.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-num">01 · EVIDENCE</div>
+        <h3>Medical Evidence</h3>
+        <p class="service-desc">Evidence packages that stand up to regulatory, clinical, and investor scrutiny.</p>
+        <ul class="service-list">
+          <li>Real-World Evidence (RWE) Studies</li>
+          <li>Registry Data &amp; Chart Review</li>
+          <li>Literature Review &amp; Meta-Analysis</li>
+          <li>Health Economics &amp; Outcomes Research</li>
+        </ul>
+        <a class="service-cta">Explore Evidence <span>→</span></a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">02 · PHYSICIANS</div>
+        <h3>Physician Engagement</h3>
+        <p class="service-desc">Direct access to China's largest physician community, structured for every research stage.</p>
+        <ul class="service-list">
+          <li>3.33M+ Registered Physician Network</li>
+          <li>Advisory Boards &amp; KOL Mapping</li>
+          <li>Medical Education &amp; CME Programs</li>
+          <li>Physician Surveys &amp; Insight Panels</li>
+        </ul>
+        <a class="service-cta">Explore Engagement <span>→</span></a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03 · COMMUNICATIONS</div>
+        <h3>Medical Communications</h3>
+        <p class="service-desc">Publication, education, and meeting content built for bilingual clinical audiences.</p>
+        <ul class="service-list">
+          <li>Peer-Reviewed Publications</li>
+          <li>Congress &amp; Symposium Support</li>
+          <li>Slide Decks &amp; Training Curricula</li>
+          <li>Digital &amp; Multichannel Content</li>
+        </ul>
+        <a class="service-cta">Explore Communications <span>→</span></a>
+      </div>
+
+      <div class="service-card service-card--ai">
+        <div class="service-num">04 · PLATFORM</div>
+        <h3>AI-Enabled Platform</h3>
+        <p class="service-desc">AI-assisted, physician-verified workflows that power the three blocks above.</p>
+        <span class="ai-pill">See §AI for detail</span>
+        <a class="service-cta" href="#ai">See AI-Enabled Delivery <span>→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1.4 WHY MEDSCI ============ -->
+<section class="section why">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Why MedSci</div>
+      <h2 class="h1">Three reasons healthcare teams choose MedSci</h2>
+      <p class="body-l intro">A combination few teams can match: scale, cross-border context, and AI-enabled workflows anchored by physician review.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-block">
+        <div class="num">01</div>
+        <h3>Medical Expertise at Scale</h3>
+        <p>MedSci combines a large physician network with deep experience in medical content, evidence development, and healthcare communication.</p>
+      </div>
+      <div class="why-block">
+        <div class="num">02</div>
+        <h3>Cross-Border Capability</h3>
+        <p>We support healthcare teams working across the U.S. and China with a practical understanding of clinical context, medical language, and market-facing needs.</p>
+      </div>
+      <div class="why-block">
+        <div class="num">03</div>
+        <h3>AI-Enabled, Expert-Validated Delivery</h3>
+        <p>Our workflows combine AI-assisted speed with physician-in-the-loop review, helping clients get more structured and defensible outputs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1.5 CASE STUDIES ============ -->
+<section class="section" id="cases">
+  <div class="container">
+    <div class="cases-header">
+      <div style="max-width: 720px;">
+        <div class="section-eyebrow">Selected Case Studies</div>
+        <h2 class="h1">Selected examples of how we work</h2>
+        <p class="body-l intro">We focus on measurable outcomes, not generic service descriptions. Each engagement is designed to solve a specific evidence, communication, or market-entry problem.</p>
+      </div>
+      <a class="btn btn-secondary">View all case studies <span>→</span></a>
+    </div>
+
+    <div class="case-grid">
+      <article class="case-card">
+        <div class="case-head">
+          <div class="case-category">Entering China · Evidence & HCP</div>
+          <h3>Evidence strategy and physician engagement for a global healthcare company entering China</h3>
+        </div>
+        <div class="case-body">
+          <div class="case-label">Challenge</div>
+          <p class="challenge">A global healthcare company preparing for China market entry needed to clarify its evidence strategy, prioritize HCP outreach, and structure localized communication assets.</p>
+          <div class="case-label">Outcomes</div>
+          <div class="case-metrics">
+            <div class="case-metric"><span class="num">[X+]</span><span class="txt">HCPs reached across [Y] tier-1 centers<sup title="⚑ Placeholder pending">⚑</sup></span></div>
+            <div class="case-metric"><span class="num">[Y]</span><span class="txt">CME modules delivered<sup>⚑</sup></span></div>
+            <div class="case-metric"><span class="num">↓[X%]</span><span class="txt">Timeline to China-ready evidence<sup>⚑</sup></span></div>
+          </div>
+        </div>
+        <div class="case-foot">
+          <a class="cta">Read Case Study →</a>
+          <span class="meta">2025</span>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="case-head">
+          <div class="case-category">Entering China · Localized Content</div>
+          <h3>Physician-ready, localized medical content for Chinese clinical context</h3>
+        </div>
+        <div class="case-body">
+          <div class="case-label">Challenge</div>
+          <p class="challenge">A market-entry effort required physician-ready, localized medical content and evidence-backed commercial materials that would work in the Chinese clinical context.</p>
+          <div class="case-label">Outcomes</div>
+          <div class="case-metrics">
+            <div class="case-metric"><span class="num">[X+]</span><span class="txt">content pieces localized across [Y] therapeutic areas<sup>⚑</sup></span></div>
+            <div class="case-metric"><span class="num">[X%]</span><span class="txt">first-pass physician review approval<sup>⚑</sup></span></div>
+            <div class="case-metric"><span class="num">[X→Y]w</span><span class="txt">content production cycle reduction<sup>⚑</sup></span></div>
+          </div>
+        </div>
+        <div class="case-foot">
+          <a class="cta">Read Case Study →</a>
+          <span class="meta">2025</span>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="case-head">
+          <div class="case-category">Going Global · FDA Bridge</div>
+          <h3>U.S.-facing evidence bridge and publication strategy for a China-based innovator</h3>
+        </div>
+        <div class="case-body">
+          <div class="case-label">Challenge</div>
+          <p class="challenge">A China-based innovator preparing for U.S.-facing scientific visibility needed to assess evidence gaps, structure publication planning, and prepare English-language medical communication.</p>
+          <div class="case-label">Outcomes</div>
+          <div class="case-metrics">
+            <div class="case-metric"><span class="num">[X]</span><span class="txt">manuscripts submitted / [Y] abstracts accepted<sup>⚑</sup></span></div>
+            <div class="case-metric"><span class="num">[X+]</span><span class="txt">U.S. tier-1 medical events covered<sup>⚑</sup></span></div>
+            <div class="case-metric"><span class="num">−[X]mo</span><span class="txt">evidence package readiness ahead of schedule<sup>⚑</sup></span></div>
+          </div>
+        </div>
+        <div class="case-foot">
+          <a class="cta">Read Case Study →</a>
+          <span class="meta">2025</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1.6 AI-ENABLED DELIVERY ============ -->
+<section class="section ai-delivery" id="ai">
+  <div class="container">
+    <div class="ai-grid">
+      <div>
+        <div class="section-eyebrow">AI-Enabled Delivery</div>
+        <h2 class="h1" style="color: var(--primary-900);">Faster, more structured, medically reviewed delivery</h2>
+        <p class="body-l" style="color: var(--n-700); margin-top: 16px;">
+          We do not rely on generic AI alone. MedSci combines AI-assisted workflows with physician-in-the-loop expert review to support faster evidence synthesis, more structured drafting, multilingual adaptation, and medically validated content delivery.
+        </p>
+        <div class="ai-sub-grid">
+          <div class="ai-sub">
+            <div class="icon">01</div>
+            <div>
+              <h4>Faster Evidence Review</h4>
+              <p>Accelerate literature review, evidence extraction, and structured analysis.</p>
+            </div>
+          </div>
+          <div class="ai-sub">
+            <div class="icon">02</div>
+            <div>
+              <h4>AI-Assisted Scientific Drafting</h4>
+              <p>Support faster development of scientific summaries, communication drafts, and structured content outputs.</p>
+            </div>
+          </div>
+          <div class="ai-sub">
+            <div class="icon">03</div>
+            <div>
+              <h4>AI-Enhanced Medical Content Production</h4>
+              <p>Scale medically reviewed content production while maintaining expert oversight.</p>
+            </div>
+          </div>
+        </div>
+        <a class="btn btn-primary" style="margin-top: 32px;">See AI-Enabled Delivery <span>→</span></a>
+      </div>
+
+      <div class="ai-visual">
+        <div style="font-size: 11px; font-weight: 700; color: var(--accent-500); letter-spacing: 0.1em; margin-bottom: 20px; position: relative; z-index: 1;">WORKFLOW · HUMAN IN THE LOOP</div>
+        <div class="flow-item">
+          <div class="step">1</div>
+          <div class="label">Literature ingestion & structured extraction</div>
+          <div class="tag">AI</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-item">
+          <div class="step">2</div>
+          <div class="label">Evidence gap analysis & draft synthesis</div>
+          <div class="tag">AI</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-item" style="background: rgba(0,198,184,0.12); border-left: 3px solid var(--accent-500);">
+          <div class="step">3</div>
+          <div class="label">Physician & medical editor review</div>
+          <div class="tag" style="background: var(--accent-500); color: var(--primary-900);">PITL</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-item">
+          <div class="step">4</div>
+          <div class="label">Publication / communication-ready output</div>
+          <div class="tag">DELIVER</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1.7 TRUST BAR ============ -->
+<section class="trust">
+  <div class="container">
+    <h3>Trusted by healthcare teams working across evidence, communication, and market entry</h3>
+    <div class="trust-metrics">
+      <div class="trust-metric">
+        <div class="num">3.33M+</div>
+        <div class="label">Registered physicians</div>
+        <div class="source">MedSci registry · 2025</div>
+      </div>
+      <div class="trust-metric">
+        <div class="num">Broad</div>
+        <div class="label">Senior doctor reach in China</div>
+        <div class="source">Internal verification · 2025</div>
+      </div>
+      <div class="trust-metric">
+        <div class="num">Cross-Border</div>
+        <div class="label">EN & CN medical content delivery</div>
+        <div class="source">Capability statement</div>
+      </div>
+      <div class="trust-metric">
+        <div class="num">2415.HK</div>
+        <div class="label">Listed entity · Hong Kong Exchange</div>
+        <div class="source">HKEX 2025</div>
+      </div>
+    </div>
+    <div class="trust-logos">
+      <div class="logo-placeholder">Global Top-10 Medtech</div>
+      <div class="logo-placeholder">APAC Biopharma Leader</div>
+      <div class="logo-placeholder">US Innovation Partner</div>
+      <div class="logo-placeholder">Global Healthcare Brand</div>
+      <div class="logo-placeholder">Tier-1 Academic Center</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1.8 INSIGHTS ============ -->
+<section class="section" id="insights">
+  <div class="container">
+    <div class="cases-header">
+      <div style="max-width: 720px;">
+        <div class="section-eyebrow">Insights</div>
+        <h2 class="h1">Insights for teams navigating evidence, communication, and cross-border healthcare growth</h2>
+      </div>
+      <a class="btn btn-secondary">Visit Insights <span>→</span></a>
+    </div>
+
+    <div class="insights-grid">
+      <article class="insight-card">
+        <div class="insight-topic">China RWE</div>
+        <h3>Building a China-ready RWE strategy and physician engagement model</h3>
+        <div class="insight-meta">
+          <span>6 min read</span>
+          <span>Apr 2026</span>
+        </div>
+      </article>
+      <article class="insight-card">
+        <div class="insight-topic">Evidence Bridge · FDA</div>
+        <h3>Translating China-generated data into FDA-facing evidence and publication strategy</h3>
+        <div class="insight-meta">
+          <span>8 min read</span>
+          <span>Mar 2026</span>
+        </div>
+      </article>
+      <article class="insight-card">
+        <div class="insight-topic">Medical Communication</div>
+        <h3>Localization, claims-aware review, and the cost of treating translation as an afterthought</h3>
+        <div class="insight-meta">
+          <span>5 min read</span>
+          <span>Mar 2026</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1.9 FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="container">
+    <div class="content">
+      <div class="section-eyebrow" style="color: var(--accent-500);">Start here</div>
+      <h2 class="h1">Start with a focused pilot or talk to an expert</h2>
+      <p class="body-l">
+        If you are preparing for China market entry, U.S.-facing evidence bridge, or medically reviewed communication support, we can help you define a practical next step.
+      </p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary btn-lg">Book a Pilot <span class="arrow">→</span></button>
+        <button class="btn btn-secondary btn-lg">Talk to an Expert</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <img class="logo-img" src="assets/logo/medsci-healthcare-logo.svg" alt="MedSci Healthcare" />
+        </div>
+        <p>Listed on Hong Kong Stock Exchange · 2415.HK. Cross-border medical evidence, communication, and physician engagement.</p>
+      </div>
+      <div>
+        <h5>Solutions</h5>
+        <ul>
+          <li><a href="#">Entering China</a></li>
+          <li><a href="#">Going Global (US)</a></li>
+          <li><a href="#">Cross-Border Sprint</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Pilots</h5>
+        <ul>
+          <li><a href="#">30-Day China Sprint</a></li>
+          <li><a href="#">30-Day FDA Diagnostic</a></li>
+          <li><a href="#">AI-Enabled Delivery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About MedSci</a></li>
+          <li><a href="#">Insights</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#" rel="nofollow" class="muted-link">Other services</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal & IR</h5>
+        <ul>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Disclosures</a></li>
+          <li><a href="#" rel="external">Investor Relations ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 MedSci Healthcare (2415.HK). All rights reserved.</div>
+      <div>Mockup v0.1 · W1 visual reference only</div>
+    </div>
+  </div>
+</footer>
+
+<div class="mockup-ribbon">⚑ Mockup v0.1 · Pending VI lock at W2</div>
+
+</body>
+</html>

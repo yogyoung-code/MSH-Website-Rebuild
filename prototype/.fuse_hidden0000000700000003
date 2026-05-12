@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Signature Components Preview — UXcritique20260429</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<style>
+  /* Spec-correct fonts only. NO Footlight MT override here —
+     this preview shows what brand-spec rendering looks like. */
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg-1); color: var(--fg-1);
+    font-family: var(--font-ui);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+
+  .preview-banner {
+    background: var(--brand-primary-900); color: var(--white);
+    padding: 16px 24px; font-family: var(--font-mono);
+    font-size: 12px; letter-spacing: 0.04em;
+  }
+  .preview-banner code { color: var(--brand-accent-500); }
+  .preview-section-label {
+    max-width: var(--container-max, 1280px);
+    margin: 48px auto 0;
+    padding: 0 clamp(24px, 6vw, 96px);
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--fg-3);
+    border-bottom: 1px solid var(--border-1);
+    padding-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="assets/vendor/react.development.js"></script>
+<script src="assets/vendor/react-dom.development.js"></script>
+<script src="assets/vendor/babel.min.js"></script>
+
+<!-- Signature components extracted on UXcritique20260429 branch -->
+<script type="text/babel" src="components/PitlRibbon.jsx"></script>
+<script type="text/babel" src="components/MetricStrip.jsx"></script>
+<script type="text/babel" src="components/EvidenceTrail.jsx"></script>
+<script type="text/babel" src="components/AsymmetricFeatureGrid.jsx"></script>
+
+<script type="text/babel">
+function SectionLabel({ children }) {
+  return <div className="preview-section-label">{children}</div>;
+}
+
+function SamplePreviewCard({ kicker, title, body, cta }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, height: '100%' }}>
+      <div style={{
+        fontFamily: 'var(--font-ui)',
+        fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase',
+        color: 'var(--brand-accent-700)', fontWeight: 600
+      }}>{kicker}</div>
+      <h3 style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: 'clamp(20px, 2vw, 26px)',
+        margin: 0, color: 'var(--brand-primary-700)', lineHeight: 1.25, fontWeight: 600
+      }}>{title}</h3>
+      <p style={{
+        margin: 0, color: 'var(--fg-2)',
+        fontSize: 14, lineHeight: 1.6
+      }}>{body}</p>
+      <div style={{ marginTop: 'auto' }}>
+        <a style={{
+          fontFamily: 'var(--font-ui)', fontSize: 14, fontWeight: 500,
+          color: 'var(--brand-primary-500)', textDecoration: 'none'
+        }} href="#">{cta} →</a>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <div className="preview-banner">
+        SIGNATURE COMPONENTS PREVIEW · branch <code>UXcritique20260429</code> · spec-correct fonts (no Footlight MT override)
+      </div>
+
+      <SectionLabel>1 · PitlRibbon — signature dual-lane workflow</SectionLabel>
+      <PitlRibbon
+        eyebrow="HOW WE WORK"
+        title="AI-Enabled. Physician-Verified. Every step."
+        steps={[
+          { num: 1, title: 'Ingestion',
+            ai: 'Source extraction, entity & claim tagging across structured + unstructured data.',
+            physician: 'Scope-of-truth check; flag claims that need primary-source review.',
+            output: 'tagged corpus' },
+          { num: 2, title: 'Gap Analysis',
+            ai: 'Map evidence inventory against regulatory/payer criteria; surface gaps.',
+            physician: 'Confirm gap classification; reject AI calls that miss medical context.',
+            output: 'gap report' },
+          { num: 3, title: 'PITL Review',
+            ai: 'Draft synthesis: positions, citations, claim-trail. Self-flag low-confidence outputs.',
+            physician: 'Lead reviewer signs each section; named MD on the work.',
+            output: 'signed draft' },
+          { num: 4, title: 'Deliverable',
+            ai: 'Format to client schema; bilingual variants; audit log packaged.',
+            physician: 'Final QA + sign-off; deliverable ships with named accountability.',
+            output: 'audit-grade pack' }
+        ]}
+      />
+
+      <SectionLabel>2 · MetricStrip — strict, single-use</SectionLabel>
+      <MetricStrip
+        variant="featured"
+        eyebrow="WHY MEDSCI"
+        metrics={[
+          { value: '3.33M+', label: 'physicians in our network',
+            source: 'Internal registry', year: '2025', approvedBy: 'IR (pending)' },
+          { value: 'AI + PITL', label: 'every project, every step',
+            source: 'Methodology v1.1', year: '2026' },
+          { value: '2415.HK', label: 'Main Board Hong Kong listing',
+            source: 'HKEX disclosure', year: '2026' }
+        ]}
+      />
+
+      <SectionLabel>3 · EvidenceTrail — annotated, audit-grade</SectionLabel>
+      <EvidenceTrail
+        eyebrow="ENGAGEMENT OUTCOMES — Entering China · Evidence + HCP"
+        title="What we shipped"
+        rows={[
+          { claim: '60% faster time-to-evidence-package vs. prior internal benchmark',
+            status: 'verified',
+            trace: ['AI: gap-scan', 'AI: claim-trail', 'MD: lead reviewer signed', 'MD: bilingual QA'],
+            source: 'Client engagement report', year: '2025', approvedBy: 'Sponsor + IR' },
+          { claim: '2,400+ HCPs reached via the targeted network map',
+            status: 'verified',
+            trace: ['AI: HCP segmentation', 'MD: medical-affairs review'],
+            source: 'Client engagement report', year: '2025' },
+          { claim: 'NMPA pre-submission package accepted at first filing',
+            status: 'in-development',
+            trace: ['MD: regulatory lead'],
+            source: 'Regulatory submission tracker', year: '2026' },
+          { claim: 'Cross-border data-handling pathway documented per PIPL',
+            status: 'on-request',
+            source: 'Compliance pack', year: '2026' }
+        ]}
+      />
+
+      <SectionLabel>4 · AsymmetricFeatureGrid — break the 3-up monotony</SectionLabel>
+      <AsymmetricFeatureGrid
+        eyebrow="LATEST CASE STUDIES"
+        title="Selected work, with verified outcomes"
+        lede="Featured case + two recent engagements. One layout, three different stories."
+        featured="left"
+        items={[
+          { featured: true,
+            render: () => <SamplePreviewCard
+              kicker="ENTERING CHINA · EVIDENCE + HCP"
+              title="From internal debate to NMPA pre-submission within the engagement window"
+              body="MedSci built the evidence package and the HCP map at the same time. Most agencies do one or the other; we needed both — and we needed it auditable."
+              cta="Read the case" />
+          },
+          { render: () => <SamplePreviewCard
+              kicker="GOING GLOBAL · FDA EVIDENCE BRIDGE"
+              title="China RWE, restructured for an FDA pre-IND meeting"
+              body="A US sponsor needed China-origin data formatted to FDA evidentiary expectations without losing fidelity to the original protocol."
+              cta="Read the case" />
+          },
+          { render: () => <SamplePreviewCard
+              kicker="ENTERING CHINA · LOCALIZED CONTENT"
+              title="A bilingual HCP-engagement program, shipped weekly"
+              body="Cross-border content sprint: English source, Chinese delivery, physician-reviewed every cycle."
+              cta="Read the case" />
+          }
+        ]}
+      />
+
+      <div style={{ height: 96 }} />
+    </>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+</body>
+</html>

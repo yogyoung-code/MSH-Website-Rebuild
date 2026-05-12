@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Privacy Policy — MedSci Healthcare</title>
+<meta name="description" content="How MedSci Healthcare collects, uses, transfers, and protects personal information — GDPR, CCPA, PIPL alignment. Contact our DPO for requests.">
+<link rel="canonical" href="https://medscihealthcare.com/legal/privacy">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/legal/privacy">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/legal/privacy?lang=zh-CN">
+<link rel="alternate" hreflang="x-default" href="https://medscihealthcare.com/legal/privacy">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Privacy Policy — MedSci Healthcare">
+<meta property="og:description" content="GDPR, CCPA, and PIPL alignment for medscihealthcare.com.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/legal-privacy-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/legal/privacy">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "name": "Privacy Policy — MedSci Healthcare",
+ "url": "https://medscihealthcare.com/legal/privacy",
+ "publisher": { "@type": "Organization", "name": "MedSci Healthcare", "url": "https://medscihealthcare.com" },
+ "inLanguage": ["en", "zh-CN"]
+}
+</script>
+<style>
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+ *, *::before, *::after { box-sizing: border-box; }
+ a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/LangSwitch.jsx"></script>
+<script type="text/babel" src="../components/LegalProse.jsx"></script>
+
+<script type="text/babel">
+// Copy Deck v4.2 §12.2 — skeleton, awaiting external counsel finalization.
+const CONTENT = {
+ en: {
+ eyebrow: 'Legal · Privacy Policy',
+ title: 'Privacy Policy',
+ lastUpdated: null,
+ sections: [
+ { id: 'who-we-are', heading: '1. Who we are',
+ paragraphs: [<span>MedSci Healthcare (HKEX: 2415) is the controller of personal information collected through medscihealthcare.com. Contact: <code>privacy@medscihealthcare.com</code> or use <a href="/contact.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>Contact</a> and select "Legal / Compliance".</span>] },
+ { id: 'pi-collected', heading: '2. Personal information we collect',
+ paragraphs: [
+ 'Sources include Smart Form submissions (name, work email, company, role, topic, message, optional outlet/fund/program-stage/use-case/timeline), server logs (IP, user-agent, request URL, timestamp), functional cookies (session and language preference), and opt-in analytics cookies (aggregated, anonymized).',
+ 'We do not collect or store sensitive personal information (health, political, religious, or biometric) through this Site.'
+ ] },
+ { id: 'lawful-basis', heading: '3. Lawful basis (GDPR Article 6)',
+ paragraphs: [
+ 'Contract / pre-contract steps: Smart Form submissions where you initiate contact. Legitimate interest: server logs, abuse prevention, analytics aggregation. Consent: opt-in analytics cookies; all marketing email subscriptions.',
+ ''
+ ] },
+ { id: 'ccpa', heading: '4. CCPA notice (California residents)',
+ paragraphs: [
+ <span>Under the CCPA / CPRA, you may have the right to know, delete, correct, and opt out of "sale" or "sharing" of personal information. <strong>MedSci Healthcare does not sell personal information</strong>, as that term is defined under CCPA. To exercise rights, email <code>privacy@medscihealthcare.com</code>.</span>,
+ ''
+ ] },
+ { id: 'pipl', heading: '5. PIPL note (China residents)',
+ paragraphs: [
+ 'Personal information collected from individuals located in mainland China is handled under PIPL. Cross-border transfer of such data follows the contractual mechanism described in our Data Handling section on About and signed engagement letters where applicable.',
+ ''
+ ] },
+ { id: 'sharing', heading: '6. How we share',
+ paragraphs: [
+ 'We do not sell personal information. We share with: service providers under written contract (e.g., email delivery), legal and regulatory authorities when required, and successors in a corporate transaction subject to the same protections.',
+ ''
+ ] },
+ { id: 'retention', heading: '7. Retention',
+ paragraphs: ['Smart Form submissions: retained for [Counsel-set period, typically 12-36 months] from last interaction. Server logs: 90 days, then aggregated. Anonymized analytics: indefinite.'] },
+ { id: 'rights', heading: '8. Your rights',
+ paragraphs: ['Depending on your jurisdiction, you may have rights to access, correct, delete, restrict, or port your personal information; object to processing; withdraw consent; and lodge a complaint with a supervisory authority. To exercise rights, email privacy@medscihealthcare.com.'] },
+ { id: 'safeguards', heading: '9. Safeguards',
+ paragraphs: ['We use commercially reasonable administrative, technical, and physical protections. No system is fully impenetrable; please notify us at safety@medscihealthcare.com if you believe a vulnerability or breach has occurred.'] },
+ { id: 'children', heading: '10. Children',
+ paragraphs: ['The Site is not directed at children under [13 / 16, counsel-set per jurisdiction]. We do not knowingly collect personal information from children.'] },
+ { id: 'changes', heading: '11. Changes',
+ paragraphs: ['Material changes will be reflected in the Last updated date at the top of this page.'] },
+ { id: 'contact', heading: '12. Contact',
+ paragraphs: ['Privacy questions or rights requests: privacy@medscihealthcare.com. Data Protection Officer (DPO):'] }
+ ]
+ },
+
+ zh: {
+ eyebrow: '法律 · 隐私政策',
+ title: '隐私政策',
+ lastUpdated: null,
+ pendingNotice: '本中文版本由译审在外部律师终签英文版本后产出（Copy Deck v4.2 §12.2.zh）。术语映射: "controller" → "信息处理者" (PIPL 用语); "Sensitive PI" → "敏感个人信息"; "DPO" → "数据保护负责人"。',
+ sections: [
+ { id: 'who-we-are', heading: '1. 我们是谁', paragraphs: ['MedSci Healthcare（HKEX: 2415）是通过 medscihealthcare.com 收集个人信息的处理者。联系: privacy@medscihealthcare.com'] },
+ { id: 'pi-collected', heading: '2. 我们收集的个人信息', paragraphs: ['Smart Form 提交、服务器日志、功能性 Cookies、opt-in 分析 Cookies。'] },
+ { id: 'lawful-basis', heading: '3. 合法依据（GDPR 第 6 条）', paragraphs: ['合同 / 合同前步骤、合法利益、同意。'] },
+ { id: 'ccpa', heading: '4. CCPA 通知（加州居民）', paragraphs: ['MedSci Healthcare 不出售个人信息（CCPA 定义）。'] },
+ { id: 'pipl', heading: '5. PIPL 说明（中国居民）', paragraphs: ['中国境内采集的个人信息按 PIPL 处理。'] },
+ { id: 'sharing', heading: '6. 如何共享', paragraphs: ['我们不出售个人信息。共享对象包括签约服务商、监管机关（依法）、企业并购继受方（同等保护）。'] },
+ { id: 'retention', heading: '7. 保留期限', paragraphs: ['Smart Form 提交保留 [12-36 个月]。服务器日志 90 天后聚合。匿名分析无限期。'] },
+ { id: 'rights', heading: '8. 您的权利', paragraphs: ['访问 / 更正 / 删除 / 限制 / 携带 / 反对处理 / 撤回同意 / 投诉。'] },
+ { id: 'safeguards', heading: '9. 安全保障', paragraphs: ['采用合理的管理、技术与物理性保障。'] },
+ { id: 'children', heading: '10. 儿童', paragraphs: ['本网站不面向 [13 / 16] 岁以下儿童。'] },
+ { id: 'changes', heading: '11. 变更', paragraphs: ['重大变更会更新顶部的"最近更新"日期。'] },
+ { id: 'contact', heading: '12. 联系我们', paragraphs: ['privacy@medscihealthcare.com。'] }
+ ]
+ }
+};
+
+function App() {
+ const [lang, setLang] = React.useState('en');
+ const t = CONTENT[lang];
+ return (
+ <PageShell hideHero breadcrumbs={[
+ { label: lang === 'en' ? 'Home' : '首页', href: '/' },
+ { label: lang === 'en' ? 'Legal' : '法律', href: '/legal/' },
+ { label: lang === 'en' ? 'Privacy Policy' : '隐私政策' }
+ ]}>
+ <div style={{ maxWidth: 1280, margin: '0 auto', padding: '24px clamp(24px, 6vw, 96px) 0', display: 'flex', justifyContent: 'flex-end' }}>
+ <LangSwitch enabled={true} current={lang} onSwitch={setLang} />
+ </div>
+ <LegalProse
+ eyebrow={t.eyebrow}
+ title={t.title}
+ lastUpdated={t.lastUpdated}
+ pendingNotice={t.pendingNotice}
+ sections={t.sections}
+ />
+ </PageShell>
+ );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

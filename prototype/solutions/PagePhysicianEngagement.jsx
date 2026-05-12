@@ -72,11 +72,57 @@ function PagePhysicianEngagement() {
       <SolutionPageHeader pageMeta={PHYSICIAN_META} />
       <SolutionSubNav items={subnav} theme="navy" />
 
+      {}
+      <DeliverableSample
+        eyebrow="What you actually receive"
+        title="Each engagement type ships as a signed artifact, scoped against an explicit input."
+        lede="Whether you need an advisory board, a KOL map, a CME program or a consented reviewer panel — the input contract is bounded and the output is named-clinician signed."
+        samples={[
+          {
+            label: 'Standing advisory board',
+            input: { format: 'Therapy area · cadence · reviewer profile',
+                     detail: 'Single-instance or standing; we handle agenda, recruitment, and facilitation.' },
+            output: { format: 'Signed board minutes + audit log · per session',
+                      detail: 'Independent facilitation, disclosure register, exportable trail.' },
+            badge: 'verified',
+            signedBy: '5–9 named reviewers per session'
+          },
+          {
+            label: 'Tier-1 KOL map',
+            input: { format: 'Therapy area · geography · use case',
+                     detail: 'Influence + reach scoring across CN tier-1 AMCs and US academic centers.' },
+            output: { format: 'Segmented KOL map + engagement plan · 12–24 pp',
+                      detail: 'Conflict-and-disclosure scan attached for every named clinician.' },
+            badge: 'verified',
+            signedBy: 'Lead MD + KOL programs lead'
+          },
+          {
+            label: 'CME-accredited program',
+            input: { format: 'Educational gap · target audience',
+                     detail: 'Designed for physician learning, not promotion. Independent content review.' },
+            output: { format: 'CME activity + completion log · multi-modal',
+                      detail: 'Accreditation support, outcomes log, completion certificates.' },
+            badge: 'verified',
+            signedBy: 'Independent reviewer + Lead MD'
+          },
+          {
+            label: 'Consented reviewer panel',
+            input: { format: 'Dossier or manuscript · per-claim review questions',
+                     detail: 'Engagement-specific consent — time-bound, revocable, audit-grade.' },
+            output: { format: 'Per-claim sign-off log + reviewer report',
+                      detail: 'Every change timestamped; every reviewer named and disclosed.' },
+            badge: 'verified',
+            signedBy: '5–9 named reviewers + lead'
+          }
+        ]}
+      />
+
+
       <SolutionSection
         id="overview" eyebrow="Overview"
         title="The physician layer of every engagement we run."
         kicker="Every other workstream — evidence, communications, regulatory — depends on a named clinician at the gate. This is the team that runs that gate."
-        bg="#fff" label="01 · Overview"
+        bg="#fff"
       >
         <div className="two-col-grid" style={{
           background: 'var(--brand-primary-900)', color: '#fff',
@@ -104,7 +150,7 @@ function PagePhysicianEngagement() {
         id="network" eyebrow="The network · 3.33M+ physicians"
         title="Coverage by geography and care setting."
         kicker="A physician network we audit annually. Coverage is uneven by design — we go deep on tier-1 AMCs in both markets, where regulatory and reimbursement decisions are actually shaped."
-        bg="var(--bg-2)" label="02 · The network"
+        bg="var(--bg-2)"
       >
         <div style={{
           background: '#fff', border: '1px solid var(--border-1)',
@@ -145,7 +191,7 @@ function PagePhysicianEngagement() {
       <SolutionSection
         id="engagements" eyebrow="Engagement types · 4 modes"
         title="How we put a physician on the record."
-        bg="#fff" label="03 · Engagement types"
+        bg="#fff"
       >
         <DeliverablesGrid items={engagementTypes} theme="navy" />
       </SolutionSection>
@@ -154,7 +200,7 @@ function PagePhysicianEngagement() {
         id="consent" eyebrow="Consent & ethics"
         title="Five rules we apply to every engagement."
         kicker="The reason a physician will work with us a second time is the same reason a regulator will accept the deliverable: the consent infrastructure is real."
-        bg="var(--bg-2)" label="04 · Consent & ethics"
+        bg="var(--bg-2)"
       >
         <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16 }}>
           {[
@@ -179,7 +225,7 @@ function PagePhysicianEngagement() {
       <SolutionSection
         id="proof" eyebrow="Proof · 2025"
         title="Signed numbers, signed source trail."
-        bg="#fff" label="05 · Proof"
+        bg="#fff"
       >
         <SolutionStatStrip stats={stats} theme="navy" />
         <div style={{ marginTop: 16, fontSize: 11.5, color: 'var(--fg-3)', lineHeight: 1.5 }}>
@@ -187,6 +233,7 @@ function PagePhysicianEngagement() {
         </div>
       </SolutionSection>
 
+      <ContentReviewCrossSell />
       <SolutionCTA pageMeta={PHYSICIAN_META} />
       <RelatedSolutions current="physician-engagement" />
       <SolutionFooter />

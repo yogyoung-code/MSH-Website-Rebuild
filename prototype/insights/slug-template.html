@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>China RWE: What Travels — MedSci Insights</title>
 <meta name="description" content="What China RWE travels across borders to FDA or EMA — and what teams should plan to re-derive locally. A field briefing from MedSci's evidence team.">
 <link rel="canonical" href="https://medscihealthcare.com/insights/china-rwe-what-travels">
@@ -41,7 +41,7 @@
     --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
     --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
   }
-  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
   *, *::before, *::after { box-sizing: border-box; }
   a { color: inherit; }
 </style>
@@ -53,14 +53,18 @@
 <script src="../assets/vendor/react-dom.development.js"></script>
 <script src="../assets/vendor/babel.min.js"></script>
 <script src="../assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
 
 <script type="text/babel" src="../components/Button.jsx"></script>
 <script type="text/babel" src="../components/Header.jsx"></script>
 <script type="text/babel" src="../components/Footer.jsx"></script>
-<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx?v=2"></script>
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
 <script type="text/babel" src="../components/AuthorMeta.jsx"></script>
-<script type="text/babel" src="../components/ArticleBody.jsx"></script>
+<script type="text/babel" src="../components/Pending.jsx"></script>
+<script type="text/babel" src="../components/ArticleBody.jsx?v=2"></script>
 
 <script type="text/babel">
 // Mock data — Copy Deck v4.2 §8.2.1 (china-rwe-what-travels).
@@ -88,15 +92,15 @@ const ARTICLE = {
     },
     {
       heading: 'Three gaps that still trip submissions',
-      paragraphs: [
-        "Section content in development. CMS stage will expand this section with three gating concerns we see most often when China-sourced RWE enters a U.S. or EU regulatory package — population alignment, comparator availability, and outcome definition mapping."
-      ]
+      pending: true,
+      pendingLabel: 'Three gating concerns we see most often when China-sourced RWE enters a U.S. or EU regulatory package — population alignment, comparator availability, and outcome definition mapping.',
+      pendingNote: 'Section in physician review · expected publication May 2026'
     },
     {
       heading: 'What we ask before quoting a China RWE source overseas',
-      paragraphs: [
-        "Section content in development. CMS stage will detail the four-question pre-check our reviewers run before a China-sourced citation enters a U.S.-facing dossier draft."
-      ]
+      pending: true,
+      pendingLabel: 'Our reviewers run a four-question pre-check before a China-sourced citation enters a U.S.-facing dossier draft.',
+      pendingNote: 'Section in physician review · expected publication May 2026'
     }
   ],
   related: {
@@ -127,9 +131,9 @@ function App() {
 function InsightHero({ article }) {
   return (
     <header style={{
-      maxWidth: 880,
+      maxWidth: 1280,
       margin: '0 auto',
-      padding: 'clamp(48px, 6vw, 96px) clamp(24px, 6vw, 96px) 24px'
+      padding: '20px clamp(24px, 6vw, 96px) 24px'
     }}>
       <div style={{
         fontFamily: 'var(--font-slogan)',
@@ -166,7 +170,7 @@ function InsightHero({ article }) {
         lineHeight: 1.5
       }}>
         Every MedSci Insight is drafted by a named author and reviewed by a named physician under our{' '}
-        <a href="/ai-platform" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>PITL workflow</a>.
+        <a href="/ai-platform.html" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>PITL workflow</a>.
       </p>
     </header>
   );
@@ -175,7 +179,7 @@ function InsightHero({ article }) {
 function Lede({ text }) {
   return (
     <div style={{
-      maxWidth: 720,
+      maxWidth: 1280,
       margin: '0 auto',
       padding: '24px clamp(24px, 6vw, 96px) 32px'
     }}>
@@ -198,7 +202,7 @@ function Related({ related }) {
   if (!related || (!related.solution && !related.pilot)) return null;
   return (
     <section style={{
-      maxWidth: 720,
+      maxWidth: 1280,
       margin: '0 auto',
       padding: '0 clamp(24px, 6vw, 96px) 32px'
     }}>
@@ -220,7 +224,7 @@ function Related({ related }) {
         {related.solution && (
           <div>
             Solution:{' '}
-            <a href={`/solutions/${related.solution.slug}`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
+            <a href={`/solutions/${related.solution.slug}.html`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
               {related.solution.label}
             </a>
           </div>
@@ -228,7 +232,7 @@ function Related({ related }) {
         {related.pilot && (
           <div>
             Pilot:{' '}
-            <a href={`/pilots/${related.pilot.slug}`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
+            <a href={`/pilots/${related.pilot.slug}.html`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
               {related.pilot.shortName}
             </a>
           </div>
@@ -245,7 +249,7 @@ function InsightCTA({ topic, relatedPilot }) {
       borderTop: '1px solid var(--border-1)',
       padding: '64px clamp(24px, 6vw, 96px)'
     }}>
-      <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', textAlign: 'center' }}>
         <div style={{
           fontFamily: 'var(--font-slogan)',
           fontSize: 12,
@@ -283,7 +287,7 @@ function InsightCTA({ topic, relatedPilot }) {
             Talk to an Expert
           </a>
           {relatedPilot && (
-            <a href={`/pilots/${relatedPilot.slug}`} style={{
+            <a href={`/pilots/${relatedPilot.slug}.html`} style={{
               padding: '12px 24px',
               background: 'transparent',
               color: 'var(--brand-primary-700)',

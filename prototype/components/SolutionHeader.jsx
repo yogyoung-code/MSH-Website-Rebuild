@@ -4,6 +4,14 @@ function SolutionHeader() {
   const [megaOpen, setMegaOpen] = React.useState(false);
   const [lang, setLang] = React.useState('EN');
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const megaTimerRef = React.useRef(null);
+  const openMegaIntent = () => {
+    if (megaTimerRef.current) clearTimeout(megaTimerRef.current);
+    megaTimerRef.current = setTimeout(() => setMegaOpen(true), 150);
+  };
+  const cancelMegaIntent = () => {
+    if (megaTimerRef.current) clearTimeout(megaTimerRef.current);
+  };
   const navItems = [
     { label: 'Solutions', hasMega: true },
     { label: 'Case Studies', href: '/case-studies/' },
@@ -13,14 +21,14 @@ function SolutionHeader() {
   ];
   return (
     <header style={{
-      position: 'sticky', top: 0, zIndex: 50, background: 'rgba(255,255,255,0.96)',
-      borderBottom: '1px solid var(--border-1)', backdropFilter: 'saturate(1.2) blur(8px)',
+      position: 'sticky', top: 0, zIndex: 50, background: 'var(--bg-1)',
+      borderBottom: '1px solid var(--border-1)',
     }}>
       <div style={{
         background: 'var(--brand-primary-900)', color: 'rgba(255,255,255,0.75)',
         fontSize: 12, letterSpacing: '0.02em',
       }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '6px 40px', display: 'flex', gap: 20, alignItems: 'center' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '6px clamp(16px, 4vw, 40px)', display: 'flex', gap: 20, alignItems: 'center' }}>
           <span style={{ fontFamily: 'var(--font-slogan)', fontStyle: 'italic', color: 'rgba(255,255,255,0.55)' }}>
             Improving Healthcare Quality
           </span>
@@ -35,7 +43,7 @@ function SolutionHeader() {
       </div>
       <div style={{
         maxWidth: 1280, margin: '0 auto',
-        display: 'flex', alignItems: 'center', gap: 40, padding: '14px 40px',
+        display: 'flex', alignItems: 'center', gap: 40, padding: '14px clamp(16px, 4vw, 40px)',
       }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
           <img src="/assets/logo/medsci-healthcare-logo.svg" alt="MedSci Healthcare" style={{ height: 36 }} />
@@ -57,10 +65,10 @@ function SolutionHeader() {
             lineHeight: 1
           }}
         >{mobileOpen ? '×' : '☰'}</button>
-        <nav className="nav-desktop" style={{ display: 'flex', gap: 4, marginLeft: 16, position: 'relative' }} onMouseLeave={() => setMegaOpen(false)}>
+        <nav className="nav-desktop" style={{ display: 'flex', gap: 4, marginLeft: 16, position: 'relative' }} onMouseLeave={() => { cancelMegaIntent(); setMegaOpen(false); }}>
           {navItems.map((it, i) => (
             <div key={it.label} style={{ position: 'relative' }}
-                 onMouseEnter={() => { setHoverIdx(i); if (it.hasMega) setMegaOpen(true); else setMegaOpen(false); }}>
+                 onMouseEnter={() => { setHoverIdx(i); if (it.hasMega) openMegaIntent(); else { cancelMegaIntent(); setMegaOpen(false); } }}>
               <a href={it.href || '#'}
                  style={{
                    display: 'inline-flex', alignItems: 'center', gap: 4,
@@ -101,7 +109,8 @@ function SolutionHeader() {
                 <a href={it.href || '#'} onClick={() => setMobileOpen(false)} style={{
                   display: 'block', padding: '14px 4px',
                   fontFamily: '"Footlight MT Light", Georgia, serif',
-                  fontSize: 17, color: 'var(--fg-1)', textDecoration: 'none'
+                  fontSize: 17,
+                  color: 'var(--fg-1)', textDecoration: 'none'
                 }}>{it.label}</a>
               </li>
             ))}
@@ -120,62 +129,59 @@ function SolutionHeader() {
   );
 }
 
+// Synced with MegaMenu in Header.jsx — 3 columns with Quick Start entry.
 function SolutionMegaMenu() {
-  const groups = [
-    {
-      label: 'By Path · Strategy',
-      items: [
-        { title: 'Entering China', desc: 'Evidence, regulatory and HCP traction inside China.', href: '/solutions/entering-china.html', tag: 'Navy' },
-        { title: 'Going Global (US)', desc: 'US/global launch readiness for China innovators.', href: '/solutions/going-global-us.html', tag: 'Cyan' },
-      ],
-    },
-    {
-      label: 'By Deliverable · Business Blocks',
-      items: [
-        { title: 'Medical Evidence', desc: 'RWE · Registry · Literature · HEOR.', href: '/solutions/medical-evidence.html' },
-        { title: 'Physician Engagement', desc: '3.33M+ network · Advisory · KOL · CME.', href: '/solutions/physician-engagement.html' },
-        { title: 'Medical Communications', desc: 'Publications · Congress · Localization.', href: '/solutions/medical-communications.html' },
-      ],
-    },
-    {
-      label: 'Quick Start',
-      items: [
-        { title: 'Cross-Border Content Sprint', desc: 'Low-commitment entry. A single artifact in 2 weeks.', href: '/solutions/cross-border-medical-content-sprint.html' },
-      ],
-    },
+  const strategic = [
+    { title: 'Entering China',    desc: 'Evidence, regulatory and HCP traction inside China.',  href: '/solutions/entering-china.html',  tag: 'Navy' },
+    { title: 'Going Global (US)', desc: 'US / global launch readiness for China innovators.',   href: '/solutions/going-global-us.html', tag: 'Cyan' },
   ];
+  const deliverables = [
+    { title: 'Medical Evidence',       desc: 'RWE · Registry · Literature · HEOR.',     href: '/solutions/medical-evidence.html' },
+    { title: 'Physician Engagement',   desc: '3.33M+ network · Advisory · KOL · CME.',  href: '/solutions/physician-engagement.html' },
+    { title: 'Medical Communications', desc: 'Publications · Congress · Localization.', href: '/solutions/medical-communications.html' },
+    { title: 'AI-Enabled Platform',    desc: 'DeepEvidence · SeekEvidence · PITL · QC.', href: '/ai-platform.html', tag: 'Platform' },
+  ];
+  const quickStart = [
+    { title: 'Content Review',              desc: 'Compliance-flagged review of your materials in 3–5 days.', href: '/solutions/content-review.html',                       tag: 'New' },
+    { title: 'Cross-Border Content Sprint', desc: 'One bilingual artifact, expert-reviewed, in 2 weeks.',     href: '/solutions/cross-border-medical-content-sprint.html', tag: 'Sprint' },
+    { title: '30-Day Pilots',               desc: 'China Evidence Sprint or FDA Evidence Gap Diagnostic.',    href: '/#pilots',                                             tag: 'Pilots' },
+  ];
+  const tagBg = (tag) => ({ Cyan: 'var(--brand-accent-100)', New: 'var(--success-100, #ecfdf5)', Sprint: 'var(--bg-3)', Platform: 'var(--brand-accent-100)' }[tag] || 'var(--brand-primary-100)');
+  const tagFg = (tag) => ({ Cyan: 'var(--brand-accent-700)', New: 'var(--success-500, #16a34a)', Sprint: 'var(--fg-2)', Platform: 'var(--brand-accent-700)' }[tag] || 'var(--brand-primary-700)');
+  const Column = ({ label, items }) => (
+    <div>
+      <div style={{
+        fontSize: 11, fontWeight: 600, letterSpacing: '0.12em',
+        color: 'var(--brand-accent-700)', textTransform: 'uppercase',
+        paddingBottom: 10, marginBottom: 10,
+        borderBottom: '1px solid var(--border-1)',
+      }}>{label}</div>
+      {items.map(it => (
+        <a key={it.title} href={it.href} style={{ display: 'block', padding: '10px 0', textDecoration: 'none' }}>
+          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--brand-primary-700)', marginBottom: 4 }}>
+            {it.title}
+            {it.tag && <span style={{
+              marginLeft: 8, fontSize: 10, fontWeight: 500, padding: '1px 6px', borderRadius: 4,
+              background: tagBg(it.tag), color: tagFg(it.tag),
+              letterSpacing: '0.04em', textTransform: 'uppercase',
+            }}>{it.tag}</span>}
+          </div>
+          <div style={{ fontSize: 12.5, color: 'var(--fg-2)', lineHeight: 1.5 }}>{it.desc}</div>
+        </a>
+      ))}
+    </div>
+  );
   return (
     <div style={{
       position: 'absolute', top: '100%', left: -40,
       background: '#fff', border: '1px solid var(--border-1)',
       borderRadius: 12, boxShadow: 'var(--shadow-md)',
       padding: 28, width: 960, zIndex: 60,
-      display: 'grid', gridTemplateColumns: '1fr 1.3fr 1fr', gap: 32,
+      display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 32,
     }}>
-      {groups.map(g => (
-        <div key={g.label}>
-          <div style={{
-            fontSize: 11, fontWeight: 600, letterSpacing: '0.12em',
-            color: 'var(--brand-accent-700)', textTransform: 'uppercase',
-            paddingBottom: 10, marginBottom: 10,
-            borderBottom: '1px solid var(--border-1)',
-          }}>{g.label}</div>
-          {g.items.map(it => (
-            <a key={it.title} href={it.href} style={{ display: 'block', padding: '10px 0', textDecoration: 'none' }}>
-              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--brand-primary-700)', marginBottom: 4 }}>
-                {it.title}
-                {it.tag && <span style={{
-                  marginLeft: 8, fontSize: 10, fontWeight: 500, padding: '1px 6px', borderRadius: 4,
-                  background: it.tag === 'Cyan' ? 'var(--brand-accent-100)' : 'var(--brand-primary-100)',
-                  color: it.tag === 'Cyan' ? 'var(--brand-accent-700)' : 'var(--brand-primary-700)',
-                  letterSpacing: '0.04em', textTransform: 'uppercase',
-                }}>{it.tag}</span>}
-              </div>
-              <div style={{ fontSize: 12.5, color: 'var(--fg-2)', lineHeight: 1.5 }}>{it.desc}</div>
-            </a>
-          ))}
-        </div>
-      ))}
+      <Column label="By Path · Strategy"          items={strategic} />
+      <Column label="By Deliverable · Block"      items={deliverables} />
+      <Column label="Quick Start · Entry"         items={quickStart} />
     </div>
   );
 }

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Platform — MedSci Healthcare</title>
+<meta name="description" content="AI products, audited evidence stack, and reverse-due-diligence transparency for global healthcare partners.">
+<link rel="canonical" href="https://medscihealthcare.com/ai-platform">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/ai-platform">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="AI Platform — MedSci Healthcare">
+<meta property="og:description" content="Built for the AI era of medicine. AI-Enabled. Physician-Verified. Globally Ready.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/ai-platform-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/ai-platform">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo/medsci-healthcare-mark.svg">
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<noscript>
+  <div style="padding: 64px 24px; max-width: 1024px; margin: 0 auto; font-family: Georgia, serif;">
+    <h1>AI Platform — MedSci Healthcare</h1>
+    <p style="font-size: 18px; line-height: 1.5;">
+      Built for the AI era of medicine. <em>AI-Enabled. Physician-Verified. Globally Ready.</em>
+    </p>
+    <p>This page contains an interactive product spec sheet that requires JavaScript.
+      For an accessible static summary,
+      <a href="/contact.html?intent=ai_dd">talk to our AI team</a>.</p>
+  </div>
+</noscript>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+</script>
+<script src="assets/consent/consent-mode-v2.js"></script>
+<script src="assets/analytics/ga4-events.js"></script>
+
+<script src="assets/vendor/react.development.js"></script>
+<script src="assets/vendor/react-dom.development.js"></script>
+<script src="assets/vendor/babel.min.js"></script>
+<script src="assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="assets/sanity-client.js"></script>
+
+<!-- v0.1 layout -->
+<script type="text/babel" src="components/Button.jsx"></script>
+<script type="text/babel" src="components/Header.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+<script type="text/babel" src="components/PageShell.jsx"></script>
+<script type="text/babel" src="components/ContentBlocks.jsx"></script>
+<!-- v2.0 sigs (kept) -->
+<script type="text/babel" src="components/PitlRibbon.jsx"></script>
+<script type="text/babel" src="components/EvidenceTrail.jsx"></script>
+<script type="text/babel" src="components/ComplianceCallout.jsx"></script>
+<!-- v3.0 components (Foundation + Method + nav) -->
+<script type="text/babel" src="components/AIAssetBalanceSheet.jsx"></script>
+<script type="text/babel" src="components/StickyAnchorNav.jsx"></script>
+<script type="text/babel" src="components/RagAnchorDiagram.jsx"></script>
+<script type="text/babel" src="components/TrustArchitecture.jsx"></script>
+<!-- v4 component (replaces AIProductShowcase / AIProductCardGrid) -->
+<script type="text/babel" src="components/AIProductSpec.jsx"></script>
+
+<script type="text/babel">
+/* =========================================================
+   /ai-platform v4.0 — engineering-spec product page
+   ---------------------------------------------------------
+   v3 (chat-UI demo carousel + product card grid) replaced by
+   AIProductSpec — a stacked input/output contract block per
+   product. Reads as engineering API contract, not AI playground.
+
+   Sections:
+     #foundation   AIAssetBalanceSheet (kept from v3)
+     #products     AIProductSpec (NEW — replaces AIProductShowcase + AIProductCardGrid)
+     #method       TrustArchitecture + ComplianceCallout (kept from v3)
+     #cta          Final Dual CTA (kept from v3)
+   ========================================================= */
+
+const ASSET_GROUPS = [
+  { label: 'DEMAND-SIDE NETWORK',
+    items: [
+      { value: '3.3M+', label: 'Registered physicians',
+        sourceFootnote: 'Internal registry · 2026-Q1' },
+      { value: '25K+',  label: 'Tertiary-hospital KOLs',
+        sourceFootnote: 'Internal registry · 2026-Q1' },
+    ] },
+  { label: 'KNOWLEDGE BASE',
+    items: [
+      { value: '250M+', label: 'Indexed literature',
+        sourceFootnote: 'PubMed + biomedical sources · 2026-Q1' },
+      { value: '100K+', label: 'Structured drug labels (SPL)',
+        sourceFootnote: 'FDA SPL · NMPA · MHRA · 2026-Q1' },
+    ] },
+];
+
+const ASSET_NARRATIVE =
+  "This is the data substrate every MedSci AI product is built on. We don't generate medical knowledge. We index, structure, and route what physicians and regulators have already validated — and pair every output with a named human reviewer.";
+
+const PRODUCTS = [
+  {
+    slug: 'deepevidence',
+    name: { en: 'DeepEvidence' },
+    accentColor: 'navy',
+    status: 'limitedPreview',
+    userRole: { en: 'Clinical AI · Point of Care' },
+    positioningOneLiner: { en: 'Authoritative-source clinical guidance at the bedside. Each answer anchored to guidelines and drug labels.' },
+    capabilitiesShort: [
+      { en: 'Real-time guideline citation' },
+      { en: 'Bedside differential diagnosis' },
+      { en: 'Patient-communication translation' },
+    ],
+    showcase: {
+      demoLanguage: 'en',
+      demoScenario: [
+        { _type: 'userMessage',
+          body: '65-year-old with type 2 diabetes and stage 3a chronic kidney disease (eGFR 52). Currently on metformin 1000 mg BID. Should the regimen change? Latest guidelines preferred.' },
+        { _type: 'aiResponse',
+          eyebrow: 'EVIDENCE-BASED ANALYSIS',
+          prose: 'Per ADA 2024 Standards of Care and KDIGO 2024 Diabetes-CKD Guideline:',
+          bullets: [
+            { title: 'Add an SGLT2 inhibitor',
+              body: 'For T2DM with CKD where eGFR ≥ 20 ml/min/1.73m², initiating an SGLT2i (dapagliflozin or empagliflozin) is strongly recommended to slow CKD progression and reduce cardiovascular events (Level A evidence).' },
+            { title: 'Metformin dose review',
+              body: 'eGFR 45–60: continue full dose with monitoring. eGFR 30–45: reduce dose. eGFR < 30: contraindicated. Recheck eGFR in 3–6 months and after any acute illness.' },
+          ],
+          citations: [
+            { type: 'Guideline', label: 'ADA 2024 Standards of Care' },
+            { type: 'RCT',       label: 'DAPA-CKD Trial (NEJM 2020)' },
+            { type: 'SPL',       label: 'Metformin Label (FDA SPL)' },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    slug: 'seekevidence',
+    name: { en: 'SeekEvidence' },
+    accentColor: 'cyan',
+    status: 'limitedPreview',
+    userRole: { en: 'Research AI · Evidence Synthesis' },
+    positioningOneLiner: { en: 'From literature review to manuscript drafting. Structured evidence extraction across global trials and registries.' },
+    capabilitiesShort: [
+      { en: 'Multi-trial PFS / OS comparison' },
+      { en: 'Forest plot generation' },
+      { en: 'Manuscript-ready data export' },
+    ],
+    showcase: {
+      demoLanguage: 'en',
+      demoScenario: [
+        { _type: 'userMessage',
+          body: 'Pull all Phase III trials from the past 5 years on "immune checkpoint inhibitors in first-line non-small-cell lung cancer". Compare PFS and OS.' },
+        { _type: 'dataTable',
+          eyebrow: 'STRUCTURED DATA EXTRACTION',
+          badge: 'N = 12 trials found',
+          columns: ['Trial', 'Intervention', 'PFS (mo)', 'HR (95% CI)'],
+          rows: [
+            ['KEYNOTE-189',   'Pembrolizumab + chemo', { value: '8.8 vs 4.9', highlight: true }, { value: '0.52 (0.43–0.64)', mono: true }],
+            ['IMpower150',    'Atezo + bevacizumab',   { value: '8.3 vs 6.8', highlight: true }, { value: '0.62 (0.52–0.74)', mono: true }],
+            ['CheckMate 9LA', 'Nivo + Ipi + chemo',    { value: '6.8 vs 5.0', highlight: true }, { value: '0.70 (0.57–0.86)', mono: true }],
+          ],
+        },
+      ],
+    },
+  },
+  /* Third product — in development. No showcase block yet; AIProductSpec
+     handles the missing-demo case via the inDevelopment status pill. */
+  {
+    slug: 'deepinsight',
+    name: { en: 'DeepInsight' },
+    accentColor: 'cyan',
+    status: 'inDevelopment',
+    sidebarBrand: 'DeepInsight',
+    sidebarIcon: 'compass',
+    headerModel: 'Insight-Graph-V1',
+    userRole: { en: 'Industry AI · Market Signal & Insight' },
+    positioningOneLiner: { en: 'Market intelligence for healthcare industrial teams — anchored to MedSci\'s 3.3M+ physicians and audited evidence.' },
+    capabilitiesShort: [
+      { en: 'Customer-segment insight from physician engagement signal' },
+      { en: 'Real-time market & competitive monitoring' },
+      { en: 'Therapeutic-area opportunity scoring' },
+    ],
+  },
+];
+
+const PITL_STEPS = [
+  { num: 1, title: 'Ingestion',
+    ai: 'Source extraction, entity & claim tagging across structured + unstructured data.',
+    physician: 'Scope-of-truth check; flag claims that need primary-source review.',
+    output: 'tagged corpus' },
+  { num: 2, title: 'Gap Analysis',
+    ai: 'Map evidence inventory against regulatory/payer criteria; surface gaps.',
+    physician: 'Confirm gap classification; reject AI calls that miss medical context.',
+    output: 'gap report' },
+  { num: 3, title: 'PITL Review',
+    ai: 'Draft synthesis: positions, citations, claim-trail. Self-flag low-confidence outputs.',
+    physician: 'Lead reviewer signs each section; named MD on the work.',
+    output: 'signed draft' },
+  { num: 4, title: 'Deliverable',
+    ai: 'Format to client schema; bilingual variants; audit log packaged.',
+    physician: 'Final QA + sign-off; deliverable ships with named accountability.',
+    output: 'audit-grade pack' },
+];
+
+const EVIDENCE_ROWS = [
+  { claim: 'Every claim is bound to a ProofPoint document with named custodian.',
+    status: 'verified',
+    trace: ['AI: claim tagging', 'MD: source check', 'Audit: quarterly export'],
+    source: 'ProofPoint custodian registry', year: '2026' },
+  { claim: 'Source / reviewer / timestamp / edit history exportable on engagement.',
+    status: 'verified',
+    trace: ['Audit Trail spec §13', 'CMS schema W2-05'],
+    source: 'Internal audit log', year: '2026' },
+  { claim: 'Bilingual deliverables include EN ↔ CN reviewer attribution.',
+    status: 'verified',
+    trace: ['AI: terminology QC', 'MD: bilingual review'],
+    source: 'Content QA spec', year: '2026' },
+];
+
+const SECTIONS = [
+  { hash: '#foundation', label: 'Foundation' },
+  { hash: '#products',   label: 'Products' },
+  { hash: '#method',     label: 'Method' },
+  { hash: '#cta',        label: 'Talk' },
+];
+
+/* ── V4 Hero — same restraint as v3 but no decorative spotlight ─ */
+function V4Hero() {
+  return (
+    <section style={{
+      position: 'relative',
+      background: 'var(--grad-hero)',
+      color: 'var(--white)',
+      padding: 'clamp(64px, 9vw, 128px) clamp(24px, 6vw, 96px) clamp(48px, 6vw, 80px)',
+      overflow: 'hidden',
+    }}>
+      <div style={{
+        position: 'relative',
+        maxWidth: 'var(--container-max, 1280px)',
+        margin: '0 auto',
+      }}>
+        <nav aria-label="Breadcrumb" style={{
+          marginBottom: 24, fontSize: 13,
+          color: 'rgba(255,255,255,0.6)',
+        }}>
+          <a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</a>
+          <span style={{ margin: '0 8px' }}>/</span>
+          <span>AI Platform</span>
+        </nav>
+
+        <div style={{
+          fontFamily: 'var(--font-ui)', fontSize: 12,
+          letterSpacing: '0.18em', textTransform: 'uppercase',
+          color: 'var(--brand-accent-500)', marginBottom: 20, fontWeight: 700,
+        }}>AI PLATFORM · v4 · ENGINEERING-SPEC</div>
+
+        <h1 style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 'clamp(36px, 6vw, 64px)',
+          lineHeight: 1.05,
+          margin: '0 0 16px',
+          fontWeight: 600,
+          letterSpacing: '-0.01em',
+          maxWidth: 880,
+        }}>Built for the AI era of medicine.</h1>
+
+        <p style={{
+          fontFamily: 'var(--font-slogan)',
+          fontSize: 'clamp(18px, 2.4vw, 24px)',
+          fontStyle: 'italic',
+          color: 'var(--brand-accent-500)',
+          margin: '0 0 28px',
+          letterSpacing: '0.02em',
+          maxWidth: 720,
+        }}>AI-Enabled. Physician-Verified. Globally Ready.</p>
+
+        <p style={{
+          fontSize: 'clamp(15px, 1.6vw, 18px)',
+          lineHeight: 1.6,
+          color: 'rgba(255,255,255,0.78)',
+          margin: '0 0 36px',
+          maxWidth: 680,
+        }}>Two products today. Each one a focused workflow with an explicit input → output contract and a named clinician on the audit log.</p>
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+          <a href="#products" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            padding: '14px 28px', borderRadius: 10,
+            background: 'var(--white)',
+            color: 'var(--brand-primary-700)',
+            fontFamily: 'var(--font-ui)', fontSize: 14, fontWeight: 700,
+            textDecoration: 'none',
+          }}>See the products ↓</a>
+          <a href="/contact.html?intent=ai_dd" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            padding: '14px 28px', borderRadius: 10,
+            background: 'transparent',
+            color: 'var(--white)',
+            border: '1px solid rgba(255,255,255,0.30)',
+            fontFamily: 'var(--font-ui)', fontSize: 14, fontWeight: 700,
+            textDecoration: 'none',
+          }}>Talk to our AI team</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Final · Dual CTA (carried over from v3) ──────────────── */
+function FinalDualCTA() {
+  return (
+    <section id="cta" style={{
+      padding: 'clamp(64px, 8vw, 128px) clamp(24px, 6vw, 96px)',
+      background: 'var(--bg-2, var(--neutral-50))',
+      borderTop: '1px solid var(--border-1)',
+    }}>
+      <div className="aips4-final-cta-grid" style={{
+        maxWidth: 'var(--container-max, 1280px)',
+        margin: '0 auto',
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        gap: 'clamp(24px, 3vw, 40px)',
+      }}>
+        <CTAColumn
+          eyebrow="FOR CLINICIANS & RESEARCHERS"
+          title="Try the products"
+          body="Limited Preview · Apply for access to DeepEvidence, SeekEvidence, or notify me when the next product ships."
+          ctaLabel="Apply for access →"
+          ctaHref="/contact.html?intent=ai_product_access"
+          accent="primary"
+        />
+        <CTAColumn
+          eyebrow="FOR INVESTORS & PARTNERS"
+          title="Talk to our AI team"
+          body="Reverse-DD readout, technical deep-dive, or partnership exploration."
+          ctaLabel="Schedule a session →"
+          ctaHref="/contact.html?intent=ai_reverse_dd"
+          accent="dark"
+        />
+      </div>
+      <style>{`
+        @media (min-width: 1024px) {
+          .aips4-final-cta-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function CTAColumn({ eyebrow, title, body, ctaLabel, ctaHref, accent }) {
+  const isDark = accent === 'dark';
+  return (
+    <div style={{
+      padding: 'clamp(24px, 3vw, 40px)',
+      borderRadius: 16,
+      background: isDark ? 'var(--brand-primary-900)' : 'var(--bg-1)',
+      border: isDark ? 'none' : '1px solid var(--border-1)',
+      color: isDark ? 'var(--white)' : 'var(--fg-1)',
+      display: 'flex', flexDirection: 'column', gap: 16,
+    }}>
+      <div style={{
+        fontFamily: 'var(--font-ui)', fontSize: 11,
+        letterSpacing: '0.14em', textTransform: 'uppercase',
+        color: isDark ? 'var(--brand-accent-500)' : 'var(--brand-accent-700)',
+        fontWeight: 700,
+      }}>{eyebrow}</div>
+      <h3 style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: 'clamp(24px, 2.8vw, 32px)',
+        fontWeight: 600,
+        margin: 0, lineHeight: 1.2,
+        color: isDark ? 'var(--white)' : 'var(--brand-primary-700)',
+      }}>{title}</h3>
+      <p style={{
+        margin: 0,
+        fontSize: 14, lineHeight: 1.6,
+        color: isDark ? 'rgba(255,255,255,0.78)' : 'var(--fg-2)',
+        maxWidth: 480,
+      }}>{body}</p>
+      <div style={{ marginTop: 'auto', paddingTop: 8 }}>
+        <a href={ctaHref} style={{
+          display: 'inline-flex', alignItems: 'center', gap: 8,
+          padding: '14px 28px', borderRadius: 10,
+          background: isDark ? 'var(--white)' : 'var(--brand-primary-700)',
+          color: isDark ? 'var(--brand-primary-700)' : 'var(--white)',
+          fontFamily: 'var(--font-ui)', fontSize: 14, fontWeight: 700,
+          textDecoration: 'none',
+        }}>{ctaLabel}</a>
+      </div>
+    </div>
+  );
+}
+
+/* ── App ─────────────────────────────────────────────────── */
+function App() {
+  React.useEffect(() => {
+    const t = setTimeout(() => window.lucide && window.lucide.createIcons(), 60);
+    return () => clearTimeout(t);
+  });
+
+  return (
+    <PageShell hero={<V4Hero />}>
+      
+      <section id="foundation">
+        <AIAssetBalanceSheet
+          eyebrow="THE NUMBERS BEHIND THE PLATFORM"
+          subtitle="AS OF 2026 Q1 · IR-VERIFIED"
+          groups={ASSET_GROUPS}
+          narrative={ASSET_NARRATIVE}
+        />
+      </section>
+
+      <section id="products">
+        <AIProductSpec
+          eyebrow="AI PRODUCTS"
+          title="Two engines today. More arriving."
+          lede="Each product reads as a contract: what you ask, what ships, what it's anchored to. Same audited evidence stack you saw above."
+          products={PRODUCTS}
+        />
+      </section>
+
+      <section id="method">
+        <TrustArchitecture
+          eyebrow="ACT 3 · THE METHOD"
+          title="How we keep medical AI accountable."
+          pitlSteps={PITL_STEPS}
+          evidenceRows={EVIDENCE_ROWS}
+        />
+              </section>
+
+      <FinalDualCTA />
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

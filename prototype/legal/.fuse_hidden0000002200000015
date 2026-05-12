@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Disclosures — MedSci Healthcare (2415.HK)</title>
+<meta name="description" content="Forward-looking statements, source attribution, and HKEX 2415.HK disclosures index for medscihealthcare.com.">
+<link rel="canonical" href="https://medscihealthcare.com/legal/disclosures">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/legal/disclosures">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/legal/disclosures?lang=zh-CN">
+<link rel="alternate" hreflang="x-default" href="https://medscihealthcare.com/legal/disclosures">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Disclosures — MedSci Healthcare (2415.HK)">
+<meta property="og:description" content="HKEX 2415.HK forward-looking statements and disclosures index.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/legal-disclosures-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/legal/disclosures">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "MedSci Healthcare",
+      "url": "https://medscihealthcare.com",
+      "tickerSymbol": "2415.HK",
+      "sameAs": [
+        "https://www.hkexnews.hk/",
+        "https://ir.medsci.cn/en/"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "name": "Disclosures — MedSci Healthcare (2415.HK)",
+      "url": "https://medscihealthcare.com/legal/disclosures",
+      "inLanguage": ["en", "zh-CN"]
+    }
+  ]
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/LangSwitch.jsx"></script>
+<script type="text/babel" src="../components/LegalProse.jsx"></script>
+
+<script type="text/babel">
+// Copy Deck v4.2 §12.3 — DUAL-SIGN: IR + Legal. Skeleton awaiting both.
+// Numbers in this file MUST match the most recent HKEX 2415.HK disclosure.
+const CONTENT = {
+  en: {
+    eyebrow: 'Legal · Disclosures',
+    title:   'Disclosures (HKEX 2415.HK)',
+    lastUpdated: null,
+    sections: [
+      { id: 'forward-looking', heading: '1. Forward-looking statements',
+        paragraphs: [
+          'medscihealthcare.com may contain statements that are not historical facts — including statements about strategy, services, expected outcomes, market conditions, and AI methodology. These are forward-looking statements within the meaning of applicable securities law. Forward-looking statements involve risks and uncertainties; actual results may differ.',
+          'We do not undertake to update forward-looking statements except as required by HKEX rules. ⚠️ Counsel to align Safe-Harbor language to HKEX Listing Rules + U.S. PSLRA equivalent if SEC-listed instruments come into scope.'
+        ] },
+      { id: 'source-numbers', heading: '2. Source of headline numbers',
+        paragraphs: [
+          <table key="t1" style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14, lineHeight: 1.5 }}>
+            <thead>
+              <tr><th align="left" style={{ padding: 8, borderBottom: '2px solid var(--border-2)' }}>Number cited</th><th align="left" style={{ padding: 8, borderBottom: '2px solid var(--border-2)' }}>Authoritative source</th><th align="left" style={{ padding: 8, borderBottom: '2px solid var(--border-2)' }}>Last refreshed</th></tr>
+            </thead>
+            <tbody>
+              <tr><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>3.33M+ registered physicians</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>Internal network records (reconciled to HKEX quarterly results)</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>⚠️ pending IR refresh</td></tr>
+              <tr><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>2415.HK ticker symbol</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>HKEX listing</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>2024 listing</td></tr>
+              <tr><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>AI + PITL methodology claims</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>Internal Methodology v1, signed by CMO</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>2026-Q1</td></tr>
+              <tr><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>Bilingual physician review (EN + CN tracks)</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>Internal Delivery Standard v1</td><td style={{ padding: 8, borderBottom: '1px solid var(--border-1)' }}>2026-Q1</td></tr>
+              <tr><td style={{ padding: 8 }}>Case Study metrics × 9</td><td style={{ padding: 8 }}>Per-engagement client report (named source per CaseStudy schema)</td><td style={{ padding: 8 }}>Per Case Study page</td></tr>
+            </tbody>
+          </table>,
+          'Where any number on the Site differs from the most recent HKEX disclosure, the HKEX disclosure governs and we will reconcile the Site within ⚠️ [counsel-set window, typically 30 days].'
+        ] },
+      { id: 'restatement', heading: '3. Restatement policy',
+        paragraphs: ['If a previously published number on the Site requires correction, we publish the correction through the same HKEX disclosure channel that originated the number. The Site is then updated to match. We do not silently edit historical numbers.'] },
+      { id: 'no-investment-advice', heading: '4. No investment advice',
+        paragraphs: ['Nothing on medscihealthcare.com constitutes an offer, solicitation, or recommendation to buy or sell securities of MedSci Healthcare or any other entity. Investors should consult qualified advisers and refer to the latest HKEX disclosures.'] },
+      { id: 'hkex-index', heading: '5. HKEX disclosure index',
+        paragraphs: [
+          <span>Latest HKEX 2415.HK announcements: <a href="https://www.hkexnews.hk/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>HKEX news</a>.</span>,
+          'Latest annual report: ⚠️ [Counsel + IR to provide direct deep link or cite year].',
+          'Latest quarterly results: ⚠️ [Counsel + IR to provide direct deep link or cite quarter].',
+          'Corporate governance report: ⚠️ [Counsel + IR to provide direct deep link].'
+        ] },
+      { id: 'methodology-claims', heading: '6. AI + PITL methodology — public-facing claims',
+        paragraphs: [
+          <span>Public claims about our AI-Enabled Platform (<a href="/ai-platform" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>medscihealthcare.com/ai-platform</a>) reflect our Internal Methodology document, which is signed by the Chief Medical Officer and reviewed quarterly. Claims include physician-in-the-loop review on every deliverable, named-author and named-reviewer authorship, and time-stamped audit trails.</span>,
+          '⚠️ Counsel + IR to confirm public-facing methodology summary aligns to HKEX disclosure language and U.S. FTC advertising rules.'
+        ] },
+      { id: 'contact', heading: '7. Contact',
+        paragraphs: [<span>Investor relations: <code>ir@medscihealthcare.com</code> (or <a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>IR site</a>). Legal / compliance: <code>legal@medscihealthcare.com</code>.</span>] }
+    ]
+  },
+
+  zh: {
+    eyebrow: '法律 · 披露',
+    title:   '披露（HKEX 2415.HK）',
+    lastUpdated: null,
+    pendingNotice: '本中文版本由译审在外部律师 + IR 总监双签英文版本后产出（Copy Deck v4.2 §12.3.zh）。中文数字与英文版本字字一致;术语映射: "Forward-looking statements" → "前瞻性陈述"; "Restatement" → "重述"。',
+    sections: [
+      { id: 'forward-looking',      heading: '1. 前瞻性陈述',                            paragraphs: ['medscihealthcare.com 可能包含非历史事实陈述。前瞻性陈述涉及风险与不确定性。除 HKEX 规则要求外,我们不承诺更新。⚠️ Counsel to align Safe-Harbor language.'] },
+      { id: 'source-numbers',       heading: '2. 头条数字来源',                          paragraphs: ['3.33M+ 注册医师 / 2415.HK 股票代码 / AI + PITL 方法论 / 双语医师审阅 / Case Study 9 项指标 — 来源详见英文版表格。⚠️ pending IR 刷新日期。'] },
+      { id: 'restatement',          heading: '3. 重述政策',                              paragraphs: ['网站发布数字若需更正,我们通过同一 HKEX 披露渠道发布更正,网站随后同步更新。我们不静默编辑历史数字。'] },
+      { id: 'no-investment-advice', heading: '4. 不构成投资建议',                        paragraphs: ['medscihealthcare.com 任何内容不构成买卖 MedSci Healthcare 或任何其他实体证券的要约、招揽或建议。'] },
+      { id: 'hkex-index',           heading: '5. HKEX 披露索引',                          paragraphs: [<span>最新 HKEX 2415.HK 公告: <a href="https://www.hkexnews.hk/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>HKEX news</a>。⚠️ 年报 / 季报 / 企业管治报告深链 by Counsel + IR.</span>] },
+      { id: 'methodology-claims',   heading: '6. AI + PITL 方法论公开声明',                paragraphs: ['关于 AI 平台的公开声明反映我们由 CMO 签字的内部方法论文档,每季度审阅。⚠️ Counsel + IR 确认与 HKEX 披露语言及美国 FTC 广告规则一致。'] },
+      { id: 'contact',              heading: '7. 联系方式',                              paragraphs: ['投资者关系: ir@medscihealthcare.com (或 IR 站点). 法务 / 合规: legal@medscihealthcare.com.'] }
+    ]
+  }
+};
+
+function App() {
+  const [lang, setLang] = React.useState('en');
+  const t = CONTENT[lang];
+  return (
+    <PageShell hideHero breadcrumbs={[
+      { label: lang === 'en' ? 'Home' : '首页', href: '/' },
+      { label: lang === 'en' ? 'Legal' : '法律', href: '/legal/' },
+      { label: lang === 'en' ? 'Disclosures' : '披露' }
+    ]}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '24px clamp(24px, 6vw, 96px) 0', display: 'flex', justifyContent: 'flex-end' }}>
+        <LangSwitch enabled={true} current={lang} onSwitch={setLang} />
+      </div>
+      <LegalProse
+        eyebrow={t.eyebrow}
+        title={t.title}
+        lastUpdated={t.lastUpdated}
+        pendingNotice={t.pendingNotice}
+        sections={t.sections}
+      />
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

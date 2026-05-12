@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>China RWE: What Travels — MedSci Insights</title>
+<meta name="description" content="What China RWE travels across borders to FDA or EMA — and what teams should plan to re-derive locally. A field briefing from MedSci's evidence team.">
+<link rel="canonical" href="https://medscihealthcare.com/insights/china-rwe-what-travels">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/insights/china-rwe-what-travels">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="China RWE: What Travels — MedSci Insights">
+<meta property="og:description" content="What China RWE travels across borders, and what teams should plan to re-derive locally. From MedSci Healthcare's evidence team.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/insights-china-rwe-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/insights/china-rwe-what-travels">
+<meta property="article:published_time" content="2026-04-15">
+<meta property="article:author" content="Dr. L. Chen">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "China Real-World Evidence: What Travels Across Borders, and What Doesn't",
+  "url": "https://medscihealthcare.com/insights/china-rwe-what-travels",
+  "datePublished": "2026-04-15",
+  "dateModified": "2026-04-15",
+  "author": { "@type": "Person", "name": "Dr. L. Chen", "jobTitle": "Medical Director, Evidence" },
+  "reviewedBy": { "@type": "Person", "name": "Dr. M. Park", "jobTitle": "Senior Reviewer, PITL" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MedSci Healthcare",
+    "url": "https://medscihealthcare.com"
+  }
+}
+</script>
+<style>
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/AuthorMeta.jsx"></script>
+<!-- UXcritique20260429: hides "Section content in development" stubs behind <Pending> -->
+<script type="text/babel" src="../components/Pending.jsx"></script>
+<script type="text/babel" src="../components/ArticleBody.jsx"></script>
+
+<script type="text/babel">
+// Mock data — Copy Deck v4.2 §8.2.1 (china-rwe-what-travels).
+// CMS stage will fetch from Sanity:
+//   GROQ: *[_type == 'insight' && slug.current == $slug][0]{
+//     title, lede, topic, author->{name, title}, pitlReviewer->{name, title},
+//     publishedAt, body, relatedSolution->{slug, title}, relatedPilot->{slug, shortName, title}
+//   }
+const ARTICLE = {
+  slug: 'china-rwe-what-travels',
+  topic: { value: 'rwe', label: 'China RWE' },
+  title: "China Real-World Evidence: What Travels Across Borders, and What Doesn't",
+  lede: "Real-world evidence generated in China is increasingly cited in global submissions — but not all of it travels. We separate what regulators outside China tend to accept, what they question, and what teams should plan to re-derive locally before quoting it in an FDA or EMA package.",
+  author:        { name: 'Dr. L. Chen', title: 'Medical Director, Evidence' },
+  pitlReviewer:  { name: 'Dr. M. Park', title: 'Senior Reviewer, PITL' },
+  publishedAt:   '2026-04-15',
+  readingTime:   '6 min read',
+  // Body sections — Portable Text mock; CMS stage replaces with Sanity `body` field.
+  sections: [
+    {
+      heading: 'Where China RWE has earned shelf space',
+      paragraphs: [
+        "Over the last three years, registry-grade RWE from Chinese tertiary centers has shown up in oncology, cardiology, and rare disease submissions outside China. The reason is structural: tier-1 AMCs in China generate volume that smaller markets cannot match, and a handful of registries now publish methodology that maps cleanly onto OMOP and CDISC. The question for global teams is no longer whether to read Chinese RWE — it is which sources hold up under cross-jurisdictional scrutiny."
+      ]
+    },
+    {
+      heading: 'Three gaps that still trip submissions',
+      pending: true,
+      pendingLabel: 'Three gating concerns we see most often when China-sourced RWE enters a U.S. or EU regulatory package — population alignment, comparator availability, and outcome definition mapping.',
+      pendingNote: 'Section in physician review · expected publication May 2026'
+    },
+    {
+      heading: 'What we ask before quoting a China RWE source overseas',
+      pending: true,
+      pendingLabel: 'Our reviewers run a four-question pre-check before a China-sourced citation enters a U.S.-facing dossier draft.',
+      pendingNote: 'Section in physician review · expected publication May 2026'
+    }
+  ],
+  related: {
+    solution: { slug: 'medical-evidence', label: 'Medical Evidence' },
+    pilot:    { slug: 'china-evidence-sprint', shortName: '30-Day China Evidence Sprint' }
+  }
+};
+
+function App() {
+  return (
+    <PageShell
+      breadcrumbs={[
+        { label: 'Home',     href: '/' },
+        { label: 'Insights', href: '/insights/' },
+        { label: ARTICLE.title }
+      ]}
+      hideHero
+    >
+      <InsightHero article={ARTICLE} />
+      <Lede text={ARTICLE.lede} />
+      <ArticleBody sections={ARTICLE.sections} />
+      <Related related={ARTICLE.related} />
+      <InsightCTA topic={ARTICLE.topic} relatedPilot={ARTICLE.related.pilot} />
+    </PageShell>
+  );
+}
+
+function InsightHero({ article }) {
+  return (
+    <header style={{
+      maxWidth: 880,
+      margin: '0 auto',
+      padding: 'clamp(48px, 6vw, 96px) clamp(24px, 6vw, 96px) 24px'
+    }}>
+      <div style={{
+        fontFamily: 'var(--font-slogan)',
+        fontSize: 12,
+        letterSpacing: '0.12em',
+        textTransform: 'uppercase',
+        color: 'var(--brand-accent-700)',
+        marginBottom: 16
+      }}>
+        Insight · {article.topic.label}
+      </div>
+
+      <h1 style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: 'clamp(32px, 5vw, 56px)',
+        lineHeight: 1.15,
+        margin: '0 0 24px',
+        color: 'var(--brand-primary-700)'
+      }}>
+        {article.title}
+      </h1>
+
+      <AuthorMeta
+        author={article.author}
+        pitlReviewer={article.pitlReviewer}
+        publishedAt={article.publishedAt}
+        readingTime={article.readingTime}
+      />
+
+      <p style={{
+        fontSize: 13,
+        color: 'var(--fg-3)',
+        marginTop: 12,
+        lineHeight: 1.5
+      }}>
+        Every MedSci Insight is drafted by a named author and reviewed by a named physician under our{' '}
+        <a href="/ai-platform" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>PITL workflow</a>.
+      </p>
+    </header>
+  );
+}
+
+function Lede({ text }) {
+  return (
+    <div style={{
+      maxWidth: 720,
+      margin: '0 auto',
+      padding: '24px clamp(24px, 6vw, 96px) 32px'
+    }}>
+      <p style={{
+        borderLeft: '3px solid var(--brand-primary-500)',
+        paddingLeft: 20,
+        fontSize: 19,
+        lineHeight: 1.6,
+        color: 'var(--fg-1)',
+        margin: 0,
+        fontFamily: 'var(--font-ui)'
+      }}>
+        {text}
+      </p>
+    </div>
+  );
+}
+
+function Related({ related }) {
+  if (!related || (!related.solution && !related.pilot)) return null;
+  return (
+    <section style={{
+      maxWidth: 720,
+      margin: '0 auto',
+      padding: '0 clamp(24px, 6vw, 96px) 32px'
+    }}>
+      <div style={{
+        borderTop: '1px solid var(--border-1)',
+        paddingTop: 24,
+        fontSize: 14,
+        color: 'var(--fg-2)',
+        lineHeight: 1.7
+      }}>
+        <div style={{
+          fontFamily: 'var(--font-slogan)',
+          fontSize: 12,
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: 'var(--brand-primary-700)',
+          marginBottom: 12
+        }}>Related</div>
+        {related.solution && (
+          <div>
+            Solution:{' '}
+            <a href={`/solutions/${related.solution.slug}`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
+              {related.solution.label}
+            </a>
+          </div>
+        )}
+        {related.pilot && (
+          <div>
+            Pilot:{' '}
+            <a href={`/pilots/${related.pilot.slug}`} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
+              {related.pilot.shortName}
+            </a>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function InsightCTA({ topic, relatedPilot }) {
+  return (
+    <section style={{
+      background: 'var(--bg-2)',
+      borderTop: '1px solid var(--border-1)',
+      padding: '64px clamp(24px, 6vw, 96px)'
+    }}>
+      <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+        <div style={{
+          fontFamily: 'var(--font-slogan)',
+          fontSize: 12,
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: 'var(--brand-accent-700)',
+          marginBottom: 12
+        }}>Work with us</div>
+
+        <h3 style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 28,
+          lineHeight: 1.25,
+          margin: '0 0 12px',
+          color: 'var(--brand-primary-700)'
+        }}>
+          Bring this question to a physician on our team.
+        </h3>
+
+        <p style={{ fontSize: 15, color: 'var(--fg-2)', lineHeight: 1.6, margin: '0 0 24px' }}>
+          If this briefing maps onto a decision you're working through, the same author or reviewer can join a 30-minute call.
+        </p>
+
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a href={`/contact.html?topic=${topic.value}`} style={{
+            padding: '12px 24px',
+            background: 'var(--brand-primary-700)',
+            color: 'var(--bg-1)',
+            fontFamily: 'var(--font-ui)',
+            fontSize: 14,
+            fontWeight: 600,
+            letterSpacing: '0.04em',
+            textDecoration: 'none'
+          }}>
+            Talk to an Expert
+          </a>
+          {relatedPilot && (
+            <a href={`/pilots/${relatedPilot.slug}`} style={{
+              padding: '12px 24px',
+              background: 'transparent',
+              color: 'var(--brand-primary-700)',
+              border: '1px solid var(--brand-primary-700)',
+              fontFamily: 'var(--font-ui)',
+              fontSize: 14,
+              fontWeight: 600,
+              letterSpacing: '0.04em',
+              textDecoration: 'none'
+            }}>
+              Book the {relatedPilot.shortName}
+            </a>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

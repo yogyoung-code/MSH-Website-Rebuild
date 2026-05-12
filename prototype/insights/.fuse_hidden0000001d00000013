@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Insights — MedSci Healthcare</title>
+<meta name="description" content="Field briefings on China RWE, FDA evidence bridges, and bilingual medical communication — written by physicians, reviewed under our PITL workflow.">
+<link rel="canonical" href="https://medscihealthcare.com/insights/">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/insights/">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Insights — MedSci Healthcare">
+<meta property="og:description" content="Briefings on China RWE, FDA evidence bridges, and bilingual medical communication — physician-written, PITL-reviewed.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/insights-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/insights/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "MedSci Healthcare Insights",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "url": "https://medscihealthcare.com/insights/china-rwe-what-travels" },
+    { "@type": "ListItem", "position": 2, "url": "https://medscihealthcare.com/insights/china-data-fda-bridge" },
+    { "@type": "ListItem", "position": 3, "url": "https://medscihealthcare.com/insights/bilingual-content-both-tracks-sign" }
+  ]
+}
+</script>
+<style>
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/InsightCard.jsx"></script>
+<script type="text/babel" src="../components/TopicChips.jsx"></script>
+
+<script type="text/babel">
+// Mock data — Copy Deck v4.2 §8.2; CMS stage will replace with Sanity Insight schema fetch.
+const TOPICS = [
+  { value: 'rwe',             label: 'China RWE' },
+  { value: 'evidence_bridge', label: 'FDA Evidence Bridge' },
+  { value: 'med_comm',        label: 'Medical Communication' }
+];
+
+const INSIGHTS = [
+  {
+    slug: 'china-rwe-what-travels',
+    topic: TOPICS[0],
+    title: "China Real-World Evidence: What Travels Across Borders, and What Doesn't",
+    lede: "Real-world evidence generated in China is increasingly cited in global submissions — but not all of it travels. We separate what regulators outside China tend to accept, what they question, and what teams should plan to re-derive locally before quoting it in an FDA or EMA package.",
+    author:        { name: 'Dr. L. Chen', title: 'Medical Director, Evidence' },
+    pitlReviewer:  { name: 'Dr. M. Park', title: 'Senior Reviewer, PITL' },
+    publishedAt:   '2026-04-15',
+    readingTime:   '6 min read'
+  },
+  {
+    slug: 'china-data-fda-bridge',
+    topic: TOPICS[1],
+    title: 'Bridging China-Generated Data to an FDA Submission: A Field Checklist',
+    lede: 'Most China-headquartered sponsors arrive at the FDA conversation with strong domestic data and an unclear sense of which parts will translate. We share the gating questions our reviewers run before a single page of a U.S.-facing dossier gets drafted — and the three places that bridges most often fail.',
+    author:        { name: 'Dr. R. Iyer', title: 'Medical Director, U.S. Programs' },
+    pitlReviewer:  { name: 'Dr. K. Liu',  title: 'Senior Reviewer, PITL' },
+    publishedAt:   '2026-04-08',
+    readingTime:   '7 min read'
+  },
+  {
+    slug: 'bilingual-content-both-tracks-sign',
+    topic: TOPICS[2],
+    title: 'Bilingual Medical Content That Both Tracks Will Sign',
+    lede: 'Translating EN clinical content into CN — or the reverse — is rarely the actual problem. The actual problem is that two physician tracks need to sign off the same artifact, against two different regulatory and stylistic frames. We share the parallel-reviewer model we use, and where it shortens revision cycles by half.',
+    author:        { name: 'Dr. S. Tan',  title: 'Medical Director, Communications' },
+    pitlReviewer:  { name: 'Dr. J. Wang', title: 'Senior Reviewer, PITL' },
+    publishedAt:   '2026-03-30',
+    readingTime:   '5 min read'
+  }
+];
+
+function App() {
+  // Multi-select: empty array = show all
+  const [activeTopics, setActiveTopics] = React.useState([]);
+
+  const toggleTopic = (v) => {
+    setActiveTopics(prev => prev.indexOf(v) === -1 ? [...prev, v] : prev.filter(x => x !== v));
+  };
+
+  const visible = activeTopics.length === 0
+    ? INSIGHTS
+    : INSIGHTS.filter(i => activeTopics.indexOf(i.topic.value) !== -1);
+
+  return (
+    <PageShell
+      eyebrow="Insights"
+      title="Field notes from where evidence, regulators, and physicians meet."
+      subtitle="Short briefings written by our physicians and reviewed under the PITL workflow we use for client work. No vendor takes; just what we're seeing in China RWE, U.S. submissions, and bilingual medical content."
+      breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Insights' }]}
+    >
+      <TopicChips
+        topics={TOPICS}
+        active={activeTopics}
+        onToggle={toggleTopic}
+      />
+
+      <section style={{ padding: '0 clamp(24px, 6vw, 96px) 64px', maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          {visible.map(i => (
+            <InsightCard
+              key={i.slug}
+              {...i}
+              href={`/insights/${i.slug}`}
+            />
+          ))}
+        </div>
+        {visible.length === 0 && (
+          <div style={{ textAlign: 'center', color: 'var(--fg-3)', padding: 48 }}>
+            No insights match the selected topics.
+          </div>
+        )}
+      </section>
+
+      {/* Subscribe module — Copy Deck v4.2 §8.0.5 */}
+      <section id="subscribe" style={{
+        background: 'var(--bg-2)',
+        borderTop: '1px solid var(--border-1)',
+        padding: '64px clamp(24px, 6vw, 96px)'
+      }}>
+        <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+          <div style={{
+            fontFamily: 'var(--font-slogan)',
+            fontSize: 12,
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: 'var(--brand-accent-700)',
+            marginBottom: 12
+          }}>Stay in the loop</div>
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 32,
+            margin: '0 0 12px',
+            color: 'var(--brand-primary-700)',
+            lineHeight: 1.2
+          }}>
+            One short briefing a month — when it's worth your inbox.
+          </h2>
+          <p style={{
+            fontSize: 15,
+            color: 'var(--fg-2)',
+            lineHeight: 1.6,
+            margin: '0 0 24px'
+          }}>
+            No marketing newsletter. We send a single Insight per month, written by a physician, reviewed under PITL. Cancel anytime.
+          </p>
+          <SubscribeForm topics={TOPICS} />
+          <p style={{ fontSize: 12, color: 'var(--fg-3)', marginTop: 16 }}>
+            By subscribing you agree to our <a href="/legal/privacy" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>Privacy Policy</a>. We do not share your email with third parties.
+          </p>
+        </div>
+      </section>
+    </PageShell>
+  );
+}
+
+function SubscribeForm({ topics }) {
+  // UXcritique20260429: opt-in default (only first topic), error state with retry,
+  // email validation, button disabled during submit.
+  const [email, setEmail] = React.useState('');
+  const [emailError, setEmailError] = React.useState('');
+  // Default to FIRST topic only — opt-in, not opt-out (P2 finding: was all-on by default).
+  const [selected, setSelected] = React.useState(topics.length > 0 ? [topics[0].value] : []);
+  const [state, setState] = React.useState('idle'); // idle | submitting | done | error
+  const [errorDetail, setErrorDetail] = React.useState('');
+
+  const validate = (v) => {
+    if (!v) return 'Please enter your email.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'That email address looks incomplete.';
+    return '';
+  };
+
+  const toggle = (v) => {
+    setSelected(prev => prev.indexOf(v) === -1 ? [...prev, v] : prev.filter(x => x !== v));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const err = validate(email);
+    if (err) { setEmailError(err); return; }
+    setState('submitting');
+    setErrorDetail('');
+    // Simulate; ?simulateError=1 forces an error path
+    const params = new URLSearchParams(window.location.search);
+    const wantError = params.get('simulateError') === '1';
+    setTimeout(() => {
+      if (wantError) {
+        setErrorDetail('Network error (simulated)');
+        setState('error');
+      } else {
+        setState('done');
+      }
+    }, 400);
+  };
+
+  const retry = () => { setState('idle'); setErrorDetail(''); };
+
+  if (state === 'done') {
+    return (
+      <div role="status" aria-live="polite" style={{
+        padding: '20px 24px',
+        background: 'var(--success-100)',
+        border: '1px solid var(--success-500)',
+        borderRadius: 'var(--radius-md, 6px)',
+        color: 'var(--brand-primary-700)',
+        fontSize: 15,
+        lineHeight: 1.5
+      }}>
+        <div style={{
+          fontFamily: 'var(--font-ui)',
+          fontSize: 11, letterSpacing: '0.12em',
+          textTransform: 'uppercase', fontWeight: 700,
+          color: 'var(--success-500)', marginBottom: 6
+        }}>✓ Subscribed</div>
+        Thanks — you're on the list. The next briefing goes out at the start of next month.
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'stretch' }}>
+      {state === 'error' && (
+        <div role="alert" aria-live="assertive" style={{
+          padding: '12px 16px',
+          background: '#fef2f2',
+          border: '1px solid var(--error-500)',
+          borderRadius: 'var(--radius-md, 6px)',
+          fontSize: 13, color: 'var(--fg-1)', textAlign: 'left'
+        }}>
+          <strong style={{ color: 'var(--error-500)' }}>Couldn't subscribe.</strong>{' '}
+          Your address is preserved — try again, or email <code style={{ fontFamily: 'var(--font-mono)' }}>hello@medscihealthcare.com</code>.
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-3)', marginTop: 4 }}>{errorDetail}</div>
+          <button type="button" onClick={retry} style={{
+            marginTop: 8, padding: '6px 14px',
+            background: 'var(--error-500)', color: 'var(--bg-1)',
+            border: 'none', borderRadius: 'var(--radius-md, 6px)',
+            fontFamily: 'var(--font-ui)', fontSize: 12, fontWeight: 600,
+            cursor: 'pointer'
+          }}>Retry</button>
+        </div>
+      )}
+
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <div style={{ flex: '1 1 240px', display: 'flex', flexDirection: 'column' }}>
+          <input
+            type="email"
+            required
+            aria-invalid={emailError ? 'true' : 'false'}
+            aria-describedby="subscribe-email-error"
+            placeholder="you@company.com"
+            value={email}
+            onChange={(e) => { setEmail(e.target.value); if (emailError) setEmailError(''); }}
+            onBlur={() => setEmailError(validate(email))}
+            disabled={state === 'submitting'}
+            style={{
+              padding: '12px 16px',
+              border: '1px solid ' + (emailError ? 'var(--error-500)' : 'var(--border-2)'),
+              background: 'var(--bg-1)',
+              fontFamily: 'var(--font-ui)',
+              fontSize: 15,
+              color: 'var(--fg-1)'
+            }}
+          />
+          {emailError && (
+            <div id="subscribe-email-error" role="alert" style={{
+              fontSize: 12, color: 'var(--error-500)', marginTop: 4,
+              textAlign: 'left'
+            }}>{emailError}</div>
+          )}
+        </div>
+        <button type="submit" disabled={state === 'submitting'} aria-busy={state === 'submitting'} style={{
+          padding: '12px 24px',
+          background: state === 'submitting' ? 'var(--border-2)' : 'var(--brand-primary-700)',
+          color: 'var(--bg-1)',
+          border: 'none',
+          fontFamily: 'var(--font-ui)',
+          fontSize: 14,
+          fontWeight: 600,
+          letterSpacing: '0.04em',
+          cursor: state === 'submitting' ? 'wait' : 'pointer',
+          minWidth: 130
+        }}>
+          {state === 'submitting' ? 'Subscribing…' : 'Subscribe'}
+        </button>
+      </div>
+      <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', fontSize: 13, color: 'var(--fg-2)' }}>
+        <span style={{ fontSize: 11, color: 'var(--fg-3)', letterSpacing: '0.04em', alignSelf: 'center' }}>Topics (opt-in):</span>
+        {topics.map(t => (
+          <label key={t.value} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={selected.indexOf(t.value) !== -1}
+              onChange={() => toggle(t.value)}
+              disabled={state === 'submitting'}
+            />
+            {t.label}
+          </label>
+        ))}
+      </div>
+    </form>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

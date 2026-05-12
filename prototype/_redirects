@@ -2,6 +2,16 @@
 # 当 B1 (W1) 上线后取消注释下行
 /ai-enabled-delivery /ai-platform 301
 
+# /ai-platform v3.0 子页 — 200 rewrite 把 nested URL 映射到扁平 HTML
+# (Plan v1.2 task 12 修订: 不引 Next.js 动态路由, 用扁平 HTML + rewrite)
+# 浏览器地址栏保持 /ai-platform/<slug>; 静态托管层做透明 rewrite。
+/ai-platform/deepevidence  /ai-platform-deepevidence.html  200
+/ai-platform/seekevidence  /ai-platform-seekevidence.html  200
+
+# W4 launch 切换 — DONE (2026-05-01):
+# v3 已提升为 ai-platform.html (canonical)。旧 v2 归档至 _archive/ai-platform-v2.html。
+# ai-platform-v4.html (engineering-spec variant) 保留为备选参考，不挂 redirect。
+
 # IA §6 历史保留 URL（旧外链 SEO 继承）
 # 仅在目标 URL 已上线后启用，否则会 301 到 404
 

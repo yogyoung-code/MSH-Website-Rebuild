@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>30-Day China Evidence Sprint — MedSci Healthcare</title>
+<meta name="description" content="Fixed-scope 30-day pilot to clarify what global teams need before broader China evidence and HCP work — physician-validated, audit-traceable.">
+<link rel="canonical" href="https://medscihealthcare.com/pilots/china-evidence-sprint">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/pilots/china-evidence-sprint">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="30-Day China Evidence Sprint — MedSci Healthcare">
+<meta property="og:description" content="Fixed-scope 30-day pilot for global teams entering China — physician-validated, audit-traceable, in 30 days.">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/pilot-china-sprint-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/pilots/china-evidence-sprint">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "30-Day China Evidence Sprint",
+      "url": "https://medscihealthcare.com/pilots/china-evidence-sprint",
+      "provider": { "@type": "Organization", "name": "MedSci Healthcare", "tickerSymbol": "2415.HK", "url": "https://medscihealthcare.com" },
+      "serviceType": "Medical evidence and HCP engagement diagnostic pilot for global teams entering China"
+    },
+    {
+      "@type": "Offer",
+      "name": "30-Day China Evidence Sprint",
+      "url": "https://medscihealthcare.com/pilots/china-evidence-sprint",
+      "availability": "https://schema.org/PreOrder",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "USD",
+        "price": "0",
+        "description": "Pricing on request — pending BD + Finance sign-off"
+      }
+    }
+  ]
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/PilotCard.jsx"></script>
+
+<script type="text/babel">
+// Data — Copy Deck v4.2 §11.1; CMS stage will fetch from Sanity Pilot schema.
+const PILOT = {
+  slug: 'china-evidence-sprint',
+  contactTopic: 'entering_china',
+
+  hero: {
+    eyebrow: 'PILOT · ENTERING CHINA · EVIDENCE',
+    title: '30-Day China Evidence Sprint',
+    lede: "A fixed-scope pilot for global biopharma and medtech teams that need clarity on what's required before investing in broader China evidence and engagement work. Physician-validated, audit-traceable, and shipped in 30 calendar days."
+  },
+
+  includes: {
+    intro: '4 deliverables, scoped before kick-off and signed off by a named physician at the end:',
+    items: [
+      { label: 'China evidence gap assessment',         body: "What travels from your existing global stack, what doesn't, and what to plan to re-derive locally." },
+      { label: 'Target HCP / stakeholder hypothesis',   body: 'Segmented map of who matters for your therapeutic area and where they engage in China.' },
+      { label: 'Recommended evidence and engagement path', body: 'A single-page direction with named workstreams and dependencies.' },
+      { label: 'Next-step plan and budget range',       body: 'What the larger engagement would look like, including indicative scope and budget bands.' }
+    ]
+  },
+
+  bestFor: [
+    'Teams that need clarity before committing to a larger China program.',
+    'Teams evaluating whether their current evidence and communication assets are China-ready.'
+  ],
+
+  engagementDetails: [
+    { label: 'Scope',                     value: 'Fixed-scope; no scope creep without written change order' },
+    { label: 'Duration',                  value: '30 calendar days' },
+    { label: 'Kick-off',                  value: 'Within 3 business days of signature' },
+    { label: 'Mid-engagement checkpoint', value: 'Day 15' },
+    { label: 'Output format',             value: 'One signed PDF + one editable working document + one 60-min readout' },
+    { label: 'Named physician reviewer',  value: 'Assigned at kick-off; same person signs the output' }
+  ],
+
+  pricing: { status: 'pending' },  // PilotPricing renders "Pricing on request" + Talk-to-BD CTA
+
+  cta: {
+    primaryLabel:   'Book the China Evidence Sprint',
+    primaryHref:    '/contact.html?topic=entering_china',
+    secondaryLabel: 'Talk to an expert first',
+    secondaryHref:  '/contact.html?topic=entering_china'
+  },
+
+  faq: [
+    {
+      q: "What if we don't yet have a China evidence dataset?",
+      a: 'The Sprint is designed for that. The first deliverable is a gap assessment — we work with what you have, including global trial data, post-marketing surveillance, and any China-relevant publications. If the gap is large, the recommended path will reflect that honestly.'
+    },
+    {
+      q: 'Who is on our team during the 30 days?',
+      a: 'A named physician reviewer (your day-to-day point person), a project lead, and the relevant therapeutic-area subject experts pulled in for specific phases. The physician reviewer is the same person who signs the final deliverable.'
+    },
+    {
+      q: 'Confidentiality and NDA — how do you handle proprietary data?',
+      a: 'Mutual NDA is signed before kick-off. Data shared during the Sprint stays inside the engagement and is not used to train any model or aggregated into other client work. We can sign your NDA template or use ours.'
+    },
+    {
+      q: 'Can we extend the Sprint into a larger engagement?',
+      a: "Yes — the Sprint's final deliverable includes a recommended next-step plan and budget range exactly so this conversation can happen with shared context. If you decide to extend, the Sprint fee is creditable against the first month of the broader engagement."
+    },
+    {
+      q: 'What happens at the Day-15 checkpoint?',
+      a: 'A 60-minute call between your team and ours, with a written summary attached. Either side can flag scope drift, missing inputs, or directional concerns. If we cannot deliver on the original scope, you hear it on Day 15, not Day 30.'
+    },
+    {
+      q: "What's the cancellation policy?",
+      a: "Cancel within 3 business days of signature for a full refund. After kick-off, we honor a pro-rated refund minus committed physician hours through the cancellation date. We do not run a Sprint where we don't have alignment by Day 5."
+    }
+  ],
+
+  boundaries: {
+    do: [
+      'Evidence strategy and gap assessment',
+      'Physician engagement support and HCP mapping',
+      'Localized medical content scaffolding',
+      'AI-assisted drafting under PITL review'
+    ],
+    dont: [
+      'Replacement for your local Chinese legal entity',
+      'A China distributor or commercial sales force',
+      'A full regulatory filing firm',
+      'A clinical trial CRO'
+    ],
+    footnote: 'Where needed, we can work alongside specialist regulatory or commercialization partners.'
+  },
+
+  related: {
+    solution:  { slug: 'entering-china',                     label: 'Entering China' },
+    caseStudy: { slug: 'entering-china-evidence-hcp',        label: 'Entering China · Evidence + HCP Enablement' }
+  }
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<PilotPage pilot={PILOT} />);
+</script>
+</body>
+</html>

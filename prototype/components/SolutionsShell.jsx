@@ -7,7 +7,7 @@ function SolutionPageHeader({ pageMeta }) {
     <section style={{
       background: 'var(--grad-hero)', color: '#fff',
       position: 'relative', overflow: 'hidden',
-      padding: '56px 40px 80px',
+      padding: '56px clamp(16px, 4vw, 40px) 80px',
       borderBottom: '1px solid rgba(255,255,255,0.08)',
     }}>
       {/* faint dot grid */}
@@ -59,12 +59,12 @@ function SolutionPageHeader({ pageMeta }) {
             }}>{sub}</p>
           </div>
 
-          {/* Meta panel */}
+          {}
           {meta && (
             <div style={{
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.12)',
-              borderRadius: 12, padding: 6, backdropFilter: 'blur(8px)',
+              background: 'var(--brand-primary-900)',
+              border: '1px solid rgba(255,255,255,0.16)',
+              borderRadius: 12, padding: 6,
             }}>
               <div style={{
                 padding: '14px 18px 10px',
@@ -147,12 +147,13 @@ function SolutionSubNav({ items, theme = 'navy' }) {
   }, []);
   return (
     <div style={{
-      position: 'sticky', top: 80, zIndex: 30,
-      background: 'rgba(255,255,255,0.96)', backdropFilter: 'blur(8px)',
+      position: 'sticky', top: 93, zIndex: 30,
+      background: 'var(--bg-2)',
       borderBottom: '1px solid var(--border-1)',
+      borderTop: '1px solid var(--border-1)',
     }}>
       <div style={{
-        maxWidth: 1280, margin: '0 auto', padding: '0 40px',
+        maxWidth: 1280, margin: '0 auto', padding: '0 clamp(16px, 4vw, 40px)',
         display: 'flex', alignItems: 'center', gap: 4, overflowX: 'auto',
       }}>
         <span style={{
@@ -184,9 +185,9 @@ function SolutionSubNav({ items, theme = 'navy' }) {
 }
 
 // Section component with eyebrow, title, kicker
-function SolutionSection({ id, eyebrow, title, kicker, children, bg = '#fff', screen, label }) {
+function SolutionSection({ id, eyebrow, title, kicker, children, bg = '#fff' }) {
   return (
-    <section id={id} data-screen-label={label} style={{ padding: '88px 40px', background: bg }}>
+    <section id={id} style={{ padding: '88px clamp(16px, 4vw, 40px)', background: bg }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         {(eyebrow || title) && (
           <div style={{
@@ -359,8 +360,9 @@ function SolutionStatStrip({ stats, theme = 'navy' }) {
           borderLeft: i === 0 ? 'none' : '1px solid var(--border-1)',
         }}>
           <div style={{
-            fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 38, fontWeight: 600,
-            color: 'var(--brand-primary-700)', letterSpacing: '-0.02em', lineHeight: 1.05,
+            /* Spec §3.4: all numbers in Inter regardless of language context. */
+            fontFamily: 'var(--font-ui)', fontSize: 38, fontWeight: 600,
+            color: 'var(--brand-primary-700)', letterSpacing: '-0.025em', lineHeight: 1.05,
           }}>
             {s.n}{s.u && <span style={{
               fontSize: 15, color: isCyan ? 'var(--brand-accent-700)' : 'var(--brand-primary-500)',
@@ -383,10 +385,10 @@ function SolutionStatStrip({ stats, theme = 'navy' }) {
 
 // Reusable: Solution-level final CTA (lighter than homepage final CTA)
 function SolutionCTA({ pageMeta }) {
-  const { ctaTitle, ctaBody, primaryCta, secondaryCta, theme = 'navy' } = pageMeta;
+  const { ctaTitle, ctaBody, primaryCta, secondaryCta, primaryHref, secondaryHref, theme = 'navy' } = pageMeta;
   return (
     <section style={{
-      padding: '88px 40px', background: 'var(--grad-hero)',
+      padding: '88px clamp(16px, 4vw, 40px)', background: 'var(--grad-hero)',
       color: '#fff', position: 'relative', overflow: 'hidden',
     }}>
       <div style={{ maxWidth: 1080, margin: '0 auto', position: 'relative' }}>
@@ -403,10 +405,10 @@ function SolutionCTA({ pageMeta }) {
             }}>{ctaBody}</p>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <Button variant="primary-light" style={{ background: '#fff', color: 'var(--brand-primary-700)', justifyContent: 'center' }}>
+            <Button variant="primary-light" href={primaryHref || '/contact.html'} style={{ background: '#fff', color: 'var(--brand-primary-700)', justifyContent: 'center' }}>
               {primaryCta || 'Book a scoping call'}
             </Button>
-            <Button variant="outline-light" style={{ justifyContent: 'center' }}>
+            <Button variant="outline-light" href={secondaryHref || '/contact.html'} style={{ justifyContent: 'center' }}>
               {secondaryCta || 'See related case studies'}
             </Button>
             <div style={{
@@ -432,10 +434,11 @@ function RelatedSolutions({ current }) {
     { id: 'physician-engagement', label: 'Physician Engagement', tag: 'Business Block', theme: 'navy', href: 'physician-engagement.html', icon: 'stethoscope' },
     { id: 'medical-communications', label: 'Medical Communications', tag: 'Business Block', theme: 'navy', href: 'medical-communications.html', icon: 'book-open-text' },
     { id: 'cross-border-medical-content-sprint', label: 'Cross-Border Content Sprint', tag: 'Quick Start · 2 wks', theme: 'cyan', href: 'cross-border-medical-content-sprint.html', icon: 'zap' },
+    { id: 'content-review', label: 'Content Review', tag: 'Quick Start · 3–5 days', theme: 'cyan', href: 'content-review.html', icon: 'file-check' },
   ].filter(s => s.id !== current);
 
   return (
-    <section style={{ padding: '72px 40px', background: '#fff', borderTop: '1px solid var(--border-1)' }}>
+    <section style={{ padding: '72px clamp(16px, 4vw, 40px)', background: '#fff', borderTop: '1px solid var(--border-1)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 32 }}>
           <div>
@@ -499,6 +502,63 @@ function RelatedCard({ s }) {
   );
 }
 
+// Cross-sell strip — nudges visitors toward Content Review entry offer
+function ContentReviewCrossSell() {
+  const [hover, setHover] = React.useState(false);
+  return (
+    <section style={{
+      padding: '0 clamp(16px, 4vw, 40px)',
+      background: '#fff',
+    }}>
+      <div
+        onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+        style={{
+          maxWidth: 1280, margin: '0 auto',
+          background: hover ? 'var(--brand-accent-100)' : 'var(--bg-2)',
+          border: `1px solid ${hover ? 'var(--brand-accent-300)' : 'var(--border-1)'}`,
+          borderRadius: 12,
+          padding: '28px 36px',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          gap: 24, flexWrap: 'wrap',
+          transition: 'all 200ms',
+          marginBottom: 0,
+        }}
+      >
+        <div style={{ flex: 1, minWidth: 280 }}>
+          <div style={{
+            fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase',
+            color: 'var(--brand-accent-700)', marginBottom: 8,
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+          }}>
+            <i data-lucide="file-check" width="13" height="13"></i>
+            Quick start · 3–5 days
+          </div>
+          <div style={{
+            fontFamily: 'var(--font-ui)', fontSize: 17, fontWeight: 600,
+            color: 'var(--brand-primary-700)', lineHeight: 1.35, marginBottom: 6,
+          }}>
+            Not ready for a full engagement?
+          </div>
+          <div style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.55 }}>
+            Start with a Medical & Compliance Content Review — submit your existing materials and get expert-reviewed feedback in 3–5 business days.
+          </div>
+        </div>
+        <a href="/solutions/content-review.html"
+           style={{
+             display: 'inline-flex', alignItems: 'center', gap: 8,
+             padding: '12px 24px', borderRadius: 8,
+             background: 'var(--brand-accent-700)', color: '#fff',
+             fontSize: 14, fontWeight: 600, textDecoration: 'none',
+             letterSpacing: '0.02em', whiteSpace: 'nowrap',
+             transition: 'background 150ms',
+           }}>
+          Learn more <span style={{ fontSize: 16 }}>→</span>
+        </a>
+      </div>
+    </section>
+  );
+}
+
 window.SolutionPageHeader = SolutionPageHeader;
 window.SolutionSubNav = SolutionSubNav;
 window.SolutionSection = SolutionSection;
@@ -507,3 +567,4 @@ window.DeliverablesGrid = DeliverablesGrid;
 window.SolutionStatStrip = SolutionStatStrip;
 window.SolutionCTA = SolutionCTA;
 window.RelatedSolutions = RelatedSolutions;
+window.ContentReviewCrossSell = ContentReviewCrossSell;

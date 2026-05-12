@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>G1 structural diff</title>
+<style>
+  html,body{margin:0;padding:0;background:#0d1117;color:#c9d1d9;font:12px/1.5 ui-monospace,monospace}
+  #status{padding:8px 12px;background:#161b22;border-bottom:1px solid #30363d;color:#7fb8e3}
+  #log{padding:10px 14px;white-space:pre;max-height:65vh;overflow:auto}
+  .ok{color:#56d364}.diff{color:#fc8c6a}.err{color:#f85149}
+  iframe{position:absolute;left:-9999px;width:1280px;height:1024px}
+</style>
+</head>
+<body>
+<div id="status">G1 structural diff — initializing…</div>
+<div id="log"></div>
+<iframe id="b"></iframe>
+<iframe id="c"></iframe>
+<script>
+(function(){
+  const PAIRS = [
+    { label: 'Homepage',                    base: 'http://localhost:8001/Homepage.html',                                       cur: 'http://localhost:8000/index.html' },
+    { label: 'Cross-Border Sprint',         base: 'http://localhost:8001/solutions/cross-border-medical-content-sprint.html',  cur: 'http://localhost:8000/solutions/cross-border-medical-content-sprint.html' },
+    { label: 'Entering China',              base: 'http://localhost:8001/solutions/entering-china.html',                       cur: 'http://localhost:8000/solutions/entering-china.html' },
+    { label: 'Going Global (US)',           base: 'http://localhost:8001/solutions/going-global-us.html',                      cur: 'http://localhost:8000/solutions/going-global-us.html' },
+    { label: 'Medical Communications',      base: 'http://localhost:8001/solutions/medical-communications.html',               cur: 'http://localhost:8000/solutions/medical-communications.html' },
+    { label: 'Medical Evidence',            base: 'http://localhost:8001/solutions/medical-evidence.html',                     cur: 'http://localhost:8000/solutions/medical-evidence.html' },
+    { label: 'Physician Engagement',        base: 'http://localhost:8001/solutions/physician-engagement.html',                 cur: 'http://localhost:8000/solutions/physician-engagement.html' },
+  ];
+  const WAIT = 3500;
+  const b = document.getElementById('b');
+  const c = document.getElementById('c');
+  const status = document.getElementById('status');
+  const log = document.getElementById('log');
+  window.G1_RESULTS = [];
+  window.G1_DONE = false;
+  window.G1_PROGRESS = {total: PAIRS.length, done: 0};
+
+  function loadIframe(iframe, url){
+    return new Promise((resolve, reject) => {
+      const onLoad = () => {
+        iframe.removeEventListener('load', onLoad);
+        setTimeout(() => resolve(), WAIT);
+      };
+      iframe.addEventListener('load', onLoad);
+      iframe.src = url + (url.includes('?')?'&':'?') + '_t=' + Date.now();
+      setTimeout(() => reject(new Error('iframe load timeout')), 20000);
+    });
+  }
+
+  function fingerprint(iframe){
+    try{
+      const doc = iframe.contentDocument;
+      const html = doc.documentElement;
+      // structural counts
+      const counts = {};
+      for (const tag of ['SECTION','HEADER','FOOTER','NAV','MAIN','ARTICLE','H1','H2','H3','H4','BUTTON','A','IMG','SVG','FORM','INPUT','UL','OL','LI']) {
+        counts[tag] = doc.querySelectorAll(tag.toLowerCase()).length;
+      }
+      // Internal links collected
+      const links = Array.from(doc.querySelectorAll('a[href]')).map(a => a.getAttribute('href'));
+      const linkSet = new Set(links);
+      // Body text length
+      const bodyText = (doc.body.innerText||'').replace(/\s+/g,' ').trim();
+      // Robots meta + viewport meta
+      const robots = (doc.querySelector('meta[name="robots"]')||{}).content || null;
+      const viewport = (doc.querySelector('meta[name="viewport"]')||{}).content || null;
+      const desc = (doc.querySelector('meta[name="description"]')||{}).content || null;
+      // Render height
+      const sw = html.scrollWidth;
+      const sh = html.scrollHeight;
+      return {
+        title: doc.title,
+        counts,
+        linkCount: links.length,
+        uniqueLinks: linkSet.size,
+        textLen: bodyText.length,
+        robots, viewport, desc,
+        sw, sh
+      };
+    }catch(e){ return {error: String(e)}; }
+  }
+
+  function diff(a, b){
+    const out = {};
+    if (!a || !b || a.error || b.error) return {error: a?.error || b?.error || 'unknown'};
+    for (const k of Object.keys(a)){
+      if (k === 'counts'){
+        const c = {};
+        for (const t of Object.keys(a.counts)){
+          if (a.counts[t] !== b.counts[t]) c[t] = `${a.counts[t]} → ${b.counts[t]}`;
+        }
+        if (Object.keys(c).length) out.counts = c;
+      } else if (typeof a[k] === 'string' || typeof a[k] === 'number' || a[k] === null){
+        if (a[k] !== b[k]) {
+          if (typeof a[k] === 'string' && a[k].length > 80) {
+            out[k] = `lenChanged ${a[k].length} → ${b[k]?.length||0}`;
+          } else {
+            out[k] = `${a[k]} → ${b[k]}`;
+          }
+        }
+      }
+    }
+    return out;
+  }
+
+  async function run(){
+    for (const p of PAIRS){
+      status.textContent = `[${window.G1_PROGRESS.done+1}/${PAIRS.length}] ${p.label}`;
+      let baseFp = null, curFp = null;
+      try{ await loadIframe(b, p.base); baseFp = fingerprint(b); }catch(e){ baseFp = {error:String(e)}; }
+      try{ await loadIframe(c, p.cur);  curFp  = fingerprint(c); }catch(e){ curFp  = {error:String(e)}; }
+      const d = diff(baseFp, curFp);
+      const result = {label: p.label, base: p.base, cur: p.cur, baseFp, curFp, diff: d};
+      window.G1_RESULTS.push(result);
+      const line = document.createElement('div');
+      const hasDiff = Object.keys(d).length > 0 && !d.error;
+      line.className = d.error ? 'err' : (hasDiff ? 'diff' : 'ok');
+      line.textContent = `${d.error ? 'ERR' : (hasDiff ? 'DIFF' : ' OK ')} ${p.label.padEnd(28)} ${d.error || JSON.stringify(d)}`;
+      log.appendChild(line);
+      window.G1_PROGRESS.done++;
+    }
+    window.G1_DONE = true;
+    status.textContent = `G1 diff DONE — ${window.G1_RESULTS.length}/${PAIRS.length} pairs scanned`;
+  }
+  run();
+})();
+</script>
+</body>
+</html>

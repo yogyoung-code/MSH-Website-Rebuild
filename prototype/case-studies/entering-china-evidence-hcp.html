@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>China Entry: Evidence + HCP Package — MedSci</title>
 <meta name="description" content="Global Top-10 medtech moved from debate to NMPA pre-submission in 12 months. Regulator-ready dossier, physician-validated HCP map, signed source trail.">
 <link rel="canonical" href="https://medscihealthcare.com/case-studies/entering-china-evidence-hcp">
@@ -29,7 +29,7 @@
     --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", Georgia, serif;
     --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
   }
-  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
   *, *::before, *::after { box-sizing: border-box; }
   a { color: inherit; }
 </style>
@@ -41,24 +41,33 @@
 <script src="../assets/vendor/react-dom.development.js"></script>
 <script src="../assets/vendor/babel.min.js"></script>
 <script src="../assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
 
 <script type="text/babel" src="../components/Button.jsx"></script>
 <script type="text/babel" src="../components/Header.jsx"></script>
 <script type="text/babel" src="../components/Footer.jsx"></script>
 <script type="text/babel" src="../components/PageShell.jsx"></script>
 <script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/CaseStudyHeroChart.jsx"></script>
 <script type="text/babel" src="../components/CaseStudyHero.jsx"></script>
-<script type="text/babel" src="../components/MetricTriad.jsx"></script>
+<script type="text/babel" src="../components/EvidenceTrail.jsx"></script>
 <script type="text/babel" src="../components/QuoteBlock.jsx"></script>
 
 <script type="text/babel">
 function App() {
   return (
-    <PageShell hero={<CaseStudyHero
+    <PageShell breadcrumbs={[
+        { label: 'Home', href: '/' },
+        { label: 'Case Studies', href: '/case-studies/' },
+        { label: 'Evidence + HCP Enablement' }
+      ]} hero={<CaseStudyHero
       category="Entering China · Evidence + HCP Enablement"
       title="From Global Evidence Stack to a China-Ready Engagement Package — in 12 Months"
       client="Global Top-10 Medtech (anonymized)"
       year="2025"
+      chart="evidence-hcp-timeline"
     />}>
       <ProseBlock heading="Challenge" anchor="challenge">
         <p>A Global Top-10 medtech preparing for China entry had a strong international evidence stack but no clear path to NMPA-relevant claims, no segmented HCP map, and no localized communication assets. The internal team needed an independent evidence + HCP package they could put on a regulator's desk and on a KOL's screen — within one fiscal year.</p>
@@ -69,11 +78,24 @@ function App() {
       <ProseBlock heading="Outcome" anchor="outcome">
         <p>The client received a regulator-ready evidence dossier with full source trail, a physician-validated HCP map, and a content kit signed off by both EN and CN reviewer tracks. The China entry plan moved from internal debate to NMPA pre-submission within the engagement window.</p>
       </ProseBlock>
-      <MetricTriad metrics={[
-        { value: '2,400+', label: 'HCPs reached across tier-1 centers', source: 'Client engagement report', year: '2025', approvedBy: 'Sponsor + IR (pending)' },
-        { value: '18', label: 'localized communication assets delivered', source: 'Internal delivery log', year: '2025', approvedBy: 'Sponsor + Legal (pending)' },
-        { value: '60% faster', label: 'time-to-evidence-package vs prior internal benchmark', source: 'Client benchmark report', year: '2025', approvedBy: 'Sponsor (pending)' }
-      ]} />
+      <EvidenceTrail
+        eyebrow="OUTCOMES — VERIFIED + PENDING"
+        title="What we shipped — and where the audit trail stands."
+        rows={[
+          { claim: '2,400+ HCPs reached across tier-1 academic medical centers',
+            status: 'placeholder',
+            trace: ['AI: HCP segmentation', 'MD: medical-affairs review'],
+            source: 'Client engagement report', year: '2025', approvedBy: 'Sponsor + IR (pending)' },
+          { claim: '18 localized bilingual communication assets delivered',
+            status: 'placeholder',
+            trace: ['AI: terminology QC', 'MD: dual-track EN+CN review'],
+            source: 'Internal delivery log', year: '2025', approvedBy: 'Sponsor + Legal (pending)' },
+          { claim: '60% faster time-to-evidence-package vs. prior internal benchmark',
+            status: 'placeholder',
+            trace: ['AI: gap-scan', 'AI: claim-trail', 'MD: lead reviewer signed'],
+            source: 'Client benchmark report', year: '2025', approvedBy: 'Sponsor (pending)' }
+        ]}
+      />
       <QuoteBlock text="MedSci built the evidence package and the HCP map at the same time. Most agencies do one or the other — we needed both." attribution="VP, Medical Affairs (anonymized)" />
       <ProseBlock heading="Talk to an Expert" anchor="cta">
         <p><a href="/contact.html" style={{

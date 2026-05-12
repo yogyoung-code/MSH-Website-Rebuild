@@ -43,9 +43,9 @@ function LeadershipCard({ name, title, bio, photo, disclosures, linkedin, pendin
       background: pending ? 'rgba(245, 158, 11, 0.04)' : 'var(--bg-1)'
     }}>
       <div style={{
-        width: 56,
-        height: 56,
-        borderRadius: '50%',
+        width: photo ? 72 : 56,
+        height: photo ? 72 : 56,
+        borderRadius: photo ? 12 : '50%',
         background: pending ? 'var(--brand-warn-600, #b45309)' : 'var(--brand-primary-100)',
         color: pending ? 'var(--bg-1)' : 'var(--brand-primary-700)',
         display: 'flex',
@@ -57,7 +57,7 @@ function LeadershipCard({ name, title, bio, photo, disclosures, linkedin, pendin
         marginBottom: 16,
         backgroundImage: photo ? `url(${photo})` : 'none',
         backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundPosition: 'center top'
       }} aria-hidden={!photo}>
         {!photo && monogram}
       </div>

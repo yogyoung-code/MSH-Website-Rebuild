@@ -1,31 +1,170 @@
-/* responsive.css — Three-tier breakpoint tokens (IA §13) */
+/* responsive.css — Three-tier breakpoint tokens (IA §13)
+   Breakpoints: Mobile ≤ 640px · Tablet 641–1024px · Desktop ≥ 1025px
+   Updated 2026-05-03: comprehensive mobile/tablet adaptation
+   Class names verified against actual component source. */
 
-/* Mobile: ≤ 640px */
+/* ===== MOBILE: ≤ 640px ===== */
 @media (max-width: 640px) {
-  .two-col-grid { grid-template-columns: 1fr !important; }
-  .stat-strip-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* --- Shared layout grids (used across Hero, Sections, Footer, Solutions) --- */
+  .two-col-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .stat-strip-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Header (Header.jsx + SolutionHeader.jsx) --- */
   .nav-desktop { display: none !important; }
-  .nav-mobile { display: block !important; }
+  .nav-mobile  { display: block !important; }
+
+  /* --- Hero (Hero.jsx) --- */
   .hero-right-services { margin-top: 32px; }
+
+  /* --- Footer (Footer.jsx) —
+       5-col grid uses .two-col-grid, caught above → stacks to 1fr.
+       Tighten padding. */
+  footer {
+    padding: 48px 20px 24px !important;
+  }
+  footer > div > div:last-child {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  /* --- AI Platform: AIAssetBalanceSheet (ai-asset-stats-row) ---
+       Base is 2-col; keep as-is on mobile — fits well. */
+
+  /* --- AI Platform: AIProductCardGrid (ai-product-card-grid) ---
+       auto-fit/minmax(320px,1fr) naturally collapses; force 1fr below 640. */
+  .ai-product-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- PhysicianNetworkMap (netfp-grid) --- */
+  .netfp-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- AsymmetricFeatureGrid (afg-grid) — Solutions pages --- */
+  .afg-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- CountryCompare (cc-grid) — Solutions pages --- */
+  .cc-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- AIProductSubpage (aips-usecase-grid) --- */
+  .aips-usecase-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- AIProductSpec v4 (aips4-io) — 2-col I/O → stack --- */
+  .aips4-io {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- StickyAnchorNav — hide desktop, show tablet/inline --- */
+  .aips-sticky-nav-desktop {
+    display: none !important;
+  }
+
+  /* --- Legal pages: tables horizontal scroll --- */
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+
+  /* --- SVG viewBox elements: fluid width --- */
+  svg[viewBox] {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* --- Typography: tighten for narrow viewports --- */
+  h1 {
+    font-size: clamp(28px, 7vw, 48px) !important;
+    line-height: 1.15 !important;
+  }
+  h2 {
+    font-size: clamp(22px, 5.5vw, 36px) !important;
+  }
 }
 
-/* Tablet: 641 - 1024px */
+/* ===== TABLET: 641–1024px ===== */
 @media (min-width: 641px) and (max-width: 1024px) {
-  .two-col-grid { grid-template-columns: 1fr !important; }
-  .stat-strip-grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* --- Layout grids --- */
+  .two-col-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .stat-strip-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* --- Header (hide tertiary nav items) --- */
   .nav-desktop .nav-item-tertiary { display: none; }
-  .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* --- Footer: 5-col → 2-col wrap --- */
+  footer > div > div.two-col-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important;
+  }
+  footer {
+    padding: 56px 24px 28px !important;
+  }
+
+  /* --- AI Platform grids: 2-col on tablet --- */
+  .ai-product-card-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* --- AsymmetricFeatureGrid: 2-col on tablet --- */
+  .afg-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* --- CountryCompare: keep 2-col --- */
+
+  /* --- Legal tables --- */
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
-/* Desktop: ≥ 1025px — defaults */
+/* ===== DESKTOP: ≥ 1025px ===== */
 @media (min-width: 1025px) {
   /* Full layout assumed by component defaults */
 }
 
-/* Reduced motion */
+/* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== TOUCH TARGETS (pointer: coarse) ===== */
+@media (pointer: coarse) {
+  /* 44px minimum per WCAG 2.5.5 */
+  nav a, nav button,
+  footer a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
 }

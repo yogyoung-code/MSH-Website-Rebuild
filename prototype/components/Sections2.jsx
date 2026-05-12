@@ -36,13 +36,13 @@ function Services() {
       desc: 'The pipeline underneath — AI drafts with retrieval, a physician-in-the-loop workflow, and audit-ready source trails.',
       deliverables: ['See the full AI Platform page →'],
       icon: 'cpu',
-      href: '#ai',
+      href: '/ai-platform.html',
       accent: true,
       compact: true,
     },
   ];
   return (
-    <section id="services" style={{ padding: '96px 40px', background: 'var(--grad-wash)' }}>
+    <section id="services" style={{ padding: '96px clamp(16px, 4vw, 40px)', background: 'var(--grad-wash)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48, flexWrap: 'wrap', gap: 24 }}>
           <div style={{ maxWidth: 680 }}>
@@ -165,7 +165,7 @@ function WhyMedSci() {
     },
   ];
   return (
-    <section id="why" style={{ padding: '96px 40px', background: '#fff' }}>
+    <section id="why" style={{ padding: '96px clamp(16px, 4vw, 40px)', background: '#fff' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
           <SectionEyebrow>Why MedSci Healthcare</SectionEyebrow>
@@ -220,12 +220,17 @@ function WhyMedSci() {
   );
 }
 
-// 6. Selected Case Studies (3 cards)
+//    AsymmetricFeatureGrid was over-fitting CaseCard's equal-width design;
+//    the featured slot left big empty space while secondary slots squashed.
+//    Reverted to 3-up. Visual differentiation between Cases and Insights now
+//    comes from background alternation (Cases = bg-2 gray; Insights = bg-1 white)
+//    rather than from forcing asymmetric layouts on cards not designed for them.
 function Cases() {
   const cases = [
     {
       cat: 'Entering China',
       theme: 'navy',
+      previewKind: 'case-timeline-11wk',
       title: 'A US oncology device, reviewed and submitted to NMPA in 11 weeks.',
       metrics: [
         { n: '11', u: 'wks', l: 'Submission cycle' },
@@ -234,10 +239,12 @@ function Cases() {
       ],
       badge: 'verified',
       year: '2025-09',
+      href: '/case-studies/entering-china-evidence-hcp.html',
     },
     {
       cat: 'Entering China',
       theme: 'navy',
+      previewKind: 'case-passrate-38',
       title: 'Localized content program for a global Top-10 medtech, across three therapeutic areas.',
       metrics: [
         { n: '38', u: '',    l: 'Bilingual artifacts produced' },
@@ -246,10 +253,12 @@ function Cases() {
       ],
       badge: 'verified',
       year: '2025-11',
+      href: '/case-studies/entering-china-localized-content.html',
     },
     {
       cat: 'Going Global',
       theme: 'cyan',
+      previewKind: 'case-deltabars-42-18',
       title: 'A China oncology innovator, FDA-track evidence bridge and advisory panel.',
       metrics: [
         { n: '42 → 18', u: 'days', l: 'Median response time' },
@@ -258,29 +267,40 @@ function Cases() {
       ],
       badge: 'development',
       year: 'In progress',
+      href: '/case-studies/going-global-fda-evidence-bridge.html',
     },
   ];
   return (
-    <section id="cases" style={{ padding: '96px 40px', background: 'var(--bg-2)' }}>
+    <section id="cases" style={{
+      padding: 'clamp(72px, 9vw, 96px) clamp(24px, 6vw, 40px)',
+      background: 'var(--bg-2)'
+    }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 48, flexWrap: 'wrap', gap: 24 }}>
+        <div style={{
+          display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
+          marginBottom: 48, flexWrap: 'wrap', gap: 24
+        }}>
           <div style={{ maxWidth: 680 }}>
             <SectionEyebrow>Selected case studies</SectionEyebrow>
             <h2 style={{
-              fontFamily: 'var(--font-display)', fontSize: 44, fontWeight: 600,
-              color: 'var(--brand-primary-700)', margin: 0, letterSpacing: '-0.012em', lineHeight: 1.15,
+              fontFamily: 'var(--font-display)', fontSize: 'clamp(32px, 4vw, 44px)', fontWeight: 600,
+              color: 'var(--brand-primary-700)', margin: 0,
+              letterSpacing: '-0.012em', lineHeight: 1.15,
             }}>
               Three signed engagements. Three signed source trails.
             </h2>
           </div>
-          <a href="/case-studies" style={{
+          <a href="/case-studies/" style={{
             color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 14,
+            fontFamily: 'var(--font-ui)',
             display: 'inline-flex', alignItems: 'center', gap: 6,
           }}>
             See all case studies <span>→</span>
           </a>
         </div>
-        <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+        <div className="two-col-grid" style={{
+          display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20
+        }}>
           {cases.map((c, i) => <CaseCard key={i} c={c} />)}
         </div>
       </div>
@@ -292,14 +312,16 @@ function CaseCard({ c }) {
   const [hover, setHover] = React.useState(false);
   const isNavy = c.theme === 'navy';
   return (
-    <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+    <a href={c.href || '#'} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
          style={{
            background: '#fff', border: `1px solid ${hover ? 'var(--brand-primary-300)' : 'var(--border-1)'}`,
            borderRadius: 12, padding: 28, cursor: 'pointer',
            boxShadow: hover ? 'var(--shadow-sm)' : 'none',
            transition: 'all 200ms',
            display: 'flex', flexDirection: 'column',
+           overflow: 'hidden', textDecoration: 'none', color: 'inherit',
          }}>
+      {c.previewKind && window.CardPreviewStrip && <window.CardPreviewStrip kind={c.previewKind} />}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
         <span style={{
           fontSize: 10, fontWeight: 600, letterSpacing: '0.12em',
@@ -324,8 +346,9 @@ function CaseCard({ c }) {
         {c.metrics.map((m, i) => (
           <div key={i}>
             <div style={{
-              fontFamily: 'Georgia, "Times New Roman", serif', fontSize: 24, fontWeight: 600,
-              color: 'var(--brand-primary-700)', letterSpacing: '-0.015em', lineHeight: 1.1,
+              /* Spec §3.4: all numbers in Inter. */
+              fontFamily: 'var(--font-ui)', fontSize: 24, fontWeight: 600,
+              color: 'var(--brand-primary-700)', letterSpacing: '-0.02em', lineHeight: 1.1,
               whiteSpace: 'nowrap',
             }}>
               {m.n}{m.u && <span style={{ fontSize: 13, color: 'var(--brand-accent-700)', marginLeft: 3, fontWeight: 500 }}>{m.u}</span>}
@@ -343,7 +366,7 @@ function CaseCard({ c }) {
           Read case <span style={{ transform: hover ? 'translateX(4px)' : 'none', transition: 'transform 200ms', display: 'inline-block' }}>→</span>
         </span>
       </div>
-    </div>
+    </a>
   );
 }
 
