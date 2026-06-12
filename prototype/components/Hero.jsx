@@ -43,6 +43,13 @@ function Hero() {
           }}>
             Your team gets an evidence package every regulator, reviewer and reimbursement committee can read in under ten minutes — assembled by AI, signed by physicians.
           </p>
+          <p style={{
+            fontSize: 13, color: 'rgba(255,255,255,0.6)', marginTop: 20, marginBottom: 0,
+            display: 'flex', alignItems: 'center', gap: 8,
+          }}>
+            <span style={{ display: 'inline-block', width: 5, height: 5, borderRadius: '50%', background: 'var(--brand-accent-500)', flexShrink: 0 }}></span>
+            The verified network recruits 100–150 qualified physician responses per week.
+          </p>
           <div style={{ display: 'flex', gap: 12, marginTop: 36, flexWrap: 'wrap' }}>
             <Button variant="primary-light" style={{ background: '#fff', color: 'var(--brand-primary-700)' }} href="/solutions/entering-china.html">Enter China</Button>
             <Button variant="outline-light" href="/solutions/going-global-us.html">Go Global</Button>
@@ -65,7 +72,7 @@ function WhatWeDeliverCard() {
     { num: '02', label: 'PHYSICIANS',     title: 'Physician Engagement',   deliverables: '3.33M+ network · Advisory · KOL · CME', href: '/solutions/physician-engagement.html' },
     { num: '03', label: 'COMMUNICATIONS', title: 'Medical Communications', deliverables: 'Publications · Congress · Localization', href: '/solutions/medical-communications.html' },
     { num: '04', label: 'PLATFORM',       title: 'AI-Enabled Platform',    deliverables: 'AI Drafts · PITL · QC · Source trails', href: '/ai-platform.html', accent: true },
-    { num: '05', label: 'QUICK START',    title: 'Content Review & Localization', deliverables: 'Compliance review · Medical rewrite · 3–5 days', href: '/solutions/content-review.html', isNew: true },
+    { num: '05', label: 'FASTEST START',  title: 'Physician Research',     deliverables: 'HCP surveys · ATU · Fielded in days', href: '/solutions/physician-research.html', isNew: true },
   ];
   const [hoverIdx, setHoverIdx] = React.useState(null);
   return (

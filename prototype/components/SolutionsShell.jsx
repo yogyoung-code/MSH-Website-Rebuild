@@ -287,20 +287,24 @@ function PhaseTimeline({ phases, theme = 'navy' }) {
 }
 
 // Reusable: deliverables matrix (2-col grid of capability cards)
+// it.featured = true → card spans both columns with accent styling;
+// it.tag / it.href / it.hrefLabel are optional extras (used by featured cards).
 function DeliverablesGrid({ items, theme = 'navy' }) {
   const isCyan = theme === 'cyan';
   return (
     <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
       {items.map((it, i) => (
         <div key={i} style={{
-          background: '#fff', border: '1px solid var(--border-1)',
+          background: it.featured ? 'var(--brand-accent-100)' : '#fff',
+          border: it.featured ? '1px solid var(--brand-accent-500)' : '1px solid var(--border-1)',
           borderRadius: 12, padding: 28,
+          gridColumn: it.featured ? '1 / -1' : 'auto',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 18 }}>
             <div style={{
               width: 42, height: 42, borderRadius: 10,
-              background: isCyan ? 'var(--brand-accent-100)' : 'var(--brand-primary-100)',
-              color: isCyan ? 'var(--brand-accent-700)' : 'var(--brand-primary-700)',
+              background: it.featured ? 'var(--brand-accent-500)' : (isCyan ? 'var(--brand-accent-100)' : 'var(--brand-primary-100)'),
+              color: it.featured ? '#fff' : (isCyan ? 'var(--brand-accent-700)' : 'var(--brand-primary-700)'),
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
             }}>
               <i data-lucide={it.icon} width="20" height="20"></i>
@@ -308,9 +312,17 @@ function DeliverablesGrid({ items, theme = 'navy' }) {
             <div>
               <div style={{
                 fontFamily: 'var(--font-mono)', fontSize: 10.5,
-                color: 'var(--fg-3)', letterSpacing: '0.12em',
+                color: it.featured ? 'var(--brand-accent-700)' : 'var(--fg-3)', letterSpacing: '0.12em',
                 textTransform: 'uppercase', marginBottom: 2,
-              }}>Deliverable {String(i + 1).padStart(2, '0')}</div>
+                display: 'flex', alignItems: 'center', gap: 8,
+              }}>
+                Deliverable {String(i + 1).padStart(2, '0')}
+                {it.tag && <span style={{
+                  padding: '1px 7px', borderRadius: 4, fontSize: 9.5, fontWeight: 700,
+                  background: 'var(--brand-accent-500)', color: '#fff',
+                  letterSpacing: '0.08em',
+                }}>{it.tag}</span>}
+              </div>
               <h4 style={{
                 fontFamily: 'var(--font-ui)', fontSize: 17.5, fontWeight: 600,
                 color: 'var(--brand-primary-700)', margin: 0, letterSpacing: '-0.005em',
@@ -320,8 +332,8 @@ function DeliverablesGrid({ items, theme = 'navy' }) {
           <p style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.6, margin: '0 0 16px' }}>{it.body}</p>
           {it.bullets && (
             <div className="two-col-grid" style={{
-              paddingTop: 14, borderTop: '1px dashed var(--border-1)',
-              display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px',
+              paddingTop: 14, borderTop: it.featured ? '1px dashed var(--brand-accent-500)' : '1px dashed var(--border-1)',
+              display: 'grid', gridTemplateColumns: it.featured ? 'repeat(4, 1fr)' : '1fr 1fr', gap: '8px 16px',
             }}>
               {it.bullets.map((b, j) => (
                 <div key={j} style={{
@@ -329,7 +341,7 @@ function DeliverablesGrid({ items, theme = 'navy' }) {
                   fontSize: 12.5, color: 'var(--fg-1)',
                 }}>
                   <span style={{
-                    color: isCyan ? 'var(--brand-accent-700)' : 'var(--brand-primary-500)',
+                    color: isCyan || it.featured ? 'var(--brand-accent-700)' : 'var(--brand-primary-500)',
                     flexShrink: 0, marginTop: 1,
                   }}>
                     <i data-lucide="check" width="13" height="13"></i>
@@ -338,6 +350,15 @@ function DeliverablesGrid({ items, theme = 'navy' }) {
                 </div>
               ))}
             </div>
+          )}
+          {it.href && (
+            <a href={it.href} style={{
+              marginTop: 18, display: 'inline-flex', alignItems: 'center', gap: 6,
+              fontSize: 13.5, fontWeight: 600, color: 'var(--brand-accent-700)',
+              textDecoration: 'none',
+            }}>
+              {it.hrefLabel || 'Learn more'} <span>→</span>
+            </a>
           )}
         </div>
       ))}
@@ -433,6 +454,7 @@ function RelatedSolutions({ current }) {
     { id: 'medical-evidence', label: 'Medical Evidence', tag: 'Business Block', theme: 'navy', href: 'medical-evidence.html', icon: 'file-search' },
     { id: 'physician-engagement', label: 'Physician Engagement', tag: 'Business Block', theme: 'navy', href: 'physician-engagement.html', icon: 'stethoscope' },
     { id: 'medical-communications', label: 'Medical Communications', tag: 'Business Block', theme: 'navy', href: 'medical-communications.html', icon: 'book-open-text' },
+    { id: 'physician-research', label: 'Physician Research', tag: 'Quick Start · Fastest', theme: 'cyan', href: 'physician-research.html', icon: 'clipboard-list' },
     { id: 'cross-border-medical-content-sprint', label: 'Cross-Border Content Sprint', tag: 'Quick Start · 2 wks', theme: 'cyan', href: 'cross-border-medical-content-sprint.html', icon: 'zap' },
     { id: 'content-review', label: 'Content Review', tag: 'Quick Start · 3–5 days', theme: 'cyan', href: 'content-review.html', icon: 'file-check' },
   ].filter(s => s.id !== current);

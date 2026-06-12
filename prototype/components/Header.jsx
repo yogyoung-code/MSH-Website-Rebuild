@@ -121,6 +121,21 @@ function Header() {
           padding: '16px 24px 24px'
         }}>
           <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+            <li style={{ borderBottom: '1px solid var(--border-1)' }}>
+              <a href="/solutions/physician-research.html" onClick={() => setMobileOpen(false)} style={{
+                display: 'flex', alignItems: 'center', gap: 8, padding: '14px 4px',
+                fontFamily: '"Footlight MT Light", Georgia, serif',
+                fontSize: 17,
+                color: 'var(--fg-1)', textDecoration: 'none'
+              }}>
+                Physician Research
+                <span style={{
+                  fontSize: 10, fontWeight: 600, padding: '1px 6px', borderRadius: 4,
+                  background: 'var(--brand-accent-100)', color: 'var(--brand-accent-700)',
+                  letterSpacing: '0.04em', textTransform: 'uppercase',
+                }}>Fastest</span>
+              </a>
+            </li>
             {navItems.map((it, i) => (
               <li key={i} style={{ borderBottom: '1px solid var(--border-1)' }}>
                 <a href={it.href || '#'} onClick={() => setMobileOpen(false)} style={{
@@ -155,17 +170,18 @@ function MegaMenu() {
   ];
   const deliverables = [
     { title: 'Medical Evidence',        desc: 'RWE · Registry · Literature · HEOR.',                    href: '/solutions/medical-evidence.html' },
-    { title: 'Physician Engagement',    desc: '3.33M+ network · Advisory · KOL · CME.',                 href: '/solutions/physician-engagement.html' },
+    { title: 'Physician Engagement',    desc: 'Surveys · Advisory · KOL · CME · 3.33M+ network.',       href: '/solutions/physician-engagement.html' },
     { title: 'Medical Communications',  desc: 'Publications · Congress · Localization.',                href: '/solutions/medical-communications.html' },
     { title: 'AI-Enabled Platform',     desc: 'DeepEvidence · SeekEvidence · PITL · QC.',               href: '/ai-platform.html', tag: 'Platform' },
   ];
   const quickStart = [
+    { title: 'Physician Research',         desc: 'HCP surveys & insights — an agile study fields in days.',  href: '/solutions/physician-research.html',                   tag: 'Fastest' },
     { title: 'Content Review',             desc: 'Compliance-flagged review of your materials in 3–5 days.', href: '/solutions/content-review.html',                       tag: 'New' },
     { title: 'Cross-Border Content Sprint', desc: 'One bilingual artifact, physician-reviewed, in 2 weeks.', href: '/solutions/cross-border-medical-content-sprint.html', tag: 'Sprint' },
-    { title: '30-Day Pilots',              desc: 'China Evidence Sprint or FDA Evidence Gap Diagnostic.',    href: '/#pilots',                                             tag: 'Pilots' },
+    { title: '30-Day Pilots',              desc: 'China Evidence Sprint — a bounded 30-day engagement.',     href: '/#pilots',                                             tag: 'Pilots' },
   ];
-  const tagBg = (tag) => ({ Cyan: 'var(--brand-accent-100)', New: 'var(--success-100, #ecfdf5)', Sprint: 'var(--bg-3)', Platform: 'var(--brand-accent-100)' }[tag] || 'var(--brand-primary-100)');
-  const tagFg = (tag) => ({ Cyan: 'var(--brand-accent-700)', New: 'var(--success-500, #16a34a)', Sprint: 'var(--fg-2)', Platform: 'var(--brand-accent-700)' }[tag] || 'var(--brand-primary-700)');
+  const tagBg = (tag) => ({ Cyan: 'var(--brand-accent-100)', New: 'var(--success-100, #ecfdf5)', Sprint: 'var(--bg-3)', Platform: 'var(--brand-accent-100)', Fastest: 'var(--brand-accent-100)' }[tag] || 'var(--brand-primary-100)');
+  const tagFg = (tag) => ({ Cyan: 'var(--brand-accent-700)', New: 'var(--success-500, #16a34a)', Sprint: 'var(--fg-2)', Platform: 'var(--brand-accent-700)', Fastest: 'var(--brand-accent-700)' }[tag] || 'var(--brand-primary-700)');
   const Column = ({ label, items }) => (
     <div>
       <div style={{

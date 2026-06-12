@@ -39,15 +39,15 @@ function QuickStart() {
       href: '/pilots/china-evidence-sprint.html',
     },
     {
-      tag: '30-Day Pilot',
-      title: 'FDA Evidence Gap Diagnostic',
-      desc: 'Diagnose US-submission gaps in your current dossier before you commit to a full Going-Global program.',
-      included: ['FDA guidance cross-walk', 'Literature + registry audit', 'Prioritized gap report'],
-      price: '⚑ Pricing on request',
-      cta: 'Book the pilot',
+      tag: 'Agile Study',
+      title: 'Physician Research (HCP Survey)',
+      desc: 'A bounded survey fielded across our 3.33M+ verified China physician network — ATU, perception, treatment patterns or message testing.',
+      included: ['~200 physicians, online quant, 2–3 weeks', '100–150 qualified responses recruited / week', 'Data + insight report, physician-signed'],
+      price: '⚑ Scoped per study — on request',
+      cta: 'Scope a study',
       variant: 'primary-light',
       accent: true,
-      href: '/pilots/fda-evidence-gap-diagnostic.html',
+      href: '/solutions/physician-research.html',
     },
   ];
   return (
@@ -76,7 +76,7 @@ function QuickStart() {
         </div>
         {/* Row label — 30-Day Pilots */}
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--brand-primary-500)', marginBottom: 12 }}>
-          Deeper — 30-day bounded pilots
+          Deeper — bounded pilots &amp; studies
         </div>
         <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
           {offers.slice(2, 4).map((o, i) => <OfferCard key={o.title} o={o} idx={i + 2} />)}

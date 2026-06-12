@@ -6,6 +6,7 @@ function SolutionFooter() {
       { label: 'Going Global (US)',       href: '/solutions/going-global-us.html' },
       { label: 'Medical Evidence',        href: '/solutions/medical-evidence.html' },
       { label: 'Physician Engagement',    href: '/solutions/physician-engagement.html' },
+      { label: 'Physician Research',      href: '/solutions/physician-research.html' },
       { label: 'Medical Communications',  href: '/solutions/medical-communications.html' },
       { label: 'Content Review',          href: '/solutions/content-review.html' },
     ]},

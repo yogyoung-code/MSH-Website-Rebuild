@@ -15,8 +15,8 @@ function Services() {
     {
       num: '02', label: 'Physicians',
       title: 'Physician Engagement',
-      desc: 'A 3.33M+ physician network — for advisory boards, KOL mapping, CME, and consented reviewer panels that put a named clinician on record.',
-      deliverables: ['Advisory boards · single & standing', 'KOL mapping & engagement', 'CME-accredited programs', 'Consented reviewer panels'],
+      desc: 'A 3.33M+ physician network — for surveys, advisory boards, KOL mapping, CME, and consented reviewer panels that put a named clinician on record.',
+      deliverables: ['Physician research · HCP surveys', 'Advisory boards · single & standing', 'KOL mapping & engagement', 'CME programs · reviewer panels'],
       icon: 'stethoscope',
       href: '/solutions/physician-engagement.html',
       badge: 'verified',

@@ -1,7 +1,7 @@
 /* PagePhysicianEngagement.jsx */
 const PHYSICIAN_META = {
   eyebrow: 'Business Block · 02',
-  title: 'A 3.33M+ physician network — for advisory, KOL, CME, and consented review.',
+  title: 'A 3.33M+ physician network — for research, advisory, KOL, CME, and consented review.',
   sub: 'When you need a named clinician on the record — for a dossier, a publication, an advisory board, or a reviewer panel — we have the network and the consent infrastructure to do it cleanly.',
   breadcrumb: [
     { label: 'Home', href: '/' },
@@ -11,7 +11,7 @@ const PHYSICIAN_META = {
   theme: 'navy',
   meta: [
     { k: 'Network',   v: '3.33M+ verified physicians, CN + US' },
-    { k: 'Use cases', v: 'Advisory · KOL · CME · Reviewer panels' },
+    { k: 'Use cases', v: 'Surveys · Advisory · KOL · CME · Reviewer panels' },
     { k: 'Consent',   v: 'Engagement-specific, auditable, revocable' },
     { k: 'Output',    v: 'Signed reviewer reports, advisory minutes, CME completion' },
   ],
@@ -30,6 +30,15 @@ function PagePhysicianEngagement() {
   ];
 
   const engagementTypes = [
+    {
+      icon: 'clipboard-list', title: 'Physician research (surveys & insights)',
+      body: 'ATU, perception, treatment-pattern and message testing — a bounded study fielded in days across the verified network. Our fastest first deliverable.',
+      bullets: ['~200-physician quant in 2–3 weeks', '100–150 qualified responses / week', 'Named & consented respondents', 'Data + insight report, signed'],
+      featured: true,
+      tag: 'Fastest start',
+      href: '/solutions/physician-research.html',
+      hrefLabel: 'Full product page',
+    },
     {
       icon: 'users-round', title: 'Advisory boards',
       body: 'Single-instance and standing advisory boards across therapeutic areas — agenda, recruitment, facilitation, and signed minutes.',
@@ -78,6 +87,15 @@ function PagePhysicianEngagement() {
         title="Each engagement type ships as a signed artifact, scoped against an explicit input."
         lede="Whether you need an advisory board, a KOL map, a CME program or a consented reviewer panel — the input contract is bounded and the output is named-clinician signed."
         samples={[
+          {
+            label: 'Physician research study',
+            input: { format: 'One research question · target sample spec',
+                     detail: 'ATU, perception, treatment-pattern or message testing — ~200 physicians, fielded in days.' },
+            output: { format: 'Dataset + insight report · 2–3 weeks',
+                      detail: 'Named, consented respondents; English report plus live readout. See full product page.' },
+            badge: 'verified',
+            signedBy: 'Lead MD + research lead'
+          },
           {
             label: 'Standing advisory board',
             input: { format: 'Therapy area · cadence · reviewer profile',
@@ -189,7 +207,7 @@ function PagePhysicianEngagement() {
       </SolutionSection>
 
       <SolutionSection
-        id="engagements" eyebrow="Engagement types · 4 modes"
+        id="engagements" eyebrow="Engagement types · 5 modes"
         title="How we put a physician on the record."
         bg="#fff"
       >
