@@ -1,5 +1,19 @@
 /* SmartForm.jsx — Contact intake with business_block routing (B4) */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 表单提交端点（方案 B：Google Apps Script + Google Sheet）
+// 部署步骤：
+//   1. 新建 Google Sheet → 扩展程序 → Apps Script
+//   2. 粘贴 doPost(e) 脚本（写入 Sheet + 用 MailApp.sendEmail 发到 hello@medscihealthcare.com）
+//   3. 部署 → 新建部署 → 类型「Web app」→ 访问权限「任何人」→ 复制 /exec URL
+//   4. 把下面 FORM_ENDPOINT 替换为该 URL
+//
+// 注意：fetch 时**不要**设置 Content-Type header，否则会触发 CORS preflight
+// 而 Apps Script 默认不响应 OPTIONS，会失败。直接以纯文本 body 发送，
+// 服务端用 JSON.parse(e.postData.contents) 解析即可。
+// ─────────────────────────────────────────────────────────────────────────────
+const FORM_ENDPOINT = 'https://script.google.com/macros/s/REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec';
+
 // v3.0 AI Platform routed intents (Plan task 14 / Spec §5).
 // 当 URL ?intent=ai_* 时, contact.html 读取并以 routedIntent prop 传入,
 // SmartForm 隐藏 intent select, 内部 state 设为 routedIntent 值, 跳过用户选择。
@@ -18,6 +32,12 @@ const AI_ROUTED_INTENTS = {
     title: 'Talk to our AI team — Reverse-DD session.',
     subtitle: 'Reverse-due-diligence readout, technical deep-dive, or partnership exploration.',
     block: 'platform',
+  },
+  // Physician Research routed intent (2026-06-12) — /solutions/physician-research CTA
+  research_scope: {
+    title: 'Scope a physician research study.',
+    subtitle: 'Tell us the question and target sample — we come back with method, timeline, and a quote within 2 business days.',
+    block: 'physician-research',
   },
 };
 
@@ -55,16 +75,34 @@ function SmartForm({ onSubmit, simulateError, routedIntent }) {
     }
 
     try {
-      // Prototype: simulate latency + optional failure injection (?simulateError=1)
+      const payload = {
+        intent,
+        block,
+        ...form,
+        submittedAt: new Date().toISOString(),
+        page: typeof window !== 'undefined' ? window.location.pathname : '',
+        userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+      };
+
+      // ?simulateError=1 仍然可用于本地 QA
       const wantError = simulateError
         || (typeof window !== 'undefined'
             && window.location
             && window.location.search
             && window.location.search.indexOf('simulateError=1') !== -1);
-      await new Promise((resolve, reject) =>
-        setTimeout(() => wantError ? reject(new Error('Network error (simulated)')) : resolve(), 600)
-      );
-      const payload = { intent, block, ...form };
+      if (wantError) throw new Error('Network error (simulated)');
+
+      // 真实提交到 Google Apps Script
+      // - 不设 Content-Type，避免 CORS preflight（Apps Script 不响应 OPTIONS）
+      // - 服务端用 JSON.parse(e.postData.contents) 还原 payload
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        mode: 'cors',
+        redirect: 'follow',
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+
       onSubmit && onSubmit(payload);
 
       // v3.0 Task 15 GA hook — routed AI intents 触发对应 GA4 事件
@@ -249,6 +287,7 @@ function SmartForm({ onSubmit, simulateError, routedIntent }) {
             <option value="">Select…</option>
             <option value="evidence">Medical Evidence</option>
             <option value="physicians">Physician Engagement</option>
+            <option value="physician-research">Physician Research (HCP Survey)</option>
             <option value="communications">Medical Communications</option>
             <option value="platform">AI-Enabled Platform</option>
             <option value="paths">Entering China / Going Global</option>

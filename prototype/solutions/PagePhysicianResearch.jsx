@@ -20,6 +20,7 @@ const RESEARCH_META = {
   ctaTitle: 'Give us one question for Chinese physicians.',
   ctaBody: 'We will field a bounded study and bring you the data — fast, named, consented, and physician-reviewed. A 30-minute scoping call is all it takes to start.',
   primaryCta: 'Scope a study',
+  primaryHref: '/contact.html?intent=research_scope',
   secondaryCta: 'Book a call',
 };
 
