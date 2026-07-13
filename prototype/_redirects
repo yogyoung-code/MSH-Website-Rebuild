@@ -26,3 +26,7 @@
 # Physician Research (Quick Start 首推产品, 2026-06-12) — 短链入口
 /research             /solutions/physician-research  301
 /survey               /solutions/physician-research  301
+
+# Biostatistics & Data Management (数统服务, 2026-07-13) — 短链入口
+/biostatistics        /solutions/biostatistics-data-management  301
+/data-management      /solutions/biostatistics-data-management  301

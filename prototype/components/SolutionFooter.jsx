@@ -8,6 +8,7 @@ function SolutionFooter() {
       { label: 'Physician Engagement',    href: '/solutions/physician-engagement.html' },
       { label: 'Physician Research',      href: '/solutions/physician-research.html' },
       { label: 'Medical Communications',  href: '/solutions/medical-communications.html' },
+      { label: 'Biostatistics & Data Mgmt', href: '/solutions/biostatistics-data-management.html' },
       { label: 'Content Review',          href: '/solutions/content-review.html' },
     ]},
     { title: 'Pilots', items: [

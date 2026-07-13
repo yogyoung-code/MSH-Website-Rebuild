@@ -71,8 +71,9 @@ function WhatWeDeliverCard() {
     { num: '01', label: 'EVIDENCE',       title: 'Medical Evidence',       deliverables: 'RWE · Registry · Literature · HEOR', href: '/solutions/medical-evidence.html' },
     { num: '02', label: 'PHYSICIANS',     title: 'Physician Engagement',   deliverables: '3.33M+ network · Advisory · KOL · CME', href: '/solutions/physician-engagement.html' },
     { num: '03', label: 'COMMUNICATIONS', title: 'Medical Communications', deliverables: 'Publications · Congress · Localization', href: '/solutions/medical-communications.html' },
-    { num: '04', label: 'PLATFORM',       title: 'AI-Enabled Platform',    deliverables: 'AI Drafts · PITL · QC · Source trails', href: '/ai-platform.html', accent: true },
-    { num: '05', label: 'FASTEST START',  title: 'Physician Research',     deliverables: 'HCP surveys · ATU · Fielded in days', href: '/solutions/physician-research.html', isNew: true },
+    { num: '04', label: 'DATA & STATS',   title: 'Biostatistics & Data Management', deliverables: 'CDISC · EDC · SAP · TFLs', href: '/solutions/biostatistics-data-management.html', isNew: true },
+    { num: '05', label: 'PLATFORM',       title: 'AI-Enabled Platform',    deliverables: 'AI Drafts · PITL · QC · Source trails', href: '/ai-platform.html', accent: true },
+    { num: '06', label: 'FASTEST START',  title: 'Physician Research',     deliverables: 'HCP surveys · ATU · Fielded in days', href: '/solutions/physician-research.html', isNew: true },
   ];
   const [hoverIdx, setHoverIdx] = React.useState(null);
   return (

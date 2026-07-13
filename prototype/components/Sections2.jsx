@@ -31,7 +31,16 @@ function Services() {
       badge: 'verified',
     },
     {
-      num: '04', label: 'Platform',
+      num: '04', label: 'Data & Stats',
+      title: 'Biostatistics & Data Management',
+      desc: 'Statistical programming, clinical data management and biostatistics — CDISC-aligned, double-programmed, and delivered to FDA and NMPA submission expectations.',
+      deliverables: ['Statistical programming · SDTM / ADaM / TFLs', 'Clinical data management · EDC to lock', 'Biostatistics · design · SAP · DMC', 'AI-enabled & RWD data services'],
+      icon: 'bar-chart-3',
+      href: '/solutions/biostatistics-data-management.html',
+      badge: 'verified',
+    },
+    {
+      num: '05', label: 'Platform',
       title: 'AI-Enabled Platform',
       desc: 'The pipeline underneath — AI drafts with retrieval, a physician-in-the-loop workflow, and audit-ready source trails.',
       deliverables: ['See the full AI Platform page →'],
@@ -51,11 +60,11 @@ function Services() {
               fontFamily: 'var(--font-display)', fontSize: 44, fontWeight: 600,
               color: 'var(--brand-primary-700)', margin: 0, letterSpacing: '-0.012em', lineHeight: 1.15,
             }}>
-              Four business blocks. One standard of evidence.
+              Five business blocks. One standard of evidence.
             </h2>
           </div>
           <p style={{ maxWidth: 340, fontSize: 15, color: 'var(--fg-2)', lineHeight: 1.6, margin: 0 }}>
-            Three delivery lines plus the AI platform they all run on. Mix and match by path — Entering China or Going Global.
+            Four delivery lines plus the AI platform they all run on. Mix and match by path — Entering China or Going Global.
           </p>
         </div>
         <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
