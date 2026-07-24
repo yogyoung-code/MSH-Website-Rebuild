@@ -10,7 +10,7 @@ const MED_COMMS_META = {
   ],
   theme: 'navy',
   meta: [
-    { k: 'Output',     v: 'Manuscripts · Congress posters · Symposia · Localized content' },
+    { k: 'Output',     v: 'Manuscripts · Congress · Localized content · Media & PR' },
     { k: 'Languages',  v: 'EN · 简体中文 · 繁體中文 · ja-JP on request' },
     { k: 'Reviewers',  v: 'Dual-market physician QC' },
     { k: 'Compliance', v: 'PhRMA / EFPIA / RDPAC-aware review' },
@@ -49,6 +49,13 @@ function PageMedicalCommunications() {
       icon: 'shield-check', title: 'Compliance-aware QC',
       body: 'Pre-physician filtering for off-label risk, fair-balance gaps and disclosure issues — tuned to dual-market codes.',
       bullets: ['Off-label flagging', 'Fair-balance check', 'Disclosure & funding scan', 'Code-of-practice mapping'],
+    },
+    {
+      icon: 'megaphone', title: 'Global communications office', tag: 'NEW', featured: true,
+      body: 'A build-and-operate communications function for China innovators going global — media relations with medical and industry trade press, operated official channels, congress amplification, and quarterly share-of-voice measurement.',
+      bullets: ['Medical + trade press relations', 'Newsroom & LinkedIn operations', 'Congress & readout amplification', 'Quarterly share-of-voice report'],
+      href: '/solutions/global-communications-office.html',
+      hrefLabel: 'Full product page',
     },
   ];
 
@@ -98,6 +105,15 @@ function PageMedicalCommunications() {
                       detail: 'Code-of-practice mapping, ready for legal review.' },
             badge: 'in-development',
             signedBy: 'Compliance lead + Lead MD'
+          },
+          {
+            label: 'Data readout launch (Communications Office)',
+            input: { format: 'One readout · embargo date · target outlets',
+                     detail: 'Release drafting, embargoed pitching and KOL amplification — scientific claims physician-signed before anything ships.' },
+            output: { format: 'Release + coverage log + share-of-voice read',
+                      detail: 'Earned vs. paid always disclosed; every claim carries a source.' },
+            badge: 'in-development',
+            signedBy: 'Comms lead + Lead MD'
           }
         ]}
       />
@@ -132,7 +148,7 @@ function PageMedicalCommunications() {
       </SolutionSection>
 
       <SolutionSection
-        id="capabilities" eyebrow="Capabilities · 4 workstreams"
+        id="capabilities" eyebrow="Capabilities · 5 workstreams"
         title="What ships under the Medical Communications block."
         bg="var(--bg-2)"
       >

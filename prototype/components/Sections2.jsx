@@ -24,8 +24,8 @@ function Services() {
     {
       num: '03', label: 'Communications',
       title: 'Medical Communications',
-      desc: 'Publications, congress materials, localized content and compliance-aware review — bilingual artifacts signed off by physicians in both markets.',
-      deliverables: ['Peer-reviewed publications', 'Congress posters & symposia', 'Bilingual localization', 'Compliance-aware QC'],
+      desc: 'Publications, congress materials, localized content and a global communications office — bilingual, compliance-aware, physician-signed in both markets.',
+      deliverables: ['Peer-reviewed publications', 'Congress posters & symposia', 'Bilingual localization', 'Global communications office · media & PR'],
       icon: 'book-open-text',
       href: '/solutions/medical-communications.html',
       badge: 'verified',

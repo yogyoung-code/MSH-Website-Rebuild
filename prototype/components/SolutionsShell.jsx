@@ -454,6 +454,7 @@ function RelatedSolutions({ current }) {
     { id: 'medical-evidence', label: 'Medical Evidence', tag: 'Business Block', theme: 'navy', href: 'medical-evidence.html', icon: 'file-search' },
     { id: 'physician-engagement', label: 'Physician Engagement', tag: 'Business Block', theme: 'navy', href: 'physician-engagement.html', icon: 'stethoscope' },
     { id: 'medical-communications', label: 'Medical Communications', tag: 'Business Block', theme: 'navy', href: 'medical-communications.html', icon: 'book-open-text' },
+    { id: 'global-communications-office', label: 'Global Communications Office', tag: 'Build & Operate · New', theme: 'cyan', href: 'global-communications-office.html', icon: 'megaphone' },
     { id: 'biostatistics-data-management', label: 'Biostatistics & Data Management', tag: 'Business Block', theme: 'navy', href: 'biostatistics-data-management.html', icon: 'bar-chart-3' },
     { id: 'physician-research', label: 'Physician Research', tag: 'Quick Start · Fastest', theme: 'cyan', href: 'physician-research.html', icon: 'clipboard-list' },
     { id: 'cross-border-medical-content-sprint', label: 'Cross-Border Content Sprint', tag: 'Quick Start · 2 wks', theme: 'cyan', href: 'cross-border-medical-content-sprint.html', icon: 'zap' },

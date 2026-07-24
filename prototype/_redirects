@@ -30,3 +30,8 @@
 # Biostatistics & Data Management (数统服务, 2026-07-13) — 短链入口
 /biostatistics        /solutions/biostatistics-data-management  301
 /data-management      /solutions/biostatistics-data-management  301
+
+# Global Communications Office (GCO 传播代运营, 2026-07-24) — 短链入口
+/gco                  /solutions/global-communications-office   301
+/global-newsroom      /solutions/global-communications-office   301
+/communications       /solutions/global-communications-office   301

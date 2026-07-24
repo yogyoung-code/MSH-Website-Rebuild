@@ -171,7 +171,7 @@ function MegaMenu() {
   const deliverables = [
     { title: 'Medical Evidence',        desc: 'RWE · Registry · Literature · HEOR.',                    href: '/solutions/medical-evidence.html' },
     { title: 'Physician Engagement',    desc: 'Surveys · Advisory · KOL · CME · 3.33M+ network.',       href: '/solutions/physician-engagement.html' },
-    { title: 'Medical Communications',  desc: 'Publications · Congress · Localization.',                href: '/solutions/medical-communications.html' },
+    { title: 'Medical Communications',  desc: 'Publications · Congress · Localization · Media & PR.',   href: '/solutions/medical-communications.html' },
     { title: 'Biostatistics & Data Management', desc: 'CDISC datasets · EDC · SAP · FDA / NMPA submission.', href: '/solutions/biostatistics-data-management.html', tag: 'New' },
     { title: 'AI-Enabled Platform',     desc: 'DeepEvidence · SeekEvidence · PITL · QC.',               href: '/ai-platform.html', tag: 'Platform' },
   ];

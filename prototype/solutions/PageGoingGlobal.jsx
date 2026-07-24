@@ -67,6 +67,13 @@ function PageGoingGlobal() {
       body: 'Peer-reviewed publication strategy, congress posters and symposia, and bilingual press materials timed to US milestones.',
       bullets: ['Publication strategy', 'Manuscript drafting', 'Congress poster / symposium', 'US press positioning'],
     },
+    {
+      icon: 'megaphone', title: 'Global communications office', tag: 'NEW', featured: true,
+      body: 'After the deal or the clearance comes the voice: a build-and-operate communications function — trade-press relations, operated official channels, congress amplification, and share-of-voice measurement.',
+      bullets: ['30-day presence audit', 'Newsroom build · 8–12 wks', 'Media & KOL voice retainer', 'Milestone & crisis comms'],
+      href: '/solutions/global-communications-office.html',
+      hrefLabel: 'Explore the communications office',
+    },
   ];
 
   const phases = [
@@ -230,7 +237,7 @@ function PageGoingGlobal() {
       </SolutionSection>
 
       <SolutionSection
-        id="deliverables" eyebrow="Deliverables · 4 workstreams"
+        id="deliverables" eyebrow="Deliverables · 5 workstreams"
         title="What ships, where the US clinician signs, what the source trail captures."
         bg="var(--bg-2)"
       >
