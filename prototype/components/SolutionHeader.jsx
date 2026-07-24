@@ -2,7 +2,14 @@
 function SolutionHeader() {
   const [hoverIdx, setHoverIdx] = React.useState(null);
   const [megaOpen, setMegaOpen] = React.useState(false);
-  const [lang, setLang] = React.useState('EN');
+  // PAGE_LANG / LANG_ALTERNATE_HREF are optional per-page globals (set in the
+  // page <head>). When a page has a language twin, the EN/CN toggle navigates
+  // to it; otherwise it falls back to the original local state flip.
+  const [lang, setLang] = React.useState(window.PAGE_LANG || 'EN');
+  const toggleLang = () => {
+    if (window.LANG_ALTERNATE_HREF) { window.location.href = window.LANG_ALTERNATE_HREF; return; }
+    setLang(lang === 'EN' ? 'CN' : 'EN');
+  };
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const megaTimerRef = React.useRef(null);
   const openMegaIntent = () => {
@@ -90,7 +97,7 @@ function SolutionHeader() {
             display: 'inline-flex', alignItems: 'center', gap: 4,
             fontSize: 13, color: 'var(--fg-2)', cursor: 'pointer',
             padding: '6px 10px', borderRadius: 6,
-          }} onClick={() => setLang(lang === 'EN' ? 'CN' : 'EN')}>
+          }} onClick={toggleLang}>
             <i data-lucide="globe" width="14" height="14"></i>
             {lang} <span style={{ fontSize: 10, opacity: 0.5 }}>▾</span>
           </div>
@@ -116,7 +123,7 @@ function SolutionHeader() {
             ))}
           </ul>
           <div style={{ marginTop: 16, display: 'flex', gap: 12, alignItems: 'center' }}>
-            <button onClick={() => setLang(lang === 'EN' ? 'CN' : 'EN')} style={{
+            <button onClick={toggleLang} style={{
               padding: '8px 14px', background: 'transparent',
               border: '1px solid var(--border-1)', cursor: 'pointer',
               fontSize: 13, color: 'var(--fg-2)'
@@ -137,18 +144,19 @@ function SolutionMegaMenu() {
   ];
   const deliverables = [
     { title: 'Medical Evidence',       desc: 'RWE · Registry · Literature · HEOR.',     href: '/solutions/medical-evidence.html' },
-    { title: 'Physician Engagement',   desc: '3.33M+ network · Advisory · KOL · CME.',  href: '/solutions/physician-engagement.html' },
-    { title: 'Medical Communications', desc: 'Publications · Congress · Localization.', href: '/solutions/medical-communications.html' },
+    { title: 'Physician Engagement',   desc: 'Surveys · Advisory · KOL · CME · 3.33M+ network.',  href: '/solutions/physician-engagement.html' },
+    { title: 'Medical Communications', desc: 'Publications · Congress · Localization · Media & PR.', href: '/solutions/medical-communications.html' },
     { title: 'Biostatistics & Data Management', desc: 'CDISC datasets · EDC · SAP · FDA / NMPA submission.', href: '/solutions/biostatistics-data-management.html', tag: 'New' },
     { title: 'AI-Enabled Platform',    desc: 'DeepEvidence · SeekEvidence · PITL · QC.', href: '/ai-platform.html', tag: 'Platform' },
   ];
   const quickStart = [
+    { title: 'Physician Research',          desc: 'HCP surveys & insights — an agile study fields in days.',  href: '/solutions/physician-research.html',                   tag: 'Fastest' },
     { title: 'Content Review',              desc: 'Compliance-flagged review of your materials in 3–5 days.', href: '/solutions/content-review.html',                       tag: 'New' },
-    { title: 'Cross-Border Content Sprint', desc: 'One bilingual artifact, expert-reviewed, in 2 weeks.',     href: '/solutions/cross-border-medical-content-sprint.html', tag: 'Sprint' },
-    { title: '30-Day Pilots',               desc: 'China Evidence Sprint or FDA Evidence Gap Diagnostic.',    href: '/#pilots',                                             tag: 'Pilots' },
+    { title: 'Cross-Border Content Sprint', desc: 'One bilingual artifact, physician-reviewed, in 2 weeks.',  href: '/solutions/cross-border-medical-content-sprint.html', tag: 'Sprint' },
+    { title: '30-Day Pilots',               desc: 'China Evidence Sprint — a bounded 30-day engagement.',     href: '/#pilots',                                             tag: 'Pilots' },
   ];
-  const tagBg = (tag) => ({ Cyan: 'var(--brand-accent-100)', New: 'var(--success-100, #ecfdf5)', Sprint: 'var(--bg-3)', Platform: 'var(--brand-accent-100)' }[tag] || 'var(--brand-primary-100)');
-  const tagFg = (tag) => ({ Cyan: 'var(--brand-accent-700)', New: 'var(--success-500, #16a34a)', Sprint: 'var(--fg-2)', Platform: 'var(--brand-accent-700)' }[tag] || 'var(--brand-primary-700)');
+  const tagBg = (tag) => ({ Cyan: 'var(--brand-accent-100)', New: 'var(--success-100, #ecfdf5)', Sprint: 'var(--bg-3)', Platform: 'var(--brand-accent-100)', Fastest: 'var(--brand-accent-100)' }[tag] || 'var(--brand-primary-100)');
+  const tagFg = (tag) => ({ Cyan: 'var(--brand-accent-700)', New: 'var(--success-500, #16a34a)', Sprint: 'var(--fg-2)', Platform: 'var(--brand-accent-700)', Fastest: 'var(--brand-accent-700)' }[tag] || 'var(--brand-primary-700)');
   const Column = ({ label, items }) => (
     <div>
       <div style={{
