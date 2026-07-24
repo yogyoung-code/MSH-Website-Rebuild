@@ -2,7 +2,7 @@
 const MED_COMMS_META = {
   eyebrow: 'Business Block · 03',
   title: 'Bilingual medical communications, signed off on both sides of the Pacific.',
-  sub: 'Publications, congress materials and localized content — produced in EN and CN, reviewed by clinicians in both markets, compliant by construction.',
+  sub: 'Publications, congress materials and localized content — produced in EN and CN, reviewed by clinicians in both markets, compliant by construction. And for teams going global: a communications office we build, then operate for you.',
   breadcrumb: [
     { label: 'Home', href: '/' },
     { label: 'Solutions', href: '/' },
@@ -22,6 +22,7 @@ const MED_COMMS_META = {
 
 function PageMedicalCommunications() {
   const subnav = [
+    { id: 'gco', label: 'Communications Office · New' },
     { id: 'overview', label: 'Overview' },
     { id: 'capabilities', label: 'Capabilities' },
     { id: 'workflow', label: 'Bilingual workflow' },
@@ -49,13 +50,6 @@ function PageMedicalCommunications() {
       icon: 'shield-check', title: 'Compliance-aware QC',
       body: 'Pre-physician filtering for off-label risk, fair-balance gaps and disclosure issues — tuned to dual-market codes.',
       bullets: ['Off-label flagging', 'Fair-balance check', 'Disclosure & funding scan', 'Code-of-practice mapping'],
-    },
-    {
-      icon: 'megaphone', title: 'Global communications office', tag: 'NEW', featured: true,
-      body: 'A build-and-operate communications function for China innovators going global — media relations with medical and industry trade press, operated official channels, congress amplification, and quarterly share-of-voice measurement.',
-      bullets: ['Medical + trade press relations', 'Newsroom & LinkedIn operations', 'Congress & readout amplification', 'Quarterly share-of-voice report'],
-      href: '/solutions/global-communications-office.html',
-      hrefLabel: 'Full product page',
     },
   ];
 
@@ -118,6 +112,78 @@ function PageMedicalCommunications() {
         ]}
       />
 
+      {/* GCO flagship band — the block's newest workstream, deliberately high on the page */}
+      <SolutionSection
+        id="gco" eyebrow="New service line · Build & Operate"
+        title="Beyond artifacts: the Global Communications Office."
+        kicker="Artifacts win reviews; presence wins markets. Our newest workstream builds your newsroom, channels and press relationships — then operates them as your outsourced global communications function."
+        bg="var(--bg-2)"
+      >
+        <div className="two-col-grid" style={{
+          background: 'linear-gradient(180deg, #D6F1F9 0%, #FFFFFF 100%)',
+          border: '1px solid var(--brand-accent-500)',
+          borderRadius: 16, padding: 40,
+          display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 40,
+        }}>
+          <div>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '4px 10px', borderRadius: 4,
+              background: 'var(--brand-accent-500)', color: 'var(--brand-primary-900)',
+              fontSize: 10.5, fontWeight: 600, letterSpacing: '0.14em',
+              textTransform: 'uppercase', marginBottom: 16,
+            }}>New · 2026 · Going Global flagship</div>
+            <h3 style={{
+              fontFamily: 'var(--font-display)', fontSize: 30, fontWeight: 600,
+              color: 'var(--brand-primary-700)', margin: '0 0 16px', letterSpacing: '-0.01em', lineHeight: 1.2,
+            }}>Your global communications office — built, then run for you.</h3>
+            <p style={{ fontSize: 15, color: 'var(--fg-2)', lineHeight: 1.65, margin: '0 0 24px' }}>
+              For China innovators going global: media relations with the medical and industry trade press,
+              an operated English newsroom and LinkedIn presence, congress amplification, KOL voice, and
+              quarterly share-of-voice measurement — scientific claims physician-signed, every placement
+              on an auditable coverage log.
+            </p>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <Button variant="primary-light" href="/solutions/global-communications-office.html">Explore the office</Button>
+              <Button variant="outline" href="/contact.html?intent=gco_audit">Scope a 30-day presence audit</Button>
+            </div>
+            <div style={{ marginTop: 14, fontSize: 12.5, color: 'var(--fg-3)' }}>
+              也可阅读<a href="/solutions/global-communications-office-cn.html" style={{ color: 'var(--brand-accent-700)', fontWeight: 600, textDecoration: 'none' }}>中文版介绍 →</a>
+            </div>
+          </div>
+          <div style={{
+            background: '#fff', border: '1px solid var(--border-1)', borderRadius: 12, padding: 24,
+          }}>
+            <div style={{
+              fontFamily: 'var(--font-mono)', fontSize: 10.5, color: 'var(--fg-3)',
+              letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 14,
+            }}>The office at a glance</div>
+            {[
+              { k: 'Audit · 30 days',   d: 'Share-of-voice baseline vs. named competitors + a 90-day roadmap.' },
+              { k: 'Build · 8–12 wks',  d: 'Messaging house, press kit, English newsroom, journalist map, SOP.' },
+              { k: 'Operate · retainer', d: 'Monitoring, pitching, channels, congress moments, KOL voice — reported quarterly.' },
+            ].map((x, i) => (
+              <div key={i} style={{
+                paddingBottom: 12, marginBottom: 12,
+                borderBottom: i < 2 ? '1px dashed var(--border-1)' : 'none',
+              }}>
+                <div style={{
+                  fontFamily: 'var(--font-mono)', fontSize: 11.5, fontWeight: 600,
+                  color: 'var(--brand-accent-700)', letterSpacing: '0.06em', marginBottom: 4,
+                }}>{x.k}</div>
+                <div style={{ fontSize: 13, color: 'var(--fg-2)', lineHeight: 1.5 }}>{x.d}</div>
+              </div>
+            ))}
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 8,
+              fontSize: 12, color: 'var(--fg-3)', marginTop: 2,
+            }}>
+              <i data-lucide="shield-check" width="13" height="13" style={{ color: 'var(--brand-accent-700)' }}></i>
+              No promised placements · earned vs. paid always disclosed
+            </div>
+          </div>
+        </div>
+      </SolutionSection>
 
       <SolutionSection
         id="overview" eyebrow="Overview"
@@ -148,7 +214,7 @@ function PageMedicalCommunications() {
       </SolutionSection>
 
       <SolutionSection
-        id="capabilities" eyebrow="Capabilities · 5 workstreams"
+        id="capabilities" eyebrow="Capabilities · 4 workstreams"
         title="What ships under the Medical Communications block."
         bg="var(--bg-2)"
       >
