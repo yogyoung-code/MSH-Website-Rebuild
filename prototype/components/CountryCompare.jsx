@@ -38,9 +38,14 @@ function CountryCompare({ direction = 'us-to-cn', eyebrow, title, lede, left, ri
     console.warn('CountryCompare: requires both left and right props');
     return null;
   }
-  const leftToRight = direction === 'us-to-cn'
-    || direction === 'left-to-right'
-    || direction === undefined;
+  // direction 形如 '<起点>-to-<终点>'；左列是否为起点，按左列 code 与起点代码比对得出。
+  // 旧写法把 'cn-to-us' 一律判为 false，导致 Going Global 页把左列（中国=起点）
+  // 标成 To、右列（美国=终点）标成 From，箭头也反向。2026-07-25 修正。
+  const originCode = String(direction || '').split('-to-')[0].toUpperCase();
+  const leftCode = String((left && left.code) || '').toUpperCase();
+  const leftToRight = originCode && leftCode
+    ? leftCode.indexOf(originCode) === 0
+    : true;
 
   return (
     <section style={{

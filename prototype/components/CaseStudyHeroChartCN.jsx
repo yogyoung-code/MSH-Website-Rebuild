@@ -108,7 +108,7 @@
         source="来源：客户项目报告 · 2025 · 项目发起方 + IR（待签核）"
         height={190}
       >
-        <svg viewBox={'0 0 ' + W + ' ' + H} width="100%" height="auto"
+        <svg viewBox={'0 0 ' + W + ' ' + H} width="100%" style={{ height: 'auto', display: 'block' }}
              style={{ maxHeight: 240 }} aria-hidden="true">
           {months.map(function(m, i) {
             return (
@@ -220,7 +220,7 @@
         source="来源：内部质控日志 · 2024 · 项目发起方（待签核）"
         height={230}
       >
-        <svg viewBox={'0 0 ' + W + ' ' + H} width="100%" height="auto"
+        <svg viewBox={'0 0 ' + W + ' ' + H} width="100%" style={{ height: 'auto', display: 'block' }}
              style={{ maxHeight: 260 }} aria-hidden="true">
 
           {/* === 此前 === */}
@@ -365,7 +365,7 @@
         source="来源：客户项目计划 · 2025 · 项目发起方（待签核）"
         height={190}
       >
-        <svg viewBox={'0 0 ' + W + ' ' + H} width="100%" height="auto"
+        <svg viewBox={'0 0 ' + W + ' ' + H} width="100%" style={{ height: 'auto', display: 'block' }}
              style={{ maxHeight: 220 }} aria-hidden="true">
 
           {quarters.map(function(q, i) {
