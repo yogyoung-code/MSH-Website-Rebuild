@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>梅斯健康 MedSci Healthcare（2415.HK）— 跨境医学证据、医生网络与医学传播</title>
+<meta name="description" content="港交所上市的梅斯健康（2415.HK）：为出海全球与进入中国的医疗健康企业交付医学证据、医生调研与医学传播。333 万+ 医生网络，AI 起草、医生签核，每份交付物都带溯源链路。3–5 个工作日的内容合规审核，或 30 天试点起步。">
+<link rel="canonical" href="https://medscihealthcare.com/index-cn">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/index-cn">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="梅斯健康 MedSci Healthcare（2415.HK）— 跨境医学证据与医生网络">
+<meta property="og:description" content="出海要交的那套医学证据，按 FDA 与 NMPA 认的口径做出来；进入中国要用的医生资源，一次配齐。AI 起草，医生签核，交付物可审计留痕。">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/home-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/index-cn">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "梅斯健康 MedSci Healthcare",
+      "alternateName": "MedSci Healthcare",
+      "url": "https://medscihealthcare.com",
+      "tickerSymbol": "2415.HK",
+      "inLanguage": "zh-CN",
+      "description": "梅斯健康（港交所上市 · 2415.HK）为医疗健康创新企业提供医学证据、医生互动、医学传播与生物统计服务，AI 起草、医生签核，交付物带溯源链路。",
+      "sameAs": ["https://www.hkexnews.hk/"]
+    },
+    {
+      "@type": "WebSite",
+      "name": "梅斯健康 MedSci Healthcare",
+      "url": "https://medscihealthcare.com/index-cn",
+      "inLanguage": "zh-CN"
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo/medsci-healthcare-mark.svg">
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", "Songti SC", "Noto Serif SC", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  /* Global font override — Footlight MT as display family（中文回退 Songti SC / Noto Serif SC） */
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+  sup { font-size: 0.7em; vertical-align: super; line-height: 0; }
+  button { font-family: var(--font-ui); }
+  ::selection { background: var(--brand-accent-100); color: var(--brand-primary-700); }
+</style>
+<script>
+  window.PAGE_LANG = 'CN';
+  window.LANG_ALTERNATE_HREF = '/index.html';
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="assets/vendor/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="assets/vendor/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="assets/vendor/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="assets/sanity-client.js"></script>
+
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="assets/i18n.js"></script>
+<script type="text/babel" src="components/LangToggle.jsx"></script>
+<script type="text/babel" src="components/Button.jsx"></script>
+<script type="text/babel" src="components/Header.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+<!-- 首页中文版组件（与英文版 Hero / Sections1-3 / PhysicianNetworkMap / CardPreviewStrip 一一对应） -->
+<script type="text/babel" src="components/HomeCN.jsx"></script>
+<script type="text/babel" src="components/HomeCN2.jsx"></script>
+
+<script type="text/babel">
+function App() {
+  React.useEffect(() => {
+    const t = setTimeout(() => window.lucide && lucide.createIcons(), 50);
+    return () => clearTimeout(t);
+  });
+  return (
+    <div>
+      <Header />
+      <HeroCN />
+      <TwoPathsCN />
+      <ServicesCN />
+      <QuickStartCN />
+      <AISectionCN />
+      <WhyMedSciCN />
+      <PhysicianNetworkMapCN />
+      <CasesCN />
+      <InsightsCN />
+      <TrustBarCN />
+      <FinalCTACN />
+      <Footer />
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+window.addEventListener('load', () => setTimeout(() => window.lucide && lucide.createIcons(), 150));
+</script>
+</body>
+</html>

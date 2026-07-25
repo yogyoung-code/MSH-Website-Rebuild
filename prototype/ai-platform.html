@@ -7,6 +7,7 @@
 <meta name="description" content="AI products, audited evidence stack, and reverse-due-diligence transparency for global healthcare partners.">
 <link rel="canonical" href="https://medscihealthcare.com/ai-platform">
 <link rel="alternate" hreflang="en" href="https://medscihealthcare.com/ai-platform">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/ai-platform-cn">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="AI Platform — MedSci Healthcare">
 <meta property="og:description" content="Built for the AI era of medicine. AI-Enabled. Physician-Verified. Globally Ready.">
@@ -72,6 +73,9 @@
 <script src="assets/sanity-client.js"></script>
 
 <!-- v0.1 layout -->
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="assets/i18n.js"></script>
+<script type="text/babel" src="components/LangToggle.jsx"></script>
 <script type="text/babel" src="components/Button.jsx"></script>
 <script type="text/babel" src="components/Header.jsx"></script>
 <script type="text/babel" src="components/Footer.jsx"></script>
@@ -114,7 +118,7 @@
 const ASSET_GROUPS = [
   { label: 'DEMAND-SIDE NETWORK',
     items: [
-      { value: '3.3M+', label: 'Registered physicians',
+      { value: '3.33M+', label: 'Registered physicians',
         sourceFootnote: 'Internal registry · 2026-Q1' },
       { value: '25K+',  label: 'Tertiary-hospital KOLs',
         sourceFootnote: 'Internal registry · 2026-Q1' },
@@ -234,7 +238,7 @@ const PRODUCTS = [
     sidebarIcon: 'compass',
     headerModel: 'Insight-Graph-V1',
     userRole: { en: 'Industry AI · Market Signal & Insight' },
-    positioningOneLiner: { en: 'Market intelligence for healthcare industrial teams — anchored to MedSci\'s 3.3M+ physicians and audited evidence.' },
+    positioningOneLiner: { en: 'Market intelligence for healthcare industrial teams — anchored to MedSci\'s 3.33M+ physicians and audited evidence.' },
     capabilitiesShort: [
       { en: 'Customer-segment insight from physician engagement signal' },
       { en: 'Real-time market & competitive monitoring' },
@@ -275,6 +279,25 @@ const EVIDENCE_ROWS = [
     status: 'verified',
     trace: ['AI: terminology QC', 'MD: bilingual review'],
     source: 'Content QA spec', year: '2026' },
+];
+
+/* §1.6.5 合规边界（Copy Deck v4.2 强制双列）。
+   注意：这里刻意用否定句表述，而不是照抄禁用短语本身——
+   check-page.js Gate 16 做子串扫描，把禁用词印在页面上会直接阻断发布。
+   中文版对应 ai-platform-cn.html 的 COMPLIANCE_NOT_CN / COMPLIANCE_DO_CN。 */
+const COMPLIANCE_NOT = [
+  'We do not claim AI output is free of error, or that retrieval and generation can skip human review.',
+  'We do not put an accuracy figure on the system; accuracy is stated per project, against the sign-off record.',
+  'We do not position AI as something that makes clinical decisions on its own — AI proposes, physicians judge.',
+  'We do not claim efficacy or clinical outcomes, and we make no promises about treatment results.',
+  'We do not rank our technology against peers using superlatives.',
+  'We do not describe the product in transformational marketing language.',
+];
+
+const COMPLIANCE_DO = [
+  'Faster review cycles, by N% — measured per project, verified per project.',
+  'Higher consistency across bilingual delivery.',
+  'Traceable provenance for every AI output: source, reviewer, timestamp.',
 ];
 
 const SECTIONS = [
@@ -547,7 +570,11 @@ function App() {
           pitlSteps={PITL_STEPS}
           evidenceRows={EVIDENCE_ROWS}
         />
-              </section>
+        <ComplianceCallout
+          doNotClaim={COMPLIANCE_NOT}
+          doClaim={COMPLIANCE_DO}
+        />
+      </section>
 
       <FinalDualCTA />
     </PageShell>

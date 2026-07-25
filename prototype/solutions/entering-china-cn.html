@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>进入中国 — NMPA 级证据与中国医生签核 | 梅斯健康 MedSci Healthcare</title>
+<meta name="description" content="为跨国药械与诊断企业的中国区团队落地 NMPA / CDE 材料包、三甲医生顾问与具名签核、医保准入卫生经济学、可递交级双语内容。30 天中国证据冲刺起步，报价请联系我们。">
+<link rel="canonical" href="https://medscihealthcare.com/solutions/entering-china-cn">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/solutions/entering-china">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/solutions/entering-china-cn">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="进入中国 — NMPA 级证据与中国医生签核 | 梅斯健康">
+<meta property="og:description" content="在中国拿到 NMPA 级证据，和中国医生的具名签核。路径扫描、证据搭建、医生评审会、材料包与上市。">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/solutions-entering-china-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/solutions/entering-china-cn">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", "Songti SC", "Noto Serif SC", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+  sup { font-size: 0.7em; vertical-align: super; line-height: 0; }
+  button { font-family: var(--font-ui); }
+  ::selection { background: var(--brand-accent-100); color: var(--brand-primary-700); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "进入中国（Entering China）",
+  "description": "面向跨国药械与诊断企业中国区团队的进入中国双路径战略——NMPA / CDE 路径扫描与材料包、三甲医院医生顾问与具名签核、医保准入卫生经济学、可递交级双语本地化内容。",
+  "url": "https://medscihealthcare.com/solutions/entering-china-cn.html",
+  "inLanguage": "zh-CN",
+  "areaServed": "CN",
+  "provider": {
+    "@type": "Organization",
+    "name": "MedSci Healthcare 梅斯健康",
+    "url": "https://medscihealthcare.com"
+  }
+}
+</script>
+<script>
+  window.PAGE_LANG = 'CN';
+  window.LANG_ALTERNATE_HREF = '/solutions/entering-china.html';
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="../assets/vendor/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../assets/vendor/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
+
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="../assets/i18n.js"></script>
+<script type="text/babel" src="../components/LangToggle.jsx"></script>
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/SolutionHeader.jsx"></script>
+<script type="text/babel" src="../components/SolutionsShell.jsx"></script>
+<script type="text/babel" src="../components/SolutionFooter.jsx"></script>
+<script type="text/babel" src="../components/CountryCompareCN.jsx"></script>
+<script type="text/babel" src="PageEnteringChinaCN.jsx"></script>
+
+<script type="text/babel">
+function App() {
+  React.useEffect(() => {
+    const t = setTimeout(() => window.lucide && lucide.createIcons(), 50);
+    return () => clearTimeout(t);
+  });
+  return (
+    <div>
+      <SolutionHeader />
+      <PageEnteringChinaCN />
+    </div>
+  );
+}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+window.addEventListener('load', () => setTimeout(() => window.lucide && lucide.createIcons(), 200));
+</script>
+</body>
+</html>

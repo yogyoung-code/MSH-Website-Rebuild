@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>客户案例 | 梅斯健康 MedSci Healthcare</title>
+<meta name="description" content="精选客户案例与可核验的结果：进入中国、FDA 证据桥接、中英双语医学传播。每个案例都附带已签核的量化指标与来源链路。">
+<link rel="canonical" href="https://medscihealthcare.com/case-studies/index-cn">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/case-studies/">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/case-studies/index-cn">
+<link rel="alternate" hreflang="x-default" href="https://medscihealthcare.com/case-studies/">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="客户案例 | 梅斯健康 MedSci Healthcare">
+<meta property="og:description" content="进入中国、FDA 证据桥接、中英双语医学传播——每个案例都附带已签核的量化指标。">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/case-studies-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/case-studies/index-cn">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "梅斯健康客户案例",
+  "inLanguage": "zh-CN",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "url": "https://medscihealthcare.com/case-studies/entering-china-evidence-hcp-cn" },
+    { "@type": "ListItem", "position": 2, "url": "https://medscihealthcare.com/case-studies/entering-china-localized-content-cn" },
+    { "@type": "ListItem", "position": 3, "url": "https://medscihealthcare.com/case-studies/going-global-fda-evidence-bridge-cn" }
+  ]
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", "Songti SC", "Noto Serif SC", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+<script>
+  window.PAGE_LANG = 'CN';
+  window.LANG_ALTERNATE_HREF = '/case-studies/';
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="../assets/i18n.js"></script>
+<script type="text/babel" src="../components/LangToggle.jsx"></script>
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/CaseStudyCard.jsx"></script>
+<script type="text/babel" src="../components/FilterBar.jsx"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
+<script type="text/babel" src="../components/useSanity.jsx"></script>
+
+<script type="text/babel">
+// 兜底数据 —— Sanity 未配置时使用。数字与英文页逐字对应，不得改动。
+const MOCK_CASES_CN = [
+  {
+    slug: 'entering-china-evidence-hcp',
+    eyebrow: '进入中国 · 医学证据',
+    title: '把全球证据库变成一份在中国能用的合作包',
+    summary: '一家全球 Top-10 医疗器械企业用 12 个月，从内部争论走到 NMPA 申报前沟通：一份可直接提交监管的证据档案，加一份医生签核的 HCP 地图。',
+    metrics: [{ value: '提速 60%', label: '证据包交付周期 vs 内部基准' }],
+    serviceLines: ['evidence', 'physicians']
+  },
+  {
+    slug: 'entering-china-localized-content',
+    eyebrow: '进入中国 · 医学传播',
+    title: '专科产品上市的本地化医学内容',
+    summary: '在一个进入中国的专科产品上市项目里，中英双轨审核把修改轮次从 4 轮压到 2 轮，同时为团队留下一层可复用的本地化能力。',
+    metrics: [{ value: '88%', label: '医生审核一次通过率' }],
+    serviceLines: ['communications']
+  },
+  {
+    slug: 'going-global-fda-evidence-bridge',
+    eyebrow: '出海美国 / 全球 · 医学证据',
+    title: '从中国试验数据到面向 FDA 的证据包',
+    summary: '一家中国生物科技企业比原定时间线提前 8 个月拿到可提交 FDA 的证据包：3 篇论文在投，商业化规划启动前，美国医学团队的材料已经就位。',
+    metrics: [{ value: '8 个月', label: '证据包就绪较原计划提前' }],
+    serviceLines: ['evidence', 'platform']
+  }
+];
+
+// CMS 取词：中文优先，回落英文
+function pickCN(o) {
+  if (!o) return '';
+  if (typeof o === 'string') return o;
+  return o.cn || o.en || '';
+}
+
+// Sanity 数据 → 组件 props
+function transformCmsCaseCN(doc) {
+  const solKind = doc.solution ? pickCN(doc.solution.title) : '';
+  return {
+    slug: doc.slug && doc.slug.current ? doc.slug.current : doc.slug,
+    eyebrow: solKind + (doc.industry ? ' · ' + doc.industry : ''),
+    title: pickCN(doc.title),
+    summary: pickCN(doc.challenge) || pickCN(doc.title),
+    metrics: (doc.metrics || []).map(m => ({ value: m.value, label: pickCN(m.label) })),
+    serviceLines: ['evidence'] // CMS v2 会补显式标签
+  };
+}
+
+function App() {
+  const [filter, setFilter] = React.useState('all');
+
+  const cmsData = useSanity('fetchCaseStudies', null);
+  const cases = cmsData
+    ? cmsData.map(transformCmsCaseCN)
+    : MOCK_CASES_CN;
+
+  const visible = filter === 'all' ? cases : cases.filter(c => c.serviceLines.includes(filter));
+
+  return (
+    <PageShell
+      eyebrow="客户案例"
+      title="精选项目，结果可核验"
+      subtitle="下面每一个项目都经过合作方签核，指标可回溯到审计留痕。"
+      breadcrumbs={[{ label: '首页', href: MSH.L('/') }, { label: '客户案例' }]}
+    >
+      <FilterBar
+        filters={[
+          { value: 'all', label: '全部' },
+          { value: 'evidence', label: '医学证据' },
+          { value: 'physicians', label: '医生互动' },
+          { value: 'communications', label: '医学传播' },
+          { value: 'platform', label: 'AI 平台' }
+        ]}
+        active={filter}
+        onChange={setFilter}
+      />
+      <section style={{ padding: '0 clamp(24px, 6vw, 96px) 96px', maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          {visible.map(c => (
+            <CaseStudyCard
+              key={c.slug}
+              {...c}
+              href={`/case-studies/${c.slug}-cn.html`}
+            />
+          ))}
+        </div>
+        {visible.length === 0 && (
+          <div style={{ textAlign: 'center', color: 'var(--fg-3)', padding: 48 }}>
+            没有符合该筛选条件的客户案例。
+          </div>
+        )}
+      </section>
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

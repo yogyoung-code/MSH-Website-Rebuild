@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>其他服务 — 我们偶尔承接的合作 | 梅斯健康</title>
+<meta name="description" content="梅斯健康偶尔承接的非试点合作：专科诊所患者教育与官网内容、医疗健康品牌的循证内容、跨境审阅与本地化。一单一议，报价请联系我们。">
+<link rel="canonical" href="https://medscihealthcare.com/services/other-engagements-cn">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/services/other-engagements">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/services/other-engagements-cn">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="其他服务 — 我们偶尔承接的合作 | 梅斯健康">
+<meta property="og:description" content="部分非试点合作——专科诊所患者教育内容、医疗健康品牌的循证内容、跨境审阅与本地化。">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/services-other-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/services/other-engagements-cn">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "其他服务（Other engagements）",
+  "description": "梅斯健康偶尔承接的非试点合作——专科诊所患者教育与官网内容、医疗健康品牌的循证内容、跨境审阅与本地化及合规导向的传播支持。每一单通过直接沟通单独议定范围。",
+  "url": "https://medscihealthcare.com/services/other-engagements-cn.html",
+  "inLanguage": "zh-CN",
+  "provider": {
+    "@type": "Organization",
+    "name": "MedSci Healthcare 梅斯健康",
+    "tickerSymbol": "2415.HK",
+    "url": "https://medscihealthcare.com"
+  }
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", "Songti SC", "Noto Serif SC", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+<script>
+  window.PAGE_LANG = 'CN';
+  window.LANG_ALTERNATE_HREF = '/services/other-engagements.html';
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
+
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="../assets/i18n.js"></script>
+<script type="text/babel" src="../components/LangToggle.jsx"></script>
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/OtherEngagementCardCN.jsx"></script>
+
+<script type="text/babel">
+// 对应英文版 Copy Deck v4.1 §5 的中文孪生（转化层改写，非直译）。
+// 策略说明（IA §10）：本页不计入试点漏斗 KPI；线索走销售负责人的关系渠道，
+// 不进结构化 BD 队列。
+const L = (h) => (window.MSH && window.MSH.L) ? window.MSH.L(h) : h;
+
+const ENGAGEMENTS = [
+  {
+    title: '专科诊所患者教育与官网内容',
+    body: '面向需要把患者沟通做扎实、把官网内容改好、把本地化教育材料补齐的部分诊所。',
+    audience: '适合：暂时不需要完整试点的专科诊所。',
+    contactRoute: 'other'
+  },
+  {
+    title: '医疗健康品牌的循证内容',
+    body: '面向需要经医学审核的传播内容，以及对宣称口径敏感的内容支持的医疗与健康品牌。',
+    audience: '适合：医疗与健康品牌。',
+    contactRoute: 'other'
+  },
+  {
+    title: '跨境审阅、本地化与合规导向的传播',
+    body: '面向在进入更大范围市场工作之前，先需要审阅、翻译、本地化与传播支持的中小型公司。这与跨境内容冲刺不同——后者面向已经在推进中的团队。',
+    audience: '适合：还没到做完整试点阶段的中小型跨境团队。',
+    contactRoute: 'other'
+  }
+];
+
+function App() {
+  return (
+    <PageShell hideHero breadcrumbs={[
+      { label: '首页',     href: L('/') },
+      { label: '服务',     href: '#' },
+      { label: '其他服务' }
+    ]}>
+      {/* 策略提示条（低调） */}
+      <div style={{
+        maxWidth: 1280, margin: '0 auto',
+        padding: '24px clamp(24px, 6vw, 96px) 0',
+        fontSize: 12,
+        color: 'var(--fg-3)',
+        letterSpacing: '0.04em'
+      }}>
+        页面状态：noindex · 仅通过页脚或私下推荐进入
+      </div>
+
+      {/* Hero */}
+      <header style={{
+        maxWidth: 880, margin: '0 auto',
+        padding: 'clamp(32px, 5vw, 64px) clamp(24px, 6vw, 96px) 32px'
+      }}>
+        <div style={{
+          fontFamily: 'var(--font-slogan)',
+          fontSize: 12,
+          letterSpacing: '0.16em',
+          textTransform: 'uppercase',
+          color: 'var(--brand-accent-700)',
+          marginBottom: 16
+        }}>其他服务</div>
+
+        <h1 style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 'clamp(32px, 4.5vw, 48px)',
+          lineHeight: 1.2,
+          color: 'var(--brand-primary-700)',
+          margin: '0 0 24px'
+        }}>我们偶尔承接的其他合作</h1>
+
+        <p style={{
+          fontSize: 17,
+          color: 'var(--fg-1)',
+          lineHeight: 1.6,
+          margin: 0,
+          maxWidth: 720
+        }}>
+          除了两条核心的跨境路径之外，梅斯健康 MedSci Healthcare 偶尔也会为个别团队承接一些具体的医学内容与传播工作——这些工作装不进一个完整的试点。每一单都通过与我们团队的直接沟通单独议定范围。
+        </p>
+      </header>
+
+      <OtherEngagementGridCN engagements={ENGAGEMENTS} />
+
+      {/* CTA */}
+      <section style={{
+        background: 'var(--bg-2)',
+        borderTop: '1px solid var(--border-1)',
+        padding: '48px clamp(24px, 6vw, 96px)'
+      }}>
+        <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(24px, 3vw, 32px)',
+            color: 'var(--brand-primary-700)',
+            margin: '0 0 12px',
+            lineHeight: 1.25
+          }}>联系我们的团队</h2>
+          <p style={{ fontSize: 15, color: 'var(--fg-2)', lineHeight: 1.6, margin: '0 0 24px' }}>
+            这类合作一单一议。把你正在做的事情告诉我们，我们会转给合适的同事。
+          </p>
+          <a href={L('/contact.html?topic=other')} style={{
+            display: 'inline-block',
+            padding: '14px 32px',
+            background: 'var(--brand-primary-700)',
+            color: 'var(--bg-1)',
+            fontFamily: 'var(--font-ui)',
+            fontSize: 14,
+            fontWeight: 600,
+            letterSpacing: '0.04em',
+            textDecoration: 'none'
+          }}>联系我们的团队</a>
+        </div>
+      </section>
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

@@ -1,36 +1,10 @@
-/* Footer.jsx — Site footer per IA §3, extracted from Sections3.jsx (2026-04-27) */
+/* Footer.jsx — Site footer per IA §3 · i18n-aware (2026-07-24)
+   链接与栏目文案来自 assets/i18n.js；MSH.L() 在中文语境下自动指向中文孪生页。 */
 function Footer() {
-  const cols = [
-    { title: 'Solutions', items: [
-      { label: 'Entering China',          href: '/solutions/entering-china.html' },
-      { label: 'Going Global (US)',       href: '/solutions/going-global-us.html' },
-      { label: 'Medical Evidence',        href: '/solutions/medical-evidence.html' },
-      { label: 'Physician Engagement',    href: '/solutions/physician-engagement.html' },
-      { label: 'Physician Research',      href: '/solutions/physician-research.html' },
-      { label: 'Medical Communications',  href: '/solutions/medical-communications.html' },
-      { label: 'Biostatistics & Data Mgmt', href: '/solutions/biostatistics-data-management.html' },
-      { label: 'Content Review',          href: '/solutions/content-review.html' },
-    ] },
-    { title: 'Pilots', items: [
-      { label: '30-Day China Sprint',       href: '/pilots/china-evidence-sprint.html' },
-      { label: '30-Day FDA Diagnostic',     href: '/pilots/fda-evidence-gap-diagnostic.html' },
-      { label: 'Cross-Border Sprint',       href: '/solutions/cross-border-medical-content-sprint.html' },
-    ] },
-    { title: 'Resources', items: [
-      { label: 'Case Studies',     href: '/case-studies/' },
-      { label: 'AI Platform',      href: '/ai-platform.html' },
-      { label: 'Insights',         href: '/insights/' },
-      { label: 'About MedSci',     href: '/about.html' },
-      { label: 'Contact',          href: '/contact.html' },
-      { label: 'Other services *', href: '/services/other-engagements.html', rel: 'nofollow' },
-    ] },
-    { title: 'Legal & IR', items: [
-      { label: 'Terms of Use',           href: '/legal/terms.html' },
-      { label: 'Privacy Policy',         href: '/legal/privacy.html' },
-      { label: 'Disclosures',            href: '/legal/disclosures.html' },
-      { label: 'Investor Relations ↗',   href: 'https://ir.medsci.cn/en/', rel: 'external noopener' },
-    ] },
-  ];
+  const M = window.MSH;
+  const T = (k) => (M ? M.t(k) : '');
+  const L = (h) => (M ? M.L(h) : h);
+  const cols = T('footerCols') || [];
   return (
     <footer style={{ background: 'var(--brand-primary-900)', color: 'rgba(255,255,255,0.7)', padding: '72px clamp(16px, 4vw, 40px) 32px' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
@@ -39,10 +13,10 @@ function Footer() {
             <img src="/assets/logo/medsci-healthcare-logo.svg" alt="MedSci Healthcare — Improving Healthcare Quality"
                  style={{ height: 38, filter: 'brightness(0) invert(1)', opacity: 0.95 }} />
             <p style={{ fontFamily: 'var(--font-slogan)', fontStyle: 'italic', fontSize: 14, color: 'rgba(255,255,255,0.5)', marginTop: 16, marginBottom: 20 }}>
-              Improving Healthcare Quality
+              {T('slogan')}
             </p>
-            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, marginBottom: 16, maxWidth: 320 }}>
-              AI-enabled medical review and a physician network helping US ↔ China healthcare innovators land cross-border evidence, communication and market-readiness.
+            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, marginBottom: 16, maxWidth: 320 }}>
+              {T('footerBlurb')}
             </p>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 11, color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-mono)', letterSpacing: '0.06em' }}>
               <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: 'var(--brand-accent-500)' }}></span>
@@ -55,7 +29,7 @@ function Footer() {
                 {c.title}
               </div>
               {c.items.map(it => (
-                <a key={it.label} href={it.href}
+                <a key={it.label} href={it.rel === 'external noopener' ? it.href : L(it.href)}
                    {...(it.rel ? { rel: it.rel } : {})}
                    style={{ display: 'block', fontSize: 13, color: 'rgba(255,255,255,0.65)', marginBottom: 10, textDecoration: 'none' }}>
                   {it.label}
@@ -65,8 +39,8 @@ function Footer() {
           ))}
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: 24, fontSize: 11, color: 'rgba(255,255,255,0.45)', flexWrap: 'wrap', gap: 12 }}>
-          <span>© 2026 MedSci Healthcare (2415.HK). All rights reserved.</span>
-          <span style={{ fontFamily: 'var(--font-mono)' }}>* rel="nofollow" — secondary services, not on sitemap.</span>
+          <span>{T('copyright')}</span>
+          <span style={{ fontFamily: 'var(--font-mono)' }}>{T('footerNofollow')}</span>
           <span style={{ display: 'inline-flex', gap: 18 }}>
             <a href="https://www.linkedin.com/company/medscihealthcare" rel="external noopener" style={{ color: 'inherit' }}>LinkedIn</a>
             <a href="https://www.hkexnews.hk/" rel="external noopener" style={{ color: 'inherit' }}>HKEX ↗</a>

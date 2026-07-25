@@ -7,6 +7,7 @@
 <meta name="description" content="MedSci Healthcare (HKEX 2415) — AI-assisted, physician-verified medical evidence, engagement, and communication for global biopharma and medtech.">
 <link rel="canonical" href="https://medscihealthcare.com/">
 <link rel="alternate" hreflang="en" href="https://medscihealthcare.com/">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/index-cn">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="MedSci Healthcare — AI + Physician-Verified Evidence">
 <meta property="og:description" content="HKEX 2415 — AI-assisted, physician-verified medical evidence, engagement, and communication for global biopharma and medtech.">
@@ -50,6 +51,9 @@
 <script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
 <script src="assets/sanity-client.js"></script>
 
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="assets/i18n.js"></script>
+<script type="text/babel" src="components/LangToggle.jsx"></script>
 <script type="text/babel" src="components/Button.jsx"></script>
 <script type="text/babel" src="components/Header.jsx"></script>
 <script type="text/babel" src="components/Hero.jsx"></script>

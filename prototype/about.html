@@ -7,8 +7,7 @@
 <meta name="description" content="MedSci Healthcare (2415.HK) — physician-verified evidence, engagement, and communication for global biopharma and medtech. AI-assisted, PITL-reviewed.">
 <link rel="canonical" href="https://medscihealthcare.com/about">
 <link rel="alternate" hreflang="en" href="https://medscihealthcare.com/about">
-<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/about?lang=zh-CN">
-<link rel="alternate" hreflang="x-default" href="https://medscihealthcare.com/about">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/about-cn">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="About MedSci Healthcare — AI + Physician-in-the-Loop">
 <meta property="og:description" content="MedSci Healthcare (2415.HK) — physician-verified evidence, engagement, and communication. AI-assisted, PITL-reviewed.">
@@ -61,12 +60,14 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
 <script src="assets/sanity-client.js"></script>
 
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="assets/i18n.js"></script>
+<script type="text/babel" src="components/LangToggle.jsx"></script>
 <script type="text/babel" src="components/Button.jsx"></script>
 <script type="text/babel" src="components/Header.jsx"></script>
 <script type="text/babel" src="components/Footer.jsx"></script>
 <script type="text/babel" src="components/PageShell.jsx"></script>
 <script type="text/babel" src="components/ContentBlocks.jsx"></script>
-<script type="text/babel" src="components/LangSwitch.jsx"></script>
 <script type="text/babel" src="components/LeadershipGrid.jsx"></script>
 <script type="text/babel" src="components/ComplianceTable.jsx"></script>
 
@@ -357,14 +358,8 @@ function App() {
             <span>{lang === 'en' ? 'About' : '关于'}</span>
           </nav>
 
-          {/* Lang switch — top-right */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            marginBottom: 'clamp(16px, 3vw, 32px)',
-          }}>
-            <LangSwitch enabled={true} current={lang} onSwitch={setLang} />
-          </div>
+          {/* 语言切换已统一到全站 Header 的 LangToggle（跳转 /about-cn.html）。
+              页内 LangSwitch 于 2026-07-24 移除，避免同一页出现两套中文版本。 */}
 
           <div style={{
             fontFamily: 'var(--font-slogan)',

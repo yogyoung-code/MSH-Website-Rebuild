@@ -1,0 +1,66 @@
+/* PagePrivacyCN.jsx — 隐私政策（中文孪生页 /legal/privacy-cn.html）
+   ------------------------------------------------------------------
+   ⚠ 法律文本，红线：本文件的中文条款内容全部逐条搬运自 legal/privacy.html
+   页内已有的 zh 文案字典，未作任何改写、精简、润色或再翻译。法域名称、
+   法规名称、实体名称、生效日期、联系邮箱与英文版严格一致；任何免责声明、
+   责任限制与管辖条款均未删减。
+
+   section id / 锚点与英文版 legal/privacy.html 逐一对应（法律页有深链引用）。
+   审批状态见 docs/approvals/legal-pages-pending-counsel-signoff.md —
+   本页仍为 skeleton，待外部律师定稿 + 翻译审核签核后替换。
+
+   英文有、中文字典缺失的部分以 [草稿 — 待法务签核：<英文小节标题>] 占位，
+   不自行翻译补写。
+   ------------------------------------------------------------------ */
+
+const PRIVACY_CN = {
+ eyebrow: '法律 · 隐私政策',
+ title: '隐私政策',
+ lastUpdated: '2026-05-04',
+ sections: [
+ { id: 'who-we-are', heading: '1. 我们是谁', paragraphs: ['梅斯健康控股有限公司（MedSci Healthcare Holdings Limited，HKEX: 2415）是通过 medscihealthcare.com（以下简称"本网站"）收集个人信息的处理者。运营子公司上海梅斯医药科技有限公司可能代表我们处理数据。联系: privacy@medscihealthcare.com。通讯地址: 中国上海市松江区新桥镇莘砖公路518号松江漕河泾开发区34号楼18层。'] },
+ { id: 'jurisdictional-scope', heading: '1A. 本政策的法域适用范围',
+ paragraphs: [
+ '梅斯健康在多个司法管辖区运营，并面向全球客户提供服务。适用于您个人信息处理的数据保护法律法规取决于您所在地区、业务活动实际发生地以及数据存储或传输的地点。本隐私政策旨在满足或超越我们运营所在司法管辖区适用数据保护制度的要求，包括但不限于：',
+ '(a) 中华人民共和国《个人信息保护法》（PIPL）— 适用于中国大陆境内个人的个人信息，以及任何主体（无论所在地）对中国大陆居民个人信息的处理（详见下文第 5 条）。',
+ '(b) 《通用数据保护条例》（GDPR）— 在我们向欧洲经济区、英国或瑞士的个人提供服务或监控其行为时适用（详见下文第 3 条）。',
+ '(c) 《加州消费者隐私法》/《加州隐私权法》（CCPA/CPRA）— 在满足法定门槛时适用于加州居民的个人信息（详见下文第 4 条）。',
+ '(d) 香港《个人资料（私隐）条例》（第 486 章）— 适用于梅斯健康控股有限公司作为资料使用者在香港进行的数据处理。',
+ '当多项制度同时适用时，我们采用为数据主体提供最高保护水平的标准。当特定司法管辖区的强制性要求与本政策一般条款不同或更为严格时，该法域专属条款对该制度所涵盖的个人优先适用。'
+ ] },
+ { id: 'pi-collected', heading: '2. 我们收集的个人信息', paragraphs: ['Smart Form 提交、服务器日志、功能性 Cookies、opt-in 分析 Cookies。', '[草稿 — 待法务签核：2. Personal information we collect]'] },
+ { id: 'lawful-basis', heading: '3. 合法依据（GDPR 第 6 条）', paragraphs: ['合同 / 合同前步骤：您通过 Smart Form 主动联系时适用。合法利益：服务器日志、滥用防护、分析聚合。同意：opt-in 分析 Cookies；所有营销邮件订阅。', '对于每项合法利益类别，我们已进行权衡测试，衡量我方利益与数据主体权利和自由之间的平衡。评估记录可应要求提供。'] },
+ { id: 'ccpa', heading: '4. CCPA 通知（加州居民）', paragraphs: ['根据 CCPA / CPRA，您可能有权知晓、删除、更正及选择退出个人信息的"出售"或"共享"。MedSci Healthcare 不出售个人信息（CCPA 定义）。行使权利请发送邮件至 privacy@medscihealthcare.com。', 'MedSci Healthcare 不按照 CPRA 2023 修正案定义"共享"个人信息用于跨情境行为广告。'] },
+ { id: 'pipl', heading: '5. PIPL 说明（中国居民）', paragraphs: ['中国大陆境内个人收集的个人信息按《个人信息保护法》（PIPL）处理。依照梅斯集团现有隐私政策（ir.medsci.cn），在中华人民共和国境内收集和产生的个人信息存储在中国大陆境内（不含港、澳、台地区）。如需向境外传输您的个人信息，则会遵循法律法规的要求，包括进行安全影响评估。', '跨境传输依赖已向国家互联网信息办公室（CAC）备案的 PIPL 标准合同条款（SCC）。就本网站而言，跨境数据流仅限于 Smart Form 查询路由，并受业务协议级数据处理条款约束。'] },
+ { id: 'sharing', heading: '6. 如何共享', paragraphs: ['我们不出售或公开披露个人信息。与梅斯集团隐私框架一致，我们仅在以下情形共享个人信息：(a) 签约服务商（如邮件发送、托管服务）；(b) 梅斯关联公司（包括上海梅斯医药科技有限公司），在提供所请求服务所必需时；(c) 法律法规规定、诉讼或政府要求时向监管和司法机关共享；(d) 企业交易（合并、收购或资产转让）中的继受方，须受同等保护并通知受影响个人。', '经匿名化或去标识化处理后共享个人信息的，依据适用法律无需另行征得同意。当服务商在收集管辖区域外处理个人信息时，我们依据 GDPR、PIPL 及其他数据保护法适用的标准合同条款或等效传输机制。'] },
+ { id: 'retention', heading: '7. 保留期限', paragraphs: ['Smart Form 提交：自最后一次互动起保留 24 个月，届时删除。服务器日志：90 天后聚合。匿名分析：无限期。'] },
+ { id: 'rights', heading: '8. 您的权利', paragraphs: ['根据您所在司法管辖区，您可能有权：访问并获取个人信息副本；更正不准确信息；删除个人信息；限制或反对处理；数据可携带；撤回同意（不影响此前合法处理）；以及向监管机构投诉。', '根据 PIPL，中国居民还有权要求说明处理规则并拒绝自动化决策。与梅斯集团隐私框架一致，我们将在 7 个工作日内回复经验证的权利请求。行使权利请发送邮件至 privacy@medscihealthcare.com。我们将在回应请求前验证您的身份。'] },
+ { id: 'safeguards', heading: '9. 安全保障', paragraphs: ['我们采用商业上合理的管理、技术与物理性保障。没有任何系统能完全免于入侵；如您认为存在漏洞或泄露事件，请通知 security@medscihealthcare.com。'] },
+ { id: 'cookies', heading: '10. Cookies 及类似技术', paragraphs: ['为改善您的浏览体验，本网站使用 Cookies 及类似本地存储技术（统称"Cookies"）以识别回访用户、记住语言偏好并维持会话状态。与梅斯集团做法一致，核心功能性 Cookies 为网站基本运行所必需；分析 Cookies 仅在用户选择加入后启用。', '您可以通过浏览器设置修改 Cookie 偏好或拒绝非必要 Cookies。拒绝 Cookies 可能影响本网站的部分功能。我们不使用 Cookies 进行跨站行为广告。'] },
+ { id: 'children', heading: '11. 儿童', paragraphs: ['本网站为企业对企业平台，不面向儿童。与梅斯集团隐私政策一致，我们不向 18 周岁以下人士提供服务。COPPA（美国）年龄门槛为 13 岁，GDPR 第 8 条默认为 16 岁，PIPL 未成年人门槛为 14 岁。我们不会故意收集任何适用年龄门槛以下儿童的个人信息。如监护人发现儿童在未经同意的情况下提供了个人信息，请立即联系我们，我们将及时删除相关信息。'] },
+ { id: 'changes', heading: '12. 变更', paragraphs: ['我们可能不时修订本隐私政策。重大变更会更新顶部的"最近更新"日期。变更后继续使用本网站即视为接受修订后的政策。'] },
+ { id: 'contact', heading: '13. 联系我们', paragraphs: ['隐私问题或权利请求：privacy@medscihealthcare.com。通讯地址：中国上海市松江区新桥镇莘砖公路518号松江漕河泾开发区34号楼18层，邮编 201612。电话：+86 21 5448 1353。我们通常在 7 个工作日内回复。如您对我们的回复不满意，可向相关监管机构投诉（如国家互联网信息办公室、欧洲数据保护机构或加州总检察长）。', '[草稿 — 待法务签核：13. Contact — Data Protection Officer (DPO)]'] }
+ ]
+};
+
+function PagePrivacyCN() {
+  const L = (h) => (window.MSH ? window.MSH.L(h) : h);
+  const t = PRIVACY_CN;
+  return (
+    <PageShell hideHero breadcrumbs={[
+      { label: '首页', href: L('/') },
+      { label: '法律', href: L('/legal/') },
+      { label: '隐私政策' }
+    ]}>
+      <LegalProseCN
+        eyebrow={t.eyebrow}
+        title={t.title}
+        lastUpdated={t.lastUpdated}
+        sections={t.sections}
+      />
+    </PageShell>
+  );
+}
+
+window.PagePrivacyCN = PagePrivacyCN;
+window.PRIVACY_CN = PRIVACY_CN;

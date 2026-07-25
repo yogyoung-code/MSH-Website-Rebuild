@@ -13,7 +13,7 @@
          {
            label: 'DEMAND-SIDE NETWORK',
            items: [
-             { value: '3.3M+', label: 'Registered physicians',
+             { value: '3.33M+', label: 'Registered physicians',
                sourceFootnote: 'Internal registry · 2026-Q1' },
              { value: '25K+',  label: 'Tertiary-hospital KOLs' },
            ],

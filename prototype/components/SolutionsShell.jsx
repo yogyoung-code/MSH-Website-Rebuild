@@ -1,3 +1,8 @@
+/* i18n: 共享框架文案走 assets/i18n.js 的 shell 词条（EN 输出与改造前逐字一致）。
+   S(key) 取词，SL(href) 在中文语境下把站内链接指向已存在的中文孪生页。 */
+var S = function (k) { return window.MSH ? window.MSH.s(k) : ''; };
+var SL = function (h) { return window.MSH ? window.MSH.L(h) : h; };
+
 /* SolutionsShell.jsx — shared chrome for /solutions/* pages */
 
 function SolutionPageHeader({ pageMeta }) {
@@ -74,7 +79,7 @@ function SolutionPageHeader({ pageMeta }) {
                 <span style={{
                   fontSize: 10.5, fontWeight: 600, letterSpacing: '0.16em',
                   color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase',
-                }}>At a glance</span>
+                }}>{S('atAGlance')}</span>
                 <span style={{
                   fontFamily: 'var(--font-mono)', fontSize: 10.5,
                   color: 'rgba(255,255,255,0.4)',
@@ -161,7 +166,7 @@ function SolutionSubNav({ items, theme = 'navy' }) {
           color: 'var(--fg-3)', letterSpacing: '0.12em',
           textTransform: 'uppercase', marginRight: 18, paddingRight: 18,
           borderRight: '1px solid var(--border-1)', whiteSpace: 'nowrap',
-        }}>On this page</span>
+        }}>{S('onThisPage')}</span>
         {items.map(it => (
           <a key={it.id} href={`#${it.id}`}
              style={{
@@ -234,9 +239,9 @@ function PhaseTimeline({ phases, theme = 'navy' }) {
           fontFamily: 'var(--font-mono)', fontSize: 11,
           color: isCyan ? 'var(--brand-accent-700)' : 'var(--brand-primary-700)',
           letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 600,
-        }}>Engagement timeline · {phases.length} phases</span>
+        }}>{S('timeline')(phases.length)}</span>
         <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-3)' }}>
-          {phases.map(p => p.weeks).join(' → ')}
+          {phases.map(p => p.weeks || p.step).join(' → ')}
         </span>
       </div>
       <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: `repeat(${phases.length}, 1fr)` }}>
@@ -259,7 +264,7 @@ function PhaseTimeline({ phases, theme = 'navy' }) {
               <span style={{
                 fontFamily: 'var(--font-mono)', fontSize: 10.5,
                 color: 'var(--fg-3)', letterSpacing: '0.1em', textTransform: 'uppercase',
-              }}>Wk {p.weeks}</span>
+              }}>{p.weeks ? S('week')(p.weeks) : S('step')(p.step)}</span>
             </div>
             <h4 style={{
               fontFamily: 'var(--font-ui)', fontSize: 16.5, fontWeight: 600,
@@ -316,7 +321,7 @@ function DeliverablesGrid({ items, theme = 'navy' }) {
                 textTransform: 'uppercase', marginBottom: 2,
                 display: 'flex', alignItems: 'center', gap: 8,
               }}>
-                Deliverable {String(i + 1).padStart(2, '0')}
+                {S('deliverable')(String(i + 1).padStart(2, '0'))}
                 {it.tag && <span style={{
                   padding: '1px 7px', borderRadius: 4, fontSize: 9.5, fontWeight: 700,
                   background: 'var(--brand-accent-500)', color: '#fff',
@@ -357,7 +362,7 @@ function DeliverablesGrid({ items, theme = 'navy' }) {
               fontSize: 13.5, fontWeight: 600, color: 'var(--brand-accent-700)',
               textDecoration: 'none',
             }}>
-              {it.hrefLabel || 'Learn more'} <span>→</span>
+              {it.hrefLabel || S('learnMore')} <span>→</span>
             </a>
           )}
         </div>
@@ -415,7 +420,7 @@ function SolutionCTA({ pageMeta }) {
       <div style={{ maxWidth: 1080, margin: '0 auto', position: 'relative' }}>
         <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48, alignItems: 'center' }}>
           <div>
-            <SectionEyebrow color="var(--brand-accent-500)">Next step</SectionEyebrow>
+            <SectionEyebrow color="var(--brand-accent-500)">{S('nextStep')}</SectionEyebrow>
             <h2 style={{
               fontFamily: 'var(--font-display)', fontSize: 40, fontWeight: 600,
               color: '#fff', margin: 0, letterSpacing: '-0.012em', lineHeight: 1.15,
@@ -427,17 +432,17 @@ function SolutionCTA({ pageMeta }) {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <Button variant="primary-light" href={primaryHref || '/contact.html'} style={{ background: '#fff', color: 'var(--brand-primary-700)', justifyContent: 'center' }}>
-              {primaryCta || 'Book a scoping call'}
+              {primaryCta || S('primaryCta')}
             </Button>
             <Button variant="outline-light" href={secondaryHref || '/contact.html'} style={{ justifyContent: 'center' }}>
-              {secondaryCta || 'See related case studies'}
+              {secondaryCta || S('secondaryCta')}
             </Button>
             <div style={{
               marginTop: 8, fontSize: 12, color: 'rgba(255,255,255,0.55)',
               display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'center',
             }}>
               <i data-lucide="shield-check" width="13" height="13" style={{ color: 'var(--brand-accent-500)' }}></i>
-              NDA-ready · Reply within 2 business days
+              {S('ndaNote')}
             </div>
           </div>
         </div>
@@ -448,35 +453,36 @@ function SolutionCTA({ pageMeta }) {
 
 // Cross-link strip (other solutions)
 function RelatedSolutions({ current }) {
+  const L = S('related') || {}, TG = S('tags') || {};
   const all = [
-    { id: 'entering-china', label: 'Entering China', tag: 'Path · Strategy', theme: 'navy', href: 'entering-china.html', icon: 'log-in' },
-    { id: 'going-global-us', label: 'Going Global (US)', tag: 'Path · Strategy', theme: 'cyan', href: 'going-global-us.html', icon: 'plane-takeoff' },
-    { id: 'medical-evidence', label: 'Medical Evidence', tag: 'Business Block', theme: 'navy', href: 'medical-evidence.html', icon: 'file-search' },
-    { id: 'physician-engagement', label: 'Physician Engagement', tag: 'Business Block', theme: 'navy', href: 'physician-engagement.html', icon: 'stethoscope' },
-    { id: 'medical-communications', label: 'Medical Communications', tag: 'Business Block', theme: 'navy', href: 'medical-communications.html', icon: 'book-open-text' },
-    { id: 'global-communications-office', label: 'Global Communications Office', tag: 'Build & Operate · New', theme: 'cyan', href: 'global-communications-office.html', icon: 'megaphone' },
-    { id: 'biostatistics-data-management', label: 'Biostatistics & Data Management', tag: 'Business Block', theme: 'navy', href: 'biostatistics-data-management.html', icon: 'bar-chart-3' },
-    { id: 'physician-research', label: 'Physician Research', tag: 'Quick Start · Fastest', theme: 'cyan', href: 'physician-research.html', icon: 'clipboard-list' },
-    { id: 'cross-border-medical-content-sprint', label: 'Cross-Border Content Sprint', tag: 'Quick Start · 2 wks', theme: 'cyan', href: 'cross-border-medical-content-sprint.html', icon: 'zap' },
-    { id: 'content-review', label: 'Content Review', tag: 'Quick Start · 3–5 days', theme: 'cyan', href: 'content-review.html', icon: 'file-check' },
-  ].filter(s => s.id !== current);
+    { id: 'entering-china',                     tag: TG.path,    theme: 'navy', href: 'entering-china.html',                     icon: 'log-in' },
+    { id: 'going-global-us',                    tag: TG.path,    theme: 'cyan', href: 'going-global-us.html',                    icon: 'plane-takeoff' },
+    { id: 'medical-evidence',                   tag: TG.block,   theme: 'navy', href: 'medical-evidence.html',                   icon: 'file-search' },
+    { id: 'physician-engagement',               tag: TG.block,   theme: 'navy', href: 'physician-engagement.html',               icon: 'stethoscope' },
+    { id: 'medical-communications',             tag: TG.block,   theme: 'navy', href: 'medical-communications.html',             icon: 'book-open-text' },
+    { id: 'global-communications-office',       tag: TG.gco,     theme: 'cyan', href: 'global-communications-office.html',       icon: 'megaphone' },
+    { id: 'biostatistics-data-management',      tag: TG.block,   theme: 'navy', href: 'biostatistics-data-management.html',      icon: 'bar-chart-3' },
+    { id: 'physician-research',                 tag: TG.fastest, theme: 'cyan', href: 'physician-research.html',                 icon: 'clipboard-list' },
+    { id: 'cross-border-medical-content-sprint',tag: TG.sprint,  theme: 'cyan', href: 'cross-border-medical-content-sprint.html',icon: 'zap' },
+    { id: 'content-review',                     tag: TG.review,  theme: 'cyan', href: 'content-review.html',                     icon: 'file-check' },
+  ].map(x => ({ ...x, label: L[x.id], href: SL('/solutions/' + x.href) })).filter(s => s.id !== current);
 
   return (
     <section style={{ padding: '72px clamp(16px, 4vw, 40px)', background: '#fff', borderTop: '1px solid var(--border-1)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 32 }}>
           <div>
-            <SectionEyebrow color="var(--fg-3)">Related solutions</SectionEyebrow>
+            <SectionEyebrow color="var(--fg-3)">{S('relatedTitle')}</SectionEyebrow>
             <h3 style={{
               fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 600,
               color: 'var(--brand-primary-700)', margin: 0, letterSpacing: '-0.008em',
-            }}>Continue exploring our solutions library.</h3>
+            }}>{S('relatedLede')}</h3>
           </div>
-          <a href="/" style={{
+          <a href={SL('/')} style={{
             color: 'var(--brand-primary-500)', fontWeight: 600, fontSize: 13.5,
             display: 'inline-flex', alignItems: 'center', gap: 6,
           }}>
-            ← Back to homepage
+            {S('backHome')}
           </a>
         </div>
         <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12 }}>
@@ -555,19 +561,19 @@ function ContentReviewCrossSell() {
             display: 'inline-flex', alignItems: 'center', gap: 6,
           }}>
             <i data-lucide="file-check" width="13" height="13"></i>
-            Quick start · 3–5 days
+            {S('crossEyebrow')}
           </div>
           <div style={{
             fontFamily: 'var(--font-ui)', fontSize: 17, fontWeight: 600,
             color: 'var(--brand-primary-700)', lineHeight: 1.35, marginBottom: 6,
           }}>
-            Not ready for a full engagement?
+            {S('crossTitle')}
           </div>
           <div style={{ fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.55 }}>
-            Start with a Medical & Compliance Content Review — submit your existing materials and get expert-reviewed feedback in 3–5 business days.
+            {S('crossBody')}
           </div>
         </div>
-        <a href="/solutions/content-review.html"
+        <a href={SL('/solutions/content-review.html')}
            style={{
              display: 'inline-flex', alignItems: 'center', gap: 8,
              padding: '12px 24px', borderRadius: 8,
@@ -576,7 +582,7 @@ function ContentReviewCrossSell() {
              letterSpacing: '0.02em', whiteSpace: 'nowrap',
              transition: 'background 150ms',
            }}>
-          Learn more <span style={{ fontSize: 16 }}>→</span>
+          {S('learnMore')} <span style={{ fontSize: 16 }}>→</span>
         </a>
       </div>
     </section>

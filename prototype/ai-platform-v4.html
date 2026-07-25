@@ -58,6 +58,9 @@
 <script src="assets/sanity-client.js"></script>
 
 <!-- v0.1 layout -->
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="assets/i18n.js"></script>
+<script type="text/babel" src="components/LangToggle.jsx"></script>
 <script type="text/babel" src="components/Button.jsx"></script>
 <script type="text/babel" src="components/Header.jsx"></script>
 <script type="text/babel" src="components/Footer.jsx"></script>
@@ -93,7 +96,7 @@
 const ASSET_GROUPS = [
   { label: 'DEMAND-SIDE NETWORK',
     items: [
-      { value: '3.3M+', label: 'Registered physicians',
+      { value: '3.33M+', label: 'Registered physicians',
         sourceFootnote: 'Internal registry · 2026-Q1' },
       { value: '25K+',  label: 'Tertiary-hospital KOLs',
         sourceFootnote: 'Internal registry · 2026-Q1' },
@@ -187,7 +190,7 @@ const PRODUCTS = [
     sidebarIcon: 'compass',
     headerModel: 'Insight-Graph-V1',
     userRole: { en: 'Industry AI · Market Signal & Insight' },
-    positioningOneLiner: { en: 'Market intelligence for healthcare industrial teams — anchored to MedSci\'s 3.3M+ physicians and audited evidence.' },
+    positioningOneLiner: { en: 'Market intelligence for healthcare industrial teams — anchored to MedSci\'s 3.33M+ physicians and audited evidence.' },
     capabilitiesShort: [
       { en: 'Customer-segment insight from physician engagement signal' },
       { en: 'Real-time market & competitive monitoring' },

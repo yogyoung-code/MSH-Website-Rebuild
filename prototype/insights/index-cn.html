@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>洞察 — 证据、互动与传播简报 | 梅斯健康 MedSci Healthcare</title>
+<meta name="description" content="面向中国总部决策人的短篇简报：中国真实世界研究（RWE）、FDA 证据衔接、双语医学传播。由梅斯健康的医生撰写，按医生在环（PITL）流程审核。">
+<link rel="canonical" href="https://medscihealthcare.com/insights/index-cn">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/insights/">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/insights/index-cn">
+<link rel="alternate" hreflang="x-default" href="https://medscihealthcare.com/insights/">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="洞察 — 梅斯健康 MedSci Healthcare">
+<meta property="og:description" content="中国真实世界研究、FDA 证据衔接、双语医学传播的现场简报——医生撰写，医生在环流程审核。">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/insights-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/insights/index-cn">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "梅斯健康 · 洞察",
+  "inLanguage": "zh-CN",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "url": "https://medscihealthcare.com/insights/china-rwe-regulatory-landscape-cn" },
+    { "@type": "ListItem", "position": 2, "url": "https://medscihealthcare.com/insights/bridging-china-data-fda-cn" },
+    { "@type": "ListItem", "position": 3, "url": "https://medscihealthcare.com/insights/named-patient-programs-china-cn" },
+    { "@type": "ListItem", "position": 4, "url": "https://medscihealthcare.com/insights/medical-affairs-2030-cn" },
+    { "@type": "ListItem", "position": 5, "url": "https://medscihealthcare.com/insights/ai-driven-medical-affairs-cn" },
+    { "@type": "ListItem", "position": 6, "url": "https://medscihealthcare.com/insights/hcp-engagement-connected-channels-cn" }
+  ]
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", "Songti SC", "Noto Serif SC", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+<script>
+  window.PAGE_LANG = 'CN';
+  window.LANG_ALTERNATE_HREF = '/insights/';
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="../assets/i18n.js"></script>
+<script type="text/babel" src="../components/LangToggle.jsx"></script>
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx?v=2"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/InsightCardCN.jsx"></script>
+<script type="text/babel" src="../components/TopicChipsCN.jsx"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
+<script type="text/babel" src="../components/useSanity.jsx"></script>
+
+<script type="text/babel">
+/* 主题筛选：value / topic slug 与英文版严格一致，仅 label 中文化，否则筛选失效。 */
+const TOPICS = [
+  { value: 'rwe',              label: '中国真实世界研究' },
+  { value: 'evidence_bridge',  label: 'FDA 证据衔接' },
+  { value: 'china_access',     label: '中国市场准入' },
+  { value: 'med_affairs',      label: '医学事务' },
+  { value: 'ai_health',        label: '医疗 AI' },
+  { value: 'hcp_engagement',   label: '医生互动' }
+];
+
+const INSIGHTS = [
+  {
+    slug: 'china-rwe-regulatory-landscape',
+    topic: TOPICS[0],
+    title: '中国真实世界研究政策演进：全球申办方需要知道的事',
+    lede: '2019 年以来，国家药监局（NMPA）与药品审评中心（CDE）陆续发布多份指导原则，把真实世界研究（RWE）如何支持药品注册这件事写进了规则。本文梳理当前的政策版图，列出中国监管方已经认可的关键使用场景，并说明这对正在规划跨境申报的申办方意味着什么。',
+    author:        { name: 'Dr. L. Chen', title: '医学总监 · 证据' },
+    pitlReviewer:  { name: 'Dr. M. Park', title: '高级审稿人 · PITL' },
+    publishedAt:   '2026-04-28',
+    readingTime:   '7 分钟阅读'
+  },
+  {
+    slug: 'bridging-china-data-fda',
+    topic: TOPICS[1],
+    title: '把中国数据接入 FDA 申报：一份实操核对清单',
+    lede: '2024 年国务院深化改革意见把临床试验审批时限从 60 个工作日压缩到 30 个工作日，并明确支持国际多中心临床试验。对于要把中国数据接进美国申报的申办方，这些变化改写了原有打法。本文给出我们的评审人在起草面向美国的申报资料之前，会先过一遍的准入问题。',
+    author:        { name: 'Dr. R. Iyer', title: '医学总监 · 美国项目' },
+    pitlReviewer:  { name: 'Dr. K. Liu',  title: '高级审稿人 · PITL' },
+    publishedAt:   '2026-04-21',
+    readingTime:   '8 分钟阅读'
+  },
+  {
+    slug: 'named-patient-programs-china',
+    topic: TOPICS[2],
+    title: '指定患者用药项目：创新疗法进入中国的一条新路径',
+    lede: '海南博鳌乐城先行区与 2019 年《药品管理法》，为境外已获批药品打开了一条通道——在完成国家药监局（NMPA）正式注册之前，通过指定患者用药路径抵达中国患者。本文讲清这条路径怎么走、适用在哪里，以及全球申办方在递交之前该准备什么。',
+    author:        { name: 'Dr. S. Tan',  title: '医学总监 · 市场准入' },
+    pitlReviewer:  { name: 'Dr. J. Wang', title: '高级审稿人 · PITL' },
+    publishedAt:   '2026-04-14',
+    readingTime:   '6 分钟阅读'
+  },
+  {
+    slug: 'medical-affairs-2030',
+    topic: TOPICS[3],
+    title: '医学事务 2030：AI 时代的五个优先事项',
+    lede: '医学事务团队正被要求用更少的资源交付更多：周期更短、相关方期待更宽、数据量成倍增长。本文梳理到 2030 年将定义这一职能的五个战略优先事项，以及 AI 在哪些环节能带来最大的差别。',
+    author:        { name: 'Dr. K. Liu',  title: '高级审稿人 · 医学策略' },
+    pitlReviewer:  { name: 'Dr. L. Chen', title: '医学总监 · 证据' },
+    publishedAt:   '2026-04-07',
+    readingTime:   '7 分钟阅读'
+  },
+  {
+    slug: 'ai-driven-medical-affairs',
+    topic: TOPICS[4],
+    title: 'AI 驱动的医学事务决策：从文献到行动',
+    lede: '生成式 AI 与预测分析已经在改变医学事务团队筛读文献、识别 KOL 与产出合规内容的方式。本文梳理今天就能带来可度量价值的落地场景，以及让这种落地可持续的治理边界。',
+    author:        { name: 'Dr. M. Park', title: '高级审稿人 · AI 与证据' },
+    pitlReviewer:  { name: 'Dr. R. Iyer', title: '医学总监 · 美国项目' },
+    publishedAt:   '2026-03-31',
+    readingTime:   '6 分钟阅读'
+  },
+  {
+    slug: 'hcp-engagement-connected-channels',
+    topic: TOPICS[5],
+    title: '2025 年的医生互动：为什么互联渠道更有效',
+    lede: '能被一线团队触达的医疗专业人士已不足半数，传统的单渠道代表模式正在失效。多项全球调研的新数据显示，销售、医学与数字渠道协同推进的互动，能带来可度量的更好结果。本文分析这对中国及其他市场的药企互动策略意味着什么。',
+    author:        { name: 'Dr. S. Tan',  title: '医学总监 · 传播' },
+    pitlReviewer:  { name: 'Dr. K. Liu',  title: '高级审稿人 · PITL' },
+    publishedAt:   '2026-03-24',
+    readingTime:   '5 分钟阅读'
+  }
+];
+
+/* Sanity insight → 组件 props；中文语境优先取 cn 字段 */
+function pickCN(o) {
+  if (!o) return '';
+  if (typeof o === 'string') return o;
+  return o.cn || o.zh || o.en || '';
+}
+function transformCmsInsight(doc) {
+  const typeToTopic = { regulatory: TOPICS[0], evidence_bridge: TOPICS[1], china_access: TOPICS[2], medical_affairs: TOPICS[3], ai_health: TOPICS[4], hcp_engagement: TOPICS[5], operations: TOPICS[3] };
+  return {
+    slug: doc.slug && doc.slug.current ? doc.slug.current : doc.slug,
+    topic: typeToTopic[doc.type] || TOPICS[0],
+    title: pickCN(doc.title),
+    lede: pickCN(doc.summary),
+    author: doc.authors && doc.authors[0] ? { name: pickCN(doc.authors[0].name), title: doc.authors[0].role } : {},
+    pitlReviewer: {},
+    publishedAt: doc.publishedAt ? doc.publishedAt.slice(0, 10) : '',
+    readingTime: doc.readTime ? doc.readTime + ' 分钟阅读' : ''
+  };
+}
+
+function App() {
+  // 多选：空数组 = 全部显示
+  const [activeTopics, setActiveTopics] = React.useState([]);
+
+  const cmsData = useSanity('fetchInsights', null);
+  const allInsights = cmsData
+    ? cmsData.map(transformCmsInsight)
+    : INSIGHTS;
+
+  const toggleTopic = (v) => {
+    setActiveTopics(prev => prev.indexOf(v) === -1 ? [...prev, v] : prev.filter(x => x !== v));
+  };
+
+  const visible = activeTopics.length === 0
+    ? allInsights
+    : allInsights.filter(i => activeTopics.indexOf(i.topic.value) !== -1);
+
+  return (
+    <PageShell
+      eyebrow="洞察"
+      title="证据、监管与医生三者交汇处的现场笔记"
+      subtitle="由我们的医生撰写、按服务客户时同一套医生在环（PITL）流程审核的短篇简报。不讲供应商话术，只写我们在中国真实世界研究、美国申报与双语医学内容里实际看到的东西。"
+      breadcrumbs={[{ label: '首页', href: MSH.L('/') }, { label: '洞察' }]}
+    >
+      <TopicChipsCN
+        topics={TOPICS}
+        active={activeTopics}
+        onToggle={toggleTopic}
+      />
+
+      <section style={{ padding: '0 clamp(24px, 6vw, 96px) 64px', maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 24 }}>
+          {visible.map(i => (
+            <InsightCardCN
+              key={i.slug}
+              {...i}
+              href={MSH.L(`/insights/${i.slug}.html`)}
+            />
+          ))}
+        </div>
+        {visible.length === 0 && (
+          <div style={{ textAlign: 'center', color: 'var(--fg-3)', padding: 48 }}>
+            没有符合所选主题的洞察文章。
+          </div>
+        )}
+      </section>
+
+      {/* 订阅模块 — Copy Deck v4.2 §8.0.5 */}
+      <section id="subscribe" style={{
+        background: 'var(--bg-2)',
+        borderTop: '1px solid var(--border-1)',
+        padding: '64px clamp(24px, 6vw, 96px)'
+      }}>
+        <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+          <div style={{
+            fontFamily: 'var(--font-slogan)',
+            fontSize: 12,
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: 'var(--brand-accent-700)',
+            marginBottom: 12
+          }}>保持联系</div>
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 32,
+            margin: '0 0 12px',
+            color: 'var(--brand-primary-700)',
+            lineHeight: 1.3
+          }}>
+            每月一封短简报——值得占用你收件箱的时候才发
+          </h2>
+          <p style={{
+            fontSize: 15,
+            color: 'var(--fg-2)',
+            lineHeight: 1.7,
+            margin: '0 0 24px'
+          }}>
+            这不是营销邮件。我们每月只发一篇洞察，由医生撰写，经医生在环流程审核。随时可退订。
+          </p>
+          <SubscribeForm topics={TOPICS} />
+          <p style={{ fontSize: 12, color: 'var(--fg-3)', marginTop: 16 }}>
+            订阅即表示你同意我们的<a href={MSH.L('/legal/privacy.html')} style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>隐私政策</a>。我们不会把你的邮箱提供给第三方。
+          </p>
+        </div>
+      </section>
+    </PageShell>
+  );
+}
+
+function SubscribeForm({ topics }) {
+  // 邮箱校验；提交期间按钮禁用
+  const [email, setEmail] = React.useState('');
+  const [emailError, setEmailError] = React.useState('');
+  // 默认只勾选首个主题——opt-in，不是 opt-out
+  const [selected, setSelected] = React.useState(topics.length > 0 ? [topics[0].value] : []);
+  const [state, setState] = React.useState('idle'); // idle | submitting | done | error
+  const [errorDetail, setErrorDetail] = React.useState('');
+
+  const validate = (v) => {
+    if (!v) return '请填写邮箱地址。';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return '这个邮箱地址看起来不完整。';
+    return '';
+  };
+
+  const toggle = (v) => {
+    setSelected(prev => prev.indexOf(v) === -1 ? [...prev, v] : prev.filter(x => x !== v));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const err = validate(email);
+    if (err) { setEmailError(err); return; }
+    setState('submitting');
+    setErrorDetail('');
+    const params = new URLSearchParams(window.location.search);
+    const wantError = params.get('simulateError') === '1';
+    setTimeout(() => {
+      if (wantError) {
+        setErrorDetail('网络错误（模拟）');
+        setState('error');
+      } else {
+        setState('done');
+      }
+    }, 400);
+  };
+
+  const retry = () => { setState('idle'); setErrorDetail(''); };
+
+  if (state === 'done') {
+    return (
+      <div role="status" aria-live="polite" style={{
+        padding: '20px 24px',
+        background: 'var(--success-100)',
+        border: '1px solid var(--success-500)',
+        borderRadius: 'var(--radius-md, 6px)',
+        color: 'var(--brand-primary-700)',
+        fontSize: 15,
+        lineHeight: 1.7
+      }}>
+        <div style={{
+          fontFamily: 'var(--font-ui)',
+          fontSize: 11, letterSpacing: '0.12em',
+          textTransform: 'uppercase', fontWeight: 700,
+          color: 'var(--success-500)', marginBottom: 6
+        }}>✓ 已订阅</div>
+        谢谢——已经把你加进名单。下一封简报在下月初发出。
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'stretch' }}>
+      {state === 'error' && (
+        <div role="alert" aria-live="assertive" style={{
+          padding: '12px 16px',
+          background: '#fef2f2',
+          border: '1px solid var(--error-500)',
+          borderRadius: 'var(--radius-md, 6px)',
+          fontSize: 13, color: 'var(--fg-1)', textAlign: 'left'
+        }}>
+          <strong style={{ color: 'var(--error-500)' }}>订阅没有成功。</strong>{' '}
+          你填的地址已保留——可以再试一次，或发邮件到 <code style={{ fontFamily: 'var(--font-mono)' }}>hello@medscihealthcare.com</code>。
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-3)', marginTop: 4 }}>{errorDetail}</div>
+          <button type="button" onClick={retry} style={{
+            marginTop: 8, padding: '6px 14px',
+            background: 'var(--error-500)', color: 'var(--bg-1)',
+            border: 'none', borderRadius: 'var(--radius-md, 6px)',
+            fontFamily: 'var(--font-ui)', fontSize: 12, fontWeight: 600,
+            cursor: 'pointer'
+          }}>重试</button>
+        </div>
+      )}
+
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <div style={{ flex: '1 1 240px', display: 'flex', flexDirection: 'column' }}>
+          <input
+            type="email"
+            required
+            aria-invalid={emailError ? 'true' : 'false'}
+            aria-describedby="subscribe-email-error"
+            aria-label="邮箱地址"
+            placeholder="you@company.com"
+            value={email}
+            onChange={(e) => { setEmail(e.target.value); if (emailError) setEmailError(''); }}
+            onBlur={() => setEmailError(validate(email))}
+            disabled={state === 'submitting'}
+            style={{
+              padding: '12px 16px',
+              border: '1px solid ' + (emailError ? 'var(--error-500)' : 'var(--border-2)'),
+              background: 'var(--bg-1)',
+              fontFamily: 'var(--font-ui)',
+              fontSize: 15,
+              color: 'var(--fg-1)'
+            }}
+          />
+          {emailError && (
+            <div id="subscribe-email-error" role="alert" style={{
+              fontSize: 12, color: 'var(--error-500)', marginTop: 4,
+              textAlign: 'left'
+            }}>{emailError}</div>
+          )}
+        </div>
+        <button type="submit" disabled={state === 'submitting'} aria-busy={state === 'submitting'} style={{
+          padding: '12px 24px',
+          background: state === 'submitting' ? 'var(--border-2)' : 'var(--brand-primary-700)',
+          color: 'var(--bg-1)',
+          border: 'none',
+          fontFamily: 'var(--font-ui)',
+          fontSize: 14,
+          fontWeight: 600,
+          letterSpacing: '0.04em',
+          cursor: state === 'submitting' ? 'wait' : 'pointer',
+          minWidth: 130
+        }}>
+          {state === 'submitting' ? '订阅中…' : '订阅'}
+        </button>
+      </div>
+      <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', fontSize: 13, color: 'var(--fg-2)' }}>
+        <span style={{ fontSize: 11, color: 'var(--fg-3)', letterSpacing: '0.04em', alignSelf: 'center' }}>订阅主题（可选）：</span>
+        {topics.map(t => (
+          <label key={t.value} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={selected.indexOf(t.value) !== -1}
+              onChange={() => toggle(t.value)}
+              disabled={state === 'submitting'}
+            />
+            {t.label}
+          </label>
+        ))}
+      </div>
+    </form>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

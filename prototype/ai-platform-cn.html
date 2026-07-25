@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 平台 — 梅斯健康 MedSci Healthcare</title>
+<meta name="description" content="DeepEvidence 与 SeekEvidence 建在同一套可审计的证据底座上。AI 提出方案，具名医生签核；每一条产出都带来源、审阅人与时间戳，合作项目中可导出。">
+<link rel="canonical" href="https://medscihealthcare.com/ai-platform-cn">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/ai-platform">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/ai-platform-cn">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="AI 平台 — 梅斯健康 MedSci Healthcare">
+<meta property="og:description" content="为医学的 AI 时代而建。AI 赋能 · 医生签核 · 面向全球。">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/ai-platform-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/ai-platform-cn">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI 平台（梅斯健康 MedSci Healthcare）",
+  "description": "AI 赋能、医生在环签核的医学证据与内容工作流。DeepEvidence 与 SeekEvidence 共用同一套可审计的证据底座，每一条产出可溯源到来源、审阅人与时间戳。",
+  "url": "https://medscihealthcare.com/ai-platform-cn",
+  "inLanguage": "zh-CN",
+  "provider": { "@type": "Organization", "name": "MedSci Healthcare 梅斯健康", "url": "https://medscihealthcare.com" },
+  "serviceType": "AI 赋能、医生签核的医学证据与内容工作流"
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", "Songti SC", "Noto Serif SC", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+  ::selection { background: var(--brand-accent-100); color: var(--brand-primary-700); }
+</style>
+<script>
+  window.PAGE_LANG = 'CN';
+  window.LANG_ALTERNATE_HREF = '/ai-platform.html';
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<noscript>
+  <div style="padding: 64px 24px; max-width: 1024px; margin: 0 auto; font-family: Georgia, serif;">
+    <h1>AI 平台 — 梅斯健康 MedSci Healthcare</h1>
+    <p style="font-size: 18px; line-height: 1.7;">
+      为医学的 AI 时代而建。<em>AI 赋能 · 医生签核 · 面向全球。</em>
+    </p>
+    <p>本页含一段需要 JavaScript 的产品实景演示。若需静态摘要，可直接访问
+      <a href="/ai-platform-deepevidence-cn.html">DeepEvidence</a> 或
+      <a href="/ai-platform-seekevidence-cn.html">SeekEvidence</a>，
+      或 <a href="/contact.html?intent=ai_dd">联系我们的 AI 团队</a>。</p>
+  </div>
+</noscript>
+
+<!-- GA4 + consent-mode v2 -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+</script>
+<script src="assets/consent/consent-mode-v2.js"></script>
+<script src="assets/analytics/ga4-events.js"></script>
+
+<!-- Self-hosted vendor -->
+<script src="assets/vendor/react.development.js"></script>
+<script src="assets/vendor/react-dom.development.js"></script>
+<script src="assets/vendor/babel.min.js"></script>
+<script src="assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="assets/sanity-client.js"></script>
+
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="assets/i18n.js"></script>
+<script type="text/babel" src="components/LangToggle.jsx"></script>
+<script type="text/babel" src="components/Button.jsx"></script>
+<script type="text/babel" src="components/Header.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+<script type="text/babel" src="components/PageShell.jsx"></script>
+<!-- 中文孪生组件 -->
+<script type="text/babel" src="components/PitlRibbonCN.jsx"></script>
+<script type="text/babel" src="components/EvidenceTrailCN.jsx"></script>
+<script type="text/babel" src="components/ComplianceCalloutCN.jsx"></script>
+<script type="text/babel" src="components/AIAssetBalanceSheet.jsx"></script>
+<script type="text/babel" src="components/AIProductShowcaseCN.jsx"></script>
+<script type="text/babel" src="components/AIProductShowcaseDemoCN.jsx"></script>
+<script type="text/babel" src="components/AIProductCardCN.jsx"></script>
+<script type="text/babel" src="components/AIProductCardGridCN.jsx"></script>
+<script type="text/babel" src="components/StickyAnchorNav.jsx"></script>
+<script type="text/babel" src="components/RagAnchorDiagramCN.jsx"></script>
+<script type="text/babel" src="components/TrustArchitectureCN.jsx"></script>
+
+<script type="text/babel">
+/* =========================================================
+   /ai-platform-cn — 中文孪生页（对应 ai-platform.html v3.0）
+   ---------------------------------------------------------
+   结构与英文版一一对应：
+     #foundation   Act 1 · AI 资产负债表
+     #products     Act 2 · 实景演示 + 产品矩阵
+     #method       Act 3 · 信任架构 + 合规边界
+     #cta          结尾双 CTA
+   文案为转化层改写（面向中国总部决策人与投资者关系），
+   所有数字与主张与英文版严格一致，未新增任何数据。
+   ========================================================= */
+
+const ASSET_GROUPS_CN = [
+  { label: '需求侧网络',
+    items: [
+      { value: '333 万+', label: '注册医生',
+        sourceFootnote: '内部注册库 · 2026-Q1' },
+      { value: '25K+',  label: '三甲医院 KOL',
+        sourceFootnote: '内部注册库 · 2026-Q1' },
+    ] },
+  { label: '知识库',
+    items: [
+      { value: '250M+', label: '已索引文献',
+        sourceFootnote: 'PubMed 及生物医学来源 · 2026-Q1' },
+      { value: '100K+', label: '结构化药品说明书（SPL）',
+        sourceFootnote: 'FDA SPL · NMPA · MHRA · 2026-Q1' },
+    ] },
+];
+
+const ASSET_NARRATIVE_CN =
+  '这是梅斯每一款 AI 产品共用的数据底座。我们不生产医学知识。我们把医生与监管机构已经确认过的内容做索引、结构化与调度，并为每一条产出配上一位具名的人工审阅人。';
+
+const ASSET_FINEPRINT_CN =
+  '来源：内部注册库 · 最近核验 2026-Q1 · IR 签核待定';
+
+const PRODUCTS_CN = [
+  {
+    slug: 'deepevidence',
+    name: { en: 'DeepEvidence' },
+    accentColor: 'navy',
+    status: 'limitedPreview',
+    sidebarBrand: 'DeepEvidence',
+    sidebarIcon: 'activity',
+    headerModel: 'MED-LLM-PRO-V2 (Clinical)',
+    userRole: { cn: '临床 AI · 诊疗现场' },
+    positioningOneLiner: { cn: '把权威来源的临床指导带到床旁。每一条回答都锚定到指南与药品说明书，并由具名医生签核。' },
+    capabilitiesShort: [
+      { cn: '指南实时引用' },
+      { cn: '床旁鉴别诊断辅助' },
+      { cn: '医患沟通话术转换' },
+    ],
+    showcase: {
+      demoLanguage: 'cn',
+      demoScenario: [
+        { _type: 'userMessage',
+          body: '患者 65 岁，2 型糖尿病合并慢性肾脏病 3a 期（eGFR 52），目前二甲双胍 1000 mg 每日两次。方案是否需要调整？请参考最新指南。' },
+        { _type: 'aiResponse',
+          eyebrow: '循证分析',
+          prose: '依据 [ADA 2024 糖尿病诊疗标准] 与 [KDIGO 2024 糖尿病合并慢性肾脏病指南]：',
+          bullets: [
+            { title: '加用 SGLT2 抑制剂',
+              body: '对于 T2DM 合并 CKD 且 eGFR ≥ 20 ml/min/1.73m² 的患者，强烈推荐起始 SGLT2i（达格列净或恩格列净），以延缓 CKD 进展并降低心血管事件（证据级别 A）。' },
+            { title: '二甲双胍剂量复核',
+              body: 'eGFR 45–60：维持原量并监测。eGFR 30–45：减量。eGFR < 30：禁用。3–6 个月后以及任何急性病程后复查 eGFR。' },
+          ],
+          citations: [
+            { type: '指南', label: 'ADA 2024 Standards of Care' },
+            { type: 'RCT',  label: 'DAPA-CKD Trial (NEJM 2020)' },
+            { type: 'SPL',  label: 'Metformin Label (FDA SPL)' },
+          ],
+        },
+        { _type: 'actionChips',
+          items: [
+            { icon: 'file-text', label: '生成处方记录' },
+            { icon: 'share-2',   label: '发送至患者端' },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    slug: 'seekevidence',
+    name: { en: 'SeekEvidence' },
+    accentColor: 'violet',
+    status: 'limitedPreview',
+    sidebarBrand: 'SeekEvidence',
+    sidebarIcon: 'search',
+    headerModel: 'Research-Graph-V4',
+    userRole: { cn: '研究 AI · 证据合成' },
+    positioningOneLiner: { cn: '从文献综述到论文起草。跨全球试验与登记研究做结构化证据提取，产出交医学审阅人签核。' },
+    capabilitiesShort: [
+      { cn: '多试验 PFS / OS 对比' },
+      { cn: '森林图生成' },
+      { cn: '可直接用于论文的数据导出' },
+    ],
+    showcase: {
+      demoLanguage: 'cn',
+      demoScenario: [
+        { _type: 'userMessage',
+          body: '提取近 5 年「免疫检查点抑制剂用于非小细胞肺癌一线治疗」的全部 III 期临床试验，对比 PFS 与 OS。' },
+        { _type: 'dataTable',
+          eyebrow: '结构化数据提取',
+          badge: 'N = 12 项试验',
+          columns: ['试验', '干预方案', 'PFS（月）', 'HR（95% CI）'],
+          rows: [
+            ['KEYNOTE-189',   '帕博利珠单抗 + 化疗', { value: '8.8 vs 4.9', highlight: true }, { value: '0.52 (0.43–0.64)', mono: true }],
+            ['IMpower150',    '阿替利珠单抗 + 贝伐珠单抗',   { value: '8.3 vs 6.8', highlight: true }, { value: '0.62 (0.52–0.74)', mono: true }],
+            ['CheckMate 9LA', '纳武利尤单抗 + 伊匹木单抗 + 化疗',    { value: '6.8 vs 5.0', highlight: true }, { value: '0.70 (0.57–0.86)', mono: true }],
+          ],
+        },
+        { _type: 'actionChips',
+          items: [
+            { icon: 'bar-chart-3', label: '生成森林图' },
+            { icon: 'file-text',   label: '导出 Excel' },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    slug: 'deepinsight',
+    name: { en: 'DeepInsight' },
+    accentColor: 'cyan',
+    status: 'inDevelopment',
+    sidebarBrand: 'DeepInsight',
+    sidebarIcon: 'compass',
+    headerModel: 'Insight-Graph-V1',
+    userRole: { cn: '行业 AI · 市场信号与洞察' },
+    positioningOneLiner: { cn: '面向医疗产业团队的市场情报——锚定梅斯 333 万+ 医生网络与经审计的证据资产。' },
+    capabilitiesShort: [
+      { cn: '基于医生互动信号的客户分群洞察' },
+      { cn: '实时市场与竞争态势监测' },
+      { cn: '治疗领域机会评分' },
+    ],
+  },
+];
+
+const PITL_STEPS_CN = [
+  { num: 1, title: '采集',
+    ai: '跨结构化与非结构化数据做来源抽取、实体与主张标注。',
+    physician: '核对可信范围；标出需要回到一手来源核实的主张。',
+    output: '已标注语料' },
+  { num: 2, title: '差距分析',
+    ai: '把现有证据清单对照监管与支付方标准，逐条列出缺口。',
+    physician: '确认缺口分类；驳回漏掉医学语境的 AI 判断。',
+    output: '差距报告' },
+  { num: 3, title: '医生在环审阅',
+    ai: '起草综述：立场、引用、主张链路；对低置信度产出自行标记。',
+    physician: '主审医生逐节签核；交付物上留具名医师。',
+    output: '已签核初稿' },
+  { num: 4, title: '交付',
+    ai: '按客户模板排版；生成双语版本；打包审计日志。',
+    physician: '终审质控与签核；交付物带具名责任人。',
+    output: '审计级交付包' },
+];
+
+const EVIDENCE_ROWS_CN = [
+  { claim: '每一条主张都绑定到一份有具名保管人的 ProofPoint 文档。',
+    status: 'verified',
+    trace: ['AI：主张标注', 'MD：来源核对', '审计：季度导出'],
+    source: 'ProofPoint 保管人登记册', year: '2026' },
+  { claim: '来源 / 审阅人 / 时间戳 / 修改记录，在合作项目中可导出。',
+    status: 'verified',
+    trace: ['审计留痕规范 §13', 'CMS schema W2-05'],
+    source: '内部审计日志', year: '2026' },
+  { claim: '双语交付物包含中英双向的审阅人署名。',
+    status: 'verified',
+    trace: ['AI：术语质控', 'MD：双语审阅'],
+    source: '内容质控规范', year: '2026' },
+];
+
+const COMPLIANCE_NOT_CN = [
+  '不宣称 AI 输出不会出错，也不宣称检索与生成可以免于人工复核',
+  '不承诺任何准确率数字；准确性表述一律以项目实测与签核记录为准',
+  '不把 AI 定位为可以独立作出诊疗决策的角色——AI 提出方案，医生作出判断',
+  '不宣称疗效或临床结局，也不对治疗结果作任何承诺',
+  '不使用同行排名式的形容词来描述自己的技术水平',
+  '不使用夸张的变革类修辞来描述产品',
+];
+
+const COMPLIANCE_DO_CN = [
+  '审核周期缩短 N%（按项目实测，逐个项目核验）',
+  '双语交付的一致性更高',
+  '每一条 AI 产出都可溯源到来源、审阅人与时间戳',
+];
+
+const SECTIONS_CN = [
+  { hash: '#foundation', label: '底座' },
+  { hash: '#products',   label: '产品' },
+  { hash: '#method',     label: '方法' },
+  { hash: '#cta',        label: '洽谈' },
+];
+
+/* ── Hero（对应英文版 V3Hero） ─────────────────────────── */
+function V3HeroCN() {
+  const L = (window.MSH && window.MSH.L) ? window.MSH.L : function (x) { return x; };
+  return (
+    <section style={{
+      position: 'relative',
+      background: 'var(--grad-hero)',
+      color: 'var(--white)',
+      padding: 'clamp(64px, 9vw, 128px) clamp(24px, 6vw, 96px) clamp(48px, 6vw, 80px)',
+      overflow: 'hidden',
+    }}>
+      <div style={{
+        position: 'relative',
+        maxWidth: 'var(--container-max, 1280px)',
+        margin: '0 auto',
+      }}>
+        <nav aria-label="面包屑导航" style={{
+          marginBottom: 24, fontSize: 13,
+          color: 'rgba(255,255,255,0.6)',
+        }}>
+          <a href={L('/')} style={{ color: 'inherit', textDecoration: 'none' }}>首页</a>
+          <span style={{ margin: '0 8px' }}>/</span>
+          <span>AI 平台</span>
+        </nav>
+
+        <div style={{
+          fontFamily: 'var(--font-ui)', fontSize: 12,
+          letterSpacing: '0.18em',
+          color: 'var(--brand-accent-500)', marginBottom: 20, fontWeight: 700,
+        }}>AI 平台</div>
+
+        <h1 style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 'clamp(36px, 6vw, 64px)',
+          lineHeight: 1.15,
+          margin: '0 0 16px',
+          letterSpacing: '-0.01em',
+          fontWeight: 600,
+          color: 'var(--white)',
+          maxWidth: 880,
+        }}>为医学的 AI 时代而建。</h1>
+
+        <p style={{
+          fontFamily: 'var(--font-slogan)',
+          fontSize: 'clamp(18px, 2.4vw, 24px)',
+          color: 'var(--brand-accent-500)',
+          margin: '0 0 28px',
+          letterSpacing: '0.02em',
+          maxWidth: 720,
+        }}>AI 赋能 · 医生签核 · 面向全球</p>
+
+        <p style={{
+          fontSize: 'clamp(15px, 1.6vw, 18px)',
+          lineHeight: 1.8,
+          color: 'rgba(255,255,255,0.78)',
+          margin: '0 0 36px',
+          maxWidth: 680,
+        }}>今天两款产品，之后还会有更多。全部建在同一套可审计的证据底座上。</p>
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+          <a href="#products" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            padding: '14px 28px', borderRadius: 10,
+            background: 'var(--white)',
+            color: 'var(--brand-primary-700)',
+            fontFamily: 'var(--font-ui)', fontSize: 14, fontWeight: 700,
+            textDecoration: 'none',
+            transition: 'transform 200ms ease, box-shadow 200ms ease',
+          }}>看产品 ↓</a>
+          <a href={L('/contact.html') + '?intent=ai_dd'} style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            padding: '14px 28px', borderRadius: 10,
+            background: 'transparent',
+            color: 'var(--white)',
+            border: '1px solid rgba(255,255,255,0.30)',
+            fontFamily: 'var(--font-ui)', fontSize: 14, fontWeight: 700,
+            textDecoration: 'none',
+            transition: 'background 200ms ease',
+          }}>联系我们的 AI 团队</a>
+        </div>
+
+        {window.HeroInlineAnchors && (
+          <div style={{ marginTop: 28 }}>
+            <window.HeroInlineAnchors sections={SECTIONS_CN} />
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+/* ── 产品矩阵引导段 ─────────────────────────────────────── */
+function MatrixIntroCN() {
+  return (
+    <div style={{
+      padding: 'clamp(48px, 6vw, 96px) clamp(24px, 6vw, 96px) clamp(24px, 3vw, 40px)',
+      maxWidth: 'var(--container-max, 1280px)',
+      margin: '0 auto',
+    }}>
+      <div style={{
+        fontFamily: 'var(--font-ui)', fontSize: 12,
+        letterSpacing: '0.14em',
+        color: 'var(--brand-accent-700)', fontWeight: 700, marginBottom: 12,
+      }}>AI 产品</div>
+      <h2 style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: 'clamp(28px, 3.4vw, 40px)',
+        fontWeight: 600,
+        color: 'var(--brand-primary-700)',
+        margin: '0 0 16px',
+        lineHeight: 1.3,
+        letterSpacing: '-0.01em',
+        maxWidth: 720,
+      }}>今天两台引擎。<em style={{ fontStyle: 'normal', color: 'var(--brand-accent-700)' }}>之后还会有更多。</em></h2>
+      <p style={{
+        fontSize: 'clamp(15px, 1.6vw, 18px)',
+        lineHeight: 1.8,
+        color: 'var(--fg-2)',
+        margin: 0,
+        maxWidth: 720,
+      }}>
+        每一款产品都是一条明确的工作流，不是聊天机器人。它们共用{' '}
+        <a href="#foundation" style={{
+          color: 'var(--brand-primary-500)', textDecoration: 'underline', fontWeight: 500,
+        }}>上面那套</a>{' '}经审计的证据底座，产出由具名医生签核。
+      </p>
+    </div>
+  );
+}
+
+/* ── 结尾双 CTA ─────────────────────────────────────────── */
+function FinalDualCTACN() {
+  const L = (window.MSH && window.MSH.L) ? window.MSH.L : function (x) { return x; };
+  return (
+    <section id="cta" style={{
+      padding: 'clamp(64px, 8vw, 128px) clamp(24px, 6vw, 96px)',
+      background: 'var(--bg-2, var(--neutral-50))',
+      borderTop: '1px solid var(--border-1)',
+    }}>
+      <div className="aips-final-cta-grid" style={{
+        maxWidth: 'var(--container-max, 1280px)',
+        margin: '0 auto',
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        gap: 'clamp(24px, 3vw, 40px)',
+      }}>
+        <CTAColumnCN
+          eyebrow="面向临床与研究人员"
+          title="试用产品"
+          body="限量预览 · 申请 DeepEvidence、SeekEvidence 的使用权限，或在下一款产品上线时收到通知。"
+          ctaLabel="申请使用权限 →"
+          ctaHref={L('/contact.html') + '?intent=ai_product_access'}
+          accent="primary"
+        />
+        <CTAColumnCN
+          eyebrow="面向投资人与合作伙伴"
+          title="联系我们的 AI 团队"
+          body="尽调说明会、技术细节沟通，或合作方向探讨。"
+          ctaLabel="预约一次沟通 →"
+          ctaHref={L('/contact.html') + '?intent=ai_reverse_dd'}
+          accent="dark"
+        />
+      </div>
+      <style>{`
+        @media (min-width: 1024px) {
+          .aips-final-cta-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function CTAColumnCN({ eyebrow, title, body, ctaLabel, ctaHref, accent }) {
+  const isDark = accent === 'dark';
+  return (
+    <div style={{
+      padding: 'clamp(24px, 3vw, 40px)',
+      borderRadius: 16,
+      background: isDark ? 'var(--brand-primary-900)' : 'var(--bg-1)',
+      border: isDark ? 'none' : '1px solid var(--border-1)',
+      color: isDark ? 'var(--white)' : 'var(--fg-1)',
+      display: 'flex', flexDirection: 'column', gap: 16,
+    }}>
+      <div style={{
+        fontFamily: 'var(--font-ui)', fontSize: 11,
+        letterSpacing: '0.14em',
+        color: isDark ? 'var(--brand-accent-500)' : 'var(--brand-accent-700)',
+        fontWeight: 700,
+      }}>{eyebrow}</div>
+      <h3 style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: 'clamp(24px, 2.8vw, 32px)',
+        fontWeight: 600,
+        margin: 0,
+        lineHeight: 1.3,
+        color: isDark ? 'var(--white)' : 'var(--brand-primary-700)',
+      }}>{title}</h3>
+      <p style={{
+        margin: 0,
+        fontSize: 14, lineHeight: 1.8,
+        color: isDark ? 'rgba(255,255,255,0.78)' : 'var(--fg-2)',
+        maxWidth: 480,
+      }}>{body}</p>
+      <div style={{ marginTop: 'auto', paddingTop: 8 }}>
+        <a href={ctaHref} style={{
+          display: 'inline-flex', alignItems: 'center', gap: 8,
+          padding: '14px 28px', borderRadius: 10,
+          background: isDark ? 'var(--white)' : 'var(--brand-primary-700)',
+          color: isDark ? 'var(--brand-primary-700)' : 'var(--white)',
+          fontFamily: 'var(--font-ui)', fontSize: 14, fontWeight: 700,
+          textDecoration: 'none',
+        }}>{ctaLabel}</a>
+      </div>
+    </div>
+  );
+}
+
+/* ── App ─────────────────────────────────────────────────── */
+function AppCN() {
+  React.useEffect(() => {
+    const t = setTimeout(() => window.lucide && window.lucide.createIcons(), 60);
+    return () => clearTimeout(t);
+  });
+
+  return (
+    <PageShell hero={<V3HeroCN />}>
+
+      <section id="foundation">
+        <AIAssetBalanceSheet
+          eyebrow="平台背后的数字"
+          subtitle="截至 2026 Q1 · IR 已核"
+          groups={ASSET_GROUPS_CN}
+          narrative={ASSET_NARRATIVE_CN}
+          fineprint={ASSET_FINEPRINT_CN}
+        />
+      </section>
+
+      <section id="products">
+        <MatrixIntroCN />
+        <AIProductShowcaseCN products={PRODUCTS_CN.filter(p => p.showcase && Array.isArray(p.showcase.demoScenario))} />
+        <div style={{
+          padding: 'clamp(48px, 6vw, 96px) clamp(24px, 6vw, 96px)',
+          maxWidth: 'var(--container-max, 1280px)',
+          margin: '0 auto',
+        }}>
+          <AIProductCardGridCN products={PRODUCTS_CN} />
+        </div>
+      </section>
+
+      <section id="method">
+        <TrustArchitectureCN
+          eyebrow="第三幕 · 方法"
+          title="我们如何让医疗 AI 可被问责。"
+          pitlSteps={PITL_STEPS_CN}
+          evidenceRows={EVIDENCE_ROWS_CN}
+        />
+        <ComplianceCalloutCN
+          doNotClaim={COMPLIANCE_NOT_CN}
+          doClaim={COMPLIANCE_DO_CN}
+        />
+      </section>
+
+      <FinalDualCTACN />
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<AppCN />);
+</script>
+</body>
+</html>

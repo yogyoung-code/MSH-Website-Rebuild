@@ -186,7 +186,7 @@ function WhyMedSci() {
             Medical-grade, not tech-hyped.
           </h2>
           <p style={{ fontSize: 17, color: 'var(--fg-2)', lineHeight: 1.6, maxWidth: 660, margin: '0 auto' }}>
-            AI-enabled, physician-verified. Four promises, not marketing claims.
+            AI-enabled, physician-verified. Three promises, not marketing claims.
           </p>
         </div>
         <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>

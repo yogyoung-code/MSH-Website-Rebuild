@@ -1,15 +1,11 @@
-/* SolutionHeader.jsx — Top nav for /solutions/* pages (asset paths use ../) */
+/* SolutionHeader.jsx — Top nav for /solutions/* pages · i18n-aware (2026-07-24)
+   导航数据与 Header.jsx 共用 assets/i18n.js 的同一份词典，杜绝两处脱同步。 */
 function SolutionHeader() {
+  const M = window.MSH;
+  const T = (k) => (M ? M.t(k) : '');
+  const L = (h) => (M ? M.L(h) : h);
   const [hoverIdx, setHoverIdx] = React.useState(null);
   const [megaOpen, setMegaOpen] = React.useState(false);
-  // PAGE_LANG / LANG_ALTERNATE_HREF are optional per-page globals (set in the
-  // page <head>). When a page has a language twin, the EN/CN toggle navigates
-  // to it; otherwise it falls back to the original local state flip.
-  const [lang, setLang] = React.useState(window.PAGE_LANG || 'EN');
-  const toggleLang = () => {
-    if (window.LANG_ALTERNATE_HREF) { window.location.href = window.LANG_ALTERNATE_HREF; return; }
-    setLang(lang === 'EN' ? 'CN' : 'EN');
-  };
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const megaTimerRef = React.useRef(null);
   const openMegaIntent = () => {
@@ -19,13 +15,8 @@ function SolutionHeader() {
   const cancelMegaIntent = () => {
     if (megaTimerRef.current) clearTimeout(megaTimerRef.current);
   };
-  const navItems = [
-    { label: 'Solutions', hasMega: true },
-    { label: 'Case Studies', href: '/case-studies/' },
-    { label: 'AI Platform', href: '/ai-platform.html' },
-    { label: 'Insights', href: '/insights/' },
-    { label: 'About', href: '/about.html' },
-  ];
+  const navItems = T('nav') || [];
+  const solutionsLabel = navItems.length ? navItems[0].label : 'Solutions';
   return (
     <header style={{
       position: 'sticky', top: 0, zIndex: 50, background: 'var(--bg-1)',
@@ -37,14 +28,14 @@ function SolutionHeader() {
       }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '6px clamp(16px, 4vw, 40px)', display: 'flex', gap: 20, alignItems: 'center' }}>
           <span style={{ fontFamily: 'var(--font-slogan)', fontStyle: 'italic', color: 'rgba(255,255,255,0.55)' }}>
-            Improving Healthcare Quality
+            {T('slogan')}
           </span>
           <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
             <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: 'var(--brand-accent-500)' }}></span>
-            HKEX listed · 2415.HK
+            {T('listed')}
           </span>
-          <a href="https://ir.medsci.cn/en/" rel="external noopener" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>
-            Investor Relations ↗
+          <a href={T('irHref')} rel="external noopener" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>
+            {T('ir')} ↗
           </a>
         </div>
       </div>
@@ -52,12 +43,12 @@ function SolutionHeader() {
         maxWidth: 1280, margin: '0 auto',
         display: 'flex', alignItems: 'center', gap: 40, padding: '14px clamp(16px, 4vw, 40px)',
       }}>
-        <a href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+        <a href={L('/')} style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
           <img src="/assets/logo/medsci-healthcare-logo.svg" alt="MedSci Healthcare" style={{ height: 36 }} />
         </a>
         <button
           className="nav-mobile"
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-label={mobileOpen ? T('closeMenu') : T('openMenu')}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen(!mobileOpen)}
           style={{
@@ -76,13 +67,13 @@ function SolutionHeader() {
           {navItems.map((it, i) => (
             <div key={it.label} style={{ position: 'relative' }}
                  onMouseEnter={() => { setHoverIdx(i); if (it.hasMega) openMegaIntent(); else { cancelMegaIntent(); setMegaOpen(false); } }}>
-              <a href={it.href || '#'}
+              <a href={it.href ? L(it.href) : '#'}
                  style={{
                    display: 'inline-flex', alignItems: 'center', gap: 4,
                    padding: '10px 14px',
                    fontFamily: '"Footlight MT Light", "Footlight MT", Georgia, serif',
                    fontSize: 15.5, fontWeight: 400,
-                   color: hoverIdx === i || (it.label === 'Solutions') ? 'var(--brand-primary-700)' : 'var(--fg-2)',
+                   color: hoverIdx === i || (it.label === solutionsLabel) ? 'var(--brand-primary-700)' : 'var(--fg-2)',
                    textDecoration: 'none', transition: 'color 150ms',
                  }}>
                 {it.label}
@@ -93,15 +84,8 @@ function SolutionHeader() {
           {megaOpen && <SolutionMegaMenu />}
         </nav>
         <div className="nav-desktop" style={{ marginLeft: 'auto', display: 'flex', gap: 14, alignItems: 'center' }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 4,
-            fontSize: 13, color: 'var(--fg-2)', cursor: 'pointer',
-            padding: '6px 10px', borderRadius: 6,
-          }} onClick={toggleLang}>
-            <i data-lucide="globe" width="14" height="14"></i>
-            {lang} <span style={{ fontSize: 10, opacity: 0.5 }}>▾</span>
-          </div>
-          <Button variant="primary" icon={true} href="/contact.html">Talk to an Expert</Button>
+          <LangToggle />
+          <Button variant="primary" icon={true} href={L('/contact.html')}>{T('cta')}</Button>
         </div>
       </div>
       {mobileOpen && (
@@ -113,7 +97,7 @@ function SolutionHeader() {
           <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
             {navItems.map((it, i) => (
               <li key={i} style={{ borderBottom: '1px solid var(--border-1)' }}>
-                <a href={it.href || '#'} onClick={() => setMobileOpen(false)} style={{
+                <a href={it.href ? L(it.href) : '#'} onClick={() => setMobileOpen(false)} style={{
                   display: 'block', padding: '14px 4px',
                   fontFamily: '"Footlight MT Light", Georgia, serif',
                   fontSize: 17,
@@ -123,12 +107,8 @@ function SolutionHeader() {
             ))}
           </ul>
           <div style={{ marginTop: 16, display: 'flex', gap: 12, alignItems: 'center' }}>
-            <button onClick={toggleLang} style={{
-              padding: '8px 14px', background: 'transparent',
-              border: '1px solid var(--border-1)', cursor: 'pointer',
-              fontSize: 13, color: 'var(--fg-2)'
-            }}>{lang}</button>
-            <Button variant="primary" icon={true} href="/contact.html">Talk to an Expert</Button>
+            <LangToggle variant="mobile" />
+            <Button variant="primary" icon={true} href={L('/contact.html')}>{T('cta')}</Button>
           </div>
         </div>
       )}
@@ -136,25 +116,12 @@ function SolutionHeader() {
   );
 }
 
-// Synced with MegaMenu in Header.jsx — 3 columns with Quick Start entry.
+/* 与 Header.jsx 的 MegaMenu 同源：数据全部来自 i18n 词典，此处仅复用同一份数据。 */
 function SolutionMegaMenu() {
-  const strategic = [
-    { title: 'Entering China',    desc: 'Evidence, regulatory and HCP traction inside China.',  href: '/solutions/entering-china.html',  tag: 'Navy' },
-    { title: 'Going Global (US)', desc: 'US / global launch readiness for China innovators.',   href: '/solutions/going-global-us.html', tag: 'Cyan' },
-  ];
-  const deliverables = [
-    { title: 'Medical Evidence',       desc: 'RWE · Registry · Literature · HEOR.',     href: '/solutions/medical-evidence.html' },
-    { title: 'Physician Engagement',   desc: 'Surveys · Advisory · KOL · CME · 3.33M+ network.',  href: '/solutions/physician-engagement.html' },
-    { title: 'Medical Communications', desc: 'Publications · Congress · Localization · Media & PR.', href: '/solutions/medical-communications.html' },
-    { title: 'Biostatistics & Data Management', desc: 'CDISC datasets · EDC · SAP · FDA / NMPA submission.', href: '/solutions/biostatistics-data-management.html', tag: 'New' },
-    { title: 'AI-Enabled Platform',    desc: 'DeepEvidence · SeekEvidence · PITL · QC.', href: '/ai-platform.html', tag: 'Platform' },
-  ];
-  const quickStart = [
-    { title: 'Physician Research',          desc: 'HCP surveys & insights — an agile study fields in days.',  href: '/solutions/physician-research.html',                   tag: 'Fastest' },
-    { title: 'Content Review',              desc: 'Compliance-flagged review of your materials in 3–5 days.', href: '/solutions/content-review.html',                       tag: 'New' },
-    { title: 'Cross-Border Content Sprint', desc: 'One bilingual artifact, physician-reviewed, in 2 weeks.',  href: '/solutions/cross-border-medical-content-sprint.html', tag: 'Sprint' },
-    { title: '30-Day Pilots',               desc: 'China Evidence Sprint — a bounded 30-day engagement.',     href: '/#pilots',                                             tag: 'Pilots' },
-  ];
+  const M = window.MSH;
+  const L = (h) => (M ? M.L(h) : h);
+  const mega = M ? M.t('mega') : { strategic: [], deliverables: [], quickStart: [] };
+  const colLabels = (M ? M.t('megaCols') : []) || [];
   const tagBg = (tag) => ({ Cyan: 'var(--brand-accent-100)', New: 'var(--success-100, #ecfdf5)', Sprint: 'var(--bg-3)', Platform: 'var(--brand-accent-100)', Fastest: 'var(--brand-accent-100)' }[tag] || 'var(--brand-primary-100)');
   const tagFg = (tag) => ({ Cyan: 'var(--brand-accent-700)', New: 'var(--success-500, #16a34a)', Sprint: 'var(--fg-2)', Platform: 'var(--brand-accent-700)', Fastest: 'var(--brand-accent-700)' }[tag] || 'var(--brand-primary-700)');
   const Column = ({ label, items }) => (
@@ -165,8 +132,8 @@ function SolutionMegaMenu() {
         paddingBottom: 10, marginBottom: 10,
         borderBottom: '1px solid var(--border-1)',
       }}>{label}</div>
-      {items.map(it => (
-        <a key={it.title} href={it.href} style={{ display: 'block', padding: '10px 0', textDecoration: 'none' }}>
+      {(items || []).map(it => (
+        <a key={it.title} href={L(it.href)} style={{ display: 'block', padding: '10px 0', textDecoration: 'none' }}>
           <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--brand-primary-700)', marginBottom: 4 }}>
             {it.title}
             {it.tag && <span style={{
@@ -188,11 +155,12 @@ function SolutionMegaMenu() {
       padding: 28, width: 960, zIndex: 60,
       display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 32,
     }}>
-      <Column label="By Path · Strategy"          items={strategic} />
-      <Column label="By Deliverable · Block"      items={deliverables} />
-      <Column label="Quick Start · Entry"         items={quickStart} />
+      <Column label={colLabels[0]} items={mega.strategic} />
+      <Column label={colLabels[1]} items={mega.deliverables} />
+      <Column label={colLabels[2]} items={mega.quickStart} />
     </div>
   );
 }
 
 window.SolutionHeader = SolutionHeader;
+window.SolutionMegaMenu = SolutionMegaMenu;

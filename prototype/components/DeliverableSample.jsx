@@ -112,7 +112,7 @@ function SampleRow({ sample, index }) {
       {/* INPUT cell */}
       <SpecCell
         kind="input"
-        label="Input"
+        label={window.MSH ? window.MSH.s('input') : 'Input'}
         format={sample.input?.format}
         detail={sample.input?.detail}
       />
@@ -123,7 +123,7 @@ function SampleRow({ sample, index }) {
       {/* OUTPUT cell */}
       <SpecCell
         kind="output"
-        label="Output"
+        label={window.MSH ? window.MSH.s('output') : 'Output'}
         format={sample.output?.format}
         detail={sample.output?.detail}
         title={sample.label}
@@ -255,8 +255,8 @@ function DSLockGlyph({ size = 10 }) {
 function DSBadge({ status }) {
   // Reuses the spec'd evidence-badge palette but at smaller scale
   const map = {
-    'verified':       { bg: 'var(--success-100)', fg: 'var(--success-500)', mark: '✓',            label: 'Verified' },
-    'in-development': { bg: 'var(--warning-100)', fg: 'var(--warning-700)', mark: '◐',            label: 'In Dev' },
+    'verified':       { bg: 'var(--success-100)', fg: 'var(--success-500)', mark: '✓',            label: (window.MSH ? window.MSH.s('verified') : 'Verified') },
+    'in-development': { bg: 'var(--warning-100)', fg: 'var(--warning-700)', mark: '◐',            label: (window.MSH ? window.MSH.s('inDev') : 'In Dev') },
     'on-request':     { bg: 'var(--bg-3)',        fg: 'var(--fg-2)',        mark: <DSLockGlyph />, label: 'On Request' }
   };
   const s = map[status] || map['on-request'];

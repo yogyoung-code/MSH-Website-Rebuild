@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>30 天 FDA 证据缺口诊断 · 固定范围试点 | 梅斯健康</title>
+<meta name="description" content="面向中国总部生物科技与医疗器械团队的 30 天固定范围试点：证据缺口评估、可适用性与桥接审阅、中美两位执业医生共同签核。报价请联系我们。">
+<link rel="canonical" href="https://medscihealthcare.com/pilots/fda-evidence-gap-diagnostic-cn">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/pilots/fda-evidence-gap-diagnostic">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/pilots/fda-evidence-gap-diagnostic-cn">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="30 天 FDA 证据缺口诊断 · 固定范围试点 | 梅斯健康">
+<meta property="og:description" content="面向中国总部团队、为 FDA 方向证据工作做准备的 30 天固定范围试点——医生签核，30 天交付。">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/pilot-fda-diagnostic-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/pilots/fda-evidence-gap-diagnostic-cn">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "30 天 FDA 证据缺口诊断",
+      "url": "https://medscihealthcare.com/pilots/fda-evidence-gap-diagnostic-cn.html",
+      "inLanguage": "zh-CN",
+      "provider": { "@type": "Organization", "name": "MedSci Healthcare 梅斯健康", "tickerSymbol": "2415.HK", "url": "https://medscihealthcare.com" },
+      "serviceType": "面向中国总部生物科技与医疗器械团队的 FDA 方向证据缺口诊断型试点"
+    },
+    {
+      "@type": "Offer",
+      "name": "30 天 FDA 证据缺口诊断",
+      "url": "https://medscihealthcare.com/pilots/fda-evidence-gap-diagnostic-cn.html",
+      "inLanguage": "zh-CN",
+      "availability": "https://schema.org/PreOrder",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "USD",
+        "price": "0",
+        "description": "报价请联系我们——待 BD 与财务签核"
+      }
+    }
+  ]
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", "Songti SC", "Noto Serif SC", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+<script>
+  window.PAGE_LANG = 'CN';
+  window.LANG_ALTERNATE_HREF = '/pilots/fda-evidence-gap-diagnostic.html';
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
+
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="../assets/i18n.js"></script>
+<script type="text/babel" src="../components/LangToggle.jsx"></script>
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/PilotCardCN.jsx"></script>
+
+<script type="text/babel">
+// 数据 — 对应英文版 Copy Deck v4.2 §11.2 的中文孪生（转化层改写，非直译）。
+// 数字与条款与英文版严格一致。
+const PILOT = {
+  slug: 'fda-evidence-gap-diagnostic-cn',
+  contactTopic: 'fda_bridge',
+
+  hero: {
+    eyebrow: '试点 · 出海美国 / 全球 · 证据',
+    title: '30 天 FDA 证据缺口诊断',
+    lede: '面向中国总部的生物科技与医疗器械团队：在启动 FDA 方向的证据工作之前，先做一次范围固定的诊断。我们把现有数据、证据的表述方式，以及面向美国的传播材料逐项过一遍，指出哪里还需要补强。医生签核，30 天交付。'
+  },
+
+  includes: {
+    intro: '4 项交付物。范围在启动前确定，结束时由具名医生签核：',
+    items: [
+      { label: '对照预期美国用途的证据缺口评估', body: '哪些站得住，哪些站不住，哪些要提前绕开。' },
+      { label: '可适用性 / 桥接审阅',            body: '对照组是否对齐、终点如何映射、人群外推需要注意什么。' },
+      { label: '推荐的发表 / 证据 / 下一步路径', body: '一页纸的方向判断，写明各条工作流。' },
+      { label: '下一步方案与参考范围',           body: '延伸项目会覆盖什么，含各条工作流与大致预算区间。' }
+    ]
+  },
+
+  bestFor: [
+    '准备进入更大范围 FDA 方向策略讨论的团队。',
+    '需要把面向美国的证据与传播规划做得更结构化的团队。',
+    '希望在继续投入之前，先拿到一个可据以决策的判断的团队。'
+  ],
+
+  engagementDetails: [
+    { label: '范围',         value: '范围固定；不签书面变更单不加项' },
+    { label: '周期',         value: '30 个自然日' },
+    { label: '启动',         value: '签约后 3 个工作日内' },
+    { label: '中期检查',     value: '第 15 天' },
+    { label: '交付形式',     value: '1 份签核 PDF + 1 份可编辑工作文档 + 1 次 60 分钟结果汇报' },
+    { label: '具名医生审核人', value: '美国执业医生主审 + 中国执业医生协审；交付物上有两人签名' }
+  ],
+
+  pricing: { status: 'pending' },
+
+  cta: {
+    primaryLabel:   '预约 30 天 FDA 证据缺口诊断',
+    primaryHref:    '/contact.html?topic=fda_bridge',
+    secondaryLabel: '先和专家聊一聊',
+    secondaryHref:  '/contact.html?topic=going_global'
+  },
+
+  faq: [
+    {
+      q: '我们有中国的三期数据——这个诊断能告诉我们 FDA 会不会认吗？',
+      a: '诊断给你的是一个结构化的判断，不是法规意见。我们把你的数据与美国审评方通常关注的点逐项对照（一般是对照组、终点定义、人群），标出哪些地方可能还需要补桥接工作、美国本土数据或亚组分析。最终的法规判断权在 FDA。'
+    },
+    {
+      q: '你们会代写申报资料吗？',
+      a: '不会。诊断是一份规划性文件。申报资料撰写发生在延伸项目里，或者交给我们可以推荐的专业法规伙伴。我们确实会产出内容框架——论文提纲、摘要初稿、MSL 材料初稿——并与诊断结论一一对应。'
+    },
+    {
+      q: '谁来看我们的数据？团队里有美国的人吗？',
+      a: '有。负责面向美国工作的医生审核人是美国执业医生，中国数据侧另有一位中国执业医生。诊断交付物上有两人的签名。细分领域专家按治疗领域抽调进来。'
+    },
+    {
+      q: 'NDA、数据存放与知识产权——边界在哪里？',
+      a: '启动前先签双向 NDA。诊断期间共享的数据只留在本项目内，不用于训练任何模型，也不会与其他客户的工作汇总。你的 NDA 模板我们可以签，也可以用我们的。'
+    },
+    {
+      q: '我们还没定走 IND、IDE 还是 510(k)——诊断能帮我们定吗？',
+      a: '诊断不替代申报路径的决策。但它能让你在做这个决策时，清楚看到自己的证据包在每条路径的预期之下分别是什么样子。'
+    },
+    {
+      q: '取消、退款与延伸的政策？',
+      a: '签约后 3 个工作日内取消，全额退款。启动之后按比例退款，扣除已投入的医生工时。延伸为更大项目时，诊断费用可抵扣首月的费用。'
+    }
+  ],
+
+  boundaries: {
+    do: [
+      '证据桥接支持与可适用性审阅',
+      '论文发表与科学传播策略',
+      '英文医学事务材料',
+      '顾问会体系搭建的起步支持'
+    ],
+    dont: [
+      '全流程 FDA 申报服务商',
+      '美国临床中心网络提供方',
+      '支付方策略咨询公司',
+      '临床试验 CRO'
+    ],
+    footnote: '需要时，我们与专业的法规和临床合作伙伴并肩推进。'
+  },
+
+  related: {
+    solution:  { slug: 'going-global-us',                  label: '出海美国 / 全球' },
+    caseStudy: { slug: 'going-global-fda-evidence-bridge', label: '出海全球 · 面向美国的 FDA 证据桥接' }
+  }
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<PilotPageCN pilot={PILOT} />);
+</script>
+</body>
+</html>
