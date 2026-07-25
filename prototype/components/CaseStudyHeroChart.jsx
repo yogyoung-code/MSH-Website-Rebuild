@@ -113,7 +113,7 @@
         source="Source: Client engagement report · 2025 · Sponsor + IR (pending)"
         height={190}
       >
-        <svg viewBox={'0 0 ' + W + ' ' + H} width="100%" height="auto"
+        <svg viewBox={'0 0 ' + W + ' ' + H} width="100%" style={{ height: 'auto', display: 'block' }}
              style={{ maxHeight: 240 }} aria-hidden="true">
           {/* Alternating month background bands */}
           {months.map(function(m, i) {
@@ -237,7 +237,7 @@
         source="Source: Internal QC log · 2024 · Sponsor (pending)"
         height={230}
       >
-        <svg viewBox={'0 0 ' + W + ' ' + H} width="100%" height="auto"
+        <svg viewBox={'0 0 ' + W + ' ' + H} width="100%" style={{ height: 'auto', display: 'block' }}
              style={{ maxHeight: 260 }} aria-hidden="true">
 
           {/* === BEFORE row === */}
@@ -389,7 +389,7 @@
         source="Source: Client program plan · 2025 · Sponsor (pending)"
         height={190}
       >
-        <svg viewBox={'0 0 ' + W + ' ' + H} width="100%" height="auto"
+        <svg viewBox={'0 0 ' + W + ' ' + H} width="100%" style={{ height: 'auto', display: 'block' }}
              style={{ maxHeight: 220 }} aria-hidden="true">
 
           {/* Quarter gridlines */}

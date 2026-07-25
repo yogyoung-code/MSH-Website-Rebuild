@@ -23,9 +23,13 @@ function CountryCompareCN({ direction = 'us-to-cn', eyebrow, title, lede, left, 
     console.warn('CountryCompareCN: requires both left and right props');
     return null;
   }
-  const leftToRight = direction === 'us-to-cn'
-    || direction === 'left-to-right'
-    || direction === undefined;
+  // direction 形如 '<起点>-to-<终点>'；左列是否为起点，按左列 code 与起点代码比对得出。
+  // 与 CountryCompare.jsx 同步修正（2026-07-25）：旧写法会把出海页的「从 / 到」标反。
+  const originCode = String(direction || '').split('-to-')[0].toUpperCase();
+  const leftCode = String((left && left.code) || '').toUpperCase();
+  const leftToRight = originCode && leftCode
+    ? leftCode.indexOf(originCode) === 0
+    : true;
 
   return (
     <section style={{
