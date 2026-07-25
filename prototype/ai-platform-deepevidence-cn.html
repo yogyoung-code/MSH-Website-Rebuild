@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepEvidence — 临床 AI · 梅斯健康 MedSci Healthcare</title>
+<meta name="description" content="DeepEvidence：把权威来源的临床指导带到床旁。每一条回答都锚定到指南与药品说明书，并由具名医生签核，证据链路可导出。">
+<link rel="canonical" href="https://medscihealthcare.com/ai-platform-deepevidence-cn">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/ai-platform/deepevidence">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/ai-platform-deepevidence-cn">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="DeepEvidence — 临床 AI · 梅斯健康">
+<meta property="og:description" content="床旁临床指导，锚定 ADA、KDIGO 等权威指南，产出由具名医生签核。">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/deepevidence-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/ai-platform-deepevidence-cn">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DeepEvidence",
+  "description": "临床 AI：把权威来源的临床指导带到床旁，每一条回答锚定指南与药品说明书，并由具名医生签核。",
+  "applicationCategory": "MedicalApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "zh-CN",
+  "publisher": { "@type": "Organization", "name": "MedSci Healthcare 梅斯健康", "url": "https://medscihealthcare.com" },
+  "url": "https://medscihealthcare.com/ai-platform-deepevidence-cn"
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", "Songti SC", "Noto Serif SC", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+  ::selection { background: var(--brand-accent-100); color: var(--brand-primary-700); }
+</style>
+<script>
+  window.PAGE_LANG = 'CN';
+  window.LANG_ALTERNATE_HREF = '/ai-platform-deepevidence.html';
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<noscript>
+  <div style="padding: 64px 24px; max-width: 1024px; margin: 0 auto; font-family: Georgia, serif;">
+    <h1>DeepEvidence — 临床 AI</h1>
+    <p style="font-size: 18px; line-height: 1.7;">
+      把权威来源的临床指导带到床旁。每一条回答都锚定到指南与药品说明书，并由具名医生签核。
+    </p>
+    <p>本页含一段需要 JavaScript 的产品演示。
+      <a href="/ai-platform-cn.html">← 返回 AI 平台总览</a> ·
+      <a href="/contact.html?intent=ai_product_access">申请限量预览</a>。</p>
+  </div>
+</noscript>
+
+<!-- GA4 + consent-mode v2 -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+</script>
+<script src="assets/consent/consent-mode-v2.js"></script>
+<script src="assets/analytics/ga4-events.js"></script>
+
+<!-- Self-hosted vendor -->
+<script src="assets/vendor/react.development.js"></script>
+<script src="assets/vendor/react-dom.development.js"></script>
+<script src="assets/vendor/babel.min.js"></script>
+<script src="assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="assets/sanity-client.js"></script>
+
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="assets/i18n.js"></script>
+<script type="text/babel" src="components/LangToggle.jsx"></script>
+<script type="text/babel" src="components/Button.jsx"></script>
+<script type="text/babel" src="components/Header.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+<script type="text/babel" src="components/PageShell.jsx"></script>
+<!-- 中文孪生组件 -->
+<script type="text/babel" src="components/AIProductShowcaseCN.jsx"></script>
+<script type="text/babel" src="components/AIProductShowcaseDemoCN.jsx"></script>
+<script type="text/babel" src="components/AIProductSubpageTemplateCN.jsx"></script>
+
+<script type="text/babel">
+/* /ai-platform-deepevidence-cn — 中文孪生子页
+   结构与 ai-platform-deepevidence.html 一一对应；
+   数字与主张严格一致，未新增任何数据。 */
+const PRODUCT_DE_CN = {
+  slug: 'deepevidence',
+  name: { en: 'DeepEvidence' },
+  accentColor: 'blue',
+  status: 'limitedPreview',
+  sidebarBrand: 'DeepEvidence',
+  sidebarIcon: 'activity',
+  headerModel: 'MED-LLM-PRO-V2 (Clinical)',
+  userRole: { cn: '临床 AI · 诊疗现场' },
+  positioningOneLiner: { cn: '把权威来源的临床指导带到床旁。每一条回答都锚定到指南与药品说明书，并由具名医生签核。' },
+  capabilitiesShort: [
+    { cn: '指南实时引用' },
+    { cn: '床旁鉴别诊断辅助' },
+    { cn: '医患沟通话术转换' },
+  ],
+  capabilitiesFull: [
+    { cn: '对照 ADA、KDIGO、NCCN、ESMO 等 15K+ 份指南做实时引用。' },
+    { cn: '鉴别诊断辅助，附带可查看的推理链路。' },
+    { cn: '结合药品说明书的给药建议，覆盖肾功能 / 肝功能调整。' },
+    { cn: '医患沟通话术转换，覆盖中英文与不同专业程度的表达。' },
+    { cn: '每一张建议卡片都由具名临床医生签核。' },
+    { cn: '每次诊疗过程的证据链路可导出。' },
+  ],
+  useCases: [
+    { title: { cn: 'T2DM 合并 CKD 的给药调整' },
+      description: { cn: '在床旁核对当前 eGFR 与二甲双胍剂量下是否推荐 SGLT2i，直接引用 DAPA-CKD 与 KDIGO，结论交主管医生确认。' } },
+    { title: { cn: '癌痛管理' },
+      description: { cn: '阿片类药物阶梯方案，交叉引用 NCCN 关于肝功能损害的安全边界，用药决定仍由医生作出。' } },
+    { title: { cn: '患者交接说明转换' },
+      description: { cn: '把专科方案转成患者能听懂的解释，并为跨境家庭提供中英对照且表述一致的版本。' } },
+  ],
+  showcase: {
+    demoLanguage: 'cn',
+    demoScenario: [
+      { _type: 'userMessage',
+        body: '患者 65 岁，2 型糖尿病合并慢性肾脏病（CKD G3a），目前服用二甲双胍。是否需要调整降糖方案？请参考最新指南。' },
+      { _type: 'aiResponse',
+        eyebrow: '循证分析',
+        prose: '依据 [2024 ADA 糖尿病诊疗标准] 及 [KDIGO 2024 指南]：',
+        bullets: [
+          { title: '推荐加用 SGLT2i',
+            body: '对于 T2DM 合并 CKD 患者，若 eGFR ≥ 20 ml/min/1.73m²，强烈推荐使用 SGLT2i（如达格列净、恩格列净），以延缓肾病进展并降低心血管风险（证据级别 A）。' },
+          { title: '二甲双胍调整',
+            body: '若 eGFR 在 45–60 之间可维持原量；若 eGFR < 45，应减量；若 < 30 则禁忌。建议监测 eGFR 变化。' },
+        ],
+        citations: [
+          { type: '指南', label: 'ADA 2024 Standards of Care' },
+          { type: 'RCT',  label: 'DAPA-CKD Trial' },
+          { type: 'SPL',  label: 'Metformin Label (NMPA)' },
+        ],
+      },
+      { _type: 'actionChips',
+        items: [
+          { icon: 'file-text', label: '生成处方建议' },
+          { icon: 'share-2',   label: '发送至患者端' },
+        ],
+      },
+    ],
+  },
+  accessUrl: '/access/deepevidence',
+};
+
+function AppDeepEvidenceCN() {
+  React.useEffect(() => {
+    const t = setTimeout(() => window.lucide && window.lucide.createIcons(), 60);
+    return () => clearTimeout(t);
+  });
+  return <AIProductSubpageCN product={PRODUCT_DE_CN} />;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<AppDeepEvidenceCN />);
+</script>
+</body>
+</html>

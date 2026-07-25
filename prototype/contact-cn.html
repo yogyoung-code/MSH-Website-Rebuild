@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>联系梅斯健康 MedSci Healthcare — 找到对口的人，2 个工作日内回复</title>
+<meta name="description" content="按业务模块分派：医学证据、医生互动、医学传播、AI 平台、投资者关系与合规。填完表单，一位有医学背景的项目负责人在 2 个工作日内回复，并给出下一步要准备的材料清单。">
+<link rel="canonical" href="https://medscihealthcare.com/contact-cn">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/contact">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/contact-cn">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="联系梅斯健康 MedSci Healthcare — 找到对口的人">
+<meta property="og:description" content="按业务模块分派到对口团队。有医学背景的项目负责人 2 个工作日内回复，并给出下一步材料清单。">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/contact-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/contact-cn">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "联系梅斯健康 MedSci Healthcare",
+  "description": "按业务模块分派的咨询入口：医学证据、医生互动、医学传播、AI 平台、投资者关系与合规。2 个工作日内由有医学背景的项目负责人回复。",
+  "url": "https://medscihealthcare.com/contact-cn",
+  "inLanguage": "zh-CN",
+  "publisher": {
+    "@type": "Organization",
+    "name": "MedSci Healthcare 梅斯健康",
+    "url": "https://medscihealthcare.com",
+    "tickerSymbol": "2415.HK"
+  }
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", "Songti SC", "Noto Serif SC", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+<script>
+  window.PAGE_LANG = 'CN';
+  window.LANG_ALTERNATE_HREF = '/contact.html';
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- GA4 + consent-mode v2 (Plan task 15) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+</script>
+<script src="assets/consent/consent-mode-v2.js"></script>
+<script src="assets/analytics/ga4-events.js"></script>
+
+<script src="assets/vendor/react.development.js"></script>
+<script src="assets/vendor/react-dom.development.js"></script>
+<script src="assets/vendor/babel.min.js"></script>
+<script src="assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="assets/sanity-client.js"></script>
+
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="assets/i18n.js"></script>
+<script type="text/babel" src="components/LangToggle.jsx"></script>
+<script type="text/babel" src="components/Button.jsx"></script>
+<script type="text/babel" src="components/Header.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+<script type="text/babel" src="components/PageShell.jsx"></script>
+<script type="text/babel" src="components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="components/SmartFormCN.jsx"></script>
+
+<script type="text/babel">
+// 中文孪生页 —— 结构与 contact.html 一一对应。
+// ?intent= 的取值是发给后端的标识符，不翻译；只有展示文案是中文。
+const AI_INTENT_HEROS = {
+  ai_notify_me: {
+    eyebrow: 'AI 平台 · 即将开放',
+    title: '下一个 AI 产品开放时通知我。',
+    body: '限量预览开放的那天，我们发一封邮件，仅此一封。不进营销名单，没有后续培育序列。',
+  },
+  ai_product_access: {
+    eyebrow: 'AI 平台 · 限量预览',
+    title: '申请 AI 产品限量预览。',
+    body: '限量预览面向临床医生与在合作中的研究团队开放。申请我们在 5 个工作日内审完并回复。',
+  },
+  ai_reverse_dd: {
+    eyebrow: 'AI 平台 · 技术深谈',
+    title: '和我们的 AI 团队直接谈。',
+    body: '能力核验、技术深度沟通，或合作模式探讨。AI 团队在 2 个工作日内回复，接你的是做这套系统的人。',
+  },
+  research_scope: {
+    eyebrow: '医生调研 · 立项',
+    title: '立一个医生调研项目。',
+    body: '给我们一个要回答的问题和目标样本——ATU、认知度、治疗路径或信息测试都可以。2 个工作日内回你方法、排期与报价。',
+  },
+};
+
+function getRoutedIntent() {
+  if (typeof window === 'undefined') return null;
+  const m = window.location.search.match(/[?&]intent=([^&]+)/);
+  if (!m) return null;
+  const v = decodeURIComponent(m[1]);
+  return AI_INTENT_HEROS[v] ? v : null;
+}
+
+function App() {
+  const routedIntent = getRoutedIntent();
+  const aiHero = routedIntent ? AI_INTENT_HEROS[routedIntent] : null;
+  const L = (href) => (window.MSH && window.MSH.L) ? window.MSH.L(href) : href;
+
+  const prep = [
+    ['产品或适应症，以及目标市场', '中国、美国还是全球——先说清楚方向，我们才知道派哪条线的人。'],
+    ['时间节点', '卡在申报、学术大会、融资还是上市窗口。有截止日期就写日期。'],
+    ['手上已有的材料', '现有证据包、发表记录、既往调研——有什么写什么，没有也可以谈。'],
+    ['内部签核路径', '医学、法务、合规分别由谁签。这一条决定项目排期，越早说越好。'],
+  ];
+
+  return (
+    <PageShell hideHero breadcrumbs={[
+      { label: '首页', href: L('/') },
+      { label: '联系我们' }
+    ]}>
+      {/* 左文右表两栏 */}
+      <section style={{
+        maxWidth: 1280,
+        margin: '0 auto',
+        padding: 'clamp(48px, 6vw, 96px) clamp(16px, 4vw, 40px) 64px',
+      }}>
+        <div className="two-col-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1.1fr',
+          gap: 'clamp(40px, 5vw, 80px)',
+          alignItems: 'start',
+        }}>
+          {/* 左 —— 文案 + 分派说明 */}
+          <div>
+            <div style={{
+              fontFamily: 'var(--font-slogan)',
+              fontSize: 12,
+              letterSpacing: '0.16em',
+              textTransform: 'uppercase',
+              color: 'var(--brand-accent-700)',
+              marginBottom: 16
+            }}>{aiHero ? aiHero.eyebrow : '联系梅斯健康 MedSci Healthcare'}</div>
+
+            <h1 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(32px, 4vw, 44px)',
+              lineHeight: 1.2,
+              color: 'var(--brand-primary-700)',
+              margin: '0 0 20px'
+            }}>{aiHero ? aiHero.title : '说清楚你要做的事，我们派对口的人来接。'}</h1>
+
+            <p style={{
+              fontSize: 16,
+              color: 'var(--fg-1)',
+              lineHeight: 1.65,
+              margin: '0 0 32px',
+            }}>
+              {aiHero
+                ? aiHero.body
+                : '表单按业务模块分派——医学证据、医生互动、医学传播、AI 平台。接你这条线的人，就是项目开工后在交付物上签核的人，不是转手给别人的接线员。'
+              }
+            </p>
+
+            {/* 回复节奏 —— 中文读者最先问的三件事 */}
+            <div style={{
+              border: '1px solid var(--border-1)',
+              borderRadius: 12,
+              padding: '22px 24px',
+              background: 'var(--bg-2)',
+              marginBottom: 32,
+            }}>
+              <div style={{
+                fontFamily: 'var(--font-slogan)',
+                fontSize: 11,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'var(--brand-primary-700)',
+                marginBottom: 14,
+                fontWeight: 600,
+              }}>提交之后会发生什么</div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.6 }}>
+                <li style={{ marginBottom: 10 }}>
+                  <strong style={{ color: 'var(--fg-1)' }}>2 个工作日内</strong>，一位有医学背景的项目负责人给你回信，发件地址是{' '}
+                  <code style={{ fontFamily: 'var(--font-mono)', fontSize: 13 }}>hello@medscihealthcare.com</code>
+                </li>
+                <li style={{ marginBottom: 10 }}>
+                  回信里会写明：<strong style={{ color: 'var(--fg-1)' }}>对口团队是谁</strong>、可行的起步方式、以及下一步要你提供哪些材料
+                </li>
+                <li style={{ marginBottom: 10 }}>
+                  需要的话再约一次 <strong style={{ color: 'var(--fg-1)' }}>30 分钟</strong>的范围界定通话，中文或英文都可以
+                </li>
+                <li style={{ margin: 0 }}>
+                  报价请联系我们——范围谈清楚之后才给数字
+                </li>
+              </ul>
+            </div>
+
+            {/* 提交前准备什么 */}
+            <div style={{
+              borderTop: '1px solid var(--border-1)',
+              paddingTop: 28,
+              marginBottom: 32,
+            }}>
+              <div style={{
+                fontFamily: 'var(--font-slogan)',
+                fontSize: 11,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'var(--brand-primary-700)',
+                marginBottom: 12,
+                fontWeight: 600,
+              }}>先备好这四样，能省一轮来回</div>
+              <ol style={{ padding: '0 0 0 18px', margin: '0 0 12px', fontSize: 14, color: 'var(--fg-2)', lineHeight: 1.6 }}>
+                {prep.map(([t, d], i) => (
+                  <li key={i} style={{ marginBottom: 8 }}>
+                    <strong style={{ color: 'var(--fg-1)' }}>{t}</strong>——{d}
+                  </li>
+                ))}
+              </ol>
+              <p style={{ margin: 0, fontSize: 13, color: 'var(--fg-3)', lineHeight: 1.6 }}>
+                表单里不用上传附件。涉及未公开数据的材料，我们会在回信中给出受控的上传方式。
+              </p>
+            </div>
+
+            {/* 分派规则透明化 */}
+            <div style={{
+              borderTop: '1px solid var(--border-1)',
+              paddingTop: 28,
+              fontSize: 14,
+              color: 'var(--fg-2)',
+              lineHeight: 1.6,
+            }}>
+              <div style={{
+                fontFamily: 'var(--font-slogan)',
+                fontSize: 11,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'var(--brand-primary-700)',
+                marginBottom: 12,
+                fontWeight: 600,
+              }}>这份表单怎么分派</div>
+
+              <p style={{ margin: '0 0 16px', fontSize: 14 }}>
+                选「预约一个试点」或「与专家沟通」的，按业务模块分到对应的 BD；选「RFP / 正式招采」的，进正式方案组的队列。
+              </p>
+
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 0' }}>
+                <li style={{ marginBottom: 10, fontSize: 13 }}>
+                  → 投资者关系（港交所上市 · 2415.HK）：{' '}
+                  <a href="https://ir.medsci.cn/" rel="external noopener" style={{ color: 'var(--fg-link)', textDecoration: 'underline' }}>
+                    ir.medsci.cn
+                  </a>
+                </li>
+                <li style={{ marginBottom: 10, fontSize: 13 }}>
+                  → 媒体与公关：业务模块选 <em>其他</em>，并写明媒体名称与截稿时间。
+                </li>
+                <li style={{ marginBottom: 10, fontSize: 13 }}>
+                  → 合规 / 供应商安全材料包：业务模块选 <em>其他</em>，说明你的审计场景。
+                </li>
+                <li style={{ marginBottom: 0, fontSize: 13 }}>
+                  → 已经在进行的合作：请直接回复合作意向书里的那条邮件线程，不要走这里。
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* 右 —— 表单 */}
+          <div style={{
+            background: 'var(--bg-2)',
+            borderRadius: 16,
+            border: '1px solid var(--border-1)',
+            padding: 'clamp(24px, 3vw, 40px)',
+            '--form-max-width': 'none',
+            '--form-padding': '0px',
+          }}>
+            <SmartFormCN routedIntent={routedIntent} />
+          </div>
+        </div>
+      </section>
+
+      {/* 办公室照片 */}
+      <section style={{
+        maxWidth: 1280,
+        margin: '0 auto',
+        padding: '0 clamp(16px, 4vw, 40px) clamp(64px, 8vw, 96px)',
+      }}>
+        <div style={{
+          borderRadius: 12,
+          overflow: 'hidden',
+          border: '1px solid var(--border-1)',
+          position: 'relative',
+        }}>
+          <picture>
+            <source srcSet="assets/photos/hq-night.jpg" media="(prefers-color-scheme: dark)" />
+            <img
+              src="assets/photos/hq-day.jpg"
+              alt="梅斯健康 MedSci Healthcare 美国办公室——加利福尼亚州尔湾"
+              loading="lazy"
+              width="1280"
+              height="540"
+              style={{
+                display: 'block',
+                width: '100%',
+                height: 'clamp(200px, 30vw, 400px)',
+                objectFit: 'cover',
+                objectPosition: 'center 40%',
+              }}
+            />
+          </picture>
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            padding: '24px 28px 20px',
+            background: 'linear-gradient(transparent, rgba(0,0,0,0.55))',
+            color: 'var(--white)',
+            fontSize: 13,
+            fontFamily: 'var(--font-ui)',
+            letterSpacing: '0.04em',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+          }}>
+            <span>加州尔湾（Irvine, California）—— 美国运营</span>
+            <span style={{ opacity: 0.7, fontSize: 11 }}>梅斯健康 MedSci Healthcare</span>
+          </div>
+        </div>
+      </section>
+
+    </PageShell>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

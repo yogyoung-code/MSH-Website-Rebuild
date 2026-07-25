@@ -7,6 +7,7 @@
 <meta name="description" content="Real-world evidence, registry studies, literature, and HEOR — physician-validated, audit-traceable evidence packages.">
 <link rel="canonical" href="https://medscihealthcare.com/solutions/medical-evidence">
 <link rel="alternate" hreflang="en" href="https://medscihealthcare.com/solutions/medical-evidence">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/solutions/medical-evidence-cn">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="Medical Evidence — MedSci Healthcare">
 <meta property="og:description" content="Real-world evidence, registry studies, literature, and HEOR — physician-validated, audit-traceable evidence packages.">
@@ -52,6 +53,9 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <!-- Sanity CMS integration -->
 <script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
 <script src="../assets/sanity-client.js"></script>
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="../assets/i18n.js"></script>
+<script type="text/babel" src="../components/LangToggle.jsx"></script>
 <script type="text/babel" src="../components/Button.jsx"></script>
 <script type="text/babel" src="../components/SolutionHeader.jsx"></script>
 <script type="text/babel" src="../components/SolutionsShell.jsx"></script>

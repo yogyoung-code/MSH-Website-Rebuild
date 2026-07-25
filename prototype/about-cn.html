@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关于梅斯健康 — AI + 医生在环（PITL） | 梅斯健康 MedSci Healthcare</title>
+<meta name="description" content="梅斯健康 MedSci Healthcare（2415.HK）——港交所上市的医学事务平台母公司。医学证据、医生互动与医学传播，AI 辅助起草，具名医生签核，法务、IR 与 FDA 评审人可逐条核对。">
+<link rel="canonical" href="https://medscihealthcare.com/about-cn">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/about">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/about-cn">
+<link rel="alternate" hreflang="x-default" href="https://medscihealthcare.com/about">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="关于梅斯健康 — AI + 医生在环（PITL） | 梅斯健康">
+<meta property="og:description" content="梅斯健康（2415.HK）——港交所上市的医学事务平台母公司。每一份交付物都有具名医生签核，带来源链路与审计留痕。">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/about-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/about-cn">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "梅斯健康 MedSci Healthcare",
+      "url": "https://medscihealthcare.com",
+      "tickerSymbol": "2415.HK",
+      "sameAs": [
+        "https://www.hkexnews.hk/"
+      ]
+    },
+    {
+      "@type": "AboutPage",
+      "name": "关于梅斯健康",
+      "description": "梅斯健康 MedSci Healthcare（2415.HK）的公司介绍、管理层、333 万+ 医生网络口径，以及合规与治理说明。",
+      "url": "https://medscihealthcare.com/about-cn.html",
+      "inLanguage": "zh-CN"
+    }
+  ]
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", "Songti SC", "Noto Serif SC", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+<script>
+  window.PAGE_LANG = 'CN';
+  window.LANG_ALTERNATE_HREF = '/about.html';
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="assets/vendor/react.development.js"></script>
+<script src="assets/vendor/react-dom.development.js"></script>
+<script src="assets/vendor/babel.min.js"></script>
+<script src="assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="assets/sanity-client.js"></script>
+
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="assets/i18n.js"></script>
+<script type="text/babel" src="components/LangToggle.jsx"></script>
+<script type="text/babel" src="components/Button.jsx"></script>
+<script type="text/babel" src="components/Header.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+<script type="text/babel" src="components/PageShell.jsx"></script>
+<script type="text/babel" src="components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="components/LeadershipGridCN.jsx"></script>
+<script type="text/babel" src="components/ComplianceTableCN.jsx"></script>
+<script type="text/babel" src="components/PageAboutCN.jsx"></script>
+
+<script type="text/babel">
+function App() {
+  React.useEffect(() => {
+    const t = setTimeout(() => window.lucide && lucide.createIcons(), 50);
+    return () => clearTimeout(t);
+  });
+  return <PageAboutCN />;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+window.addEventListener('load', () => setTimeout(() => window.lucide && lucide.createIcons(), 200));
+</script>
+</body>
+</html>

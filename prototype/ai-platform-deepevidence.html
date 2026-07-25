@@ -6,7 +6,8 @@
 <title>DeepEvidence — Clinical AI · MedSci Healthcare</title>
 <meta name="description" content="DeepEvidence: authoritative-source clinical guidance at the bedside. Each answer anchored to guidelines and drug labels.">
 <link rel="canonical" href="https://medscihealthcare.com/ai-platform/deepevidence">
-<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/ai-platform/deepevidence">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/ai-platform-deepevidence">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/ai-platform-deepevidence-cn">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="DeepEvidence — Clinical AI">
 <meta property="og:description" content="Bedside clinical guidance anchored to ADA, KDIGO, and other authoritative guidelines.">
@@ -73,6 +74,9 @@
 <script src="assets/sanity-client.js"></script>
 
 <!-- v0.1 layout -->
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="assets/i18n.js"></script>
+<script type="text/babel" src="components/LangToggle.jsx"></script>
 <script type="text/babel" src="components/Button.jsx"></script>
 <script type="text/babel" src="components/Header.jsx"></script>
 <script type="text/babel" src="components/Footer.jsx"></script>

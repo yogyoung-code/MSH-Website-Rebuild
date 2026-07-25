@@ -7,6 +7,7 @@
 <meta name="description" content="Field briefings on China RWE, FDA evidence bridges, and bilingual medical communication — written by physicians, reviewed under our PITL workflow.">
 <link rel="canonical" href="https://medscihealthcare.com/insights/">
 <link rel="alternate" hreflang="en" href="https://medscihealthcare.com/insights/">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/insights/index-cn">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="Insights — MedSci Healthcare">
 <meta property="og:description" content="Briefings on China RWE, FDA evidence bridges, and bilingual medical communication — physician-written, PITL-reviewed.">
@@ -49,6 +50,9 @@ html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1);
 <script src="../assets/vendor/babel.min.js"></script>
 <script src="../assets/vendor/lucide.min.js"></script>
 
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="../assets/i18n.js"></script>
+<script type="text/babel" src="../components/LangToggle.jsx"></script>
 <script type="text/babel" src="../components/Button.jsx"></script>
 <script type="text/babel" src="../components/Header.jsx"></script>
 <script type="text/babel" src="../components/Footer.jsx"></script>

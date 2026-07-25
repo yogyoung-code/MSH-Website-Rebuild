@@ -199,8 +199,8 @@ function FinalCTA() {
           Thirty-minute intro call with a physician-trained program lead. No deck, no NDA to start — just your hardest cross-border evidence question.
         </p>
         <div style={{ display: 'flex', gap: 12, marginTop: 40, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Button variant="primary-light" style={{ background: '#fff', color: 'var(--brand-primary-700)' }}>Book a pilot</Button>
-          <Button variant="outline-light">Talk to an expert</Button>
+          <Button variant="primary-light" href={window.MSH ? window.MSH.L('/pilots/china-evidence-sprint.html') : '/pilots/china-evidence-sprint.html'} style={{ background: '#fff', color: 'var(--brand-primary-700)' }}>Book a pilot</Button>
+          <Button variant="outline-light" href={window.MSH ? window.MSH.L('/contact.html') : '/contact.html'}>Talk to an expert</Button>
         </div>
         <div style={{ marginTop: 40, display: 'flex', gap: 32, justifyContent: 'center', flexWrap: 'wrap', fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>

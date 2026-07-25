@@ -36,3 +36,45 @@
 /global-newsroom      /solutions/global-communications-office   301
 /communications       /solutions/global-communications-office   301
 /gco-cn               /solutions/global-communications-office-cn 301
+
+# ============================================================
+# 中文版（2026-07-24）—— 语言孪生页 foo.html ⇄ foo-cn.html
+# 注册表见 assets/i18n.js 的 CN_PAGES；新增中文页后跑
+# node scripts/sync-cn-registry.js 同步，再在此补短链。
+# ============================================================
+
+# AI 平台子页：中文版同样走 nested URL 的 200 rewrite
+/ai-platform/deepevidence-cn  /ai-platform-deepevidence-cn.html  200
+/ai-platform/seekevidence-cn  /ai-platform-seekevidence-cn.html  200
+/zh/ai-platform/deepevidence  /ai-platform-deepevidence-cn.html  200
+/zh/ai-platform/seekevidence  /ai-platform-seekevidence-cn.html  200
+
+# /zh/* 前缀短链 —— 便于对外投放与二维码，统一 301 到 -cn 页
+/zh                                    /index-cn                                        301
+/zh/                                   /index-cn                                        301
+/zh/about                              /about-cn                                        301
+/zh/contact                            /contact-cn                                      301
+/zh/ai-platform                        /ai-platform-cn                                  301
+/zh/case-studies                       /case-studies/index-cn                           301
+/zh/insights                           /insights/index-cn                               301
+/zh/solutions/entering-china           /solutions/entering-china-cn                     301
+/zh/solutions/going-global-us          /solutions/going-global-us-cn                    301
+/zh/solutions/medical-evidence         /solutions/medical-evidence-cn                   301
+/zh/solutions/medical-communications   /solutions/medical-communications-cn             301
+/zh/solutions/physician-engagement     /solutions/physician-engagement-cn               301
+/zh/solutions/physician-research       /solutions/physician-research-cn                 301
+/zh/solutions/content-review           /solutions/content-review-cn                     301
+/zh/solutions/biostatistics-data-management  /solutions/biostatistics-data-management-cn 301
+/zh/solutions/cross-border-medical-content-sprint /solutions/cross-border-medical-content-sprint-cn 301
+/zh/solutions/global-communications-office   /solutions/global-communications-office-cn 301
+/zh/pilots/china-evidence-sprint       /pilots/china-evidence-sprint-cn                 301
+/zh/pilots/fda-evidence-gap-diagnostic /pilots/fda-evidence-gap-diagnostic-cn           301
+/zh/legal/terms                        /legal/terms-cn                                  301
+/zh/legal/privacy                      /legal/privacy-cn                                301
+/zh/legal/disclosures                  /legal/disclosures-cn                            301
+
+# 与既有英文短链对齐的中文短链
+/china-cn             /solutions/entering-china-cn                      301
+/usa-cn               /solutions/going-global-us-cn                     301
+/research-cn          /solutions/physician-research-cn                  301
+/biostatistics-cn     /solutions/biostatistics-data-management-cn       301

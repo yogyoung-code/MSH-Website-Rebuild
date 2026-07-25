@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>页面不存在 — 梅斯健康 MedSci Healthcare</title>
+<meta name="description" content="你要找的页面在 medscihealthcare.com 上没有找到。">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://medscihealthcare.com/404-cn">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/404">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/404-cn">
+<meta property="og:title" content="页面不存在 — 梅斯健康 MedSci Healthcare">
+<meta property="og:description" content="你要找的页面已经移动或不再存在。可以从解决方案、客户案例与洞察重新进入。梅斯健康（港交所 2415.HK）。">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/home-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/404-cn">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="assets/logo/medsci-healthcare-mark.svg">
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", "Songti SC", "Noto Serif SC", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+<script>
+  window.PAGE_LANG = 'CN';
+  window.LANG_ALTERNATE_HREF = '/404.html';
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="assets/vendor/react.development.js"></script>
+<script src="assets/vendor/react-dom.development.js"></script>
+<script src="assets/vendor/babel.min.js"></script>
+<script src="assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="assets/sanity-client.js"></script>
+
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="assets/i18n.js"></script>
+<script type="text/babel" src="components/LangToggle.jsx"></script>
+<script type="text/babel" src="components/Button.jsx"></script>
+<script type="text/babel" src="components/Header.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+
+<script type="text/babel">
+function NotFoundCN() {
+  // 记录用户实际访问的地址，客服收到反馈时有上下文可查。
+  const path = (typeof window !== 'undefined' && window.location)
+    ? window.location.pathname + window.location.search
+    : '/';
+  const L = (h) => (window.MSH ? window.MSH.L(h) : h);
+
+  const links = [
+    { label: '解决方案',  href: '/solutions/entering-china.html' },
+    { label: 'AI 平台',   href: '/ai-platform.html' },
+    { label: '客户案例',  href: '/case-studies/' },
+    { label: '洞察',      href: '/insights/' },
+    { label: '关于我们',  href: '/about.html' },
+    { label: '联系我们',  href: '/contact.html' }
+  ];
+
+  return (
+    <div>
+      <Header />
+
+      <main style={{
+        maxWidth: 'var(--container-max, 1280px)',
+        margin: '0 auto',
+        padding: 'clamp(64px, 8vw, 128px) clamp(24px, 6vw, 96px)'
+      }}>
+        <div style={{ maxWidth: 720 }}>
+          <div style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: 12,
+            letterSpacing: '0.14em',
+            color: 'var(--brand-accent-700)',
+            marginBottom: 24,
+            fontWeight: 600
+          }}>404 · 页面不存在</div>
+
+          <h1 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(32px, 4.6vw, 56px)',
+            lineHeight: 1.25,
+            color: 'var(--brand-primary-700)',
+            margin: '0 0 24px',
+            fontWeight: 600,
+            letterSpacing: '-0.012em'
+          }}>这个页面不在这里</h1>
+
+          <p style={{
+            fontSize: 18,
+            color: 'var(--fg-2)',
+            lineHeight: 1.8,
+            margin: '0 0 32px'
+          }}>
+            可能是链接过期了，也可能页面已经迁走。你多半要找的内容，下面一步就能到——
+            也可以把这个失效链接发给我们，我们来修。
+          </p>
+
+          {/* 在可安全展示的前提下，回显用户访问的路径 */}
+          {path && path !== '/' && (
+            <div style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 12,
+              color: 'var(--fg-3)',
+              background: 'var(--bg-2)',
+              border: '1px solid var(--border-1)',
+              borderRadius: 'var(--radius-md, 6px)',
+              padding: '10px 14px',
+              margin: '0 0 32px',
+              wordBreak: 'break-all'
+            }}>
+              你访问的是：<span style={{ color: 'var(--fg-1)' }}>{path.replace(/[<>]/g, '')}</span>
+            </div>
+          )}
+
+          <div style={{
+            display: 'flex',
+            gap: 12,
+            flexWrap: 'wrap',
+            marginBottom: 48
+          }}>
+            <a href={L('/')} style={{
+              display: 'inline-block',
+              padding: '14px 28px',
+              background: 'var(--brand-primary-700)',
+              color: 'var(--bg-1)',
+              fontFamily: 'var(--font-ui)',
+              fontSize: 14,
+              fontWeight: 600,
+              letterSpacing: '0.04em',
+              textDecoration: 'none',
+              borderRadius: 'var(--radius-md, 6px)'
+            }}>回到首页</a>
+            <a href={L('/contact.html') + `?topic=other&note=${encodeURIComponent('失效链接：' + path)}`} style={{
+              display: 'inline-block',
+              padding: '14px 28px',
+              background: 'transparent',
+              color: 'var(--brand-primary-700)',
+              border: '1px solid var(--brand-primary-700)',
+              fontFamily: 'var(--font-ui)',
+              fontSize: 14,
+              fontWeight: 600,
+              letterSpacing: '0.04em',
+              textDecoration: 'none',
+              borderRadius: 'var(--radius-md, 6px)'
+            }}>反馈这个失效链接</a>
+          </div>
+
+          <div style={{
+            borderTop: '1px solid var(--border-1)',
+            paddingTop: 32
+          }}>
+            <div style={{
+              fontFamily: 'var(--font-ui)',
+              fontSize: 12,
+              letterSpacing: '0.12em',
+              color: 'var(--fg-3)',
+              marginBottom: 16,
+              fontWeight: 600
+            }}>你可能在找</div>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              margin: 0,
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+              gap: 8
+            }}>
+              {links.map((l) => (
+                <li key={l.href}>
+                  <a href={L(l.href)} style={{
+                    display: 'block',
+                    padding: '10px 14px',
+                    fontSize: 14,
+                    fontWeight: 500,
+                    color: 'var(--brand-primary-700)',
+                    background: 'var(--bg-2)',
+                    border: '1px solid var(--border-1)',
+                    borderRadius: 'var(--radius-md, 6px)',
+                    textDecoration: 'none',
+                    transition: 'all var(--dur-ui, 200ms) var(--ease-standard, cubic-bezier(0.4,0,0.2,1))'
+                  }}>{l.label} →</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<NotFoundCN />);
+window.addEventListener('load', () => setTimeout(() => window.lucide && lucide.createIcons(), 200));
+</script>
+</body>
+</html>

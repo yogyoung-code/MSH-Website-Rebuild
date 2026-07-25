@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使用条款 — 梅斯健康 MedSci Healthcare</title>
+<meta name="description" content="medscihealthcare.com 使用条款中文版：接受条款、网站允许使用范围、知识产权、第三方链接、免责声明、责任限制、赔偿、条款变更与管辖法律（香港法 · HKIAC）。">
+<link rel="canonical" href="https://medscihealthcare.com/legal/terms-cn">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/legal/terms">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/legal/terms-cn">
+<link rel="alternate" hreflang="x-default" href="https://medscihealthcare.com/legal/terms">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="使用条款 — 梅斯健康 MedSci Healthcare">
+<meta property="og:description" content="medscihealthcare.com 使用条款中文版。">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/legal-terms-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/legal/terms-cn">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "name": "使用条款 — 梅斯健康 MedSci Healthcare",
+ "url": "https://medscihealthcare.com/legal/terms-cn",
+ "publisher": { "@type": "Organization", "name": "梅斯健康 MedSci Healthcare", "url": "https://medscihealthcare.com" },
+ "inLanguage": "zh-CN"
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", "Songti SC", "Noto Serif SC", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+ *, *::before, *::after { box-sizing: border-box; }
+ a { color: inherit; }
+</style>
+<script>
+  window.PAGE_LANG = 'CN';
+  window.LANG_ALTERNATE_HREF = '/legal/terms.html';
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
+
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="../assets/i18n.js"></script>
+<script type="text/babel" src="../components/LangToggle.jsx"></script>
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/LegalProseCN.jsx"></script>
+<script type="text/babel" src="../components/Pending.jsx"></script>
+<script type="text/babel" src="../components/PageTermsCN.jsx"></script>
+
+<script type="text/babel">
+// 语言切换已统一到全站 Header 的 LangToggle（跳转 /legal/terms.html）。
+// 中文条款正文见 components/PageTermsCN.jsx —— 逐条搬运自 legal/terms.html
+// 页内已有的 zh 字典，未作任何改写。审批状态见
+// docs/approvals/legal-pages-pending-counsel-signoff.md。
+function App() {
+  React.useEffect(() => {
+    const t = setTimeout(() => window.lucide && lucide.createIcons(), 50);
+    return () => clearTimeout(t);
+  });
+  return <PageTermsCN />;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+window.addEventListener('load', () => setTimeout(() => window.lucide && lucide.createIcons(), 200));
+</script>
+</body>
+</html>

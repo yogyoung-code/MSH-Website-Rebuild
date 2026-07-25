@@ -6,7 +6,8 @@
 <title>SeekEvidence — Research AI · MedSci Healthcare</title>
 <meta name="description" content="SeekEvidence: from literature review to manuscript drafting. Structured evidence extraction across global trials and registries.">
 <link rel="canonical" href="https://medscihealthcare.com/ai-platform/seekevidence">
-<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/ai-platform/seekevidence">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/ai-platform-seekevidence">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/ai-platform-seekevidence-cn">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="SeekEvidence — Research AI">
 <meta property="og:description" content="From literature review to manuscript drafting. Multi-trial PFS / OS comparison and forest plot generation.">
@@ -73,6 +74,9 @@
 <script src="assets/sanity-client.js"></script>
 
 <!-- v0.1 layout -->
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="assets/i18n.js"></script>
+<script type="text/babel" src="components/LangToggle.jsx"></script>
 <script type="text/babel" src="components/Button.jsx"></script>
 <script type="text/babel" src="components/Header.jsx"></script>
 <script type="text/babel" src="components/Footer.jsx"></script>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>30 天中国证据冲刺 · 固定范围试点 | 梅斯健康</title>
+<meta name="description" content="面向进入中国的全球生物医药与医疗器械团队的 30 天固定范围试点：4 项交付物、第 15 天中期检查、具名医生签核、全程可溯源。报价请联系我们。">
+<link rel="canonical" href="https://medscihealthcare.com/pilots/china-evidence-sprint-cn">
+<link rel="alternate" hreflang="en" href="https://medscihealthcare.com/pilots/china-evidence-sprint">
+<link rel="alternate" hreflang="zh-CN" href="https://medscihealthcare.com/pilots/china-evidence-sprint-cn">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="30 天中国证据冲刺 · 固定范围试点 | 梅斯健康">
+<meta property="og:description" content="面向进入中国的全球团队的 30 天固定范围试点——具名医生签核，全程可溯源，30 个自然日交付。">
+<meta property="og:image" content="https://medscihealthcare.com/assets/og/pilot-china-sprint-1200x630.png">
+<meta property="og:url" content="https://medscihealthcare.com/pilots/china-evidence-sprint-cn">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<link rel="stylesheet" href="../assets/responsive.css">
+<link rel="icon" type="image/svg+xml" href="../assets/logo/medsci-healthcare-mark.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "30 天中国证据冲刺",
+      "url": "https://medscihealthcare.com/pilots/china-evidence-sprint-cn.html",
+      "inLanguage": "zh-CN",
+      "provider": { "@type": "Organization", "name": "MedSci Healthcare 梅斯健康", "tickerSymbol": "2415.HK", "url": "https://medscihealthcare.com" },
+      "serviceType": "面向进入中国的全球团队的医学证据与医生互动诊断型试点"
+    },
+    {
+      "@type": "Offer",
+      "name": "30 天中国证据冲刺",
+      "url": "https://medscihealthcare.com/pilots/china-evidence-sprint-cn.html",
+      "inLanguage": "zh-CN",
+      "availability": "https://schema.org/PreOrder",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "USD",
+        "price": "0",
+        "description": "报价请联系我们——待 BD 与财务签核"
+      }
+    }
+  ]
+}
+</script>
+<style>
+  :root {
+    --font-display: "Footlight MT Light", "Footlight MT", "Source Serif 4", "Songti SC", "Noto Serif SC", Georgia, serif;
+    --font-slogan: "Footlight MT Light", "Footlight MT", Georgia, serif;
+  }
+html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--fg-1); font-family: var(--font-ui); }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+</style>
+<script>
+  window.PAGE_LANG = 'CN';
+  window.LANG_ALTERNATE_HREF = '/pilots/china-evidence-sprint.html';
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="../assets/vendor/react.development.js"></script>
+<script src="../assets/vendor/react-dom.development.js"></script>
+<script src="../assets/vendor/babel.min.js"></script>
+<script src="../assets/vendor/lucide.min.js"></script>
+<!-- Sanity CMS integration -->
+<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6/dist/sanityClient.browser.min.js"></script>
+<script src="../assets/sanity-client.js"></script>
+
+<!-- i18n layer: dictionary + CN twin registry (must load before components) -->
+<script src="../assets/i18n.js"></script>
+<script type="text/babel" src="../components/LangToggle.jsx"></script>
+<script type="text/babel" src="../components/Button.jsx"></script>
+<script type="text/babel" src="../components/Header.jsx"></script>
+<script type="text/babel" src="../components/Footer.jsx"></script>
+<script type="text/babel" src="../components/PageShell.jsx"></script>
+<script type="text/babel" src="../components/ContentBlocks.jsx"></script>
+<script type="text/babel" src="../components/PilotCardCN.jsx"></script>
+
+<script type="text/babel">
+// 数据 — 对应英文版 Copy Deck v4.2 §11.1 的中文孪生（转化层改写，非直译）。
+// 数字与条款与英文版严格一致。
+const PILOT = {
+  slug: 'china-evidence-sprint-cn',
+  contactTopic: 'entering_china',
+
+  hero: {
+    eyebrow: '试点 · 进入中国 · 证据',
+    title: '30 天中国证据冲刺',
+    lede: '在投入更大规模的中国证据与医生互动项目之前，先用 30 个自然日把「到底要什么、缺什么、下一步花多少钱」弄清楚。范围在启动前定死，交付物结束时由具名医生签核，每一条结论都能回溯到来源。'
+  },
+
+  includes: {
+    intro: '4 项交付物。范围在启动前确定，结束时由一位具名医生签核：',
+    items: [
+      { label: '中国证据缺口评估',           body: '你现有的全球证据里，哪些能直接拿到中国用，哪些用不了，哪些必须在本地重新做一遍。' },
+      { label: '目标 HCP / 利益相关方假设',  body: '按细分给出：在你的治疗领域里谁说了算，以及他们在中国出现在哪些场景。' },
+      { label: '推荐的证据与互动路径',       body: '一页纸的方向判断，写明各条工作流以及它们之间的依赖关系。' },
+      { label: '下一步方案与预算区间',       body: '更大规模的项目长什么样，含参考范围与预算区间。' }
+    ]
+  },
+
+  bestFor: [
+    '在投入更大规模中国项目之前，需要先把方向弄清楚的团队。',
+    '想先判断现有证据与传播材料能不能直接在中国用的团队。'
+  ],
+
+  engagementDetails: [
+    { label: '范围',         value: '范围固定；不签书面变更单不加项' },
+    { label: '周期',         value: '30 个自然日' },
+    { label: '启动',         value: '签约后 3 个工作日内' },
+    { label: '中期检查',     value: '第 15 天' },
+    { label: '交付形式',     value: '1 份签核 PDF + 1 份可编辑工作文档 + 1 次 60 分钟结果汇报' },
+    { label: '具名医生审核人', value: '启动时指定；最终交付物由同一人签核' }
+  ],
+
+  pricing: { status: 'pending' },  // PilotPricingCN 渲染「报价请联系我们」+ 与 BD 谈报价 CTA
+
+  cta: {
+    primaryLabel:   '预约 30 天中国证据冲刺',
+    primaryHref:    '/contact.html?topic=entering_china',
+    secondaryLabel: '先和专家聊一聊',
+    secondaryHref:  '/contact.html?topic=entering_china'
+  },
+
+  faq: [
+    {
+      q: '我们手上还没有中国的证据数据集，能做吗？',
+      a: '这个试点就是为这种情况设计的。首项交付物就是缺口评估——我们用你已有的材料开工，包括全球临床试验数据、上市后监测数据，以及任何与中国相关的已发表文献。如果缺口很大，推荐路径会如实写出来。'
+    },
+    {
+      q: '这 30 天里，我们对接的是哪些人？',
+      a: '一位具名医生审核人（你的日常对接人）、一位项目负责人，以及按阶段抽调进来的相关治疗领域专家。最终交付物由这位医生审核人本人签核。'
+    },
+    {
+      q: '保密与 NDA——我们的专有数据怎么处理？',
+      a: '启动前先签双向 NDA。冲刺期间共享的数据只留在本项目内，不用于训练任何模型，也不会汇总进其他客户的工作。你的 NDA 模板我们可以签，也可以用我们的。'
+    },
+    {
+      q: '冲刺之后能不能直接接成更大的项目？',
+      a: '可以。最终交付物里就包含下一步方案与预算区间，正是为了让这场对话在双方信息对齐的前提下发生。如果你决定继续，冲刺费用可抵扣更大项目首月的费用。'
+    },
+    {
+      q: '第 15 天的中期检查具体做什么？',
+      a: '双方团队开一次 60 分钟的会，会后附一份书面纪要。任何一方都可以在会上提出范围偏移、输入材料缺失或方向性疑虑。如果原定范围我们交不出来，你在第 15 天就会知道，而不是第 30 天。'
+    },
+    {
+      q: '取消政策是怎样的？',
+      a: '签约后 3 个工作日内取消，全额退款。启动之后按比例退款，扣除截至取消日已投入的医生工时。到第 5 天双方仍未对齐的冲刺，我们不会硬做下去。'
+    }
+  ],
+
+  boundaries: {
+    do: [
+      '证据策略与缺口评估',
+      '医生互动支持与 HCP 图谱梳理',
+      '本地化医学内容框架搭建',
+      '医生在环（Physician-in-the-Loop, PITL）审核下的 AI 辅助撰写'
+    ],
+    dont: [
+      '你在中国本地法人主体的替代',
+      '中国经销商，或商业化销售团队',
+      '全流程法规申报机构',
+      '临床试验 CRO'
+    ],
+    footnote: '需要时，我们可以与专业的法规或商业化合作伙伴并肩推进。'
+  },
+
+  related: {
+    solution:  { slug: 'entering-china',              label: '进入中国' },
+    caseStudy: { slug: 'entering-china-evidence-hcp', label: '进入中国 · 证据与 HCP 赋能' }
+  }
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<PilotPageCN pilot={PILOT} />);
+</script>
+</body>
+</html>
