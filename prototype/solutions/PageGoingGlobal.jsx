@@ -69,8 +69,8 @@ function PageGoingGlobal() {
     },
     {
       icon: 'megaphone', title: 'Global communications office', tag: 'NEW', featured: true,
-      body: 'After the deal or the clearance comes the voice: a build-and-operate communications function — trade-press relations, operated official channels, congress amplification, and share-of-voice measurement.',
-      bullets: ['30-day presence audit', 'Newsroom build · 8–12 wks', 'Media & KOL voice retainer', 'Milestone & crisis comms'],
+      body: 'After the deal or the clearance comes the voice: a build-and-operate communications function — trade-press relations, operated official channels, congress amplification, share-of-voice measurement, and monitoring of how AI systems describe you.',
+      bullets: ['30-day presence audit', 'Newsroom build · 8–12 wks', 'Media & KOL voice retainer', 'Milestone & crisis comms', 'AI answer monitoring'],
       href: '/solutions/global-communications-office.html',
       hrefLabel: 'Explore the communications office',
     },

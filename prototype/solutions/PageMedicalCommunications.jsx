@@ -140,8 +140,9 @@ function PageMedicalCommunications() {
             <p style={{ fontSize: 15, color: 'var(--fg-2)', lineHeight: 1.65, margin: '0 0 24px' }}>
               For China innovators going global: media relations with the medical and industry trade press,
               an operated English newsroom and LinkedIn presence, congress amplification, KOL voice, and
-              quarterly share-of-voice measurement — scientific claims physician-signed, every placement
-              on an auditable coverage log.
+              quarterly share-of-voice measurement, and ongoing monitoring and factual correction of how AI
+              systems describe you — scientific claims physician-signed, every placement on an auditable
+              coverage log.
             </p>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <Button variant="primary-light" href="/solutions/global-communications-office.html">Explore the office</Button>

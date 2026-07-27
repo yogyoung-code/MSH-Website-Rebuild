@@ -73,8 +73,8 @@ function PageGoingGlobalCN() {
     },
     {
       icon: 'megaphone', title: '全球传播部（GCO）', tag: 'NEW', featured: true,
-      body: '交易或获批之后，是声音的问题：一个先搭建、再代运营的传播职能——行业媒体关系、自有渠道代运营、学术大会声量放大、声量（share of voice）度量。',
-      bullets: ['30 天声量审计', 'Newsroom 搭建 · 8–12 周', '媒体与 KOL 声音代运营', '里程碑与危机传播'],
+      body: '交易或获批之后，是声音的问题：一个先搭建、再代运营的传播职能——行业媒体关系、自有渠道代运营、学术大会声量放大、声量（share of voice）度量，以及 AI 如何转述你的持续监测与事实性更正。',
+      bullets: ['30 天声量审计', 'Newsroom 搭建 · 8–12 周', '媒体与 KOL 声音代运营', '里程碑与危机传播', 'AI 答案监测与更正'],
       href: _L('/solutions/global-communications-office.html'),
       hrefLabel: '了解全球传播部',
     },

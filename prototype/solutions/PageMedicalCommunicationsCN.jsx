@@ -146,8 +146,8 @@ function PageMedicalCommunicationsCN() {
             }}>你的全球传播部——我们搭建，我们运营。</h3>
             <p style={{ fontSize: 15, color: 'var(--fg-2)', lineHeight: 1.65, margin: '0 0 24px' }}>
               面向出海的中国创新企业：面向医学媒体与行业媒体的媒体关系、代运营的英文 newsroom
-              与 LinkedIn 官号、学术大会声量、KOL 声音，以及季度声量（share of voice）度量——
-              科学主张医生签核，每一次报道都记入可审计的 coverage log。
+              与 LinkedIn 官号、学术大会声量、KOL 声音、季度声量（share of voice）度量，
+              以及 AI 答案的持续监测与事实性更正——科学主张医生签核，每一次报道都记入可审计的 coverage log。
             </p>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <Button variant="primary-light" href={MC_CN_L('/solutions/global-communications-office.html')}>了解这个部门</Button>
