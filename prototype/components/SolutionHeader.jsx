@@ -1,8 +1,31 @@
-/* SolutionHeader.jsx — Top nav for /solutions/* pages · i18n-aware (2026-07-24)
-   导航数据与 Header.jsx 共用 assets/i18n.js 的同一份词典，杜绝两处脱同步。 */
+/* SolutionHeader.jsx — Top nav for /solutions/* pages · i18n-aware (2026-07-27)
+   文案与站内链接均走 assets/i18n.js：window.PAGE_LANG 决定语言，
+   MSH.L() 把站内链接指向已存在的中文孪生页，语言切换用共享的 LangToggle。
+   导航与 MegaMenu 数据与 Header.jsx 共用同一份词典，杜绝两处脱同步。
+   若页面未加载 i18n 层（window.MSH 缺失），全部回退到英文默认值，不影响渲染。 */
+
+// 英文兜底：仅在 window.MSH 缺失时使用，保证未接入 i18n 的页面不至于空导航。
+const SH_FALLBACK = {
+  slogan: 'Improving Healthcare Quality',
+  listed: 'HKEX listed · 2415.HK',
+  ir: 'Investor Relations',
+  irHref: 'https://ir.medsci.cn/en/',
+  cta: 'Talk to an Expert',
+  navQuick: 'Physician Research',
+  nav: [
+    { label: 'Solutions', hasMega: true },
+    { label: 'Case Studies', href: '/case-studies/' },
+    { label: 'AI Platform', href: '/ai-platform.html' },
+    { label: 'Insights', href: '/insights/' },
+    { label: 'About', href: '/about.html' },
+  ],
+  megaCols: ['By Path · Strategy', 'By Deliverable · Block', 'Quick Start · Entry'],
+  mega: { strategic: [], deliverables: [], quickStart: [] },
+};
+
 function SolutionHeader() {
   const M = window.MSH;
-  const T = (k) => (M ? M.t(k) : '');
+  const T = (k) => (M ? M.t(k) : SH_FALLBACK[k]);
   const L = (h) => (M ? M.L(h) : h);
   const [hoverIdx, setHoverIdx] = React.useState(null);
   const [megaOpen, setMegaOpen] = React.useState(false);
@@ -16,7 +39,6 @@ function SolutionHeader() {
     if (megaTimerRef.current) clearTimeout(megaTimerRef.current);
   };
   const navItems = T('nav') || [];
-  const solutionsLabel = navItems.length ? navItems[0].label : 'Solutions';
   return (
     <header style={{
       position: 'sticky', top: 0, zIndex: 50, background: 'var(--bg-1)',
@@ -48,7 +70,7 @@ function SolutionHeader() {
         </a>
         <button
           className="nav-mobile"
-          aria-label={mobileOpen ? T('closeMenu') : T('openMenu')}
+          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen(!mobileOpen)}
           style={{
@@ -65,7 +87,7 @@ function SolutionHeader() {
         >{mobileOpen ? '×' : '☰'}</button>
         <nav className="nav-desktop" style={{ display: 'flex', gap: 4, marginLeft: 16, position: 'relative' }} onMouseLeave={() => { cancelMegaIntent(); setMegaOpen(false); }}>
           {navItems.map((it, i) => (
-            <div key={it.label} style={{ position: 'relative' }}
+            <div key={i} style={{ position: 'relative' }}
                  onMouseEnter={() => { setHoverIdx(i); if (it.hasMega) openMegaIntent(); else { cancelMegaIntent(); setMegaOpen(false); } }}>
               <a href={it.href ? L(it.href) : '#'}
                  style={{
@@ -73,7 +95,7 @@ function SolutionHeader() {
                    padding: '10px 14px',
                    fontFamily: '"Footlight MT Light", "Footlight MT", Georgia, serif',
                    fontSize: 15.5, fontWeight: 400,
-                   color: hoverIdx === i || (it.label === solutionsLabel) ? 'var(--brand-primary-700)' : 'var(--fg-2)',
+                   color: hoverIdx === i || it.hasMega ? 'var(--brand-primary-700)' : 'var(--fg-2)',
                    textDecoration: 'none', transition: 'color 150ms',
                  }}>
                 {it.label}
@@ -95,6 +117,21 @@ function SolutionHeader() {
           padding: '16px 24px 24px'
         }}>
           <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+            <li style={{ borderBottom: '1px solid var(--border-1)' }}>
+              <a href={L('/solutions/physician-research.html')} onClick={() => setMobileOpen(false)} style={{
+                display: 'flex', alignItems: 'center', gap: 8, padding: '14px 4px',
+                fontFamily: '"Footlight MT Light", Georgia, serif',
+                fontSize: 17,
+                color: 'var(--fg-1)', textDecoration: 'none'
+              }}>
+                {T('navQuick')}
+                <span style={{
+                  fontSize: 10, fontWeight: 600, padding: '1px 6px', borderRadius: 4,
+                  background: 'var(--brand-accent-100)', color: 'var(--brand-accent-700)',
+                  letterSpacing: '0.04em', textTransform: 'uppercase',
+                }}>Fastest</span>
+              </a>
+            </li>
             {navItems.map((it, i) => (
               <li key={i} style={{ borderBottom: '1px solid var(--border-1)' }}>
                 <a href={it.href ? L(it.href) : '#'} onClick={() => setMobileOpen(false)} style={{
@@ -116,12 +153,13 @@ function SolutionHeader() {
   );
 }
 
-/* 与 Header.jsx 的 MegaMenu 同源：数据全部来自 i18n 词典，此处仅复用同一份数据。 */
+/* SolutionMegaMenu — 数据与 Header.jsx 的 MegaMenu 同源（i18n 词典的 mega / megaCols），
+   两处只是外层容器不同，内容永远一致。 */
 function SolutionMegaMenu() {
   const M = window.MSH;
   const L = (h) => (M ? M.L(h) : h);
-  const mega = M ? M.t('mega') : { strategic: [], deliverables: [], quickStart: [] };
-  const colLabels = (M ? M.t('megaCols') : []) || [];
+  const mega = (M ? M.t('mega') : SH_FALLBACK.mega) || SH_FALLBACK.mega;
+  const colLabels = (M ? M.t('megaCols') : SH_FALLBACK.megaCols) || SH_FALLBACK.megaCols;
   const tagBg = (tag) => ({ Cyan: 'var(--brand-accent-100)', New: 'var(--success-100, #ecfdf5)', Sprint: 'var(--bg-3)', Platform: 'var(--brand-accent-100)', Fastest: 'var(--brand-accent-100)' }[tag] || 'var(--brand-primary-100)');
   const tagFg = (tag) => ({ Cyan: 'var(--brand-accent-700)', New: 'var(--success-500, #16a34a)', Sprint: 'var(--fg-2)', Platform: 'var(--brand-accent-700)', Fastest: 'var(--brand-accent-700)' }[tag] || 'var(--brand-primary-700)');
   const Column = ({ label, items }) => (
